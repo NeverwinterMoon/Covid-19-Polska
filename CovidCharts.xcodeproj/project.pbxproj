@@ -9,21 +9,43 @@
 /* Begin PBXBuildFile section */
 		810C12F72444994000419207 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C12F62444994000419207 /* AppDelegate.swift */; };
 		810C12F92444994000419207 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C12F82444994000419207 /* SceneDelegate.swift */; };
-		810C12FB2444994000419207 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C12FA2444994000419207 /* ContentView.swift */; };
+		810C12FB2444994000419207 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C12FA2444994000419207 /* HomeView.swift */; };
 		810C12FD2444994200419207 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 810C12FC2444994200419207 /* Assets.xcassets */; };
 		810C13002444994200419207 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 810C12FF2444994200419207 /* Preview Assets.xcassets */; };
 		810C13032444994200419207 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 810C13012444994200419207 /* LaunchScreen.storyboard */; };
+		810C130C2444C97E00419207 /* Ext-String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C130B2444C97E00419207 /* Ext-String.swift */; };
+		810C130E2444C99D00419207 /* Ext-Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C130D2444C99D00419207 /* Ext-Date.swift */; };
+		810C13172445352700419207 /* ChartsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C13162445352700419207 /* ChartsViewModel.swift */; };
+		810C13192445983000419207 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C13182445983000419207 /* TitleView.swift */; };
+		810C131C2446045C00419207 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C131B2446045C00419207 /* ChartView.swift */; };
+		810C131E244604D400419207 /* ChartBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C131D244604D400419207 /* ChartBottomView.swift */; };
+		810C1320244604E000419207 /* ChartTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C131F244604E000419207 /* ChartTopView.swift */; };
+		810C1322244604F000419207 /* ChartContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C1321244604F000419207 /* ChartContentView.swift */; };
+		810C13242446059E00419207 /* ChartCustomClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C13232446059E00419207 /* ChartCustomClasses.swift */; };
+		81C197BC2446632200AEC5FF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197BB2446632200AEC5FF /* Colors.swift */; };
+		81C197BE2446634900AEC5FF /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197BD2446634900AEC5FF /* Images.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		810C12F32444994000419207 /* CovidCharts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CovidCharts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		810C12F62444994000419207 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		810C12F82444994000419207 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		810C12FA2444994000419207 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		810C12FA2444994000419207 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		810C12FC2444994200419207 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		810C12FF2444994200419207 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		810C13022444994200419207 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		810C13042444994200419207 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		810C130B2444C97E00419207 /* Ext-String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext-String.swift"; sourceTree = "<group>"; };
+		810C130D2444C99D00419207 /* Ext-Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext-Date.swift"; sourceTree = "<group>"; };
+		810C13162445352700419207 /* ChartsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsViewModel.swift; sourceTree = "<group>"; };
+		810C13182445983000419207 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
+		810C131B2446045C00419207 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		810C131D244604D400419207 /* ChartBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartBottomView.swift; sourceTree = "<group>"; };
+		810C131F244604E000419207 /* ChartTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTopView.swift; sourceTree = "<group>"; };
+		810C1321244604F000419207 /* ChartContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartContentView.swift; sourceTree = "<group>"; };
+		810C13232446059E00419207 /* ChartCustomClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCustomClasses.swift; sourceTree = "<group>"; };
+		81C197BB2446632200AEC5FF /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		81C197BD2446634900AEC5FF /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +80,9 @@
 			children = (
 				810C12F62444994000419207 /* AppDelegate.swift */,
 				810C12F82444994000419207 /* SceneDelegate.swift */,
-				810C12FA2444994000419207 /* ContentView.swift */,
+				81C197BA2446630900AEC5FF /* UI */,
+				810C130F2444C9B100419207 /* HomeView */,
+				810C130A2444C95D00419207 /* Extensions */,
 				810C12FC2444994200419207 /* Assets.xcassets */,
 				810C13012444994200419207 /* LaunchScreen.storyboard */,
 				810C13042444994200419207 /* Info.plist */,
@@ -73,6 +97,47 @@
 				810C12FF2444994200419207 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		810C130A2444C95D00419207 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				810C130B2444C97E00419207 /* Ext-String.swift */,
+				810C130D2444C99D00419207 /* Ext-Date.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		810C130F2444C9B100419207 /* HomeView */ = {
+			isa = PBXGroup;
+			children = (
+				810C12FA2444994000419207 /* HomeView.swift */,
+				810C13182445983000419207 /* TitleView.swift */,
+				810C13162445352700419207 /* ChartsViewModel.swift */,
+				810C131A2446043700419207 /* Chart */,
+			);
+			path = HomeView;
+			sourceTree = "<group>";
+		};
+		810C131A2446043700419207 /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				810C131B2446045C00419207 /* ChartView.swift */,
+				810C131F244604E000419207 /* ChartTopView.swift */,
+				810C1321244604F000419207 /* ChartContentView.swift */,
+				810C131D244604D400419207 /* ChartBottomView.swift */,
+				810C13232446059E00419207 /* ChartCustomClasses.swift */,
+			);
+			path = Chart;
+			sourceTree = "<group>";
+		};
+		81C197BA2446630900AEC5FF /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				81C197BB2446632200AEC5FF /* Colors.swift */,
+				81C197BD2446634900AEC5FF /* Images.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,9 +211,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				810C130C2444C97E00419207 /* Ext-String.swift in Sources */,
+				810C1320244604E000419207 /* ChartTopView.swift in Sources */,
+				810C13172445352700419207 /* ChartsViewModel.swift in Sources */,
 				810C12F72444994000419207 /* AppDelegate.swift in Sources */,
+				810C13192445983000419207 /* TitleView.swift in Sources */,
+				810C130E2444C99D00419207 /* Ext-Date.swift in Sources */,
+				810C13242446059E00419207 /* ChartCustomClasses.swift in Sources */,
+				81C197BE2446634900AEC5FF /* Images.swift in Sources */,
 				810C12F92444994000419207 /* SceneDelegate.swift in Sources */,
-				810C12FB2444994000419207 /* ContentView.swift in Sources */,
+				81C197BC2446632200AEC5FF /* Colors.swift in Sources */,
+				810C1322244604F000419207 /* ChartContentView.swift in Sources */,
+				810C12FB2444994000419207 /* HomeView.swift in Sources */,
+				810C131C2446045C00419207 /* ChartView.swift in Sources */,
+				810C131E244604D400419207 /* ChartBottomView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
