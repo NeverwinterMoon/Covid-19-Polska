@@ -21,7 +21,6 @@ enum ChartType {
 struct HomeView: View {
     
     @ObservedObject var vm = ChartViewModel()
-    @State var showChart: ChartType = .confirmed
    
     var body: some View {
         ZStack {
@@ -37,7 +36,7 @@ struct HomeView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 30, style: .continuous))
                     .shadow(color: Color.black.opacity(0.2), radius: 20, x: 0, y: 20)
                 }
-                .animation(Animation.easeInOut(duration: 0.75))
+                
             }
         }
         
@@ -52,38 +51,22 @@ struct ContentView_Previews: PreviewProvider {
 
 struct MenuView: View {
     
-    @ObservedObject var vm = ChartViewModel()
+    @ObservedObject var vm: ChartViewModel
     
     var body: some View {
         VStack (alignment: .center) {
             Spacer()
             HStack (alignment: .center) {
                 Spacer()
-                Button(action: {
-                    self.vm.chart = .confirmed
-                }) {
-                   ButtonView(image: Images.confirmed, title: "Zakażenia")
-                }
-                Button(action: {
-                    self.vm.chart = .deaths
-                }) {
-                   ButtonView(image: Images.deaths, title: "Zgony")
-                }
+                MenuButton(title: "Zakażenia", image: Images.confirmed, showChart: .confirmed, vm: vm)
+                MenuButton(title: "Zgony", image: Images.deaths, showChart: .deaths, vm: vm)
                 Spacer()
             }
             Spacer()
             HStack (alignment: .center) {
                 Spacer()
-                Button(action: {
-                    self.vm.chart = .recovered
-                }) {
-                    ButtonView(image: Images.recovered, title: "Wyzdrowienia")
-                }
-                Button(action: {
-                    print("Open info")
-                }) {
-                   ButtonView(image: Images.info, title: "Info")
-                }
+                MenuButton(title: "Wyleczeni", image: Images.recovered, showChart: .recovered, vm: vm)
+                MenuButton(title: "Informacje", image: Images.info, showChart: .confirmed, vm: vm)
                 Spacer()
             }
             Spacer()
@@ -103,18 +86,27 @@ struct MenuIconView: View {
     }
 }
 
-struct ButtonView: View {
-    var image: String
+struct MenuButton: View {
+    
     var title: String
+    var image: String
+    var showChart: ChartType
+    @ObservedObject var vm: ChartViewModel
+    
     var body: some View {
-        VStack (alignment: .center, spacing: 0) {
-            MenuIconView(name: image)
-            Text(title)
-            .font(.system(size: 10, weight: .bold, design: .default))
-            .foregroundColor(Colors.mainColor)
-            .offset(x: 0, y: -8)
+        
+        Button(action: {
+            self.vm.chart = self.showChart
+        }) {
+            VStack (alignment: .center, spacing: 0) {
+                MenuIconView(name: image)
+                Text(title)
+                .font(.system(size: 10, weight: .bold, design: .default))
+                .foregroundColor(Colors.mainColor)
+                .offset(x: 0, y: -8)
+            }
+            .frame(width: 120)
         }
-        .frame(width: 120)
     }
     
 }

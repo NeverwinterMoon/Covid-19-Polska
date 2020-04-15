@@ -17,6 +17,7 @@ struct ChartTopView: View {
             Text(vm.getTitle())
                 .font(.system(size: 16, weight: .semibold, design: .default))
                 .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                .frame(width: 250)
             VStack (alignment: .center, spacing: 0) {
                 Spacer()
             }
@@ -27,31 +28,8 @@ struct ChartTopView: View {
                 .font(.system(size: 16, weight: .regular, design: .default))
                 .foregroundColor(Colors.white)
         }
+        .frame(width: 300)
+        .background(Colors.lightGrey)
     }
-    
-//    func setMaximumHeight() -> Int {
-//        switch chart {
-//        case .deaths:
-//            return self.data.max(by: { (day1, day2) -> Bool in
-//                return day2.deaths > day1.deaths
-//            })?.deaths ?? 0
-//        case .confirmed:
-//            return self.data.max(by: { (day1, day2) -> Bool in
-//                return day2.confirmed > day1.confirmed
-//            })?.confirmed ?? 0
-//        case .recovered:
-//            return self.data.max(by: { (day1, day2) -> Bool in
-//                return day2.recovered > day1.recovered
-//            })?.recovered ?? 0
-//        }
-//    }
-//
-//    func setTitle(_ chart: ChartType) -> String {
-//        switch chart {
-//        case .deaths: return "Liczba zgonów"
-//        case .confirmed: return "Potwierdzone przypadki"
-//        case .recovered: return "Wyzdrowienia"
-//        }
-//    }
     
 }

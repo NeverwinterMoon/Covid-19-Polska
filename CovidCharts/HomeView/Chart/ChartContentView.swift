@@ -30,35 +30,7 @@ struct ChartContentView: View {
             }
         }
     }
-    
-//    func setMaximumHeight() -> Int {
-//        switch chart {
-//        case .deaths:
-//            return self.data.max(by: { (day1, day2) -> Bool in
-//                return day2.deaths > day1.deaths
-//            })?.deaths ?? 0
-//        case .confirmed:
-//            return self.data.max(by: { (day1, day2) -> Bool in
-//                return day2.confirmed > day1.confirmed
-//            })?.confirmed ?? 0
-//        case .recovered:
-//            return self.data.max(by: { (day1, day2) -> Bool in
-//                return day2.recovered > day1.recovered
-//            })?.recovered ?? 0
-//        }
-//    }
-//
-//    func setHeight(_ day: DayData) -> CGFloat {
-//        switch chart {
-//        case .deaths: return CGFloat(day.deaths)
-//        case .confirmed: return CGFloat(day.confirmed)
-//        case .recovered: return CGFloat(day.recovered)
-//        }
-//    }
-//
-//    func setBarWidth() -> CGFloat {
-//        return (UIScreen.screenWidth - CGFloat(self.data.count * 2) - 32) / CGFloat(self.data.count)
-//    }
+
 }
 
 struct ChartSideView: View {
@@ -78,32 +50,5 @@ struct ChartSideView: View {
         }
         .offset(x: -2, y: -8)
     }
-    
-//    func setMaximumHeight() -> Int {
-//        switch chart {
-//        case .deaths:
-//            return self.data.max(by: { (day1, day2) -> Bool in
-//                return day2.deaths > day1.deaths
-//            })?.deaths ?? 0
-//        case .confirmed:
-//            return self.data.max(by: { (day1, day2) -> Bool in
-//                return day2.confirmed > day1.confirmed
-//            })?.confirmed ?? 0
-//        case .recovered:
-//            return self.data.max(by: { (day1, day2) -> Bool in
-//                return day2.recovered > day1.recovered
-//            })?.recovered ?? 0
-//        }
-//    }
-//
-//    func setTitle(_ chart: ChartType) -> String {
-//        switch chart {
-//        case .deaths: return "Liczba zgonów"
-//        case .confirmed: return "Potwierdzone przypadki"
-//        case .recovered: return "Wyzdrowienia"
-//        }
-//    }
-    
-    
     
 }
