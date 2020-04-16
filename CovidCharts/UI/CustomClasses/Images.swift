@@ -16,6 +16,7 @@ enum Images {
     static let info = "info.circle"
     static let reload = "arrow.clockwise"
     static let calendar = "calendar"
+    static let active = "bed.double"
 }
 
 struct IconView: View {

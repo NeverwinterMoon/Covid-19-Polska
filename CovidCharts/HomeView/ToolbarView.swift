@@ -21,14 +21,13 @@ struct ToolbarView: View {
     var body: some View {
         VStack {
             HStack (alignment: .center) {
-                    MenuButton(title: "Zakażenia", image: Images.confirmed, showChart: .confirmed, vm: vm)
-                    MenuButton(title: "Wyleczeni", image: Images.recovered, showChart: .recovered, vm: vm)
-                    MenuButton(title: "Zgony", image: Images.deaths, showChart: .deaths, vm: vm)
-                    MenuButton(title: "Info", image: Images.info, showChart: .confirmed, vm: vm)
+                    MenuButton(title: "Zakażenia", image: Images.confirmed, chart: .confirmed)
+                    MenuButton(title: "Wyleczeni", image: Images.recovered, chart: .recovered)
+                    MenuButton(title: "Zgony", image: Images.deaths, chart: .deaths)
+                    MenuButton(title: "Info", image: Images.info, chart: .confirmed)
             }
         }
         .frame(width: UIScreen.screenWidth, height: 65, alignment: .center)
-
     }
 }
 
@@ -47,13 +46,13 @@ struct MenuButton: View {
     
     var title: String
     var image: String
-    var showChart: ChartType
-    @ObservedObject var vm: ChartViewModel
+    var chart: ChartType
+    @EnvironmentObject var vm: ChartViewModel
     
     var body: some View {
         
         Button(action: {
-            self.vm.setCustomData(self.showChart)
+            self.vm.setDataFromLast(30, chart: self.chart)
         }) {
             VStack (alignment: .center, spacing: 0) {
                 MenuIconView(name: image)
@@ -67,7 +66,7 @@ struct MenuButton: View {
         }
         .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
         .shadow(color: Color.black.opacity(0.2), radius: 6, x: 0, y: 6)
-        .padding(.horizontal, 8)
+        .padding(.horizontal, 2)
     }
     
 }

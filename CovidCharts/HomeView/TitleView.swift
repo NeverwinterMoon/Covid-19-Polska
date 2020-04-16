@@ -24,7 +24,7 @@ struct TitleView: View {
                     Text("\(getCurrentDate())")
                         .font(.system(size: 16, weight: .semibold, design: .default))
                         .multilineTextAlignment(.leading)
-                        .foregroundColor(Color(UIColor.systemGray5))
+                        .foregroundColor(Color(UIColor.systemPink))
                     Spacer()
                 }
                 .padding(.leading, 26.0)

@@ -16,7 +16,6 @@ class ChartViewModel: ObservableObject {
     
     @Published var data = [Day]()
     @Published var chart: ChartType = .confirmed
-    @Published var customData = [Day]()
     
     init() {
         loadData()
@@ -31,7 +30,7 @@ class ChartViewModel: ObservableObject {
                 let timeSeries = try JSONDecoder().decode(Days.self, from: data)
                 DispatchQueue.main.async {
                     self.data = timeSeries
-                    self.setCustomData(.confirmed)
+                    self.setDataFromLast(30, chart: .confirmed)
                 }
             } catch {
                 print("JSON Decode failed:", error)
@@ -40,14 +39,15 @@ class ChartViewModel: ObservableObject {
         .resume()
     }
     
-    func setCustomData(_ chart: ChartType) {
-        self.chart = chart
-        switch chart {
-        case .deaths: customData = data.filter { $0.deaths > 0 }
-        case .confirmed: customData = data.filter { $0.confirmed > 0 }
-        case .recovered: customData = data.filter { $0.recovered > 0 }
-        }
-    }
+//    func setCustomData(_ chart: ChartType) {
+//        self.chart = chart
+//        switch chart {
+//        case .deaths: customData = data.filter { $0.deaths > 0 }
+//        case .confirmed: customData = data.filter { $0.confirmed > 0 }
+//        case .recovered: customData = data.filter { $0.recovered > 0 }
+//        case .active: customData = data.filter { $0.active > 0 }
+//        }
+//    }
     
     func getTitle() -> String {
         switch chart {
@@ -60,17 +60,39 @@ class ChartViewModel: ObservableObject {
     func getAllCases() -> Int {
         switch chart {
         case .deaths:
-            return self.customData.max(by: { (day1, day2) -> Bool in
+            return self.data.max(by: { (day1, day2) -> Bool in
                 return day2.deaths > day1.deaths
             })?.deaths ?? 0
         case .confirmed:
-            return self.customData.max(by: { (day1, day2) -> Bool in
+            return self.data.max(by: { (day1, day2) -> Bool in
                 return day2.confirmed > day1.confirmed
             })?.confirmed ?? 0
         case .recovered:
-            return self.customData.max(by: { (day1, day2) -> Bool in
+            return self.data.max(by: { (day1, day2) -> Bool in
                 return day2.recovered > day1.recovered
             })?.recovered ?? 0
+        }
+    }
+    
+    func getMaxValue() -> Int {
+        guard let last = data.last else {
+            return 0
+        }
+        switch chart {
+        case .deaths: return last.deaths
+        case .confirmed: return last.confirmed
+        case .recovered: return last.recovered
+        }
+    }
+    
+    func getMidValue() -> Int {
+        guard let last = data.last, let first = data.first else {
+            return 0
+        }
+        switch chart {
+        case .deaths: return (last.deaths-first.deaths)/2 + first.deaths
+        case .confirmed: return (last.confirmed-first.confirmed)/2 + first.confirmed
+        case .recovered: return (last.recovered-first.recovered)/2 + first.recovered
         }
     }
     
@@ -83,11 +105,12 @@ class ChartViewModel: ObservableObject {
     }
     
     func getBarWidth() -> CGFloat {
-        return (UIScreen.screenWidth - CGFloat(self.customData.count * 2) - 32) / CGFloat(self.customData.count)
+        return (UIScreen.screenWidth - CGFloat(self.data.count * 2) - 32) / CGFloat(self.data.count)
     }
     
-    func getDataFromLast(_ daysNumber: Int) {
-        customData = customData.suffix(daysNumber)
+    func setDataFromLast(_ daysNumber: Int, chart: ChartType) {
+        self.chart = chart
+        data = data.suffix(daysNumber)
     }
     
 }

@@ -18,7 +18,7 @@ struct ChartContentView: View {
             .padding(.leading, 16)
             VStack (spacing: 8) {
                 HStack (alignment: .bottom, spacing: 2) {
-                    ForEach(vm.customData, id: \.self) { day in
+                    ForEach(vm.data, id: \.self) { day in
                         VStack (spacing: 5) {
                             VStack {
                                 Spacer()

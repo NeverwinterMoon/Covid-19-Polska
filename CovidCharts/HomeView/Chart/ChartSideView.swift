@@ -15,9 +15,9 @@ struct ChartSideView: View {
     var body: some View {
         HStack (alignment: .center) {
             VStack (alignment: .leading) {
-                ChartSmallText(text: "\(vm.getAllCases()/1)")
+                ChartSmallText(text: "\(vm.getMaxValue())")
                 Spacer()
-                ChartSmallText(text: "\(vm.getAllCases()/2)")
+                ChartSmallText(text: "\(vm.getMidValue())")
                 Spacer()
                 ChartSmallText(text: "0")
             }

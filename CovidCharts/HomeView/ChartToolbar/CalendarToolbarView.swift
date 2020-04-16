@@ -17,9 +17,7 @@ struct CalendarToolbar: View {
             CalendarButton()
             CalendarToolbarSpacer()
             CustomDateButton(days: 7)
-            Spacer()
-                .frame(width: 1, height: 20, alignment: .center)
-                .background(Color(UIColor.label))
+            CalendarToolbarSpacer()
             CustomDateButton(days: 30)
         }
         .frame(width: 170, height: 40, alignment: .leading)
@@ -49,12 +47,13 @@ private struct CalendarButton: View {
 
 private struct CustomDateButton: View {
     
+    @EnvironmentObject var vm: ChartViewModel
     var days: Int
     
     var body: some View {
         Button(action: {
             print(self.days)
-            //  self.vm.getDataFromLast(7)
+            
         }) {
             Text("\(days) dni")
                 .font(.system(size: 16, weight: .semibold, design: .default))
