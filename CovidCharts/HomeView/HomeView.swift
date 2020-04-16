@@ -27,11 +27,11 @@ struct HomeView: View {
             Color(UIColor.systemBackground)
                 .edgesIgnoringSafeArea(.all)
             VStack (spacing: 16) {
-                TitleView(vm: vm)
+                TitleView()
                 .padding(.top)
-                ChartView(vm: vm)
-                ChartToolbar(vm: vm)
-                ToolbarView(vm: vm)
+                ChartView()
+                ChartToolbar()
+                ToolbarView()
                 .padding(.bottom, 8)
             }
         }

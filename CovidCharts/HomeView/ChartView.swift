@@ -10,21 +10,21 @@ import SwiftUI
 
 struct ChartView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartView(vm: ChartViewModel())
+        ChartView().environmentObject(ChartViewModel())
     }
 }
 
 struct ChartView: View {
     
-    @ObservedObject var vm: ChartViewModel
+    @EnvironmentObject var vm: ChartViewModel
     
     var body: some View {
         VStack (alignment: .center, spacing: 8) {
-            ChartTopView(vm: vm)
+            ChartTopView()
                 .padding(.top, 16)
-            ChartContentView(vm: vm)
+            ChartContentView()
                 .padding(.leading, 2)
-            ChartBottomView(vm: vm)
+            ChartBottomView()
                 .padding(.bottom, 16)
                 .padding(.horizontal)
         }

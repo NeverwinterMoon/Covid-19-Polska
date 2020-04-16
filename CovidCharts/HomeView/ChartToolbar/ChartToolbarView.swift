@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ChartToolbar: View {
     
-    @ObservedObject var vm: ChartViewModel
+    @EnvironmentObject var vm: ChartViewModel
     
     var body: some View {
         HStack {
@@ -25,7 +25,7 @@ struct ChartToolbar: View {
 
 struct ChartToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        ChartToolbar(vm: ChartViewModel())
+        ChartToolbar().environmentObject(ChartViewModel())
     }
 }
 

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ChartBottomView: View {
     
-    @ObservedObject var vm: ChartViewModel
+    @EnvironmentObject var vm: ChartViewModel
     
     var body: some View {
         VStack (spacing: 4){
@@ -22,5 +22,11 @@ struct ChartBottomView: View {
             }
         }
         .padding(.horizontal)
+    }
+}
+
+struct ChartBottomView_Previews: PreviewProvider {
+    static var previews: some View {
+        ChartBottomView().environmentObject(ChartViewModel())
     }
 }

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ChartTopView: View {
     
-    @ObservedObject var vm: ChartViewModel
+    @EnvironmentObject var vm: ChartViewModel
     
     var body: some View {
         VStack (spacing: 4) {
@@ -30,4 +30,10 @@ struct ChartTopView: View {
         }
     }
     
+}
+
+struct ChartTopView_Previews: PreviewProvider {
+    static var previews: some View {
+        ChartTopView().environmentObject(ChartViewModel())
+    }
 }

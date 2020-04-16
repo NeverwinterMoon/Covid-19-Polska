@@ -10,13 +10,13 @@ import SwiftUI
 
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
-        ToolbarView(vm: ChartViewModel())
+        ToolbarView().environmentObject(ChartViewModel())
     }
 }
 
 struct ToolbarView: View {
     
-    @ObservedObject var vm: ChartViewModel
+    @EnvironmentObject var vm: ChartViewModel
     
     var body: some View {
         VStack {

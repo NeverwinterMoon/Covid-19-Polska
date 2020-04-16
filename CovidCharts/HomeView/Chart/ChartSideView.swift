@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ChartSideView: View {
     
-    @ObservedObject var vm: ChartViewModel
+    @EnvironmentObject var vm: ChartViewModel
     
     var body: some View {
         HStack (alignment: .center) {
@@ -30,6 +30,6 @@ struct ChartSideView: View {
 
 struct ChartSideView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartSideView(vm: ChartViewModel())
+        ChartSideView().environmentObject(ChartViewModel())
     }
 }

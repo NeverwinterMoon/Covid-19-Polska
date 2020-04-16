@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TitleView: View {
     
-    @ObservedObject var vm: ChartViewModel
+    @EnvironmentObject var vm: ChartViewModel
     
     var body: some View {
         HStack (alignment: .center) {
@@ -60,6 +60,6 @@ struct TitleView: View {
 
 struct TitleView_Previews: PreviewProvider {
     static var previews: some View {
-        TitleView(vm: ChartViewModel())
+        TitleView().environmentObject(ChartViewModel())
     }
 }

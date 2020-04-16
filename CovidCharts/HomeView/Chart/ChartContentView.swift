@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ChartContentView: View {
     
-    @ObservedObject var vm: ChartViewModel
+    @EnvironmentObject var vm: ChartViewModel
     
     var body: some View {
         ZStack {
@@ -39,7 +39,6 @@ struct ChartContentView: View {
 
 struct ChartContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartContentView(vm: ChartViewModel())
+        ChartContentView().environmentObject(ChartViewModel())
     }
 }
-
