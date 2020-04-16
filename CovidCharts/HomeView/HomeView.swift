@@ -35,7 +35,6 @@ struct HomeView: View {
                     MenuView(vm: vm)
                 }
             }
-            .padding(.top, 16)
         }
         
     }
