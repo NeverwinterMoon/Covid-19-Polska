@@ -8,6 +8,12 @@
 
 import SwiftUI
 
+struct MenuView_Previews: PreviewProvider {
+    static var previews: some View {
+        MenuView(vm: ChartViewModel())
+    }
+}
+
 struct MenuView: View {
     
     @ObservedObject var vm: ChartViewModel
@@ -61,6 +67,7 @@ struct MenuButton: View {
         }
         .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
         .shadow(color: Color.black.opacity(0.2), radius: 6, x: 0, y: 6)
+        .padding(.horizontal, 8)
     }
     
 }
