@@ -58,7 +58,7 @@ class ChartViewModel: ObservableObject {
         switch chart {
         case .deaths: return "Liczba zgonów"
         case .confirmed: return "Potwierdzone przypadki"
-        case .recovered: return "Wyzdrowienia"
+        case .recovered: return "Wyleczone przypadki"
         }
     }
     
