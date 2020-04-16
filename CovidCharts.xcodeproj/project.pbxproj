@@ -27,6 +27,9 @@
 		81C197F224486BAD00AEC5FF /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197F124486BAD00AEC5FF /* ToolbarView.swift */; };
 		81C197F424489A7300AEC5FF /* ChartSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197F324489A7300AEC5FF /* ChartSideView.swift */; };
 		81C197F62448A21300AEC5FF /* ChartToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197F52448A21300AEC5FF /* ChartToolbarView.swift */; };
+		81C197FF24490AFB00AEC5FF /* ChartsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197FE24490AFB00AEC5FF /* ChartsModel.swift */; };
+		81C1980124490B3800AEC5FF /* Ext-UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C1980024490B3800AEC5FF /* Ext-UIScreen.swift */; };
+		81C1980324490BAA00AEC5FF /* CalendarToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C1980224490BAA00AEC5FF /* CalendarToolbarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,9 @@
 		81C197F124486BAD00AEC5FF /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
 		81C197F324489A7300AEC5FF /* ChartSideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartSideView.swift; sourceTree = "<group>"; };
 		81C197F52448A21300AEC5FF /* ChartToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartToolbarView.swift; sourceTree = "<group>"; };
+		81C197FE24490AFB00AEC5FF /* ChartsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsModel.swift; sourceTree = "<group>"; };
+		81C1980024490B3800AEC5FF /* Ext-UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext-UIScreen.swift"; sourceTree = "<group>"; };
+		81C1980224490BAA00AEC5FF /* CalendarToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarToolbarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +116,7 @@
 			children = (
 				810C130B2444C97E00419207 /* Ext-String.swift */,
 				810C130D2444C99D00419207 /* Ext-Date.swift */,
+				81C1980024490B3800AEC5FF /* Ext-UIScreen.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -117,6 +124,7 @@
 		810C130F2444C9B100419207 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
+				81C197FE24490AFB00AEC5FF /* ChartsModel.swift */,
 				810C13162445352700419207 /* ChartsViewModel.swift */,
 				810C12FA2444994000419207 /* HomeView.swift */,
 				810C13182445983000419207 /* TitleView.swift */,
@@ -161,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				81C197F52448A21300AEC5FF /* ChartToolbarView.swift */,
+				81C1980224490BAA00AEC5FF /* CalendarToolbarView.swift */,
 				81C197F124486BAD00AEC5FF /* ToolbarView.swift */,
 			);
 			path = ChartToolbar;
@@ -248,6 +257,7 @@
 				810C130C2444C97E00419207 /* Ext-String.swift in Sources */,
 				810C1320244604E000419207 /* ChartTopView.swift in Sources */,
 				810C13172445352700419207 /* ChartsViewModel.swift in Sources */,
+				81C1980324490BAA00AEC5FF /* CalendarToolbarView.swift in Sources */,
 				810C12F72444994000419207 /* AppDelegate.swift in Sources */,
 				810C13192445983000419207 /* TitleView.swift in Sources */,
 				810C130E2444C99D00419207 /* Ext-Date.swift in Sources */,
@@ -256,6 +266,8 @@
 				81C197BE2446634900AEC5FF /* Images.swift in Sources */,
 				810C12F92444994000419207 /* SceneDelegate.swift in Sources */,
 				81C197BC2446632200AEC5FF /* Colors.swift in Sources */,
+				81C197FF24490AFB00AEC5FF /* ChartsModel.swift in Sources */,
+				81C1980124490B3800AEC5FF /* Ext-UIScreen.swift in Sources */,
 				81C197F224486BAD00AEC5FF /* ToolbarView.swift in Sources */,
 				810C1322244604F000419207 /* ChartContentView.swift in Sources */,
 				810C12FB2444994000419207 /* HomeView.swift in Sources */,

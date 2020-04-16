@@ -14,7 +14,7 @@ struct ChartContentView: View {
     
     var body: some View {
         ZStack {
-            ChartSideView(vm: vm)
+            ChartSideView()
             .padding(.leading, 16)
             VStack (spacing: 8) {
                 HStack (alignment: .bottom, spacing: 2) {
