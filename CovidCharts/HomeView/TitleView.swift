@@ -8,6 +8,12 @@
 
 import SwiftUI
 
+struct TitleView_Previews: PreviewProvider {
+    static var previews: some View {
+        TitleView(vm: ChartViewModel())
+    }
+}
+
 struct TitleView: View {
     
     @ObservedObject var vm: ChartViewModel
@@ -18,26 +24,34 @@ struct TitleView: View {
                 Text("Covid-19 Polska")
                     .font(.system(size: 28, weight: .bold, design: .default))
                     .foregroundColor(Color(UIColor.label))
-                    .padding(.leading)
+                    .padding(.leading, 32)
                 HStack (alignment: .center, spacing: 0) {
-                    IconView(name: Images.time, size: .medium, color: Color(UIColor.label))
+                    IconView(name: Images.time, size: .medium, color: Color(UIColor.systemPink))
                     Text("\(getCurrentDate())")
                         .font(.system(size: 16, weight: .semibold, design: .default))
                         .multilineTextAlignment(.leading)
                         .foregroundColor(Color(UIColor.systemGray5))
                     Spacer()
                 }
-                .padding(.leading, 10.0)
+                .padding(.leading, 26.0)
             }
+            .frame(width: 280, height: 90)
+            .background(Color(UIColor.systemBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .shadow(color: Color.black.opacity(0.2), radius: 6, x: 0, y: 6)
             Spacer()
-            IconView(name: Images.reload, size: .large, color: Color(UIColor.systemGray5))
+            IconView(name: Images.reload, size: .large, color: Color(UIColor.label))
                 .padding(.trailing)
                 .onTapGesture {
                     self.vm.loadData()
             }
+            .frame(width: 90, height: 90, alignment: .center)
+            .background(Color(UIColor.systemBackground))
+            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .shadow(color: Color.black.opacity(0.2), radius: 6, x: 0, y: 6)
             
         }
-        .frame(width: UIScreen.screenWidth-32, height: 80)
+        .frame(width: UIScreen.screenWidth + 32, height: 90)
     }
     
     func getCurrentDate() -> String {
