@@ -115,6 +115,7 @@
 			children = (
 				810C12FA2444994000419207 /* HomeView.swift */,
 				810C13182445983000419207 /* TitleView.swift */,
+				810C131B2446045C00419207 /* ChartView.swift */,
 				81C197F124486BAD00AEC5FF /* MenuView.swift */,
 				810C13162445352700419207 /* ChartsViewModel.swift */,
 				810C131A2446043700419207 /* Chart */,
@@ -125,7 +126,6 @@
 		810C131A2446043700419207 /* Chart */ = {
 			isa = PBXGroup;
 			children = (
-				810C131B2446045C00419207 /* ChartView.swift */,
 				810C131F244604E000419207 /* ChartTopView.swift */,
 				810C1321244604F000419207 /* ChartContentView.swift */,
 				810C131D244604D400419207 /* ChartBottomView.swift */,
