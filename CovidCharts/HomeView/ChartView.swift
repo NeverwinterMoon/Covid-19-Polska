@@ -21,14 +21,15 @@ struct ChartView: View {
     var body: some View {
         VStack (alignment: .center, spacing: 8) {
             ChartTopView(vm: vm)
-            
+                .padding(.top, 16)
             ChartContentView(vm: vm)
             ChartBottomView(vm: vm)
+            .padding(.bottom, 16)
         }
         .frame(width: UIScreen.screenWidth-16, height: UIScreen.screenHeight/1.75)
         .background(Color(UIColor.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-        .shadow(color: Color.black.opacity(0.2), radius: 6, x: 0, y: 6)
+        .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
     }
     
 }

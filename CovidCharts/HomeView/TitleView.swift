@@ -38,7 +38,7 @@ struct TitleView: View {
             .frame(width: 280, height: 90)
             .background(Color(UIColor.systemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-            .shadow(color: Color.black.opacity(0.2), radius: 6, x: 0, y: 6)
+            .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
             Spacer()
             IconView(name: Images.reload, size: .large, color: Color(UIColor.label))
                 .padding(.trailing)
@@ -48,7 +48,7 @@ struct TitleView: View {
             .frame(width: 90, height: 90, alignment: .center)
             .background(Color(UIColor.systemBackground))
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-            .shadow(color: Color.black.opacity(0.2), radius: 6, x: 0, y: 6)
+            .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
             
         }
         .frame(width: UIScreen.screenWidth + 32, height: 90)
