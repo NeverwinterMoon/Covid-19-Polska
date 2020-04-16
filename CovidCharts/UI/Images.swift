@@ -14,4 +14,5 @@ enum Images {
     static let deaths = "heart.slash"
     static let recovered = "smiley"
     static let info = "info.circle"
+    static let reload = "arrow.clockwise"
 }

@@ -17,20 +17,20 @@ struct TitleView: View {
             VStack (alignment: .leading, spacing: 0) {
                 Text("Covid-19 Polska")
                     .font(.system(size: 28, weight: .bold, design: .default))
-                    .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                    .foregroundColor(Color(UIColor.label))
                     .padding(.leading)
                 HStack (alignment: .center, spacing: 0) {
-                    IconView(name: "clock", size: .medium, color: Colors.lightBlue)
+                    IconView(name: Images.time, size: .medium, color: Color(UIColor.label))
                     Text("\(getCurrentDate())")
                         .font(.system(size: 16, weight: .semibold, design: .default))
                         .multilineTextAlignment(.leading)
-                        .foregroundColor(Color(#colorLiteral(red: 0.662745098, green: 0.7333333333, blue: 0.8705882353, alpha: 1)))
+                        .foregroundColor(Color(UIColor.systemGray5))
                     Spacer()
                 }
                 .padding(.leading, 10.0)
             }
             Spacer()
-            IconView(name: "arrow.clockwise", size: .large, color: Colors.lightBlue)
+            IconView(name: Images.reload, size: .large, color: Color(UIColor.systemGray5))
                 .padding(.trailing)
                 .onTapGesture {
                     self.vm.loadData()

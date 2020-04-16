@@ -63,6 +63,7 @@ class ChartViewModel: ObservableObject {
     }
     
     func getAllCases() -> Int {
+        print(chart)
         switch chart {
         case .deaths:
             return self.customData.max(by: { (day1, day2) -> Bool in

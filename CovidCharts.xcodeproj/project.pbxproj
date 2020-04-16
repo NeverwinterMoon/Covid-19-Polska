@@ -24,6 +24,7 @@
 		810C13242446059E00419207 /* ChartCustomClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C13232446059E00419207 /* ChartCustomClasses.swift */; };
 		81C197BC2446632200AEC5FF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197BB2446632200AEC5FF /* Colors.swift */; };
 		81C197BE2446634900AEC5FF /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197BD2446634900AEC5FF /* Images.swift */; };
+		81C197F224486BAD00AEC5FF /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197F124486BAD00AEC5FF /* MenuView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		810C13232446059E00419207 /* ChartCustomClasses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartCustomClasses.swift; sourceTree = "<group>"; };
 		81C197BB2446632200AEC5FF /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		81C197BD2446634900AEC5FF /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		81C197F124486BAD00AEC5FF /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 			children = (
 				810C12FA2444994000419207 /* HomeView.swift */,
 				810C13182445983000419207 /* TitleView.swift */,
+				81C197F124486BAD00AEC5FF /* MenuView.swift */,
 				810C13162445352700419207 /* ChartsViewModel.swift */,
 				810C131A2446043700419207 /* Chart */,
 			);
@@ -221,6 +224,7 @@
 				81C197BE2446634900AEC5FF /* Images.swift in Sources */,
 				810C12F92444994000419207 /* SceneDelegate.swift in Sources */,
 				81C197BC2446632200AEC5FF /* Colors.swift in Sources */,
+				81C197F224486BAD00AEC5FF /* MenuView.swift in Sources */,
 				810C1322244604F000419207 /* ChartContentView.swift in Sources */,
 				810C12FB2444994000419207 /* HomeView.swift in Sources */,
 				810C131C2446045C00419207 /* ChartView.swift in Sources */,

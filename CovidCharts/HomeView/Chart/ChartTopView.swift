@@ -16,20 +16,18 @@ struct ChartTopView: View {
         VStack (spacing: 4) {
             Text(vm.getTitle())
                 .font(.system(size: 16, weight: .semibold, design: .default))
-                .foregroundColor(Color(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)))
+                .foregroundColor(Color(UIColor.label))
                 .frame(width: 250)
             VStack (alignment: .center, spacing: 0) {
                 Spacer()
             }
             .padding(.horizontal)
             .frame(width: UIScreen.screenWidth - 32, height: 1)
-            .background(Colors.lightBlue)
+            .background(Color(UIColor.label))
             Text(String(vm.getAllCases()))
-                .font(.system(size: 16, weight: .regular, design: .default))
-                .foregroundColor(Colors.white)
+                .font(.system(size: 16, weight: .semibold, design: .default))
+                .foregroundColor(Color(UIColor.label))
         }
-        .frame(width: 300)
-        .background(Colors.lightGrey)
     }
     
 }

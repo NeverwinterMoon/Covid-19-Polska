@@ -23,11 +23,13 @@ struct ChartContentView: View {
                                 Spacer()
                             }
                             .frame(width: self.vm.getBarWidth(), height: (self.vm.getCases(day) / CGFloat(self.vm.getAllCases())) * (UIScreen.screenHeight/1.75 - 100))
-                            .background(Colors.mainColor)
+                            .background(Color(UIColor.systemPink))
+                            .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
                         }
                     }
                 }
             }
+            .animation(Animation.easeInOut(duration: 0.75))
         }
     }
 
@@ -48,7 +50,7 @@ struct ChartSideView: View {
             }
             Spacer()
         }
-        .offset(x: -2, y: -8)
+        .offset(x: 8, y: -8)
     }
     
 }

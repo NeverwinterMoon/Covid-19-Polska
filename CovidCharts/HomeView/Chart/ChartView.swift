@@ -15,12 +15,11 @@ struct ChartView: View {
     var body: some View {
         VStack (alignment: .center, spacing: 8) {
             ChartTopView(vm: vm)
-            .animation(.spring())
             ChartContentView(vm: vm)
-            .animation(Animation.easeInOut(duration: 0.75))
             ChartBottomView(vm: vm)
         }
         .frame(width: UIScreen.screenWidth-16, height: UIScreen.screenHeight/1.75)
+        .background(Color(UIColor.clear))
     }
     
 }
