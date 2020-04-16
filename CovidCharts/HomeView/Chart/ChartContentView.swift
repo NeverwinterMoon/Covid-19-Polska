@@ -15,6 +15,7 @@ struct ChartContentView: View {
     var body: some View {
         ZStack {
             ChartSideView(vm: vm)
+            .padding(.leading, 16)
             VStack (spacing: 8) {
                 HStack (alignment: .bottom, spacing: 2) {
                     ForEach(vm.customData, id: \.self) { day in
@@ -29,28 +30,16 @@ struct ChartContentView: View {
                     }
                 }
             }
+            .padding(.horizontal)
             .animation(Animation.easeInOut(duration: 0.75))
         }
     }
 
 }
 
-struct ChartSideView: View {
-    
-    @ObservedObject var vm: ChartViewModel
-    
-    var body: some View {
-        HStack (alignment: .center) {
-            VStack (alignment: .leading) {
-                ChartSmallText(text: "\(vm.getAllCases()/1)")
-                Spacer()
-                ChartSmallText(text: "\(vm.getAllCases()/2)")
-                Spacer()
-                ChartSmallText(text: "0")
-            }
-            Spacer()
-        }
-        .offset(x: 8, y: -8)
+struct ChartContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ChartContentView(vm: ChartViewModel())
     }
-    
 }
+

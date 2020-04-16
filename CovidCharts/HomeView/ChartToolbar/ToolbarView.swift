@@ -10,11 +10,11 @@ import SwiftUI
 
 struct MenuView_Previews: PreviewProvider {
     static var previews: some View {
-        MenuView(vm: ChartViewModel())
+        ToolbarView(vm: ChartViewModel())
     }
 }
 
-struct MenuView: View {
+struct ToolbarView: View {
     
     @ObservedObject var vm: ChartViewModel
     

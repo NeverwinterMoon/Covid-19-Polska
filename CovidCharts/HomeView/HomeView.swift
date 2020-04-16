@@ -20,20 +20,19 @@ enum ChartType {
 
 struct HomeView: View {
     
-    @ObservedObject var vm = ChartViewModel()
+    @EnvironmentObject var vm: ChartViewModel
    
     var body: some View {
         ZStack {
             Color(UIColor.systemBackground)
                 .edgesIgnoringSafeArea(.all)
-            VStack (spacing: 24) {
+            VStack (spacing: 16) {
                 TitleView(vm: vm)
                 .padding(.top)
-                VStack (alignment: .center, spacing: 8) {
-                    ChartView(vm: vm)
-                    Spacer()
-                    MenuView(vm: vm)
-                }
+                ChartView(vm: vm)
+                ChartToolbar(vm: vm)
+                ToolbarView(vm: vm)
+                .padding(.bottom, 8)
             }
         }
         
@@ -42,6 +41,6 @@ struct HomeView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView().environmentObject(ChartViewModel())
     }
 }

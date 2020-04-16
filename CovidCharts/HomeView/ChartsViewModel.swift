@@ -8,8 +8,36 @@
 
 import SwiftUI
 
+// MARK: - Day
+struct Day: Decodable, Hashable {
+    let country: Country
+    let countryCode: CountryCode
+    let confirmed, deaths, recovered, active: Int
+    let date: String
+
+    enum CodingKeys: String, CodingKey {
+        case country = "Country"
+        case countryCode = "CountryCode"
+        case confirmed = "Confirmed"
+        case deaths = "Deaths"
+        case recovered = "Recovered"
+        case active = "Active"
+        case date = "Date"
+    }
+}
+
+enum Country: String, Decodable {
+    case poland = "Poland"
+}
+
+enum CountryCode: String, Decodable {
+    case pl = "PL"
+}
+
+typealias Days = [Day]
+
 struct TimeSeries: Decodable {
-    let Poland: [DayData]
+    let Poland: [Day]
 }
 
 struct DayData: Decodable, Hashable {
@@ -19,23 +47,23 @@ struct DayData: Decodable, Hashable {
 
 class ChartViewModel: ObservableObject {
     
-    @Published var data = [DayData]()
+    @Published var data = [Day]()
     @Published var chart: ChartType = .confirmed
-    @Published var customData = [DayData]()
+    @Published var customData = [Day]()
     
     init() {
         loadData()
     }
     
     func loadData() {
-        let urlString = "https://pomber.github.io/covid19/timeseries.json"
+        let urlString = "https://api.covid19api.com/country/Poland"
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data else { return }
             do {
-                let timeSeries = try JSONDecoder().decode(TimeSeries.self, from: data)
+                let timeSeries = try JSONDecoder().decode(Days.self, from: data)
                 DispatchQueue.main.async {
-                    self.data = timeSeries.Poland
+                    self.data = timeSeries
                     self.setCustomData(.confirmed)
                 }
             } catch {
@@ -63,7 +91,6 @@ class ChartViewModel: ObservableObject {
     }
     
     func getAllCases() -> Int {
-        print(chart)
         switch chart {
         case .deaths:
             return self.customData.max(by: { (day1, day2) -> Bool in
@@ -80,7 +107,7 @@ class ChartViewModel: ObservableObject {
         }
     }
     
-    func getCases(_ day: DayData) -> CGFloat {
+    func getCases(_ day: Day) -> CGFloat {
         switch chart {
         case .deaths: return CGFloat(day.deaths)
         case .confirmed: return CGFloat(day.confirmed)
@@ -90,6 +117,10 @@ class ChartViewModel: ObservableObject {
     
     func getBarWidth() -> CGFloat {
         return (UIScreen.screenWidth - CGFloat(self.customData.count * 2) - 32) / CGFloat(self.customData.count)
+    }
+    
+    func getDataFromLast(_ daysNumber: Int) {
+        customData = customData.suffix(daysNumber)
     }
     
 }

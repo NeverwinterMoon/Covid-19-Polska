@@ -8,12 +8,6 @@
 
 import SwiftUI
 
-struct TitleView_Previews: PreviewProvider {
-    static var previews: some View {
-        TitleView(vm: ChartViewModel())
-    }
-}
-
 struct TitleView: View {
     
     @ObservedObject var vm: ChartViewModel
@@ -64,15 +58,8 @@ struct TitleView: View {
     }
 }
 
-struct IconView: View {
-    var name: String
-    var size: Image.Scale
-    var color: Color
-    var body: some View {
-        Image(systemName: name)
-            .font(.system(size: 20, weight: .regular))
-            .imageScale(size)
-            .frame(width: 32, height: 32)
-            .foregroundColor(color)
+struct TitleView_Previews: PreviewProvider {
+    static var previews: some View {
+        TitleView(vm: ChartViewModel())
     }
 }
