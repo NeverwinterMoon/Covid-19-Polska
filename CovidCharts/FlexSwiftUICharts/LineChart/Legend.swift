@@ -10,7 +10,6 @@ import SwiftUI
 
 struct Legend: View {
     @ObservedObject var data: ChartData
-    @Binding var frame: CGRect
     @Binding var hideHorizontalLines: Bool
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     let padding:CGFloat = 3
@@ -19,15 +18,15 @@ struct Legend: View {
         if data.points.count < 2 {
             return 0
         }
-        return frame.size.width / CGFloat(data.points.count-1)
+        return UIScreen.screenWidth / CGFloat(data.points.count-1)
     }
     var stepHeight: CGFloat {
         let points = self.data.onlyPoints()
         if let min = points.min(), let max = points.max(), min != max {
             if (min < 0){
-                return (frame.size.height-padding) / CGFloat(max - min)
+                return ((UIScreen.screenHeight/1.75 - 100)-padding) / CGFloat(max - min)
             }else{
-                return (frame.size.height-padding) / CGFloat(max + min)
+                return ((UIScreen.screenHeight/1.75 - 100)-padding) / CGFloat(max + min)
             }
         }
         return 0
@@ -45,8 +44,8 @@ struct Legend: View {
                     Text("\(self.getYLegendSafe(height: height), specifier: "%.2f")").offset(x: 0, y: self.getYposition(height: height) )
                         .foregroundColor(Colors.LegendText)
                         .font(.caption)
-                    self.line(atHeight: self.getYLegendSafe(height: height), width: self.frame.width)
-                        .stroke(self.colorScheme == .dark ? Colors.LegendDarkColor : Colors.LegendColor, style: StrokeStyle(lineWidth: 1.5, lineCap: .round, dash: [5,height == 0 ? 0 : 10]))
+                    self.line(atHeight: self.getYLegendSafe(height: height), width: UIScreen.screenWidth)
+                        .stroke(self.colorScheme == .dark ? Color.clear : Color.clear, style: StrokeStyle(lineWidth: 1.5, lineCap: .round, dash: [5,height == 0 ? 0 : 10]))
                         .opacity((self.hideHorizontalLines && height != 0) ? 0 : 1)
                         .rotationEffect(.degrees(180), anchor: .center)
                         .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
@@ -68,7 +67,7 @@ struct Legend: View {
     
     func getYposition(height: Int)-> CGFloat {
         if let legend = getYLegend() {
-            return (self.frame.height-((CGFloat(legend[height]) - min)*self.stepHeight))-(self.frame.height/2)
+            return ((UIScreen.screenHeight/1.75 - 100)-((CGFloat(legend[height]) - min)*self.stepHeight))-((UIScreen.screenHeight/1.75 - 100)/2)
         }
         return 0
        
@@ -93,7 +92,7 @@ struct Legend: View {
 struct Legend_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader{ geometry in
-            Legend(data: ChartData(points: [0.2,0.4,1.4,4.5]), frame: .constant(geometry.frame(in: .local)), hideHorizontalLines: .constant(false))
+            Legend(data: ChartData(points: [0.2,0.4,1.4,4.5]), hideHorizontalLines: .constant(false))
         }.frame(width: 320, height: 200)
     }
 }

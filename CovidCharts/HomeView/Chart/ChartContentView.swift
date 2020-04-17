@@ -12,34 +12,21 @@ import SwiftUICharts
 struct ChartContentView: View {
     
     @EnvironmentObject var vm: ChartViewModel
-  //  let chartStyle = ChartStyle(backgroundColor: Color(UIColor.systemBackground), accentColor: Color.black, gradientColor: GradientColors.orngPink, textColor: Color.yellow, legendTextColor: Color.blue, dropShadowColor: Color.orange)
+    @Binding var showLineChart: Bool
+    
+    let chartStyle = ChartStyle(backgroundColor: Color(UIColor.systemBackground), accentColor: Color.black, gradientColor: GradientColors.orngPink, textColor: Color.yellow, legendTextColor: Color.blue, dropShadowColor: Color.orange)
     
     var body: some View {
         ZStack {
             ChartSideView()
             .padding(.leading, 16)
             VStack (spacing: 8) {
-                HStack (alignment: .center) {
-                    Spacer()
-              //      LineView(data: self.vm.getChartLineData(), style: chartStyle)
-                        .padding(.horizontal)
-                    Spacer()
+                if self.showLineChart {
+                    LineView(data: self.vm.getChartLineData(), style: chartStyle)
+                } else {
+                    BarChartView()
                 }
-
-//                HStack (alignment: .bottom, spacing: 2) {
-//                    ForEach(vm.data, id: \.self) { day in
-//                        VStack (spacing: 5) {
-//                            VStack {
-//                                Spacer()
-//                            }
-//                            .frame(width: self.vm.getBarWidth(), height: (self.vm.getCases(day) / CGFloat(self.vm.getAllCases())) * (UIScreen.screenHeight/1.75 - 100))
-//                            .background(Color(UIColor.systemPink))
-//                            .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
-//                        }
-//                    }
-//                }
             }
-         //   BarChartView()
         }
     }
 
@@ -47,7 +34,7 @@ struct ChartContentView: View {
 
 struct ChartContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartContentView().environmentObject(ChartViewModel())
+        ChartContentView(showLineChart: .constant(true)).environmentObject(ChartViewModel())
     }
 }
 

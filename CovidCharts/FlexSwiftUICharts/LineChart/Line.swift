@@ -10,7 +10,6 @@ import SwiftUI
 
 public struct Line: View {
     @ObservedObject var data: ChartData
-    @Binding var frame: CGRect
     @Binding var touchLocation: CGPoint
     @Binding var showIndicator: Bool
     @Binding var minDataValue: Double?
@@ -25,7 +24,7 @@ public struct Line: View {
         if data.points.count < 2 {
             return 0
         }
-        return frame.size.width / CGFloat(data.points.count-1)
+        return UIScreen.screenWidth / CGFloat(data.points.count-1)
     }
     var stepHeight: CGFloat {
         var min: Double?
@@ -34,7 +33,6 @@ public struct Line: View {
         if minDataValue != nil && maxDataValue != nil {
             min = minDataValue!
             max = maxDataValue!
-            print(min,max)
         }else if let minPoint = points.min(), let maxPoint = points.max(), minPoint != maxPoint {
             min = minPoint
             max = maxPoint
@@ -43,9 +41,9 @@ public struct Line: View {
         }
         if let min = min, let max = max, min != max {
             if (min <= 0){
-                return (frame.size.height-padding) / CGFloat(max - min)
+                return ((UIScreen.screenHeight/1.75 - 100)-5) / CGFloat(min)
             }else{
-                return (frame.size.height-padding) / CGFloat(max + min)
+                return ((UIScreen.screenHeight/1.75 - 100)-5) / CGFloat(max)
             }
         }
         return 0
@@ -101,7 +99,7 @@ public struct Line: View {
 struct Line_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader{ geometry in
-            Line(data: ChartData(points: [12,-230,10,54]), frame: .constant(geometry.frame(in: .local)), touchLocation: .constant(CGPoint(x: 100, y: 12)), showIndicator: .constant(true), minDataValue: .constant(nil), maxDataValue: .constant(nil))
-        }.frame(width: 320, height: 160)
+            Line(data: ChartData(points: [12,-230,10,54]), touchLocation: .constant(CGPoint(x: 100, y: 12)), showIndicator: .constant(true), minDataValue: .constant(nil), maxDataValue: .constant(nil))
+        }.frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight/2)
     }
 }

@@ -9,6 +9,7 @@
 import SwiftUI
 
 enum Colors {
+    static let mainColor = Color(hexString: "#76A9FF")
     static let color1:Color = Color(hexString: "#E2FAE7")
     static let color1Accent:Color = Color(hexString: "#72BF82")
     static let color2:Color = Color(hexString: "#EEF1FF")

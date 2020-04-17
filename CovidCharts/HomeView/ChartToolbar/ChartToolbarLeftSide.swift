@@ -25,7 +25,7 @@ struct ChartToolbarLeftSide: View {
             Button(action: {
                 self.showLineChart.toggle()
             }) {
-                IconView(name: showLineChart ? Images.percent : Images.bars, size: .medium, color: Color(UIColor.systemPink))
+                IconView(name: showLineChart ? Images.bars : Images.percent, size: .medium, color: Color(UIColor.systemPink))
                 .frame(width: 30, height: 40, alignment: .center)
             }
             

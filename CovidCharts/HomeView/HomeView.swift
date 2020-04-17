@@ -11,7 +11,7 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject var vm: ChartViewModel
-    @State var showLineChart: Bool = false
+    @State var showLineChart: Bool = true
    
     var body: some View {
         ZStack {
@@ -20,7 +20,7 @@ struct HomeView: View {
             VStack (spacing: 16) {
                 TitleView()
                 .padding(.top)
-                ChartView()
+                ChartView(showLineChart: $showLineChart)
                 ChartToolbar(showLineChart: $showLineChart)
                 ToolbarView()
                 .padding(.bottom, 8)
