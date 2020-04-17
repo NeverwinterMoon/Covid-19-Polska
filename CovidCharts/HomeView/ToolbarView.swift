@@ -8,12 +8,6 @@
 
 import SwiftUI
 
-struct MenuView_Previews: PreviewProvider {
-    static var previews: some View {
-        ToolbarView().environmentObject(ChartViewModel())
-    }
-}
-
 struct ToolbarView: View {
     
     @EnvironmentObject var vm: ChartViewModel
@@ -28,6 +22,12 @@ struct ToolbarView: View {
             }
         }
         .frame(width: UIScreen.screenWidth, height: 65, alignment: .center)
+    }
+}
+
+struct ToolbarView_Previews: PreviewProvider {
+    static var previews: some View {
+        ToolbarView().environmentObject(ChartViewModel())
     }
 }
 
