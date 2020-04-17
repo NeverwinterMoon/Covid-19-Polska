@@ -12,7 +12,7 @@ import SwiftUICharts
 struct ChartContentView: View {
     
     @EnvironmentObject var vm: ChartViewModel
-    let chartStyle = ChartStyle(backgroundColor: Color(UIColor.systemBackground), accentColor: Color.black, gradientColor: GradientColors.orngPink, textColor: Color.yellow, legendTextColor: Color.blue, dropShadowColor: Color.orange)
+  //  let chartStyle = ChartStyle(backgroundColor: Color(UIColor.systemBackground), accentColor: Color.black, gradientColor: GradientColors.orngPink, textColor: Color.yellow, legendTextColor: Color.blue, dropShadowColor: Color.orange)
     
     var body: some View {
         ZStack {
@@ -21,7 +21,7 @@ struct ChartContentView: View {
             VStack (spacing: 8) {
                 HStack (alignment: .center) {
                     Spacer()
-                    LineView(data: self.vm.getChartLineData(), style: chartStyle)
+              //      LineView(data: self.vm.getChartLineData(), style: chartStyle)
                         .padding(.horizontal)
                     Spacer()
                 }
