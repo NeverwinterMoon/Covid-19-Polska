@@ -39,15 +39,24 @@ class ChartViewModel: ObservableObject {
         .resume()
     }
     
-//    func setCustomData(_ chart: ChartType) {
-//        self.chart = chart
-//        switch chart {
-//        case .deaths: customData = data.filter { $0.deaths > 0 }
-//        case .confirmed: customData = data.filter { $0.confirmed > 0 }
-//        case .recovered: customData = data.filter { $0.recovered > 0 }
-//        case .active: customData = data.filter { $0.active > 0 }
-//        }
-//    }
+    func getChartLineData() -> [Double] {
+        var changes = [Double]()
+        switch chart {
+        case .confirmed:
+            for num in 0..<data.count {
+                let higherValue = num+1
+                guard higherValue + 2 < data.count else {
+                    return changes
+                }
+                let change1: Double = (Double(data[higherValue].confirmed - data[num].confirmed))
+//                let change2: Double = (Double(data[higherValue+1].confirmed - data[higherValue].confirmed))
+//                let change: Double = Double(((change2 - change1)/change2)*100)
+                changes.append(change1)
+            }
+        default: break
+        }
+        return changes
+    }
     
     func getTitle() -> String {
         switch chart {
