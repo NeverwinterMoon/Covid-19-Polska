@@ -11,10 +11,11 @@ import SwiftUI
 struct ChartToolbar: View {
     
     @EnvironmentObject var vm: ChartViewModel
+    @Binding var showLineChart: Bool
     
     var body: some View {
         HStack {
-            CalendarToolbar()
+            ChartToolbarLeftSide(showLineChart: $showLineChart)
             Spacer()
             ShowDetailsButton()
         }
@@ -25,7 +26,7 @@ struct ChartToolbar: View {
 
 struct ChartToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        ChartToolbar().environmentObject(ChartViewModel())
+        ChartToolbar(showLineChart: .constant(false)).environmentObject(ChartViewModel())
     }
 }
 

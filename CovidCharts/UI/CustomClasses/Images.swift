@@ -17,6 +17,9 @@ enum Images {
     static let reload = "arrow.clockwise"
     static let calendar = "calendar"
     static let active = "bed.double"
+    static let percent = "percent"
+    static let bars = "chart.bar"
+    static let more = "ellipsis"
 }
 
 struct IconView: View {

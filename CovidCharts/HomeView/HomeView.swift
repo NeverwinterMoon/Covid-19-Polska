@@ -11,6 +11,7 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject var vm: ChartViewModel
+    @State var showLineChart: Bool = false
    
     var body: some View {
         ZStack {
@@ -20,7 +21,7 @@ struct HomeView: View {
                 TitleView()
                 .padding(.top)
                 ChartView()
-                ChartToolbar()
+                ChartToolbar(showLineChart: $showLineChart)
                 ToolbarView()
                 .padding(.bottom, 8)
             }
@@ -31,6 +32,6 @@ struct HomeView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView().environmentObject(ChartViewModel())
+        HomeView(showLineChart: false).environmentObject(ChartViewModel())
     }
 }

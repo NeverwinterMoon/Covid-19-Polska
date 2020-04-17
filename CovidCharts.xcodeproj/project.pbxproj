@@ -29,7 +29,7 @@
 		81C197F62448A21300AEC5FF /* ChartToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197F52448A21300AEC5FF /* ChartToolbarView.swift */; };
 		81C197FF24490AFB00AEC5FF /* ChartsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197FE24490AFB00AEC5FF /* ChartsModel.swift */; };
 		81C1980124490B3800AEC5FF /* Ext-UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C1980024490B3800AEC5FF /* Ext-UIScreen.swift */; };
-		81C1980324490BAA00AEC5FF /* CalendarToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C1980224490BAA00AEC5FF /* CalendarToolbarView.swift */; };
+		81C1980324490BAA00AEC5FF /* ChartToolbarLeftSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C1980224490BAA00AEC5FF /* ChartToolbarLeftSide.swift */; };
 		81C198062449186200AEC5FF /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = 81C198052449186200AEC5FF /* SwiftUICharts */; };
 /* End PBXBuildFile section */
 
@@ -58,7 +58,7 @@
 		81C197F52448A21300AEC5FF /* ChartToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartToolbarView.swift; sourceTree = "<group>"; };
 		81C197FE24490AFB00AEC5FF /* ChartsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsModel.swift; sourceTree = "<group>"; };
 		81C1980024490B3800AEC5FF /* Ext-UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext-UIScreen.swift"; sourceTree = "<group>"; };
-		81C1980224490BAA00AEC5FF /* CalendarToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarToolbarView.swift; sourceTree = "<group>"; };
+		81C1980224490BAA00AEC5FF /* ChartToolbarLeftSide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartToolbarLeftSide.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -172,7 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				81C197F52448A21300AEC5FF /* ChartToolbarView.swift */,
-				81C1980224490BAA00AEC5FF /* CalendarToolbarView.swift */,
+				81C1980224490BAA00AEC5FF /* ChartToolbarLeftSide.swift */,
 			);
 			path = ChartToolbar;
 			sourceTree = "<group>";
@@ -265,7 +265,7 @@
 				810C130C2444C97E00419207 /* Ext-String.swift in Sources */,
 				810C1320244604E000419207 /* ChartTopView.swift in Sources */,
 				810C13172445352700419207 /* ChartsViewModel.swift in Sources */,
-				81C1980324490BAA00AEC5FF /* CalendarToolbarView.swift in Sources */,
+				81C1980324490BAA00AEC5FF /* ChartToolbarLeftSide.swift in Sources */,
 				810C12F72444994000419207 /* AppDelegate.swift in Sources */,
 				810C13192445983000419207 /* TitleView.swift in Sources */,
 				810C130E2444C99D00419207 /* Ext-Date.swift in Sources */,
