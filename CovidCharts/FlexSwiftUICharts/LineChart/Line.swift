@@ -9,13 +9,16 @@
 import SwiftUI
 
 public struct Line: View {
+    var indicator = IndicatorPoint()
     @ObservedObject var data: ChartData
     @Binding var touchLocation: CGPoint
     @Binding var showIndicator: Bool
     @Binding var minDataValue: Double?
     @Binding var maxDataValue: Double?
+    @Binding var currentValue: Double
     @State private var showFull: Bool = false
     @State var showBackground: Bool = true
+    
     var gradient: GradientColor = GradientColor(start: Colors.GradientPurple, end: Colors.GradientNeonBlue)
     var index:Int = 0
  //   let padding:CGFloat = 30
@@ -24,7 +27,7 @@ public struct Line: View {
         if data.points.count < 2 {
             return 0
         }
-        return (UIScreen.screenWidth - 32) / CGFloat(data.points.count-1)
+        return (UIScreen.screenWidth) / CGFloat(data.points.count-1)
     }
     var stepHeight: CGFloat {
         var min: Double?
@@ -57,7 +60,7 @@ public struct Line: View {
         ZStack {
             if(self.showFull && self.showBackground){
                 self.closedPath
-                    .fill(LinearGradient(gradient: Gradient(colors: [Colors.GradientUpperBlue, .white]), startPoint: .bottom, endPoint: .top))
+                    .fill(LinearGradient(gradient: Gradient(colors: [Colors.graphGradient, Colors.customViewBackground]), startPoint: .bottom, endPoint: .top))
                     .rotationEffect(.degrees(180), anchor: .center)
                     .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
                     .transition(.opacity)
@@ -77,10 +80,19 @@ public struct Line: View {
             }
             .drawingGroup()
             if(self.showIndicator) {
-                IndicatorPoint()
+                indicator
                     .position(self.getClosestPointOnPath(touchLocation: self.touchLocation))
                     .rotationEffect(.degrees(180), anchor: .center)
                     .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
+                Text("\(Int(currentValue)-1)")
+                    .foregroundColor(Color(UIColor.label))
+                    .rotationEffect(.degrees(180), anchor: .center)
+                    .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
+                    .position(self.getClosestPointOnPath(touchLocation: self.touchLocation))
+                    .rotationEffect(.degrees(180), anchor: .center)
+                    .rotation3DEffect(.degrees(-180), axis: (x: 0, y: 1, z: 0))
+                    .offset(x: 0, y: 25)
+                
             }
         }
     }
@@ -90,12 +102,18 @@ public struct Line: View {
         return closest
     }
     
+    
+//    func getClosestPointOnPathNegative(touchLocation: CGPoint) -> CGPoint {
+//        let closest = self.path.pointNegative(to: touchLocation.x)
+//        return closest
+//    }
+    
 }
 
 struct Line_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader{ geometry in
-            Line(data: ChartData(points: [12,-230,10,54]), touchLocation: .constant(CGPoint(x: 100, y: 12)), showIndicator: .constant(true), minDataValue: .constant(nil), maxDataValue: .constant(nil))
+            Line(data: ChartData(points: [12,-230,10,54]), touchLocation: .constant(CGPoint(x: 100, y: 12)), showIndicator: .constant(true), minDataValue: .constant(nil), maxDataValue: .constant(nil), currentValue: .constant(0))
         }.frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight/2)
     }
 }

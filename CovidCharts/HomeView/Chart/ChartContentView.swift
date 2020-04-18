@@ -12,14 +12,15 @@ struct ChartContentView: View {
     
     @EnvironmentObject var vm: ChartViewModel
 
-    let chartStyle = ChartStyle(backgroundColor: Color(UIColor.systemBackground), accentColor: Color.black, gradientColor: GradientColors.orngPink, textColor: Color.yellow, legendTextColor: Color.blue, dropShadowColor: Color.orange)
+    let chartStyle = ChartStyle(backgroundColor: Colors.customViewBackground, accentColor: Color.black, gradientColor: GradientColors.orngPink, textColor: Color.yellow, legendTextColor: Color.blue, dropShadowColor: Color.orange)
+    let style = ChartStyle(backgroundColor: Color.red, accentColor: Color.blue, gradientColor: GradientColors.green, textColor: Color.clear, legendTextColor: Color.clear, dropShadowColor: Color.yellow)
     
     var body: some View {
         ZStack {
             ChartGrid()
                 .padding(.leading, 16)
             VStack (spacing: 8) {
-                LineView(data: vm.showDailyChange ? self.vm.getDailyChangesData() : self.vm.getDailyIncreaseData(), style: chartStyle)
+                LineView(data: vm.showDailyChange ? self.vm.getDailyChangesData() : self.vm.getDailyIncreaseData(), style: style)
             }
             .animation(.easeInOut(duration: 0.5))
         }

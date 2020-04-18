@@ -13,6 +13,9 @@ func logDebug(_ title: String, text: Any) {
 }
 
 enum Colors {
+    static let customViewBackground = Color("CustomViewBackground")
+    static let appBackground = Color("AppBackground")
+    static let graphGradient = Color("GraphGradient")
     static let mainColor = Color(hexString: "#76A9FF")
     static let color1:Color = Color(hexString: "#E2FAE7")
     static let color1Accent:Color = Color(hexString: "#72BF82")
@@ -27,7 +30,7 @@ enum Colors {
     static let LegendDarkColor:Color = Color(hexString: "#545454")
     static let IndicatorKnob:Color = Color(hexString: "#FF57A6")
     static let GradientUpperBlue:Color = Color(hexString: "#C2E8FF")
-    static let GradinetUpperBlue1:Color = Color(hexString: "#A8E1FF")
+    static let GradientUpperBlue1:Color = Color(hexString: "#A8E1FF")
     static let GradientPurple:Color = Color(hexString: "#7B75FF")
     static let GradientNeonBlue:Color = Color(hexString: "#6FEAFF")
     static let GradientLowerBlue:Color = Color(hexString: "#F1F9FF")

@@ -30,7 +30,7 @@ struct TitleView: View {
                 .padding(.leading, 26.0)
             }
             .frame(width: 280, height: 90)
-            .background(Color(UIColor.systemBackground))
+            .background(Colors.customViewBackground)
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
             Spacer()
@@ -40,7 +40,7 @@ struct TitleView: View {
               //      self.vm.loadData()
             }
             .frame(width: 90, height: 90, alignment: .center)
-            .background(Color(UIColor.systemBackground))
+            .background(Colors.customViewBackground)
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
             

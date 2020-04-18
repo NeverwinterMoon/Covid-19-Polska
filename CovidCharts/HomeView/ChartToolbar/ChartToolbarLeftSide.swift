@@ -32,7 +32,7 @@ struct ChartToolbarLeftSide: View {
         }
         .frame(width: 80, height: 40, alignment: .leading)
         .padding(.leading, 24)
-        .background(Color(UIColor.systemBackground))
+        .background(Colors.customViewBackground)
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
     }

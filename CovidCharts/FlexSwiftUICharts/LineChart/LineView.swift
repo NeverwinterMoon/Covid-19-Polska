@@ -21,6 +21,7 @@ public struct LineView: View {
     @State private var dragLocation:CGPoint = .zero
     @State private var indicatorLocation:CGPoint = .zero
     @State private var closestPoint: CGPoint = .zero
+    @State private var opacity:Double = 0
     @State private var currentDataNumber: Double = 0
     @State private var hideHorizontalLines: Bool = false
     
@@ -39,18 +40,33 @@ public struct LineView: View {
     }
     
     public var body: some View {
+        GeometryReader{ geometry in
             VStack(alignment: .leading, spacing: 8) {
                 Line(data: self.data,
                      touchLocation: self.$indicatorLocation,
                      showIndicator: self.$hideHorizontalLines,
                      minDataValue: .constant(0),
                      maxDataValue: .constant(nil),
-                     showBackground: false
+                     currentValue: self.$currentDataNumber,
+                     showBackground: true
                 )
-                .frame(width: UIScreen.screenWidth - 32, height: (UIScreen.screenHeight/1.75 - 50))
-            //    .offset(x: 0, y: 40)
+                .frame(width: UIScreen.screenWidth, height: (UIScreen.screenHeight/1.75 - 50))
                 .padding(.top, -50)
             }
+        .gesture(DragGesture()
+        .onChanged({ value in
+            self.dragLocation = value.location
+            self.indicatorLocation = CGPoint(x: max(value.location.x,0), y: 0)
+            self.opacity = 1
+            self.closestPoint = self.getClosestDataPoint(toPoint: value.location, width: geometry.frame(in: .local).size.width, height: (UIScreen.screenHeight/1.75 - 50))
+            self.hideHorizontalLines = true
+        })
+            .onEnded({ value in
+                self.opacity = 0
+                self.hideHorizontalLines = false
+            })
+        )
+        }
     }
     
     func getClosestDataPoint(toPoint: CGPoint, width:CGFloat, height: CGFloat) -> CGPoint {
@@ -58,7 +74,7 @@ public struct LineView: View {
         let stepWidth: CGFloat = width / CGFloat(points.count-1)
         let stepHeight: CGFloat = height / CGFloat(points.max()! + points.min()!)
         
-        let index:Int = Int(floor((toPoint.x-15)/stepWidth))
+        let index:Int = Int(floor((toPoint.x+20)/stepWidth))
         if (index >= 0 && index < points.count){
             self.currentDataNumber = points[index]
             return CGPoint(x: CGFloat(index)*stepWidth, y: CGFloat(points[index])*stepHeight)

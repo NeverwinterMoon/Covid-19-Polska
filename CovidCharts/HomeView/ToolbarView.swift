@@ -62,7 +62,7 @@ struct MenuButton: View {
                 .offset(x: 0, y: -8)
             }
             .frame(width: 64, height: 64, alignment: .center)
-            .background(Color(UIColor.systemBackground))
+            .background(Colors.customViewBackground)
         }
         .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
         .shadow(color: Color.black.opacity(0.2), radius: 6, x: 0, y: 6)

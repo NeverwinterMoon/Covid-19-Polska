@@ -14,7 +14,7 @@ struct HomeView: View {
    
     var body: some View {
         ZStack {
-            Color(UIColor.systemBackground)
+            Colors.appBackground
                 .edgesIgnoringSafeArea(.all)
             VStack (spacing: 16) {
                 TitleView()
