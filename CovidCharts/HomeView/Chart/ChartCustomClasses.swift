@@ -14,6 +14,7 @@ struct ChartSmallText: View {
         Text(text)
             .font(.system(size: 12, weight: .regular, design: .default))
             .foregroundColor(Color(UIColor.label))
+            .multilineTextAlignment(.leading)
     }
 }
 

@@ -18,13 +18,13 @@ public struct Line: View {
     @State var showBackground: Bool = true
     var gradient: GradientColor = GradientColor(start: Colors.GradientPurple, end: Colors.GradientNeonBlue)
     var index:Int = 0
-    let padding:CGFloat = 30
+ //   let padding:CGFloat = 30
     var curvedLines: Bool = true
     var stepWidth: CGFloat {
         if data.points.count < 2 {
             return 0
         }
-        return UIScreen.screenWidth / CGFloat(data.points.count-1)
+        return (UIScreen.screenWidth - 32) / CGFloat(data.points.count-1)
     }
     var stepHeight: CGFloat {
         var min: Double?
@@ -40,11 +40,7 @@ public struct Line: View {
             return 0
         }
         if let min = min, let max = max, min != max {
-            if (min <= 0){
-                return ((UIScreen.screenHeight/1.75 - 50) - 2) / CGFloat(min)
-            }else{
-                return ((UIScreen.screenHeight/1.75 - 50) - 2) / CGFloat(max)
-            }
+                return ((UIScreen.screenHeight/1.75 - 50) - 50) / CGFloat(max)
         }
         return 0
     }

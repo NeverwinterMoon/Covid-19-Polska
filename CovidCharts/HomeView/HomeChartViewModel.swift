@@ -13,6 +13,8 @@ class DataFetcher: ObservableObject {
     
     @Published var data = [Day]()
     
+    let shared = DataFetcher()
+    
     init() {
         loadData()
     }
@@ -25,7 +27,6 @@ class DataFetcher: ObservableObject {
                 let timeSeries = try JSONDecoder().decode(Days.self, from: data)
                 DispatchQueue.main.async {
                     self.data = timeSeries
-                    logDebug("datafetcher", text: data)
                 }
             } catch {
                 print("JSON Decode failed:", error)
@@ -60,7 +61,6 @@ class HomeChartViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self.data = timeSeries
                     self.setDataFromLast(30, chart: self.chart)
-                 //   print(data)
                 }
             } catch {
                 print("JSON Decode failed:", error)
@@ -74,7 +74,7 @@ class HomeChartViewModel: ObservableObject {
         for num in 0..<customData.count {
             let higherValue = num + 1
             guard higherValue + 2 < customData.count else {
-             //    print(changes)
+                 print(changes)
                 return changes
             }
             var change: Double = 0
@@ -83,8 +83,9 @@ class HomeChartViewModel: ObservableObject {
             case .deaths: change = Double(customData[higherValue].deaths - customData[num].deaths)
             case .recovered: change = (Double(customData[higherValue].recovered - customData[num].recovered))
             }
-            
-            changes.append(change)
+            print(change)
+            #warning("Hack")
+            changes.append(change+1)
         }
         return changes
     }
@@ -127,22 +128,18 @@ class HomeChartViewModel: ObservableObject {
     }
     
     func getChartMaxValue(isLineChart: Bool) -> Double {
-        return isLineChart ? getCustomLineData().max() ?? 0 : getCustomBarData().last ?? 0
+        return isLineChart ? (getCustomLineData().max() ?? 0) - 1 : getCustomBarData().last ?? 0
     }
     
     func getChartMidValue(isLineChart: Bool) -> Double {
-        guard let last = isLineChart ? getCustomLineData().max() : getCustomBarData().last else {
+        guard let last = isLineChart ? (getCustomLineData().max() ?? 0) - 1 : getCustomBarData().last else {
             return 0
         }
-        guard let first = isLineChart ? getCustomLineData().min() : getCustomBarData().first else {
+        guard let first = isLineChart ? ((getCustomLineData().min() ?? 0) - 1) : getCustomBarData().first else {
             return 0
         }
         
         return ((last-first)/2) + first
-    }
-    
-    func getChartLowValue(isLineChart: Bool) -> Double {
-        return isLineChart ? getCustomLineData().min() ?? 0 : getCustomBarData().first ?? 0
     }
     
     func getCases(_ day: Day) -> CGFloat {

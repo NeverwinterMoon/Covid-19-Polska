@@ -25,7 +25,6 @@
 		81C197BC2446632200AEC5FF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197BB2446632200AEC5FF /* Colors.swift */; };
 		81C197BE2446634900AEC5FF /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197BD2446634900AEC5FF /* Images.swift */; };
 		81C197F224486BAD00AEC5FF /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197F124486BAD00AEC5FF /* ToolbarView.swift */; };
-		81C197F424489A7300AEC5FF /* ChartSideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197F324489A7300AEC5FF /* ChartSideView.swift */; };
 		81C197F62448A21300AEC5FF /* ChartToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197F52448A21300AEC5FF /* ChartToolbarView.swift */; };
 		81C197FF24490AFB00AEC5FF /* ChartsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197FE24490AFB00AEC5FF /* ChartsModel.swift */; };
 		81C1980124490B3800AEC5FF /* Ext-UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C1980024490B3800AEC5FF /* Ext-UIScreen.swift */; };
@@ -46,6 +45,7 @@
 		81C198512449E47300AEC5FF /* PieChartRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C198502449E47300AEC5FF /* PieChartRow.swift */; };
 		81C198532449E49900AEC5FF /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C198522449E49900AEC5FF /* PieChartView.swift */; };
 		81C198552449E4EC00AEC5FF /* ChartHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C198542449E4EC00AEC5FF /* ChartHelper.swift */; };
+		81C19868244B0ABF00AEC5FF /* ChartGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19867244B0ABF00AEC5FF /* ChartGridView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +69,6 @@
 		81C197BB2446632200AEC5FF /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		81C197BD2446634900AEC5FF /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		81C197F124486BAD00AEC5FF /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
-		81C197F324489A7300AEC5FF /* ChartSideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartSideView.swift; sourceTree = "<group>"; };
 		81C197F52448A21300AEC5FF /* ChartToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartToolbarView.swift; sourceTree = "<group>"; };
 		81C197FE24490AFB00AEC5FF /* ChartsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsModel.swift; sourceTree = "<group>"; };
 		81C1980024490B3800AEC5FF /* Ext-UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext-UIScreen.swift"; sourceTree = "<group>"; };
@@ -90,6 +89,7 @@
 		81C198502449E47300AEC5FF /* PieChartRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartRow.swift; sourceTree = "<group>"; };
 		81C198522449E49900AEC5FF /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
 		81C198542449E4EC00AEC5FF /* ChartHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartHelper.swift; sourceTree = "<group>"; };
+		81C19867244B0ABF00AEC5FF /* ChartGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartGridView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,7 +174,7 @@
 				810C131B2446045C00419207 /* ChartView.swift */,
 				810C131F244604E000419207 /* ChartTopView.swift */,
 				810C1321244604F000419207 /* ChartContentView.swift */,
-				81C197F324489A7300AEC5FF /* ChartSideView.swift */,
+				81C19867244B0ABF00AEC5FF /* ChartGridView.swift */,
 				810C131D244604D400419207 /* ChartBottomView.swift */,
 				810C13232446059E00419207 /* ChartCustomClasses.swift */,
 			);
@@ -338,7 +338,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				81C198462449E3ED00AEC5FF /* LineView.swift in Sources */,
-				81C197F424489A7300AEC5FF /* ChartSideView.swift in Sources */,
 				81C198552449E4EC00AEC5FF /* ChartHelper.swift in Sources */,
 				81C198382449E31100AEC5FF /* BarChartView.swift in Sources */,
 				81C198362449E2ED00AEC5FF /* BarChartRow.swift in Sources */,
@@ -349,6 +348,7 @@
 				810C13172445352700419207 /* HomeChartViewModel.swift in Sources */,
 				81C198342449E2BA00AEC5FF /* BarChartCell.swift in Sources */,
 				81C1980324490BAA00AEC5FF /* ChartToolbarLeftSide.swift in Sources */,
+				81C19868244B0ABF00AEC5FF /* ChartGridView.swift in Sources */,
 				81C1984C2449E43400AEC5FF /* PathQuadCurve.swift in Sources */,
 				810C12F72444994000419207 /* AppDelegate.swift in Sources */,
 				810C13192445983000419207 /* TitleView.swift in Sources */,

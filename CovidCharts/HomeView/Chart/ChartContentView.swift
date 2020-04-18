@@ -18,7 +18,7 @@ struct ChartContentView: View {
     
     var body: some View {
         ZStack {
-            ChartSideView(showLineChart: $showLineChart)
+            ChartGrid(showLineChart: $showLineChart)
             .padding(.leading, 16)
             VStack (spacing: 8) {
                 if self.showLineChart {
@@ -27,6 +27,7 @@ struct ChartContentView: View {
                     BarChartView()
                 }
             }
+            .animation(.easeInOut(duration: 0.5))
         }
     }
 
