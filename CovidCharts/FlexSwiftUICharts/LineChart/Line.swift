@@ -16,6 +16,7 @@ public struct Line: View {
     @Binding var minDataValue: Double?
     @Binding var maxDataValue: Double?
     @Binding var currentValue: Double
+    @Binding var currentDate: String
     @State private var showFull: Bool = false
     @State var showBackground: Bool = true
     
@@ -84,7 +85,9 @@ public struct Line: View {
                     .position(self.getClosestPointOnPath(touchLocation: self.touchLocation))
                     .rotationEffect(.degrees(180), anchor: .center)
                     .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
-                Text("\(Int(currentValue)-1)")
+                Text("\(Int(currentValue)-1)\n\(currentDate.formattedDate())")
+                    .font(.system(size: 10, weight: .semibold, design: .rounded))
+                    .multilineTextAlignment(.center)
                     .foregroundColor(Color(UIColor.label))
                     .rotationEffect(.degrees(180), anchor: .center)
                     .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
@@ -92,7 +95,6 @@ public struct Line: View {
                     .rotationEffect(.degrees(180), anchor: .center)
                     .rotation3DEffect(.degrees(-180), axis: (x: 0, y: 1, z: 0))
                     .offset(x: 0, y: 25)
-                
             }
         }
     }
@@ -113,7 +115,7 @@ public struct Line: View {
 struct Line_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader{ geometry in
-            Line(data: ChartData(points: [12,-230,10,54]), touchLocation: .constant(CGPoint(x: 100, y: 12)), showIndicator: .constant(true), minDataValue: .constant(nil), maxDataValue: .constant(nil), currentValue: .constant(0))
+            Line(data: ChartData(points: [12,-230,10,54]), touchLocation: .constant(CGPoint(x: 100, y: 12)), showIndicator: .constant(true), minDataValue: .constant(nil), maxDataValue: .constant(nil), currentValue: .constant(0), currentDate: .constant(""))
         }.frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight/2)
     }
 }

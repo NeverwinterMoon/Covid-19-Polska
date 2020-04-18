@@ -9,6 +9,7 @@
 import SwiftUI
 
 public struct LineView: View {
+    @EnvironmentObject var chartViewModel: ChartViewModel
     @ObservedObject var data: ChartData
     public var title: String?
     public var legend: String?
@@ -23,6 +24,7 @@ public struct LineView: View {
     @State private var closestPoint: CGPoint = .zero
     @State private var opacity:Double = 0
     @State private var currentDataNumber: Double = 0
+    @State private var currentDate: String = ""
     @State private var hideHorizontalLines: Bool = false
     
     public init(data: [Double],
@@ -48,6 +50,7 @@ public struct LineView: View {
                      minDataValue: .constant(0),
                      maxDataValue: .constant(nil),
                      currentValue: self.$currentDataNumber,
+                     currentDate: self.$currentDate,
                      showBackground: true
                 )
                 .frame(width: UIScreen.screenWidth, height: (UIScreen.screenHeight/1.75 - 50))
@@ -74,9 +77,10 @@ public struct LineView: View {
         let stepWidth: CGFloat = width / CGFloat(points.count-1)
         let stepHeight: CGFloat = height / CGFloat(points.max()! + points.min()!)
         
-        let index:Int = Int(floor((toPoint.x+20)/stepWidth))
+        let index:Int = Int(floor((toPoint.x+23)/stepWidth))
         if (index >= 0 && index < points.count){
             self.currentDataNumber = points[index]
+            self.currentDate = chartViewModel.customData[index].date
             return CGPoint(x: CGFloat(index)*stepWidth, y: CGFloat(points[index])*stepHeight)
         }
         return .zero
@@ -85,7 +89,7 @@ public struct LineView: View {
 
 struct LineView_Previews: PreviewProvider {
     static var previews: some View {
-        LineView(data: [8,23,54,32,12,37,7,23,43], title: "Full chart", style: Styles.lineChartStyleOne)
+        LineView(data: [8,23,54,32,12,37,7,23,43], title: "Full chart", style: Styles.lineChartStyleOne).environmentObject(ChartViewModel())
     }
 }
 
