@@ -16,12 +16,12 @@ struct ChartGrid: View {
         HStack (alignment: .center) {
             VStack (alignment: .leading) {
                 HStack {
-                    ChartSmallText(text: "\(vm.getChartMaxValue())")
+                    ChartSmallText(text: "\(Int(vm.getChartMaxValue()))")
                     Spacer()
                 }
                 Spacer()
                 HStack {
-                    ChartSmallText(text: "\(vm.getChartMidValue())")
+                    ChartSmallText(text: "\(Int(vm.getChartMidValue()))")
                     Spacer()
                 }
                 Spacer()
