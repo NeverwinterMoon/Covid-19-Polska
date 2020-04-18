@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TitleView: View {
     
-    @EnvironmentObject var vm: ChartViewModel
+    @EnvironmentObject var vm: HomeChartViewModel
     
     var body: some View {
         HStack (alignment: .center) {
@@ -20,7 +20,7 @@ struct TitleView: View {
                     .foregroundColor(Color(UIColor.label))
                     .padding(.leading, 32)
                 HStack (alignment: .center, spacing: 0) {
-                    IconView(name: Images.time, size: .medium, color: Color(UIColor.systemPink))
+                    IconView(name: Images.time, size: .medium, weight: .regular, color: Color(UIColor.systemPink))
                     Text("\(getCurrentDate())")
                         .font(.system(size: 16, weight: .semibold, design: .default))
                         .multilineTextAlignment(.leading)
@@ -34,10 +34,10 @@ struct TitleView: View {
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
             Spacer()
-            IconView(name: Images.reload, size: .large, color: Color(UIColor.label))
+            IconView(name: Images.reload, size: .large, weight: .bold, color: Color(UIColor.label))
                 .padding(.trailing)
                 .onTapGesture {
-                    self.vm.loadData()
+              //      self.vm.loadData()
             }
             .frame(width: 90, height: 90, alignment: .center)
             .background(Color(UIColor.systemBackground))
@@ -60,6 +60,6 @@ struct TitleView: View {
 
 struct TitleView_Previews: PreviewProvider {
     static var previews: some View {
-        TitleView().environmentObject(ChartViewModel())
+        TitleView().environmentObject(HomeChartViewModel())
     }
 }

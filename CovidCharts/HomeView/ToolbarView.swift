@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ToolbarView: View {
     
-    @EnvironmentObject var vm: ChartViewModel
+    @EnvironmentObject var vm: HomeChartViewModel
     
     var body: some View {
         VStack {
@@ -27,7 +27,7 @@ struct ToolbarView: View {
 
 struct ToolbarView_Previews: PreviewProvider {
     static var previews: some View {
-        ToolbarView().environmentObject(ChartViewModel())
+        ToolbarView().environmentObject(HomeChartViewModel())
     }
 }
 
@@ -47,7 +47,7 @@ struct MenuButton: View {
     var title: String
     var image: String
     var chart: ChartType
-    @EnvironmentObject var vm: ChartViewModel
+    @EnvironmentObject var vm: HomeChartViewModel
     
     var body: some View {
         

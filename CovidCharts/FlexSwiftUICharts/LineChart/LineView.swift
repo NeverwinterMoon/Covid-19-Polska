@@ -47,7 +47,9 @@ public struct LineView: View {
                      maxDataValue: .constant(nil),
                      showBackground: false
                 )
-                .frame(width: UIScreen.screenWidth, height: (UIScreen.screenHeight/1.75 - 100))
+                .frame(width: UIScreen.screenWidth, height: (UIScreen.screenHeight/1.75 - 50))
+                .offset(x: 0, y: 40)
+                .padding(.top, -40)
             }
     }
     

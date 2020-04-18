@@ -10,15 +10,15 @@ import SwiftUI
 
 struct ChartBottomView: View {
     
-    @EnvironmentObject var vm: ChartViewModel
+    @EnvironmentObject var vm: HomeChartViewModel
     
     var body: some View {
         VStack (spacing: 4){
             ChartLineSpacer()
             HStack {
-                ChartSmallText(text: "\(vm.data.first?.date ?? "")")
+                ChartSmallText(text: "\(vm.customData.first?.date ?? "")")
                 Spacer()
-                ChartSmallText(text: "\(vm.data.last?.date ?? "")")
+                ChartSmallText(text: "\(vm.customData.last?.date ?? "")")
             }
         }
         .padding(.horizontal)
@@ -27,6 +27,6 @@ struct ChartBottomView: View {
 
 struct ChartBottomView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartBottomView().environmentObject(ChartViewModel())
+        ChartBottomView().environmentObject(HomeChartViewModel())
     }
 }

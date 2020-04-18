@@ -41,9 +41,9 @@ public struct Line: View {
         }
         if let min = min, let max = max, min != max {
             if (min <= 0){
-                return ((UIScreen.screenHeight/1.75 - 100)-5) / CGFloat(min)
+                return ((UIScreen.screenHeight/1.75 - 50) - 2) / CGFloat(min)
             }else{
-                return ((UIScreen.screenHeight/1.75 - 100)-5) / CGFloat(max)
+                return ((UIScreen.screenHeight/1.75 - 50) - 2) / CGFloat(max)
             }
         }
         return 0

@@ -11,18 +11,18 @@ import SwiftUICharts
 
 struct ChartContentView: View {
     
-    @EnvironmentObject var vm: ChartViewModel
+    @EnvironmentObject var vm: HomeChartViewModel
     @Binding var showLineChart: Bool
     
     let chartStyle = ChartStyle(backgroundColor: Color(UIColor.systemBackground), accentColor: Color.black, gradientColor: GradientColors.orngPink, textColor: Color.yellow, legendTextColor: Color.blue, dropShadowColor: Color.orange)
     
     var body: some View {
         ZStack {
-            ChartSideView()
+            ChartSideView(showLineChart: $showLineChart)
             .padding(.leading, 16)
             VStack (spacing: 8) {
                 if self.showLineChart {
-                    LineView(data: self.vm.getChartLineData(), style: chartStyle)
+                    LineView(data: self.vm.getCustomLineData(), style: chartStyle)
                 } else {
                     BarChartView()
                 }
@@ -34,18 +34,18 @@ struct ChartContentView: View {
 
 struct ChartContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartContentView(showLineChart: .constant(true)).environmentObject(ChartViewModel())
+        ChartContentView(showLineChart: .constant(true)).environmentObject(HomeChartViewModel())
     }
 }
 
 struct BarChartView: View {
     
-    @EnvironmentObject var vm: ChartViewModel
+    @EnvironmentObject var vm: HomeChartViewModel
     
     var body: some View {
         VStack (spacing: 8) {
             HStack (alignment: .bottom, spacing: 2) {
-                ForEach(vm.data, id: \.self) { day in
+                ForEach(vm.customData, id: \.self) { day in
                     VStack (spacing: 5) {
                         VStack {
                             Spacer()
@@ -59,5 +59,6 @@ struct BarChartView: View {
         }
         .padding(.horizontal)
         .animation(Animation.easeInOut(duration: 0.75))
+
     }
 }

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @EnvironmentObject var vm: ChartViewModel
+    @EnvironmentObject var barChartViewModel: HomeChartViewModel
     @State var showLineChart: Bool = true
    
     var body: some View {
@@ -32,6 +32,6 @@ struct HomeView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(showLineChart: false).environmentObject(ChartViewModel())
+        HomeView(showLineChart: false).environmentObject(HomeChartViewModel())
     }
 }

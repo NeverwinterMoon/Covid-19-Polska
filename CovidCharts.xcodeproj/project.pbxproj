@@ -15,7 +15,7 @@
 		810C13032444994200419207 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 810C13012444994200419207 /* LaunchScreen.storyboard */; };
 		810C130C2444C97E00419207 /* Ext-String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C130B2444C97E00419207 /* Ext-String.swift */; };
 		810C130E2444C99D00419207 /* Ext-Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C130D2444C99D00419207 /* Ext-Date.swift */; };
-		810C13172445352700419207 /* ChartsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C13162445352700419207 /* ChartsViewModel.swift */; };
+		810C13172445352700419207 /* HomeChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C13162445352700419207 /* HomeChartViewModel.swift */; };
 		810C13192445983000419207 /* TitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C13182445983000419207 /* TitleView.swift */; };
 		810C131C2446045C00419207 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C131B2446045C00419207 /* ChartView.swift */; };
 		810C131E244604D400419207 /* ChartBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C131D244604D400419207 /* ChartBottomView.swift */; };
@@ -59,7 +59,7 @@
 		810C13042444994200419207 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		810C130B2444C97E00419207 /* Ext-String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext-String.swift"; sourceTree = "<group>"; };
 		810C130D2444C99D00419207 /* Ext-Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext-Date.swift"; sourceTree = "<group>"; };
-		810C13162445352700419207 /* ChartsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsViewModel.swift; sourceTree = "<group>"; };
+		810C13162445352700419207 /* HomeChartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChartViewModel.swift; sourceTree = "<group>"; };
 		810C13182445983000419207 /* TitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleView.swift; sourceTree = "<group>"; };
 		810C131B2446045C00419207 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		810C131D244604D400419207 /* ChartBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartBottomView.swift; sourceTree = "<group>"; };
@@ -158,7 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				81C197FE24490AFB00AEC5FF /* ChartsModel.swift */,
-				810C13162445352700419207 /* ChartsViewModel.swift */,
+				810C13162445352700419207 /* HomeChartViewModel.swift */,
 				810C12FA2444994000419207 /* HomeView.swift */,
 				810C13182445983000419207 /* TitleView.swift */,
 				81C197F124486BAD00AEC5FF /* ToolbarView.swift */,
@@ -346,7 +346,7 @@
 				810C130C2444C97E00419207 /* Ext-String.swift in Sources */,
 				810C1320244604E000419207 /* ChartTopView.swift in Sources */,
 				81C1983A2449E33300AEC5FF /* LabelView.swift in Sources */,
-				810C13172445352700419207 /* ChartsViewModel.swift in Sources */,
+				810C13172445352700419207 /* HomeChartViewModel.swift in Sources */,
 				81C198342449E2BA00AEC5FF /* BarChartCell.swift in Sources */,
 				81C1980324490BAA00AEC5FF /* ChartToolbarLeftSide.swift in Sources */,
 				81C1984C2449E43400AEC5FF /* PathQuadCurve.swift in Sources */,

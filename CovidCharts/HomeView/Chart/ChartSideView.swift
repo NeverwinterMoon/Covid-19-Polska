@@ -10,16 +10,17 @@ import SwiftUI
 
 struct ChartSideView: View {
     
-    @EnvironmentObject var vm: ChartViewModel
+    @EnvironmentObject var vm: HomeChartViewModel
+    @Binding var showLineChart: Bool
     
     var body: some View {
         HStack (alignment: .center) {
             VStack (alignment: .leading) {
-                ChartSmallText(text: "\(vm.getMaxValue())")
+                ChartSmallText(text: "\(vm.getChartMaxValue(isLineChart: showLineChart))")
                 Spacer()
-                ChartSmallText(text: "\(vm.getMidValue())")
+                ChartSmallText(text: "\(vm.getChartMidValue(isLineChart: showLineChart))")
                 Spacer()
-                ChartSmallText(text: "0")
+                ChartSmallText(text: "\(vm.getChartLowValue(isLineChart: showLineChart))")
             }
             Spacer()
         }
@@ -30,6 +31,6 @@ struct ChartSideView: View {
 
 struct ChartSideView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartSideView().environmentObject(ChartViewModel())
+        ChartSideView(showLineChart: .constant(true)).environmentObject(HomeChartViewModel())
     }
 }

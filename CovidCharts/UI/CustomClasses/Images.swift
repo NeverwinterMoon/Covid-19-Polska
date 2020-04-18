@@ -25,10 +25,11 @@ enum Images {
 struct IconView: View {
     var name: String
     var size: Image.Scale
+    var weight: Font.Weight
     var color: Color
     var body: some View {
         Image(systemName: name)
-            .font(.system(size: 20, weight: .regular))
+            .font(.system(size: 20, weight: weight))
             .imageScale(size)
             .frame(width: 32, height: 32)
             .foregroundColor(color)

@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ChartToolbarLeftSide: View {
     
-    @EnvironmentObject var vm: ChartViewModel
+    @EnvironmentObject var vm: HomeChartViewModel
     @Binding var showLineChart: Bool
     
     var body: some View {
@@ -19,18 +19,19 @@ struct ChartToolbarLeftSide: View {
             Button(action: {
                 print("Calendar tapped")
             }) {
-                IconView(name: Images.calendar, size: .medium, color: Color(UIColor.systemPink))
+                IconView(name: Images.calendar, size: .medium, weight: .regular, color: Color(UIColor.systemPink))
+
                 .frame(width: 30, height: 40, alignment: .center)
             }
             Button(action: {
                 self.showLineChart.toggle()
             }) {
-                IconView(name: showLineChart ? Images.bars : Images.percent, size: .medium, color: Color(UIColor.systemPink))
+                IconView(name: showLineChart ? Images.bars : Images.percent, size: .medium, weight: .regular, color: Color(UIColor.systemPink))
                 .frame(width: 30, height: 40, alignment: .center)
             }
             
         }
-        .frame(width: 70, height: 40, alignment: .leading)
+        .frame(width: 80, height: 40, alignment: .leading)
         .padding(.leading, 24)
         .background(Color(UIColor.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
@@ -40,7 +41,7 @@ struct ChartToolbarLeftSide: View {
 
 struct ChartToolbarLeftSide_Previews: PreviewProvider {
     static var previews: some View {
-        ChartToolbarLeftSide(showLineChart: .constant(false)).environmentObject(ChartViewModel())
+        ChartToolbarLeftSide(showLineChart: .constant(false)).environmentObject(HomeChartViewModel())
     }
 }
 
