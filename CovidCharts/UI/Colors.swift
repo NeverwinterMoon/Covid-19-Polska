@@ -8,6 +8,10 @@
 
 import SwiftUI
 
+func logDebug(_ title: String, text: Any) {
+    print("\(title): \(text)")
+}
+
 enum Colors {
     static let mainColor = Color(hexString: "#76A9FF")
     static let color1:Color = Color(hexString: "#E2FAE7")

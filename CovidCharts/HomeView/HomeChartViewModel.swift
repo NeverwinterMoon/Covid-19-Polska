@@ -9,6 +9,33 @@
 import SwiftUI
 import Combine
 
+class DataFetcher: ObservableObject {
+    
+    @Published var data = [Day]()
+    
+    init() {
+        loadData()
+    }
+    func loadData() {
+        let urlString = "https://api.covid19api.com/country/Poland"
+        guard let url = URL(string: urlString) else { return }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data else { return }
+            do {
+                let timeSeries = try JSONDecoder().decode(Days.self, from: data)
+                DispatchQueue.main.async {
+                    self.data = timeSeries
+                    logDebug("datafetcher", text: data)
+                }
+            } catch {
+                print("JSON Decode failed:", error)
+            }
+        }
+        .resume()
+    }
+    
+}
+
 enum ChartType {
     case deaths, confirmed, recovered
 }
@@ -33,7 +60,7 @@ class HomeChartViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self.data = timeSeries
                     self.setDataFromLast(30, chart: self.chart)
-                    print(data)
+                 //   print(data)
                 }
             } catch {
                 print("JSON Decode failed:", error)
@@ -47,7 +74,7 @@ class HomeChartViewModel: ObservableObject {
         for num in 0..<customData.count {
             let higherValue = num + 1
             guard higherValue + 2 < customData.count else {
-                 print(changes)
+             //    print(changes)
                 return changes
             }
             var change: Double = 0

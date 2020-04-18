@@ -32,6 +32,6 @@ struct HomeView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(showLineChart: false).environmentObject(HomeChartViewModel())
+        HomeView(showLineChart: false).environmentObject(DataFetcher()).environmentObject(HomeChartViewModel())
     }
 }
