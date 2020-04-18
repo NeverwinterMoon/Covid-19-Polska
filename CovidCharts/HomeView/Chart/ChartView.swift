@@ -8,22 +8,15 @@
 
 import SwiftUI
 
-struct ChartView_Previews: PreviewProvider {
-    static var previews: some View {
-        ChartView(showLineChart: .constant(true)).environmentObject(HomeChartViewModel())
-    }
-}
-
 struct ChartView: View {
     
-    @EnvironmentObject var vm: HomeChartViewModel
-    @Binding var showLineChart: Bool
+    @EnvironmentObject var vm: ChartViewModel
     
     var body: some View {
         VStack (alignment: .center, spacing: 8) {
-            ChartTopView(showLineChart: $showLineChart)
+            ChartTopView()
                 .padding(.top, 16)
-            ChartContentView(showLineChart: $showLineChart)
+            ChartContentView()
                 .padding(.leading, 2)
             ChartBottomView()
                 .padding(.bottom, 16)
@@ -33,7 +26,12 @@ struct ChartView: View {
         .background(Color(UIColor.systemBackground))
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
-    //    .animation(.easeInOut(duration: 0.7))
     }
     
+}
+
+struct ChartView_Previews: PreviewProvider {
+    static var previews: some View {
+        ChartView().environmentObject(ChartViewModel())
+    }
 }

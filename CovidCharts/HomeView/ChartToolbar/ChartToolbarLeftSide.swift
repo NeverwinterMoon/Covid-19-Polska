@@ -10,8 +10,7 @@ import SwiftUI
 
 struct ChartToolbarLeftSide: View {
     
-    @EnvironmentObject var vm: HomeChartViewModel
-    @Binding var showLineChart: Bool
+    @EnvironmentObject var vm: ChartViewModel
     
     var body: some View {
         HStack (alignment: .center, spacing: 2) {
@@ -24,9 +23,9 @@ struct ChartToolbarLeftSide: View {
                 .frame(width: 30, height: 40, alignment: .center)
             }
             Button(action: {
-                self.showLineChart.toggle()
+                self.vm.showDailyChange.toggle()
             }) {
-                IconView(name: showLineChart ? Images.bars : Images.percent, size: .medium, weight: .regular, color: Color(UIColor.systemPink))
+                IconView(name: vm.showDailyChange ? Images.bars : Images.percent, size: .medium, weight: .regular, color: Color(UIColor.systemPink))
                 .frame(width: 30, height: 40, alignment: .center)
             }
             
@@ -41,7 +40,7 @@ struct ChartToolbarLeftSide: View {
 
 struct ChartToolbarLeftSide_Previews: PreviewProvider {
     static var previews: some View {
-        ChartToolbarLeftSide(showLineChart: .constant(false)).environmentObject(HomeChartViewModel())
+        ChartToolbarLeftSide().environmentObject(ChartViewModel())
     }
 }
 

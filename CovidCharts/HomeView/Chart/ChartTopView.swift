@@ -10,12 +10,11 @@ import SwiftUI
 
 struct ChartTopView: View {
     
-    @EnvironmentObject var vm: HomeChartViewModel
-    @Binding var showLineChart: Bool
+    @EnvironmentObject var vm: ChartViewModel
     
     var body: some View {
         VStack (spacing: 4) {
-            Text(vm.getTitle(isLineChart: showLineChart))
+            Text(vm.getChartTitle())
                 .font(.system(size: 16, weight: .semibold, design: .default))
                 .foregroundColor(Color(UIColor.label))
                 .frame(width: 250)
@@ -35,6 +34,6 @@ struct ChartTopView: View {
 
 struct ChartTopView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartTopView(showLineChart: .constant(true)).environmentObject(HomeChartViewModel())
+        ChartTopView().environmentObject(ChartViewModel())
     }
 }

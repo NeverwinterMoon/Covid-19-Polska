@@ -10,19 +10,18 @@ import SwiftUI
 
 struct ChartGrid: View {
     
-    @EnvironmentObject var vm: HomeChartViewModel
-    @Binding var showLineChart: Bool
+    @EnvironmentObject var vm: ChartViewModel
     
     var body: some View {
         HStack (alignment: .center) {
             VStack (alignment: .leading) {
                 HStack {
-                    ChartSmallText(text: "\(vm.getChartMaxValue(isLineChart: showLineChart))")
+                    ChartSmallText(text: "\(vm.getChartMaxValue())")
                     Spacer()
                 }
                 Spacer()
                 HStack {
-                    ChartSmallText(text: "\(vm.getChartMidValue(isLineChart: showLineChart))")
+                    ChartSmallText(text: "\(vm.getChartMidValue())")
                     Spacer()
                 }
                 Spacer()
@@ -40,6 +39,6 @@ struct ChartGrid: View {
 
 struct ChartSideView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartGrid(showLineChart: .constant(true)).environmentObject(HomeChartViewModel())
+        ChartGrid().environmentObject(ChartViewModel())
     }
 }

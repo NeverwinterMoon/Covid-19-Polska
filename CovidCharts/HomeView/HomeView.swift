@@ -10,8 +10,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @EnvironmentObject var barChartViewModel: HomeChartViewModel
-    @State var showLineChart: Bool = true
+    @EnvironmentObject var barChartViewModel: ChartViewModel
    
     var body: some View {
         ZStack {
@@ -20,8 +19,8 @@ struct HomeView: View {
             VStack (spacing: 16) {
                 TitleView()
                 .padding(.top)
-                ChartView(showLineChart: $showLineChart)
-                ChartToolbar(showLineChart: $showLineChart)
+                ChartView()
+                ChartToolbar()
                 ToolbarView()
                 .padding(.bottom, 8)
             }
@@ -32,6 +31,6 @@ struct HomeView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(showLineChart: false).environmentObject(DataFetcher()).environmentObject(HomeChartViewModel())
+        HomeView().environmentObject(DataFetcher()).environmentObject(ChartViewModel())
     }
 }

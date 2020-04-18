@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ChartBottomView: View {
     
-    @EnvironmentObject var vm: HomeChartViewModel
+    @EnvironmentObject var vm: ChartViewModel
     
     var body: some View {
         VStack (spacing: 4){
@@ -27,6 +27,6 @@ struct ChartBottomView: View {
 
 struct ChartBottomView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartBottomView().environmentObject(HomeChartViewModel())
+        ChartBottomView().environmentObject(ChartViewModel())
     }
 }

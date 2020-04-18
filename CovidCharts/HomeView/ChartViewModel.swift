@@ -41,11 +41,12 @@ enum ChartType {
     case deaths, confirmed, recovered
 }
 
-class HomeChartViewModel: ObservableObject {
+class ChartViewModel: ObservableObject {
     
     private var data = [Day]()
     @Published var customData = [Day]()
     @Published var chart: ChartType = .confirmed
+    @Published var showDailyChange: Bool = true
     
     init() {
         loadData()
@@ -69,13 +70,17 @@ class HomeChartViewModel: ObservableObject {
         .resume()
     }
     
-    func getCustomLineData() -> [Double] {
-        var changes = [Double]()
+    func setDataFromLast(_ daysNumber: Int, chart: ChartType) {
+        self.chart = chart
+        customData = data.suffix(daysNumber)
+    }
+    
+    func getDailyChangesData() -> [Double] {
+        var values = [Double]()
         for num in 0..<customData.count {
             let higherValue = num + 1
             guard higherValue + 2 < customData.count else {
-                 print(changes)
-                return changes
+                return values
             }
             var change: Double = 0
             switch chart {
@@ -83,30 +88,29 @@ class HomeChartViewModel: ObservableObject {
             case .deaths: change = Double(customData[higherValue].deaths - customData[num].deaths)
             case .recovered: change = (Double(customData[higherValue].recovered - customData[num].recovered))
             }
-            print(change)
             #warning("Hack")
-            changes.append(change+1)
+            values.append(change+1)
         }
-        return changes
+        return values
     }
     
-    private func getCustomBarData() -> [Double] {
-        var separatedData = [Double]()
+    func getDailyIncreaseData() -> [Double] {
+        var values = [Double]()
         customData.forEach { day in
             switch chart {
-            case .confirmed: separatedData.append(Double(day.confirmed))
-            case .deaths: separatedData.append(Double(day.deaths))
-            case .recovered: separatedData.append(Double(day.recovered))
+            case .confirmed: values.append(Double(day.confirmed))
+            case .deaths: values.append(Double(day.deaths))
+            case .recovered: values.append(Double(day.recovered))
             }
         }
-        return separatedData
+        return values
     }
     
-    func getTitle(isLineChart: Bool) -> String {
+    func getChartTitle() -> String {
         switch chart {
-        case .deaths: return isLineChart ? "Dzienna liczba zgonów" : "Liczba zgonów"
-        case .confirmed: return isLineChart ? "Dzienne potwierdzone przypadki" : "Potwierdzone przypadki"
-        case .recovered: return isLineChart ? "Dzienne wyleczone przypadki" : "Wyleczone przypadki"
+        case .deaths: return showDailyChange ? "Dzienna liczba zgonów" : "Liczba zgonów"
+        case .confirmed: return showDailyChange ? "Dzienne potwierdzone przypadki" : "Potwierdzone przypadki"
+        case .recovered: return showDailyChange ? "Dzienne wyleczone przypadki" : "Wyleczone przypadki"
         }
     }
     
@@ -127,19 +131,13 @@ class HomeChartViewModel: ObservableObject {
         }
     }
     
-    func getChartMaxValue(isLineChart: Bool) -> Double {
-        return isLineChart ? (getCustomLineData().max() ?? 0) - 1 : getCustomBarData().last ?? 0
+    func getChartMaxValue() -> Double {
+        return showDailyChange ? (getDailyChangesData().max() ?? 0) - 1 : (getDailyIncreaseData().max() ?? 0) - 1
     }
     
-    func getChartMidValue(isLineChart: Bool) -> Double {
-        guard let last = isLineChart ? (getCustomLineData().max() ?? 0) - 1 : getCustomBarData().last else {
-            return 0
-        }
-        guard let first = isLineChart ? ((getCustomLineData().min() ?? 0) - 1) : getCustomBarData().first else {
-            return 0
-        }
-        
-        return ((last-first)/2) + first
+    func getChartMidValue() -> Double {
+         let last = showDailyChange ? (getDailyChangesData().max() ?? 0) - 1 : (getDailyIncreaseData().max() ?? 0) - 1
+         return last / 2
     }
     
     func getCases(_ day: Day) -> CGFloat {
@@ -148,15 +146,6 @@ class HomeChartViewModel: ObservableObject {
         case .confirmed: return CGFloat(day.confirmed)
         case .recovered: return CGFloat(day.recovered)
         }
-    }
-    
-    func getBarWidth() -> CGFloat {
-        return (UIScreen.screenWidth - CGFloat(self.customData.count * 2) - 32) / CGFloat(self.customData.count)
-    }
-    
-    func setDataFromLast(_ daysNumber: Int, chart: ChartType) {
-        self.chart = chart
-        customData = data.suffix(daysNumber)
     }
     
 }
