@@ -22,7 +22,6 @@ public struct Line: View {
     
     var gradient: GradientColor = GradientColor(start: Colors.GradientPurple, end: Colors.GradientNeonBlue)
     var index:Int = 0
- //   let padding:CGFloat = 30
     var curvedLines: Bool = true
     var stepWidth: CGFloat {
         if data.points.count < 2 {
@@ -85,7 +84,7 @@ public struct Line: View {
                     .position(self.getClosestPointOnPath(touchLocation: self.touchLocation))
                     .rotationEffect(.degrees(180), anchor: .center)
                     .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
-                Text("\(Int(currentValue)-1)\n\(currentDate.formattedDate())")
+                Text("\(Int(currentValue)-1)\n\(currentDate.formattedDate(.dayMonth))")
                     .font(.system(size: 10, weight: .semibold, design: .rounded))
                     .multilineTextAlignment(.center)
                     .foregroundColor(Color(UIColor.label))

@@ -16,9 +16,9 @@ struct ChartBottomView: View {
         VStack (spacing: 4){
             ChartLineSpacer()
             HStack {
-                ChartSmallText(text: "\(vm.customData.first?.date ?? "")")
+                ChartSmallText(text: "\(vm.customData.first?.date.formattedDate(.dayMonthYear) ?? "")")
                 Spacer()
-                ChartSmallText(text: "\(vm.customData.last?.date ?? "")")
+                ChartSmallText(text: "\(vm.customData.last?.date.formattedDate(.dayMonthYear) ?? "")")
             }
         }
         .padding(.horizontal)
