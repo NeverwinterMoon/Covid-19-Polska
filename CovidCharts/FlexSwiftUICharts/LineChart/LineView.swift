@@ -54,7 +54,8 @@ public struct LineView: View {
                      showBackground: true
                 )
                 .frame(width: UIScreen.screenWidth, height: (UIScreen.screenHeight/1.75 - 40))
-                .padding(.top, -40)
+                .padding(.top, -50)
+                    .padding(.bottom, 10)
             }
         .gesture(DragGesture()
         .onChanged({ value in

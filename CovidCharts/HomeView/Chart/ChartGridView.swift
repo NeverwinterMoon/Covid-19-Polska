@@ -22,7 +22,7 @@ struct ChartGrid: View {
                 Spacer()
                 HStack {
                     ChartSmallText(text: "\(Int(vm.getChartMidValue()))")
-                    .offset(x: 0, y: 20)
+                    .offset(x: 0, y: 10)
                     Spacer()
                 }
                 Spacer()

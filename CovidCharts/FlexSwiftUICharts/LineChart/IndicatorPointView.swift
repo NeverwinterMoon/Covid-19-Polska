@@ -14,7 +14,7 @@ struct IndicatorPoint: View {
             Circle()
                 .fill(Colors.IndicatorKnob)
             Circle()
-                .stroke(Color.white, style: StrokeStyle(lineWidth: 4))
+                .stroke(Color(UIColor.systemBackground), style: StrokeStyle(lineWidth: 4))
         }
         .frame(width: 14, height: 14)
     }

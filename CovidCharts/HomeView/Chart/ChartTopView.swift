@@ -24,7 +24,7 @@ struct ChartTopView: View {
             .padding(.horizontal)
             .frame(width: UIScreen.screenWidth - 32, height: 1)
             .background(Color(UIColor.label))
-            Text("Stan na dzisiaj: " + "\(String(vm.getTodayValue()))")
+            Text("Dzisiaj: " + "\(String(vm.getTodayValue()))")
                 .font(.system(size: 16, weight: .semibold, design: .default))
                 .foregroundColor(Color(UIColor.label))
         }

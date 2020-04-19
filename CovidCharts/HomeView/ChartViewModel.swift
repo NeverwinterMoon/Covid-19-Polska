@@ -115,15 +115,15 @@ class ChartViewModel: ObservableObject {
     }
     
     func getTodayValue() -> Int {
-        return showDailyChange ? Int((getDailyChangesData().last ?? 0) - 1) : Int((getDailyIncreaseData().last ?? 0) - 1)
+        return showDailyChange ? Int((getDailyChangesData().last ?? 1) - 1) : Int((getDailyIncreaseData().last ?? 1) - 1)
     }
     
     func getChartMaxValue() -> Double {
-        return showDailyChange ? (getDailyChangesData().max() ?? 0) - 1 : (getDailyIncreaseData().max() ?? 0) - 1
+        return showDailyChange ? (getDailyChangesData().max() ?? 1) - 1 : (getDailyIncreaseData().max() ?? 1) - 1
     }
     
     func getChartMidValue() -> Double {
-         let last = showDailyChange ? (getDailyChangesData().max() ?? 0) - 1 : (getDailyIncreaseData().max() ?? 0) - 1
+         let last = showDailyChange ? (getDailyChangesData().max() ?? 1) - 1 : (getDailyIncreaseData().max() ?? 1) - 1
          return last / 2
     }
     
