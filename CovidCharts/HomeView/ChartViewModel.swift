@@ -50,7 +50,7 @@ class ChartViewModel: ObservableObject {
             do {
                 let latest = try JSONDecoder().decode(PolandLatest.self, from: data)
                 DispatchQueue.main.async {
-                    self.data.append(Day(confirmed: latest.infected, deaths: latest.deceased, recovered: 0, date: latest.lastUpdatedAtApify))
+                    self.data.append(Day(confirmed: latest.infected, deaths: latest.deceased, recovered: self.customData.last?.recovered ?? 0, date: latest.lastUpdatedAtApify))
                     self.setDataFromLast(30, chart: self.chart)
                 }
             } catch {
@@ -67,19 +67,19 @@ class ChartViewModel: ObservableObject {
     
     func getDailyChangesData() -> [Double] {
         var values = [Double]()
-        for num in 0..<customData.count {
-            let higherValue = num + 1
-            guard higherValue + 2 < customData.count else {
-                return values
-            }
+        guard !customData.isEmpty else {
+            return []
+        }
+        for num in 1..<customData.count {
             var change: Double = 0
             switch chart {
-            case .confirmed: change = Double(customData[higherValue].confirmed - customData[num].confirmed)
-            case .deaths: change = Double(customData[higherValue].deaths - customData[num].deaths)
-            case .recovered: change = (Double(customData[higherValue].recovered - customData[num].recovered))
+            case .confirmed: change = Double(customData[num].confirmed - customData[num-1].confirmed)
+            case .deaths: change = Double(customData[num].deaths - customData[num-1].deaths)
+            case .recovered: change = (Double(customData[num].recovered - customData[num-1].recovered))
             }
             values.append(change)
         }
+        print("DAILY CHANGES:\(values)")
         return values
     }
     
@@ -92,27 +92,28 @@ class ChartViewModel: ObservableObject {
             case .recovered: values.append(Double(day.recovered))
             }
         }
+        print("DAILY INICREASE: \(values)")
         return values
     }
     
     func getChartTitle() -> String {
         switch chart {
-        case .deaths: return showDailyChange ? "Dzienna liczba zgonów" : "Liczba zgonów"
-        case .confirmed: return showDailyChange ? "Dzienne potwierdzone przypadki" : "Potwierdzone przypadki"
-        case .recovered: return showDailyChange ? "Dzienne wyleczone przypadki" : "Wyleczone przypadki"
+        case .deaths: return showDailyChange ? "Liczba zgonów" : "Liczba zgonów"
+        case .confirmed: return showDailyChange ? "Potwierdzone przypadki" : "Potwierdzone przypadki"
+        case .recovered: return showDailyChange ? "Wyleczone przypadki" : "Wyleczone przypadki"
         }
     }
     
     func getTodayValue() -> Int {
-        return showDailyChange ? Int((getDailyChangesData().last ?? 1) - 1) : Int((getDailyIncreaseData().last ?? 1) - 1)
+        return showDailyChange ? Int((getDailyChangesData().last ?? 0)) : Int((getDailyIncreaseData().last ?? 0))
     }
     
     func getChartMaxValue() -> Double {
-        return showDailyChange ? (getDailyChangesData().max() ?? 1) - 1 : (getDailyIncreaseData().max() ?? 1) - 1
+        return showDailyChange ? (getDailyChangesData().max() ?? 0) : (getDailyIncreaseData().max() ?? 0)
     }
     
     func getChartMidValue() -> Double {
-         let last = showDailyChange ? (getDailyChangesData().max() ?? 1) - 1 : (getDailyIncreaseData().max() ?? 1) - 1
+         let last = showDailyChange ? (getDailyChangesData().max() ?? 0) : (getDailyIncreaseData().max() ?? 0)
          return last / 2
     }
     
