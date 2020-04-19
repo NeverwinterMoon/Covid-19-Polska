@@ -50,7 +50,7 @@ class ChartViewModel: ObservableObject {
             do {
                 let latest = try JSONDecoder().decode(PolandLatest.self, from: data)
                 DispatchQueue.main.async {
-                    self.data.append(Day(confirmed: latest.infected, deaths: latest.deceased, recovered: self.customData.last?.recovered ?? 0, date: latest.lastUpdatedAtApify))
+                    self.data.append(Day(confirmed: latest.infected, deaths: latest.deceased, recovered: self.data.last?.recovered ?? 0, date: latest.lastUpdatedAtApify))
                     self.setDataFromLast(30, chart: self.chart)
                 }
             } catch {
