@@ -24,7 +24,7 @@ struct ChartLineSpacer: View {
             Spacer()
         }
         .padding(.horizontal)
-        .frame(width: UIScreen.screenWidth - 32, height: 1)
+        .frame(width: UIScreen.width - 32, height: 1)
         .background(Color(UIColor.label))
     }
 }

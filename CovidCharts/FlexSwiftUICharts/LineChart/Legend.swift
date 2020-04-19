@@ -18,15 +18,15 @@ struct Legend: View {
         if data.points.count < 2 {
             return 0
         }
-        return UIScreen.screenWidth / CGFloat(data.points.count-1)
+        return UIScreen.width / CGFloat(data.points.count-1)
     }
     var stepHeight: CGFloat {
         let points = self.data.onlyPoints()
         if let min = points.min(), let max = points.max(), min != max {
             if (min < 0){
-                return ((UIScreen.screenHeight/1.75 - 100)-padding) / CGFloat(max - min)
+                return ((UIScreen.height/1.75 - 100)-padding) / CGFloat(max - min)
             }else{
-                return ((UIScreen.screenHeight/1.75 - 100)-padding) / CGFloat(max + min)
+                return ((UIScreen.height/1.75 - 100)-padding) / CGFloat(max + min)
             }
         }
         return 0
@@ -44,7 +44,7 @@ struct Legend: View {
                     Text("\(self.getYLegendSafe(height: height), specifier: "%.2f")").offset(x: 0, y: self.getYposition(height: height) )
                         .foregroundColor(Colors.LegendText)
                         .font(.caption)
-                    self.line(atHeight: self.getYLegendSafe(height: height), width: UIScreen.screenWidth)
+                    self.line(atHeight: self.getYLegendSafe(height: height), width: UIScreen.width)
                         .stroke(self.colorScheme == .dark ? Color.clear : Color.clear, style: StrokeStyle(lineWidth: 1.5, lineCap: .round, dash: [5,height == 0 ? 0 : 10]))
                         .opacity((self.hideHorizontalLines && height != 0) ? 0 : 1)
                         .rotationEffect(.degrees(180), anchor: .center)
@@ -67,7 +67,7 @@ struct Legend: View {
     
     func getYposition(height: Int)-> CGFloat {
         if let legend = getYLegend() {
-            return ((UIScreen.screenHeight/1.75 - 100)-((CGFloat(legend[height]) - min)*self.stepHeight))-((UIScreen.screenHeight/1.75 - 100)/2)
+            return ((UIScreen.height/1.75 - 100)-((CGFloat(legend[height]) - min)*self.stepHeight))-((UIScreen.height/1.75 - 100)/2)
         }
         return 0
        

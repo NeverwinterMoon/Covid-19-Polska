@@ -9,8 +9,9 @@
 import UIKit
 
 enum DateStyle {
-    case dayMonth
-    case dayMonthYear
+    case short
+    case long
+    case medium
 }
 
 extension String {
@@ -21,8 +22,9 @@ extension String {
         let secondFormatter = DateFormatter()
         secondFormatter.locale = Locale(identifier: "pl_PL")
         switch style {
-        case .dayMonth: secondFormatter.dateFormat = "dd.MM"
-        case .dayMonthYear: secondFormatter.dateFormat = "dd MMMM YYYY"
+        case .short: secondFormatter.dateFormat = "dd.MM"
+        case .long: secondFormatter.dateFormat = "dd MMMM YYYY"
+        case .medium: secondFormatter.dateFormat = "dd.MM.YY"
         }
         return secondFormatter.string(from: date ?? Date())
     }

@@ -11,12 +11,13 @@ import SwiftUI
 struct ChartToolbarLeftSide: View {
     
     @EnvironmentObject var vm: ChartViewModel
+    @Binding var showPopup: Bool
     
     var body: some View {
         HStack (alignment: .center, spacing: 2) {
             
             Button(action: {
-                print("Calendar tapped")
+                self.showPopup.toggle()
             }) {
                 IconView(name: Images.calendar, size: .medium, weight: .regular, color: Color(UIColor.systemPink))
 
@@ -40,8 +41,6 @@ struct ChartToolbarLeftSide: View {
 
 struct ChartToolbarLeftSide_Previews: PreviewProvider {
     static var previews: some View {
-        ChartToolbarLeftSide().environmentObject(ChartViewModel())
+        ChartToolbarLeftSide(showPopup: .constant(false)).environmentObject(ChartViewModel())
     }
 }
-
-

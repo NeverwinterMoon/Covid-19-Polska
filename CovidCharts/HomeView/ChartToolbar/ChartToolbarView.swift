@@ -11,21 +11,22 @@ import SwiftUI
 struct ChartToolbar: View {
     
     @EnvironmentObject var vm: ChartViewModel
+    @Binding var showPopup: Bool
 
     var body: some View {
         HStack {
-            ChartToolbarLeftSide()
+            ChartToolbarLeftSide(showPopup: $showPopup)
             Spacer()
             ShowDetailsButton()
         }
-        .frame(width: UIScreen.screenWidth + 32, height: 40, alignment: .center)
+        .frame(width: UIScreen.width + 32, height: 40, alignment: .center)
     }
     
 }
 
 struct ChartToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        ChartToolbar().environmentObject(ChartViewModel())
+        ChartToolbar(showPopup: .constant(false)).environmentObject(ChartViewModel())
     }
 }
 

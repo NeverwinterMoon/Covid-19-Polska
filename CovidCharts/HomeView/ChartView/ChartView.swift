@@ -22,7 +22,7 @@ struct ChartView: View {
                 .padding(.bottom, 16)
                 .padding(.horizontal)
         }
-        .frame(width: UIScreen.screenWidth+32, height: UIScreen.screenHeight/1.75)
+        .frame(width: UIScreen.width+32, height: UIScreen.height/1.75)
         .background(Colors.customViewBackground)
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)

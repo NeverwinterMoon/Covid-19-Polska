@@ -11,19 +11,26 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject var barChartViewModel: ChartViewModel
-   
+    @State var showPopup: Bool = false
+    @State var bottomState: CGSize = .zero
+    @State var showFull: Bool = false
+    
     var body: some View {
         ZStack {
             Colors.appBackground
                 .edgesIgnoringSafeArea(.all)
             VStack (spacing: 16) {
                 TitleView()
-                .padding(.top)
                 ChartView()
-                ChartToolbar()
+                ChartToolbar(showPopup: $showPopup)
+                Spacer()
                 ToolbarView()
-                .padding(.bottom, 8)
             }
+            .blur(radius: showPopup ? 10 : 0)
+            InfoPopupView(title: "Kalendarz", message: "Funkcja dostępna wkrótce", showPopup: $showPopup)
+                .scaleEffect(showPopup ? 1.0 : 0.5)
+                .opacity(showPopup ? 1.0 : 0.0)
+                .animation(.spring())
         }
     }
 }

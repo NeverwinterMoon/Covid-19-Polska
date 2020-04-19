@@ -27,7 +27,7 @@ public struct Line: View {
         if data.points.count < 2 {
             return 0
         }
-        return (UIScreen.screenWidth) / CGFloat(data.points.count-1)
+        return (UIScreen.width) / CGFloat(data.points.count-1)
     }
     var stepHeight: CGFloat {
         var min: Double?
@@ -43,7 +43,7 @@ public struct Line: View {
             return 0
         }
         if let min = min, let max = max, min != max {
-                return ((UIScreen.screenHeight/1.75 - 50) - 50) / CGFloat(max)
+                return ((UIScreen.height/1.75 - 50) - 50) / CGFloat(max)
         }
         return 0
     }
@@ -84,7 +84,7 @@ public struct Line: View {
                     .position(self.getClosestPointOnPath(touchLocation: self.touchLocation))
                     .rotationEffect(.degrees(180), anchor: .center)
                     .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
-                Text("\(Int(currentValue)-1)\n\(currentDate.formattedDate(.dayMonth))")
+                Text("\(Int(currentValue)-1)\n\(currentDate.formattedDate(.short))")
                     .font(.system(size: 10, weight: .semibold, design: .rounded))
                     .multilineTextAlignment(.center)
                     .foregroundColor(Color(UIColor.label))
@@ -115,6 +115,6 @@ struct Line_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader{ geometry in
             Line(data: ChartData(points: [12,-230,10,54]), touchLocation: .constant(CGPoint(x: 100, y: 12)), showIndicator: .constant(true), minDataValue: .constant(nil), maxDataValue: .constant(nil), currentValue: .constant(0), currentDate: .constant(""))
-        }.frame(width: UIScreen.screenWidth, height: UIScreen.screenHeight/2)
+        }.frame(width: UIScreen.width, height: UIScreen.height/2)
     }
 }

@@ -21,7 +21,7 @@ struct ToolbarView: View {
                     MenuButton(title: "Info", image: Images.info, chart: .confirmed)
             }
         }
-        .frame(width: UIScreen.screenWidth, height: 65, alignment: .center)
+        .frame(width: UIScreen.width, height: 65, alignment: .center)
     }
 }
 

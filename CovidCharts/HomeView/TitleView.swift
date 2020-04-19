@@ -18,16 +18,26 @@ struct TitleView: View {
                 Text("Covid-19 Polska")
                     .font(.system(size: 28, weight: .bold, design: .default))
                     .foregroundColor(Color(UIColor.label))
-                    .padding(.leading, 32)
-                HStack (alignment: .center, spacing: 0) {
-                    IconView(name: Images.time, size: .medium, weight: .regular, color: Color(UIColor.systemPink))
-                    Text("\(getCurrentDate())")
-                        .font(.system(size: 16, weight: .semibold, design: .default))
+                    .padding(.leading, 16)
+                HStack (alignment: .center, spacing: 2) {
+                    IconView(name: Images.confirmed, size: .medium, weight: .regular, color: Color(UIColor.systemPink))
+                    Text("\(Int((vm.getDailyIncreaseData().last ?? 1) - 1))")
+                        .font(Fonts.subTitle)
                         .multilineTextAlignment(.leading)
                         .foregroundColor(Color(UIColor.systemPink))
-                    Spacer()
+                    IconView(name: Images.increase, size: .medium, weight: .regular, color: Color(UIColor.systemPink))
+                    Text("\(Int((vm.getDailyChangesData().last ?? 1) - 1))")
+                        .font(Fonts.subTitle)
+                        .multilineTextAlignment(.leading)
+                        .foregroundColor(Color(UIColor.systemPink))
+                    IconView(name: Images.calendar, size: .medium, weight: .regular, color: Color(UIColor.systemPink))
+                    Text("\(vm.customData.last?.date.formattedDate(.medium) ?? "Couldn't load")")
+                        .font(Fonts.subTitle)
+                        .multilineTextAlignment(.leading)
+                        .foregroundColor(Color(UIColor.systemPink))
+                    
                 }
-                .padding(.leading, 26.0)
+                .padding(.leading, 10.0)
             }
             .frame(width: 280, height: 90)
             .background(Colors.customViewBackground)
@@ -45,7 +55,7 @@ struct TitleView: View {
             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
             
         }
-        .frame(width: UIScreen.screenWidth + 32, height: 90)
+        .frame(width: UIScreen.width + 32, height: 90)
     }
     
     func getCurrentDate() -> String {

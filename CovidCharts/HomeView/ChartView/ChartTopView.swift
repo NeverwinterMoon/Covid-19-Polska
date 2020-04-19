@@ -22,7 +22,7 @@ struct ChartTopView: View {
                 Spacer()
             }
             .padding(.horizontal)
-            .frame(width: UIScreen.screenWidth - 32, height: 1)
+            .frame(width: UIScreen.width - 32, height: 1)
             .background(Color(UIColor.label))
             Text("Dzisiaj: " + "\(String(vm.getTodayValue()))")
                 .font(.system(size: 16, weight: .semibold, design: .default))
