@@ -53,15 +53,15 @@ public struct LineView: View {
                      currentDate: self.$currentDate,
                      showBackground: true
                 )
-                .frame(width: UIScreen.screenWidth, height: (UIScreen.screenHeight/1.75 - 50))
-                .padding(.top, -50)
+                .frame(width: UIScreen.screenWidth, height: (UIScreen.screenHeight/1.75 - 40))
+                .padding(.top, -40)
             }
         .gesture(DragGesture()
         .onChanged({ value in
             self.dragLocation = value.location
             self.indicatorLocation = CGPoint(x: max(value.location.x,0), y: 0)
             self.opacity = 1
-            self.closestPoint = self.getClosestDataPoint(toPoint: value.location, width: geometry.frame(in: .local).size.width, height: (UIScreen.screenHeight/1.75 - 50))
+            self.closestPoint = self.getClosestDataPoint(toPoint: value.location, width: geometry.frame(in: .local).size.width, height: (UIScreen.screenHeight/1.75 - 40))
             self.hideHorizontalLines = true
         })
             .onEnded({ value in
