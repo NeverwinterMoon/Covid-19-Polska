@@ -114,21 +114,8 @@ class ChartViewModel: ObservableObject {
         }
     }
     
-    func getAllCases() -> Int {
-        switch chart {
-        case .deaths:
-            return self.customData.max(by: { (day1, day2) -> Bool in
-                return day2.deaths > day1.deaths
-            })?.deaths ?? 0
-        case .confirmed:
-            return self.customData.max(by: { (day1, day2) -> Bool in
-                return day2.confirmed > day1.confirmed
-            })?.confirmed ?? 0
-        case .recovered:
-            return self.customData.max(by: { (day1, day2) -> Bool in
-                return day2.recovered > day1.recovered
-            })?.recovered ?? 0
-        }
+    func getTodayValue() -> Int {
+        return showDailyChange ? Int((getDailyChangesData().last ?? 0) - 1) : Int((getDailyIncreaseData().last ?? 0) - 1)
     }
     
     func getChartMaxValue() -> Double {
