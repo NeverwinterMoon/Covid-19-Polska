@@ -90,9 +90,9 @@ struct TitleLeftSide: View {
                 .foregroundColor(Color(UIColor.label))
             TitleInfoLineView(icon: Images.time, title: "\(vm.customData.last?.date.formattedDate(.long) ?? "Couldn't load")")
             HStack {
-                TitleInfoLineView(icon: Images.confirmed, title: "\(Int((vm.getDailyIncreaseData().last ?? 1) - 1))")
-                    .frame(width: 70)
-                TitleInfoLineView(icon: Images.increase, title: "\(Int((vm.getDailyChangesData().last ?? 1) - 1))")
+                TitleInfoLineView(icon: Images.confirmed, title: "\(Int((vm.getDailyIncreaseData().last ?? 0)))")
+                    .frame(width: 80)
+                TitleInfoLineView(icon: Images.increase, title: "\(Int((vm.getDailyChangesData().last ?? 0)))")
                 Spacer()
             }
         }

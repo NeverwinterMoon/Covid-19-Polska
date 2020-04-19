@@ -84,7 +84,7 @@ public struct Line: View {
                     .position(self.getClosestPointOnPath(touchLocation: self.touchLocation))
                     .rotationEffect(.degrees(180), anchor: .center)
                     .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
-                Text("\(Int(currentValue)-1)\n\(currentDate.formattedDate(.short))")
+                Text("\(Int(currentValue))\n\(currentDate.formattedDate(.short))")
                     .font(.system(size: 10, weight: .semibold, design: .rounded))
                     .multilineTextAlignment(.center)
                     .foregroundColor(Color(UIColor.label))
@@ -102,12 +102,6 @@ public struct Line: View {
         let closest = self.path.point(to: touchLocation.x)
         return closest
     }
-    
-    
-//    func getClosestPointOnPathNegative(touchLocation: CGPoint) -> CGPoint {
-//        let closest = self.path.pointNegative(to: touchLocation.x)
-//        return closest
-//    }
     
 }
 

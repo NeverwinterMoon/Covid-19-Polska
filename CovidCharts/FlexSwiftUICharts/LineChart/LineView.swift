@@ -81,7 +81,7 @@ public struct LineView: View {
         let index:Int = Int(floor((toPoint.x+24)/stepWidth))
         if (index >= 0 && index < points.count){
             self.currentDataNumber = points[index]
-            self.currentDate = chartViewModel.customData[index].date
+            self.currentDate = chartViewModel.customData[index+1].date
             return CGPoint(x: CGFloat(index)*stepWidth, y: CGFloat(points[index])*stepHeight)
         }
         return .zero

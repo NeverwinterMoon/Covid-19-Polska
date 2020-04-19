@@ -9,43 +9,6 @@
 import SwiftUI
 import Combine
 
-class DataFetcher: ObservableObject {
-    
-    @Published var data = [Day]()
-    
-    let shared = DataFetcher()
-    
-    init() {
-        loadData()
-    }
-    func loadData() {
-        let urlString = "https://api.covid19api.com/country/Poland"
-        guard let url = URL(string: urlString) else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let response = response as? HTTPURLResponse, response.isResponseOK {
-                guard let data = data else {
-                    fatalError("Error when getting data")
-                }
-                do {
-                    let timeSeries = try JSONDecoder().decode(Days.self, from: data)
-                    DispatchQueue.main.async {
-                        self.data = timeSeries
-                    }
-                } catch {
-                    print("JSON Decode failed:", error)
-                }
-                
-            } else {
-                print("Error when loading JSON file")
-            }
-            
-    
-        }
-        .resume()
-    }
-    
-}
-
 enum ChartType {
     case deaths, confirmed, recovered
 }
@@ -59,6 +22,7 @@ class ChartViewModel: ObservableObject {
     
     init() {
         loadData()
+        loadLatestData()
     }
 
     func loadData() {
@@ -70,6 +34,23 @@ class ChartViewModel: ObservableObject {
                 let timeSeries = try JSONDecoder().decode(Days.self, from: data)
                 DispatchQueue.main.async {
                     self.data = timeSeries
+                }
+            } catch {
+                print("JSON Decode failed:", error)
+            }
+        }
+        .resume()
+    }
+    
+    func loadLatestData() {
+        let urlString = "https://api.apify.com/v2/key-value-stores/3Po6TV7wTht4vIEid/records/LATEST?disableRedirect=true"
+        guard let url = URL(string: urlString) else { return }
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data else { return }
+            do {
+                let latest = try JSONDecoder().decode(PolandLatest.self, from: data)
+                DispatchQueue.main.async {
+                    self.data.append(Day(confirmed: latest.infected, deaths: latest.deceased, recovered: 0, date: latest.lastUpdatedAtApify))
                     self.setDataFromLast(30, chart: self.chart)
                 }
             } catch {
@@ -97,8 +78,7 @@ class ChartViewModel: ObservableObject {
             case .deaths: change = Double(customData[higherValue].deaths - customData[num].deaths)
             case .recovered: change = (Double(customData[higherValue].recovered - customData[num].recovered))
             }
-            #warning("Hack")
-            values.append(change+1)
+            values.append(change)
         }
         return values
     }

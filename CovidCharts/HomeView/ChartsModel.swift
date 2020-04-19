@@ -8,20 +8,15 @@
 
 import Foundation
 
-// MARK: - Day
+// MARK: - Alltime day data
 struct Day: Decodable, Hashable {
-    let country: Country
-    let countryCode: CountryCode
-    let confirmed, deaths, recovered, active: Int
+    let confirmed, deaths, recovered: Int
     let date: String
 
     enum CodingKeys: String, CodingKey {
-        case country = "Country"
-        case countryCode = "CountryCode"
         case confirmed = "Confirmed"
         case deaths = "Deaths"
         case recovered = "Recovered"
-        case active = "Active"
         case date = "Date"
     }
 }
@@ -43,4 +38,25 @@ struct TimeSeries: Decodable {
 struct DayData: Decodable, Hashable {
     let date: String
     let confirmed, deaths, recovered: Int
+}
+
+// MARK: - PolandLatest
+struct PolandLatest: Codable {
+    let infected, deceased: Int
+    let infectedByRegion: [InfectedByRegion]
+    let sourceURL: String
+    let lastUpdatedAtApify: String
+    let readMe: String
+
+    enum CodingKeys: String, CodingKey {
+        case infected, deceased, infectedByRegion
+        case sourceURL = "sourceUrl"
+        case lastUpdatedAtApify, readMe
+    }
+}
+
+// MARK: - InfectedByRegion
+struct InfectedByRegion: Codable {
+    let region: String
+    let infectedCount, deceasedCount: Int
 }
