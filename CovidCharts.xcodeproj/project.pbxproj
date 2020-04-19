@@ -35,7 +35,6 @@
 		81C1983E2449E37200AEC5FF /* IndicatorPointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C1983D2449E37200AEC5FF /* IndicatorPointView.swift */; };
 		81C198402449E38F00AEC5FF /* Legend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C1983F2449E38F00AEC5FF /* Legend.swift */; };
 		81C198422449E3A700AEC5FF /* Line.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C198412449E3A700AEC5FF /* Line.swift */; };
-		81C198442449E3B900AEC5FF /* LineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C198432449E3B900AEC5FF /* LineChartView.swift */; };
 		81C198462449E3ED00AEC5FF /* LineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C198452449E3ED00AEC5FF /* LineView.swift */; };
 		81C198482449E40800AEC5FF /* MaginfierRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C198472449E40700AEC5FF /* MaginfierRect.swift */; };
 		81C1984A2449E41E00AEC5FF /* MultiLineChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C198492449E41E00AEC5FF /* MultiLineChartView.swift */; };
@@ -80,7 +79,6 @@
 		81C1983D2449E37200AEC5FF /* IndicatorPointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndicatorPointView.swift; sourceTree = "<group>"; };
 		81C1983F2449E38F00AEC5FF /* Legend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Legend.swift; sourceTree = "<group>"; };
 		81C198412449E3A700AEC5FF /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
-		81C198432449E3B900AEC5FF /* LineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineChartView.swift; sourceTree = "<group>"; };
 		81C198452449E3ED00AEC5FF /* LineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LineView.swift; sourceTree = "<group>"; };
 		81C198472449E40700AEC5FF /* MaginfierRect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaginfierRect.swift; sourceTree = "<group>"; };
 		81C198492449E41E00AEC5FF /* MultiLineChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiLineChartView.swift; sourceTree = "<group>"; };
@@ -237,7 +235,6 @@
 				81C1983D2449E37200AEC5FF /* IndicatorPointView.swift */,
 				81C1983F2449E38F00AEC5FF /* Legend.swift */,
 				81C198412449E3A700AEC5FF /* Line.swift */,
-				81C198432449E3B900AEC5FF /* LineChartView.swift */,
 				81C198452449E3ED00AEC5FF /* LineView.swift */,
 				81C198472449E40700AEC5FF /* MaginfierRect.swift */,
 				81C198492449E41E00AEC5FF /* MultiLineChartView.swift */,
@@ -344,7 +341,6 @@
 				81C198552449E4EC00AEC5FF /* ChartHelper.swift in Sources */,
 				81C198382449E31100AEC5FF /* BarChartView.swift in Sources */,
 				81C198362449E2ED00AEC5FF /* BarChartRow.swift in Sources */,
-				81C198442449E3B900AEC5FF /* LineChartView.swift in Sources */,
 				810C130C2444C97E00419207 /* Ext-String.swift in Sources */,
 				810C1320244604E000419207 /* ChartTopView.swift in Sources */,
 				81C1983A2449E33300AEC5FF /* LabelView.swift in Sources */,
