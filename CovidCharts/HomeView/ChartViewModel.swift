@@ -79,7 +79,6 @@ class ChartViewModel: ObservableObject {
             }
             values.append(change)
         }
-        print("DAILY CHANGES:\(values)")
         return values
     }
     
@@ -92,8 +91,17 @@ class ChartViewModel: ObservableObject {
             case .recovered: values.append(Double(day.recovered))
             }
         }
-        print("DAILY INICREASE: \(values)")
         return values
+    }
+    
+    func dailyIncrease(on: Int, of: ChartType) -> Int {
+        let today = customData[on]
+        let yesterday = customData[on]
+        switch of {
+        case .confirmed: return today.confirmed - yesterday.confirmed
+        case .deaths: return today.deaths - yesterday.deaths
+        case .recovered: return today.recovered - yesterday.recovered
+        }
     }
     
     func getChartTitle() -> String {
