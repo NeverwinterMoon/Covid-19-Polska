@@ -19,9 +19,11 @@ struct HomeView: View {
         ZStack {
             Colors.appBackground
                 .edgesIgnoringSafeArea(.all)
-            VStack (spacing: 16) {
+            VStack (spacing: 0) {
                 TitleView()
+                VerticalSpacer()
                 ChartView()
+                VerticalSpacer()
                 ChartToolbar(showPopup: $showPopup)
                 Spacer()
                 ToolbarView()

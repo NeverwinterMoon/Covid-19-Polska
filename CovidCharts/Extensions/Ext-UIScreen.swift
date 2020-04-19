@@ -14,3 +14,11 @@ extension UIScreen {
    static let height = UIScreen.main.bounds.size.height
    static let size = UIScreen.main.bounds.size
 }
+
+extension HTTPURLResponse {
+    
+    var isResponseOK: Bool {
+        return (200...299).contains(self.statusCode)
+    }
+
+}

@@ -14,12 +14,19 @@ struct ChartToolbar: View {
     @Binding var showPopup: Bool
 
     var body: some View {
-        HStack {
-            ChartToolbarLeftSide(showPopup: $showPopup)
+        VStack {
             Spacer()
-            ShowDetailsButton()
+                .frame(width: UIScreen.width, height: 8, alignment: .center)
+            HStack {
+                ChartToolbarLeftSide(showPopup: $showPopup)
+                Spacer()
+                ShowDetailsButton()
+            }
+            .frame(width: UIScreen.width + 32, height: 40, alignment: .center)
+            Spacer()
+                .frame(width: UIScreen.width, height: 8, alignment: .center)
         }
-        .frame(width: UIScreen.width + 32, height: 40, alignment: .center)
+
     }
     
 }

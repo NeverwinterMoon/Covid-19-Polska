@@ -10,7 +10,7 @@ import SwiftUI
 
 enum Fonts {
     static let text = Font.system(size: 16, weight: .regular, design: .rounded)
-    static let subTitle = Font.system(size: 16, weight: .semibold, design: .rounded)
+    static let titleViewIcon = Font.system(size: 12, weight: .semibold, design: .rounded)
     static let titleButton = Font.system(size: 16, weight: .semibold, design: .rounded)
     static let titlePopup = Font.system(size: 16, weight: .semibold, design: .rounded)
 }

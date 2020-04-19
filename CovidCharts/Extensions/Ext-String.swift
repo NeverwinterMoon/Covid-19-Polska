@@ -10,11 +10,13 @@ import UIKit
 
 enum DateStyle {
     case short
-    case long
     case medium
+    case long
+    case superlong
 }
 
 extension String {
+    
     func formattedDate(_ style: DateStyle) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
@@ -25,6 +27,7 @@ extension String {
         case .short: secondFormatter.dateFormat = "dd.MM"
         case .long: secondFormatter.dateFormat = "dd MMMM YYYY"
         case .medium: secondFormatter.dateFormat = "dd.MM.YY"
+        case .superlong: secondFormatter.dateFormat = "hh:mm:ss, dd MMMM YYYY"
         }
         return secondFormatter.string(from: date ?? Date())
     }

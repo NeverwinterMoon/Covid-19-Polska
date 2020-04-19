@@ -13,14 +13,20 @@ struct ChartView: View {
     @EnvironmentObject var vm: ChartViewModel
     
     var body: some View {
-        VStack (alignment: .center, spacing: 8) {
+        VStack (alignment: .center, spacing: 0) {
+            Spacer()
+                .frame(width: UIScreen.width, height: 8, alignment: .center)
+                .background(Color.clear)
             ChartTopView()
-                .padding(.top, 16)
+            Spacer()
+                 .frame(width: UIScreen.width, height: 8, alignment: .center)
             ChartContentView()
                 .padding(.leading, 2)
             ChartBottomView()
-                .padding(.bottom, 16)
                 .padding(.horizontal)
+            Spacer()
+                .frame(width: UIScreen.width, height: 8, alignment: .center)
+                .background(Color.clear)
         }
         .frame(width: UIScreen.width+32, height: UIScreen.height/1.75)
         .background(Colors.customViewBackground)

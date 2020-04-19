@@ -22,15 +22,24 @@ class DataFetcher: ObservableObject {
         let urlString = "https://api.covid19api.com/country/Poland"
         guard let url = URL(string: urlString) else { return }
         URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data else { return }
-            do {
-                let timeSeries = try JSONDecoder().decode(Days.self, from: data)
-                DispatchQueue.main.async {
-                    self.data = timeSeries
+            if let response = response as? HTTPURLResponse, response.isResponseOK {
+                guard let data = data else {
+                    fatalError("Error when getting data")
                 }
-            } catch {
-                print("JSON Decode failed:", error)
+                do {
+                    let timeSeries = try JSONDecoder().decode(Days.self, from: data)
+                    DispatchQueue.main.async {
+                        self.data = timeSeries
+                    }
+                } catch {
+                    print("JSON Decode failed:", error)
+                }
+                
+            } else {
+                print("Error when loading JSON file")
             }
+            
+    
         }
         .resume()
     }
