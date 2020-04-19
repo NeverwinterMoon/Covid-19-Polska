@@ -13,4 +13,7 @@ enum Fonts {
     static let titleViewIcon = Font.system(size: 12, weight: .semibold, design: .rounded)
     static let titleButton = Font.system(size: 16, weight: .semibold, design: .rounded)
     static let titlePopup = Font.system(size: 16, weight: .semibold, design: .rounded)
+    static let indicatorTitle = Font.system(size: 16, weight: .semibold, design: .rounded)
+    static let indicatorTextRegular = Font.system(size: 12, weight: .regular, design: .rounded)
+    static let indicatorTextBolded = Font.system(size: 12, weight: .semibold, design: .rounded)
 }
