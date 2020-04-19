@@ -13,7 +13,7 @@ struct ChartSmallText: View {
     var body: some View {
         Text(text)
             .font(.system(size: 12, weight: .regular, design: .default))
-            .foregroundColor(Color(UIColor.label))
+            .foregroundColor(Colors.label)
             .multilineTextAlignment(.leading)
     }
 }
@@ -25,6 +25,6 @@ struct ChartLineSpacer: View {
         }
         .padding(.horizontal)
         .frame(width: UIScreen.width - 32, height: 1)
-        .background(Color(UIColor.label))
+        .background(Colors.label)
     }
 }

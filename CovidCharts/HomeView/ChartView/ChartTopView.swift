@@ -16,17 +16,17 @@ struct ChartTopView: View {
         VStack (spacing: 4) {
             Text(vm.getChartTitle())
                 .font(.system(size: 16, weight: .semibold, design: .default))
-                .foregroundColor(Color(UIColor.label))
+                .foregroundColor(Colors.label)
                 .frame(width: 250)
             VStack (alignment: .center, spacing: 0) {
                 Spacer()
             }
             .padding(.horizontal)
             .frame(width: UIScreen.width - 32, height: 1)
-            .background(Color(UIColor.label))
+            .background(Colors.label)
             Text("Dzisiaj: " + "\(String(vm.getTodayValue()))")
                 .font(.system(size: 16, weight: .semibold, design: .default))
-                .foregroundColor(Color(UIColor.label))
+                .foregroundColor(Colors.label)
         }
     }
     

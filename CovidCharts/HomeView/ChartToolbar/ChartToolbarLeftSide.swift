@@ -19,14 +19,14 @@ struct ChartToolbarLeftSide: View {
             Button(action: {
                 self.showPopup.toggle()
             }) {
-                IconView(name: Images.calendar, size: .medium, weight: .regular, color: Color(UIColor.systemPink))
+                IconView(name: Images.calendar, size: .medium, weight: .regular, color: Colors.main)
 
                 .frame(width: 30, height: 40, alignment: .center)
             }
             Button(action: {
                 self.vm.showDailyChange.toggle()
             }) {
-                IconView(name: vm.showDailyChange ? Images.bars : Images.percent, size: .medium, weight: .regular, color: Color(UIColor.systemPink))
+                IconView(name: vm.showDailyChange ? Images.bars : Images.percent, size: .medium, weight: .regular, color: Colors.main)
                 .frame(width: 30, height: 40, alignment: .center)
             }
             

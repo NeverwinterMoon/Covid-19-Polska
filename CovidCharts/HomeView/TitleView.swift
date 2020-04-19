@@ -18,7 +18,7 @@ struct TitleView: View {
             HStack (alignment: .center) {
                 TitleLeftSide()
                 Spacer()
-                IconView(name: Images.reload, size: .large, weight: .bold, color: Color(UIColor.label))
+                IconView(name: Images.reload, size: .large, weight: .bold, color: Colors.label)
                     .padding(.trailing)
                     .onTapGesture {
                   //      self.vm.loadData()
@@ -69,11 +69,11 @@ struct TitleInfoLineView: View {
     var title: String
     var body: some View {
         HStack {
-            TitleIconView(name: icon, size: .medium, weight: .regular, color: Color(UIColor.systemPink))
+            TitleIconView(name: icon, size: .medium, weight: .regular, color: Colors.main)
             Text(title)
                 .font(Fonts.titleViewIcon)
                 .multilineTextAlignment(.leading)
-                .foregroundColor(Color(UIColor.systemPink))
+                .foregroundColor(Colors.main)
             Spacer()
         }
     }
@@ -87,7 +87,7 @@ struct TitleLeftSide: View {
         VStack (alignment: .leading, spacing: 0) {
             Text("Covid-19 Polska")
                 .font(.system(size: 28, weight: .bold, design: .rounded))
-                .foregroundColor(Color(UIColor.label))
+                .foregroundColor(Colors.label)
             TitleInfoLineView(icon: Images.time, title: "\(vm.customData.last?.date.formattedDate(.long) ?? "Couldn't load")")
             HStack {
                 TitleInfoLineView(icon: Images.confirmed, title: "\(Int((vm.getDailyIncreaseData().last ?? 0)))")

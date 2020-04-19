@@ -45,7 +45,7 @@ private struct ShowDetailsButton: View {
             Text("Pokaż szczegóły")
                 .font(.system(size: 16, weight: .semibold, design: .default))
                 .multilineTextAlignment(.leading)
-                .foregroundColor(Color(UIColor.label))
+                .foregroundColor(Colors.label)
                 .padding(.trailing, 16)
         }
         .frame(width: 170, height: 40, alignment: .center)

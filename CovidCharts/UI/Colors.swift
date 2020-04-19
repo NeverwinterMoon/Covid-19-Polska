@@ -13,6 +13,10 @@ func logDebug(_ title: String, text: Any) {
 }
 
 enum Colors {
+    static let label = Color(UIColor.label)
+    static let systemBackground = Color(UIColor.systemBackground)
+    static let main = Color(UIColor.systemPink)
+    
     static let customViewBackground = Color("CustomViewBackground")
     static let appBackground = Color("AppBackground")
     static let graphGradient = Color("GraphGradient")

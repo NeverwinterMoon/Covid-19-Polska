@@ -46,7 +46,7 @@ struct ChartContentView_Previews: PreviewProvider {
 //                            Spacer()
 //                        }
 //                        .frame(width: self.vm.getBarWidth(), height: (self.vm.getCases(day) / CGFloat(self.vm.getAllCases())) * (UIScreen.screenHeight/1.75 - 100))
-//                        .background(Color(UIColor.systemPink))
+//                        .background(Colors.main)
 //                        .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
 //                    }
 //                }

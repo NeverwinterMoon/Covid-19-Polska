@@ -33,7 +33,7 @@ struct InfoPopupView: View {
                         .font(Fonts.titleButton)
                 }
                 .frame(width: UIScreen.width/2 + 68, height: 50, alignment: .center)
-                .background(Color(UIColor.systemPink))
+                .background(Colors.main)
                 .cornerRadius(16)
             }
             .padding()

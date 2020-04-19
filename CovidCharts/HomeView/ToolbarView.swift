@@ -42,7 +42,7 @@ struct MenuIconView: View {
             .font(.system(size: 20, weight: .light))
             .imageScale(.large)
             .frame(width: 50, height: 50)
-            .foregroundColor(Color(UIColor.label))
+            .foregroundColor(Colors.label)
     }
 }
 
@@ -62,7 +62,7 @@ struct MenuButton: View {
                 MenuIconView(name: image)
                 Text(title)
                 .font(.system(size: 8, weight: .regular, design: .default))
-                .foregroundColor(Color(UIColor.label))
+                .foregroundColor(Colors.label)
                 .offset(x: 0, y: -8)
             }
             .frame(width: 64, height: 64, alignment: .center)
