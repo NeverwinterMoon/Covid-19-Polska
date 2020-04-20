@@ -21,6 +21,13 @@ struct Day: Decodable, Hashable {
     }
 }
 
+struct RegionData {
+    let region: String
+    let confirmed: Int
+    let deaths: Int
+    let recovered: Int
+}
+
 enum Country: String, Decodable {
     case poland = "Poland"
 }
