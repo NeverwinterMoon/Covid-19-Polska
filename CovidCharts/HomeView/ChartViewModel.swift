@@ -55,7 +55,7 @@ class ChartViewModel: ObservableObject {
                     self.data.append(Day(confirmed: latest.infected, deaths: latest.deceased, recovered: self.data.last?.recovered ?? 0, date: latest.lastUpdatedAtApify))
                     self.setDataFromLast(30, chart: self.parameter)
                     latest.infectedByRegion.forEach { (region) in
-                        region.
+                        self.regionData.append(RegionData(region: region.region, confirmed: region.infectedCount, deaths: region.infectedCount))
                     }
                 }
             } catch {
