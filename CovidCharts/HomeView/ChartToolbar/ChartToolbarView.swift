@@ -13,6 +13,8 @@ struct ChartToolbar: View {
     @EnvironmentObject var vm: ChartViewModel
     @Binding var showDetailsView: Bool
     @Binding var showPopup: Bool
+    
+
 
     var body: some View {
         VStack {
@@ -21,7 +23,7 @@ struct ChartToolbar: View {
             HStack {
                 ChartToolbarLeftSide(showPopup: $showPopup)
                 Spacer()
-                ShowDetailsButton(showDetailsView: $showDetailsView)
+                ShowDetailsButton(detailsViewModel: DetailsViewModel(data: vm.getData(vm.parameter), parameter: vm.parameter), showDetailsView: $showDetailsView)
             }
             .frame(width: UIScreen.width + 32, height: 40, alignment: .center)
             Spacer()
@@ -40,6 +42,8 @@ struct ChartToolbar_Previews: PreviewProvider {
 
 private struct ShowDetailsButton: View {
     
+    var detailsViewModel: DetailsViewModel
+    @EnvironmentObject var vm: ChartViewModel
     @Binding var showDetailsView: Bool
     
     var body: some View {
@@ -52,7 +56,7 @@ private struct ShowDetailsButton: View {
                 .foregroundColor(Colors.label)
                 .padding(.trailing, 16)
         }.sheet(isPresented: $showDetailsView) {
-            DetailsView(showDetailsView: self.$showDetailsView)
+            DetailsView(vm: self.detailsViewModel, showDetailsView: self.$showDetailsView)
             
         }
         .frame(width: 170, height: 40, alignment: .center)

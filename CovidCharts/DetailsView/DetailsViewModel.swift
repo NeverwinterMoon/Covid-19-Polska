@@ -8,12 +8,20 @@
 
 import SwiftUI
 
+struct DailyData {
+    var date: String
+    var number: Int
+}
+
 class DetailsViewModel: ObservableObject {
     
+    @Published var parameter: ParameterType
+    @Published var data: [DailyData]
     
-    @Published var customData = [Day]()
-    @Published var chart: ChartType = .confirmed
-    
+    init(data: [DailyData], parameter: ParameterType) {
+        self.data = data
+        self.parameter = parameter
+    }
     
 }
 

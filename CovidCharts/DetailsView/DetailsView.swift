@@ -10,17 +10,12 @@ import SwiftUI
 
 struct DetailsView: View {
     
-    @EnvironmentObject var details: DetailsViewModel
+    @ObservedObject var vm: DetailsViewModel
     
     @Binding var showDetailsView: Bool
-//    @State var showPopup: Bool = false
-//    @State var bottomState: CGSize = .zero
-//    @State var showFull: Bool = false
     
     var body: some View {
-        List {
-//            Colors.appBackground
-//                .edgesIgnoringSafeArea(.all)
+        ScrollView {
             HStack {
                 Spacer()
                 
@@ -29,22 +24,22 @@ struct DetailsView: View {
                 }) {
                     DismissButtonView()
                 }
-                .padding([.trailing, .top], 8)
-            }
-            .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-            VStack (spacing: 0) {
-                
-                ToolbarView()
+                .padding([.trailing, .top, .bottom], 8)
             }
             .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
             .background(Color.red)
+            Spacer()
+        }
+        .onAppear {
+            print("Showed details")
+            print(self.vm.data)
         }
     }
 }
 
 struct DetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsView(showDetailsView: .constant(true)).environmentObject(DetailsViewModel())
+        DetailsView(vm: DetailsViewModel(data: [], parameter: .confirmed), showDetailsView: .constant(true))
     }
 }
 
