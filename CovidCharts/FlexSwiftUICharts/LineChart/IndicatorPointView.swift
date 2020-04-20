@@ -14,7 +14,7 @@ struct IndicatorPoint: View {
             Circle()
                 .fill(Colors.main)
             Circle()
-                .stroke(Colors.systemBackground, style: StrokeStyle(lineWidth: 4))
+                .stroke(Colors.appBackground, style: StrokeStyle(lineWidth: 4))
         }
         .frame(width: 14, height: 14)
     }
