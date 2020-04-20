@@ -27,7 +27,7 @@ public struct Line: View {
         if data.points.count < 2 {
             return 0
         }
-        return (UIScreen.width) / CGFloat(data.points.count-1)
+        return (UIScreen.width-32) / CGFloat(data.points.count-1)
     }
     var stepHeight: CGFloat {
         var min: Double?

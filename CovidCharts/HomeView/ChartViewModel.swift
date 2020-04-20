@@ -52,6 +52,9 @@ class ChartViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self.data.append(Day(confirmed: latest.infected, deaths: latest.deceased, recovered: self.data.last?.recovered ?? 0, date: latest.lastUpdatedAtApify))
                     self.setDataFromLast(30, chart: self.chart)
+                    self.customData.forEach { (day) in
+                        print(day)
+                    }
                 }
             } catch {
                 print("JSON Decode failed:", error)

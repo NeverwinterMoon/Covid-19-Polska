@@ -53,7 +53,7 @@ public struct LineView: View {
                      selectedDayIncrease: self.$selectedDayIncrease,
                      showBackground: true
                 )
-                .frame(width: UIScreen.width, height: (UIScreen.height/1.75 - 40))
+                .frame(width: UIScreen.width-32, height: (UIScreen.height/1.75 - 40))
                 .padding(.top, -50)
                     .padding(.bottom, 10)
             }
@@ -78,7 +78,7 @@ public struct LineView: View {
         let stepWidth: CGFloat = width / CGFloat(points.count-1)
         let stepHeight: CGFloat = height / CGFloat(points.max()! + points.min()!)
         
-        let index:Int = Int(floor((toPoint.x+24)/stepWidth))
+        let index:Int = Int(floor((toPoint.x+40)/stepWidth))
         if (index >= 0 && index < points.count){
             self.selectedDay = Day(
                 confirmed: chartViewModel.customData[index+1].confirmed,
@@ -91,7 +91,7 @@ public struct LineView: View {
                 recovered: chartViewModel.getDailyIncrease(on: index+1, of: .recovered),
                 date: chartViewModel.customData[index+1].date
             )
-            return CGPoint(x: CGFloat(index)*stepWidth, y: CGFloat(points[index])*stepHeight)
+            return CGPoint(x: CGFloat(index+1)*stepWidth, y: CGFloat(points[index+1])*stepHeight)
         }
         return .zero
     }
