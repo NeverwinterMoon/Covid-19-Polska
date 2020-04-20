@@ -79,8 +79,11 @@ public struct LineView: View {
         let stepWidth: CGFloat = width / CGFloat(points.count-1)
         let stepHeight: CGFloat = height / CGFloat(points.max()! + points.min()!)
         
-        let index:Int = Int(floor((toPoint.x+15)/stepWidth))
+        var index: Int = Int(floor((toPoint.x+15)/stepWidth))
         if index >= 0 {
+            if index == chartViewModel.customData.count {
+                index = index - 1
+            }
             self.selectedDay = Day(
                 confirmed: chartViewModel.customData[index].confirmed,
                 deaths: chartViewModel.customData[index].deaths,
