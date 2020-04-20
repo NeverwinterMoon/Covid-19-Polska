@@ -20,7 +20,7 @@ struct ChartToolbar: View {
             HStack {
                 ChartToolbarLeftSide(showPopup: $showPopup)
                 Spacer()
-                ShowDetailsButton()
+                ShowDetailsButton(showDetailsView: $showDetailsView)
 //                ShowDetailsButton(detailsViewModel: DetailsViewModel(data: vm.getData(vm.parameter), parameter: vm.parameter, regionData: vm.regionData
 //                ), showDetailsView: $showDetailsView)
             }
@@ -41,12 +41,13 @@ struct ChartToolbar_Previews: PreviewProvider {
 
 private struct ShowDetailsButton: View {
     
- //   @Binding var showDetailsView: Bool
+    @EnvironmentObject var db: ChartDatabase
+    @Binding var showDetailsView: Bool
     
     var body: some View {
         Button(action: {
             print("Tapped")
-       //     self.showDetailsView.toggle()
+            self.showDetailsView.toggle()
         }) {
             Text("Pokaż szczegóły")
                 .font(.system(size: 16, weight: .semibold, design: .default))
@@ -54,10 +55,9 @@ private struct ShowDetailsButton: View {
                 .foregroundColor(Colors.label)
                 .padding(.trailing, 16)
         }
-//        .sheet(isPresented: $showDetailsView) {
-//
-//
-//        }
+        .sheet(isPresented: $showDetailsView) {
+            DetailsView(vm: DetailsViewModel(regionData: self.db.regionData, data: self.db.getData(self.db.parameter), parameter: self.db.parameter), showDetailsView: self.$showDetailsView)
+        }
         .frame(width: 170, height: 40, alignment: .center)
         .background(Colors.customViewBackground)
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))

@@ -29,7 +29,7 @@ extension String {
         case .short: secondFormatter.dateFormat = "dd.MM"
         case .long: secondFormatter.dateFormat = "dd MMMM YYYY"
         case .medium: secondFormatter.dateFormat = "dd.MM.YY"
-        case .superlong: secondFormatter.dateFormat = "hh:mm:ss, dd MMMM YYYY"
+        case .superlong: secondFormatter.dateFormat = "HH:mm, dd MMMM YYYY"
         }
         return secondFormatter.string(from: date ?? Date())
     }
