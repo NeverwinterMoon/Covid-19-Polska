@@ -102,7 +102,14 @@ class ChartViewModel: ObservableObject {
     
     func getDailyIncrease(on: Int, of: ChartType) -> Int {
         let today = customData[on]
-        let yesterday = customData[on-1]
+        var yesterday: Day = Day(confirmed: 0, deaths: 0, recovered: 0, date: "")
+        if on - 1 >= 0 {
+            yesterday = customData[on-1]
+        } else {
+            var additionalDates = data
+            additionalDates = additionalDates.difference(from: customData)
+            yesterday = additionalDates.last ?? Day(confirmed: 0, deaths: 0, recovered: 0, date: "")
+        }
         switch of {
         case .confirmed: return today.confirmed - yesterday.confirmed
         case .deaths: return today.deaths - yesterday.deaths
