@@ -55,6 +55,7 @@ class ChartViewModel: ObservableObject {
                     self.customData.forEach { (day) in
                         print(day)
                     }
+                    print(self.customData.count)
                 }
             } catch {
                 print("JSON Decode failed:", error)

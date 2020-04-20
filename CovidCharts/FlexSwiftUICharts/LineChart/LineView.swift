@@ -62,7 +62,7 @@ public struct LineView: View {
             self.dragLocation = value.location
             self.indicatorLocation = CGPoint(x: max(value.location.x,0), y: 0)
             self.opacity = 1
-            self.closestPoint = self.getClosestDataPoint(toPoint: value.location, width: geometry.frame(in: .local).size.width, height: (UIScreen.height/1.75 - 40))
+            self.closestPoint = self.getClosestDataPoint(toPoint: value.location, width: UIScreen.width-32, height: (UIScreen.height/1.75 - 40))
             self.hideHorizontalLines = true
         })
             .onEnded({ value in
@@ -79,20 +79,20 @@ public struct LineView: View {
         let stepWidth: CGFloat = width / CGFloat(points.count-1)
         let stepHeight: CGFloat = height / CGFloat(points.max()! + points.min()!)
         
-        let index:Int = Int(floor((toPoint.x+50)/stepWidth))
+        let index:Int = Int(floor((toPoint.x+15)/stepWidth))
         if index >= 0 {
             self.selectedDay = Day(
-                confirmed: chartViewModel.customData[index+2].confirmed,
-                deaths: chartViewModel.customData[index+2].deaths,
-                recovered: chartViewModel.customData[index+2].recovered,
-                date: chartViewModel.customData[index+2].date)
+                confirmed: chartViewModel.customData[index].confirmed,
+                deaths: chartViewModel.customData[index].deaths,
+                recovered: chartViewModel.customData[index].recovered,
+                date: chartViewModel.customData[index].date)
             self.selectedDayIncrease = Day(
-                confirmed: chartViewModel.getDailyIncrease(on: index+2, of: .confirmed),
-                deaths: chartViewModel.getDailyIncrease(on: index+2, of: .deaths),
-                recovered: chartViewModel.getDailyIncrease(on: index+2, of: .recovered),
-                date: chartViewModel.customData[index+2].date
+                confirmed: chartViewModel.getDailyIncrease(on: index, of: .confirmed),
+                deaths: chartViewModel.getDailyIncrease(on: index, of: .deaths),
+                recovered: chartViewModel.getDailyIncrease(on: index, of: .recovered),
+                date: chartViewModel.customData[index].date
             )
-            return CGPoint(x: CGFloat(index)*stepWidth, y: CGFloat(points[index])*stepHeight)
+            return CGPoint(x: CGFloat(index)*stepWidth, y: CGFloat(points[index-1])*stepHeight)
         }
         return .zero
     }
