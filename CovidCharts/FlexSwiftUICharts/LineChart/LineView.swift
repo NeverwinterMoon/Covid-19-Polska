@@ -73,6 +73,7 @@ public struct LineView: View {
         }
     }
     
+    #warning("need to fix this indicator")
     func getClosestDataPoint(toPoint: CGPoint, width:CGFloat, height: CGFloat) -> CGPoint {
         let points = self.data.onlyPoints()
         let stepWidth: CGFloat = width / CGFloat(points.count-1)
