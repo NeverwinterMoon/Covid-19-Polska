@@ -50,7 +50,7 @@ struct MenuButton: View {
     
     var title: String
     var image: String
-    var chart: ChartType
+    var chart: ParameterType
     @EnvironmentObject var vm: ChartViewModel
     
     var body: some View {
