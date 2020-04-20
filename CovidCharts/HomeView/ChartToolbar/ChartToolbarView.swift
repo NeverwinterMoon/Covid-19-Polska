@@ -11,6 +11,7 @@ import SwiftUI
 struct ChartToolbar: View {
     
     @EnvironmentObject var vm: ChartViewModel
+    @Binding var showDetailsView: Bool
     @Binding var showPopup: Bool
 
     var body: some View {
@@ -20,7 +21,7 @@ struct ChartToolbar: View {
             HStack {
                 ChartToolbarLeftSide(showPopup: $showPopup)
                 Spacer()
-                ShowDetailsButton()
+                ShowDetailsButton(showDetailsView: $showDetailsView)
             }
             .frame(width: UIScreen.width + 32, height: 40, alignment: .center)
             Spacer()
@@ -33,20 +34,26 @@ struct ChartToolbar: View {
 
 struct ChartToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        ChartToolbar(showPopup: .constant(false)).environmentObject(ChartViewModel())
+        ChartToolbar(showDetailsView: .constant(false), showPopup: .constant(false)).environmentObject(ChartViewModel())
     }
 }
 
 private struct ShowDetailsButton: View {
+    
+    @Binding var showDetailsView: Bool
+    
     var body: some View {
         Button(action: {
-            print("show")
+            self.showDetailsView.toggle()
         }) {
             Text("Pokaż szczegóły")
                 .font(.system(size: 16, weight: .semibold, design: .default))
                 .multilineTextAlignment(.leading)
                 .foregroundColor(Colors.label)
                 .padding(.trailing, 16)
+        }.sheet(isPresented: $showDetailsView) {
+            DetailsView(showDetailsView: self.$showDetailsView)
+            
         }
         .frame(width: 170, height: 40, alignment: .center)
         .background(Colors.customViewBackground)

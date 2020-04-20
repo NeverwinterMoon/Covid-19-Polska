@@ -21,6 +21,7 @@ enum Images {
     static let bars = "chart.bar"
     static let more = "ellipsis"
     static let increase = "arrow.up.right"
+    static let dismiss = "xmark.circle.fill"
 }
 
 struct IconView: View {

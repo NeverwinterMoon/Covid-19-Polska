@@ -75,9 +75,9 @@ public struct Line: View {
                 .onAppear {
                     self.showFull = true
             }
-            .onDisappear {
-                self.showFull = false
-            }
+//            .onDisappear {
+//                self.showFull = false
+//            }
             .drawingGroup()
             if(self.showIndicator) {
                 indicator

@@ -14,17 +14,18 @@ struct HomeView: View {
     @State var showPopup: Bool = false
     @State var bottomState: CGSize = .zero
     @State var showFull: Bool = false
+    @State var showDetailsView: Bool = false
     
     var body: some View {
         ZStack {
             Colors.appBackground
                 .edgesIgnoringSafeArea(.all)
             VStack (spacing: 0) {
-                TitleView()
+                HomeViewTitleView()
                 VerticalSpacer()
                 ChartView()
                 VerticalSpacer()
-                ChartToolbar(showPopup: $showPopup)
+                ChartToolbar(showDetailsView: $showDetailsView, showPopup: $showPopup)
                 Spacer()
                 ToolbarView()
             }
@@ -37,7 +38,7 @@ struct HomeView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView().environmentObject(ChartViewModel())
     }

@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct TitleView: View {
+struct HomeViewTitleView: View {
     
     @EnvironmentObject var vm: ChartViewModel
     
@@ -38,7 +38,7 @@ struct TitleView: View {
 
 struct TitleView_Previews: PreviewProvider {
     static var previews: some View {
-        TitleView().environmentObject(ChartViewModel())
+        HomeViewTitleView().environmentObject(ChartViewModel())
     }
 }
 
