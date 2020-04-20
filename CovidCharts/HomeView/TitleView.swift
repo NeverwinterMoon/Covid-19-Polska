@@ -34,14 +34,6 @@ struct TitleView: View {
         }
     }
     
-    func getCurrentDate() -> String {
-        let date = Date()
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "d MMM HH:mm:ss"
-        dateFormatter.locale = Locale(identifier: "pl_PL")
-        dateFormatter.timeZone = .current
-        return dateFormatter.string(from: date)
-    }
 }
 
 struct TitleView_Previews: PreviewProvider {
@@ -88,7 +80,7 @@ struct TitleLeftSide: View {
             Text("Covid-19 Polska")
                 .font(.system(size: 28, weight: .bold, design: .rounded))
                 .foregroundColor(Colors.label)
-            TitleInfoLineView(icon: Images.time, title: "\(vm.customData.last?.date.formattedDate(.long) ?? "Couldn't load")")
+            TitleInfoLineView(icon: Images.time, title: vm.getLastUpdateDate())
             HStack {
                 TitleInfoLineView(icon: Images.confirmed, title: "\(Int((vm.getDailyIncreaseData().last ?? 0)))")
                     .frame(width: 80)

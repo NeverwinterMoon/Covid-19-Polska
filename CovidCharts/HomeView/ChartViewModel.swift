@@ -25,6 +25,7 @@ class ChartViewModel: ObservableObject {
         loadLatestData()
     }
 
+    // MARK: - Networking
     func loadData() {
         let urlString = "https://api.covid19api.com/country/Poland"
         guard let url = URL(string: urlString) else { return }
@@ -64,6 +65,7 @@ class ChartViewModel: ObservableObject {
         .resume()
     }
     
+    // MARK: - Charting
     func setDataFromLast(_ daysNumber: Int, chart: ChartType) {
         self.chart = chart
         customData = data.suffix(daysNumber)
@@ -135,6 +137,12 @@ class ChartViewModel: ObservableObject {
         case .confirmed: return CGFloat(day.confirmed)
         case .recovered: return CGFloat(day.recovered)
         }
+    }
+    
+    // MARK: - TitleView
+    
+    func getLastUpdateDate() -> String {
+        customData.last?.date.formattedDate(.superlong) ?? "Error loading update"
     }
     
 }
