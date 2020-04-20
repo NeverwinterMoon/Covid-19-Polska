@@ -78,20 +78,20 @@ public struct LineView: View {
         let stepWidth: CGFloat = width / CGFloat(points.count-1)
         let stepHeight: CGFloat = height / CGFloat(points.max()! + points.min()!)
         
-        let index:Int = Int(floor((toPoint.x+40)/stepWidth))
-        if (index >= 0 && index < points.count){
+        let index:Int = Int(floor((toPoint.x+50)/stepWidth))
+        if index >= 0 {
             self.selectedDay = Day(
-                confirmed: chartViewModel.customData[index+1].confirmed,
-                deaths: chartViewModel.customData[index+1].deaths,
-                recovered: chartViewModel.customData[index+1].recovered,
-                date: chartViewModel.customData[index+1].date)
+                confirmed: chartViewModel.customData[index+2].confirmed,
+                deaths: chartViewModel.customData[index+2].deaths,
+                recovered: chartViewModel.customData[index+2].recovered,
+                date: chartViewModel.customData[index+2].date)
             self.selectedDayIncrease = Day(
-                confirmed: chartViewModel.getDailyIncrease(on: index+1, of: .confirmed),
-                deaths: chartViewModel.getDailyIncrease(on: index+1, of: .deaths),
-                recovered: chartViewModel.getDailyIncrease(on: index+1, of: .recovered),
-                date: chartViewModel.customData[index+1].date
+                confirmed: chartViewModel.getDailyIncrease(on: index+2, of: .confirmed),
+                deaths: chartViewModel.getDailyIncrease(on: index+2, of: .deaths),
+                recovered: chartViewModel.getDailyIncrease(on: index+2, of: .recovered),
+                date: chartViewModel.customData[index+2].date
             )
-            return CGPoint(x: CGFloat(index+1)*stepWidth, y: CGFloat(points[index+1])*stepHeight)
+            return CGPoint(x: CGFloat(index)*stepWidth, y: CGFloat(points[index])*stepHeight)
         }
         return .zero
     }

@@ -99,9 +99,7 @@ class ChartViewModel: ObservableObject {
     
     func getDailyIncrease(on: Int, of: ChartType) -> Int {
         let today = customData[on]
-        print(today)
         let yesterday = customData[on-1]
-        print(yesterday)
         switch of {
         case .confirmed: return today.confirmed - yesterday.confirmed
         case .deaths: return today.deaths - yesterday.deaths
