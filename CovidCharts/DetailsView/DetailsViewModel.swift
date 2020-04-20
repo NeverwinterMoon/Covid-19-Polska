@@ -15,13 +15,9 @@ struct DailyData {
 
 class DetailsViewModel: ObservableObject {
     
-    @Published var parameter: ParameterType
-    @Published var data: [DailyData]
-    
-    init(data: [DailyData], parameter: ParameterType) {
-        self.data = data
-        self.parameter = parameter
-    }
+    @Published var regionData = [RegionData]()
+    @Published var parameter: ParameterType = .confirmed
+    @Published var data = [DailyData]()
     
 }
 

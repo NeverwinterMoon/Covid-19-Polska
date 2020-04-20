@@ -10,11 +10,12 @@ import SwiftUI
 
 struct ChartTopView: View {
     
-    @EnvironmentObject var vm: ChartViewModel
+    var title: String
+    var latestValue: Int
     
     var body: some View {
         VStack (spacing: 4) {
-            Text(vm.getChartTitle())
+            Text(title)
                 .font(.system(size: 16, weight: .semibold, design: .default))
                 .foregroundColor(Colors.label)
                 .frame(width: 250)
@@ -24,7 +25,7 @@ struct ChartTopView: View {
             .padding(.horizontal)
             .frame(width: UIScreen.width - 32, height: 1)
             .background(Colors.label)
-            Text("Dzisiaj: " + "\(String(vm.getTodayValue()))")
+            Text("Dzisiaj: " + "\(latestValue)")
                 .font(.system(size: 16, weight: .semibold, design: .default))
                 .foregroundColor(Colors.label)
         }
@@ -34,6 +35,6 @@ struct ChartTopView: View {
 
 struct ChartTopView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartTopView().environmentObject(ChartViewModel())
+        ChartTopView(title: "Chart title", latestValue: 20).environmentObject(ChartDatabase())
     }
 }

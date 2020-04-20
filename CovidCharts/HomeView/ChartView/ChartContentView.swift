@@ -10,16 +10,18 @@ import SwiftUI
 
 struct ChartContentView: View {
     
-    @EnvironmentObject var vm: ChartViewModel
+    var chartData: [Double]
+    var maxY: Double
+    var midY: Double
 
     let style = ChartStyle(backgroundColor: Color.red, accentColor: Color.blue, gradientColor: GradientColors.green, textColor: Color.clear, legendTextColor: Color.clear, dropShadowColor: Color.yellow)
     
     var body: some View {
         ZStack {
-            ChartGrid()
+            ChartYLine(max: maxY, mid: midY)
                 .padding(.leading, 16)
             VStack (spacing: 8) {
-                LineView(data: vm.showDailyChange ? self.vm.getDailyChangesData() : self.vm.getDailyIncreaseData(), style: style)
+                LineView(data: chartData, style: style)
             }
             .animation(.easeInOut(duration: 0.5))
         }
@@ -29,31 +31,6 @@ struct ChartContentView: View {
 
 struct ChartContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartContentView().environmentObject(ChartViewModel())
+        ChartContentView(chartData: [20, 40, 60, 40, 20], maxY: 60, midY: 40).environmentObject(ChartDatabase())
     }
 }
-
-//struct BarChartView: View {
-//
-//    @EnvironmentObject var vm: ChartViewModel
-//
-//    var body: some View {
-//        VStack (spacing: 8) {
-//            HStack (alignment: .bottom, spacing: 2) {
-//                ForEach(vm.customData, id: \.self) { day in
-//                    VStack (spacing: 5) {
-//                        VStack {
-//                            Spacer()
-//                        }
-//                        .frame(width: self.vm.getBarWidth(), height: (self.vm.getCases(day) / CGFloat(self.vm.getAllCases())) * (UIScreen.screenHeight/1.75 - 100))
-//                        .background(Colors.main)
-//                        .clipShape(RoundedRectangle(cornerRadius: 4, style: .continuous))
-//                    }
-//                }
-//            }
-//        }
-//        .padding(.horizontal)
-//        .animation(Animation.easeInOut(duration: 0.75))
-//
-//    }
-//}

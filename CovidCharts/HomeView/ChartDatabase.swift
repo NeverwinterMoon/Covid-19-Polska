@@ -13,7 +13,7 @@ enum ParameterType {
     case deaths, confirmed, recovered
 }
 
-class ChartViewModel: ObservableObject {
+class ChartDatabase: ObservableObject {
     
     private var data = [Day]()
     @Published var regionData = [RegionData]()
@@ -57,6 +57,7 @@ class ChartViewModel: ObservableObject {
                     latest.infectedByRegion.forEach { (region) in
                         self.regionData.append(RegionData(region: region.region, confirmed: region.infectedCount, deaths: region.infectedCount))
                     }
+                    print(self.customData)
                 }
             } catch {
                 print("JSON Decode failed:", error)
@@ -161,6 +162,14 @@ class ChartViewModel: ObservableObject {
             }
         }
         return data
+    }
+    
+    func getMinDate() -> String {
+        return customData.first?.date.formattedDate(.long) ?? "Error loading date"
+    }
+    
+    func getMaxDate() -> String {
+        return customData.last?.date.formattedDate(.long) ?? "Error loading date"
     }
     
 }

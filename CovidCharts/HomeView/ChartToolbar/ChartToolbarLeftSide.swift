@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ChartToolbarLeftSide: View {
     
-    @EnvironmentObject var vm: ChartViewModel
+    @EnvironmentObject var vm: ChartDatabase
     @Binding var showPopup: Bool
     
     var body: some View {
@@ -41,6 +41,6 @@ struct ChartToolbarLeftSide: View {
 
 struct ChartToolbarLeftSide_Previews: PreviewProvider {
     static var previews: some View {
-        ChartToolbarLeftSide(showPopup: .constant(false)).environmentObject(ChartViewModel())
+        ChartToolbarLeftSide(showPopup: .constant(false)).environmentObject(ChartDatabase())
     }
 }

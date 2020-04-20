@@ -9,7 +9,7 @@
 import SwiftUI
 
 public struct LineView: View {
-    @EnvironmentObject var chartViewModel: ChartViewModel
+    @EnvironmentObject var chartViewModel: ChartDatabase
     @ObservedObject var data: ChartData
     public var title: String?
     public var legend: String?
@@ -103,7 +103,7 @@ public struct LineView: View {
 
 struct LineView_Previews: PreviewProvider {
     static var previews: some View {
-        LineView(data: [8,23,54,32,12,37,7,23,43], title: "Full chart", style: Styles.lineChartStyleOne).environmentObject(ChartViewModel())
+        LineView(data: [8,23,54,32,12,37,7,23,43], title: "Full chart", style: Styles.lineChartStyleOne).environmentObject(ChartDatabase())
     }
 }
 

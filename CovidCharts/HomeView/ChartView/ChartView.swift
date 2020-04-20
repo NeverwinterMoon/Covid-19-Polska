@@ -10,19 +10,25 @@ import SwiftUI
 
 struct ChartView: View {
     
-    @EnvironmentObject var vm: ChartViewModel
+    var chartData: [Double] = []
+    var title: String = ""
+    var todayValue: Int = 0
+    var maxY: Double = 0
+    var midY: Double = 0
+    var minX: String = ""
+    var maxX: String = ""
     
     var body: some View {
         VStack (alignment: .center, spacing: 0) {
             Spacer()
                 .frame(width: UIScreen.width, height: 8, alignment: .center)
                 .background(Color.clear)
-            ChartTopView()
+            ChartTopView(title: title, latestValue: todayValue)
             Spacer()
                  .frame(width: UIScreen.width, height: 8, alignment: .center)
-            ChartContentView()
+            ChartContentView(chartData: chartData, maxY: maxY, midY: midY)
                 .padding(.leading, 2)
-            ChartBottomView()
+            ChartXLine(minX: minX, maxX: maxX)
                 .padding(.horizontal)
             Spacer()
                 .frame(width: UIScreen.width, height: 8, alignment: .center)
@@ -38,6 +44,6 @@ struct ChartView: View {
 
 struct ChartView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartView().environmentObject(ChartViewModel())
+        ChartView(chartData: [20, 40, 60, 40, 20], title: "Title", todayValue: 20, maxY: 60, midY: 40, minX: "10 March 2019", maxX: "12 March 2020")
     }
 }

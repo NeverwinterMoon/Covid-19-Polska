@@ -1,5 +1,5 @@
 //
-//  ChartGridView.swift
+//  ChartYLine.swift
 //  CovidCharts
 //
 //  Created by Timothy Stokarski on 18/04/2020.
@@ -8,20 +8,21 @@
 
 import SwiftUI
 
-struct ChartGrid: View {
+struct ChartYLine: View {
     
-    @EnvironmentObject var vm: ChartViewModel
+    var max: Double
+    var mid: Double
     
     var body: some View {
         HStack (alignment: .center) {
             VStack (alignment: .leading) {
                 HStack {
-                    ChartSmallText(text: "\(Int(vm.getChartMaxValue()))")
+                    ChartSmallText(text: "\(Int(max))")
                     Spacer()
                 }
                 Spacer()
                 HStack {
-                    ChartSmallText(text: "\(Int(vm.getChartMidValue()))")
+                    ChartSmallText(text: "\(Int(mid))")
                     .offset(x: 0, y: 10)
                     Spacer()
                 }
@@ -40,6 +41,6 @@ struct ChartGrid: View {
 
 struct ChartSideView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartGrid().environmentObject(ChartViewModel())
+        ChartYLine(max: 20, mid: 10)
     }
 }

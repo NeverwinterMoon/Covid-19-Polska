@@ -10,7 +10,7 @@ import SwiftUI
 
 struct HomeViewTitleView: View {
     
-    @EnvironmentObject var vm: ChartViewModel
+    @EnvironmentObject var vm: ChartDatabase
     
     var body: some View {
         VStack (alignment: .leading, spacing: 0) {
@@ -38,7 +38,7 @@ struct HomeViewTitleView: View {
 
 struct TitleView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeViewTitleView().environmentObject(ChartViewModel())
+        HomeViewTitleView().environmentObject(ChartDatabase())
     }
 }
 
@@ -73,7 +73,7 @@ struct TitleInfoLineView: View {
 
 struct TitleLeftSide: View {
     
-    @EnvironmentObject var vm: ChartViewModel
+    @EnvironmentObject var vm: ChartDatabase
     
     var body: some View {
         VStack (alignment: .leading, spacing: 0) {

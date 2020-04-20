@@ -10,12 +10,9 @@ import SwiftUI
 
 struct ChartToolbar: View {
     
-    @EnvironmentObject var vm: ChartViewModel
     @Binding var showDetailsView: Bool
     @Binding var showPopup: Bool
     
-
-
     var body: some View {
         VStack {
             Spacer()
@@ -23,7 +20,9 @@ struct ChartToolbar: View {
             HStack {
                 ChartToolbarLeftSide(showPopup: $showPopup)
                 Spacer()
-                ShowDetailsButton(detailsViewModel: DetailsViewModel(data: vm.getData(vm.parameter), parameter: vm.parameter), showDetailsView: $showDetailsView)
+                ShowDetailsButton()
+//                ShowDetailsButton(detailsViewModel: DetailsViewModel(data: vm.getData(vm.parameter), parameter: vm.parameter, regionData: vm.regionData
+//                ), showDetailsView: $showDetailsView)
             }
             .frame(width: UIScreen.width + 32, height: 40, alignment: .center)
             Spacer()
@@ -36,29 +35,29 @@ struct ChartToolbar: View {
 
 struct ChartToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        ChartToolbar(showDetailsView: .constant(false), showPopup: .constant(false)).environmentObject(ChartViewModel())
+        ChartToolbar(showDetailsView: .constant(false), showPopup: .constant(false))
     }
 }
 
 private struct ShowDetailsButton: View {
     
-    var detailsViewModel: DetailsViewModel
-    @EnvironmentObject var vm: ChartViewModel
-    @Binding var showDetailsView: Bool
+ //   @Binding var showDetailsView: Bool
     
     var body: some View {
         Button(action: {
-            self.showDetailsView.toggle()
+            print("Tapped")
+       //     self.showDetailsView.toggle()
         }) {
             Text("Pokaż szczegóły")
                 .font(.system(size: 16, weight: .semibold, design: .default))
                 .multilineTextAlignment(.leading)
                 .foregroundColor(Colors.label)
                 .padding(.trailing, 16)
-        }.sheet(isPresented: $showDetailsView) {
-            DetailsView(vm: self.detailsViewModel, showDetailsView: self.$showDetailsView)
-            
         }
+//        .sheet(isPresented: $showDetailsView) {
+//
+//
+//        }
         .frame(width: 170, height: 40, alignment: .center)
         .background(Colors.customViewBackground)
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
