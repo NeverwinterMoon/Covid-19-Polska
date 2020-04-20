@@ -10,7 +10,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @EnvironmentObject var vm: ChartDatabase
+    @EnvironmentObject var vm: ChartViewModel
     @State var showPopup: Bool = false
     @State var bottomState: CGSize = .zero
     @State var showFull: Bool = false
@@ -22,9 +22,12 @@ struct HomeView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack (spacing: 0) {
             if !vm.customData.isEmpty {
-                HomeViewTitleView(confirmed: vm.getConfirmedCases(), increase: vm.getLatestIncrease(), lastUpdateTime: vm.getLastUpdateDate())
+                TitleView(title: "Covid-19 Polska", lastUpdateTime: vm.getLastUpdateDate(), parameterSumValue: vm.getConfirmedCases(), parameterIcon: Images.confirmed, parameterIncreaseValue: vm.getLatestIncrease(), rightButtonIcon: Images.reload) {
+                    print("Reload tapped")
+                  //  vm.reloadData()
+                }
                 VerticalSpacer()
-                    ChartView(chartData: vm.getDailyChangesData(), title: vm.getChartTitle(), todayValue: vm.getTodayValue(), maxY: vm.getChartMaxValue(), midY: vm.getChartMidValue(), minX: vm.getMinDate(), maxX: vm.getMaxDate())
+                ChartView(chartData: vm.getDailyChangeData(), title: vm.setChartTitle(vm.parameter), todayValue: vm.getTodayValue(), maxY: vm.getChartMaxValue(), midY: vm.getChartMidValue(), minX: vm.getMinDate(), maxX: vm.getMaxDate())
                     VerticalSpacer()
                     ChartToolbar(showDetailsView: $showDetailsView, showPopup: $showPopup)
                     Spacer()
@@ -54,7 +57,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView().environmentObject(ChartDatabase())
+        HomeView().environmentObject(ChartViewModel())
     }
 }
 

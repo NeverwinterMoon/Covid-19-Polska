@@ -10,7 +10,7 @@ import SwiftUI
 
 struct ChartToolbarLeftSide: View {
     
-    @EnvironmentObject var vm: ChartDatabase
+    @EnvironmentObject var vm: ChartViewModel
     @Binding var showPopup: Bool
     
     var body: some View {
@@ -21,12 +21,6 @@ struct ChartToolbarLeftSide: View {
             }) {
                 IconView(name: Images.calendar, size: .medium, weight: .regular, color: Colors.main)
 
-                .frame(width: 30, height: 40, alignment: .center)
-            }
-            Button(action: {
-                self.vm.showDailyChange.toggle()
-            }) {
-                IconView(name: vm.showDailyChange ? Images.bars : Images.percent, size: .medium, weight: .regular, color: Colors.main)
                 .frame(width: 30, height: 40, alignment: .center)
             }
             
@@ -41,6 +35,6 @@ struct ChartToolbarLeftSide: View {
 
 struct ChartToolbarLeftSide_Previews: PreviewProvider {
     static var previews: some View {
-        ChartToolbarLeftSide(showPopup: .constant(false)).environmentObject(ChartDatabase())
+        ChartToolbarLeftSide(showPopup: .constant(false)).environmentObject(ChartViewModel())
     }
 }

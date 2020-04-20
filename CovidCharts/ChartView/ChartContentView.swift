@@ -31,6 +31,6 @@ struct ChartContentView: View {
 
 struct ChartContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartContentView(chartData: [20, 40, 60, 40, 20], maxY: 60, midY: 40).environmentObject(ChartDatabase())
+        ChartContentView(chartData: [20, 40, 60, 40, 20], maxY: 60, midY: 40).environmentObject(ChartViewModel())
     }
 }

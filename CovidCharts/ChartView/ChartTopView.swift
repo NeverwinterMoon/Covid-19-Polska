@@ -35,6 +35,6 @@ struct ChartTopView: View {
 
 struct ChartTopView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartTopView(title: "Chart title", latestValue: 20).environmentObject(ChartDatabase())
+        ChartTopView(title: "Chart title", latestValue: 20).environmentObject(ChartViewModel())
     }
 }

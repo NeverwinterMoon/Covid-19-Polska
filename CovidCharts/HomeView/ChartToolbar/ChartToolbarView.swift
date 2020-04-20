@@ -41,7 +41,7 @@ struct ChartToolbar_Previews: PreviewProvider {
 
 private struct ShowDetailsButton: View {
     
-    @EnvironmentObject var db: ChartDatabase
+    @EnvironmentObject var vm: ChartViewModel
     @Binding var showDetailsView: Bool
     
     var body: some View {
@@ -56,7 +56,7 @@ private struct ShowDetailsButton: View {
                 .padding(.trailing, 16)
         }
         .sheet(isPresented: $showDetailsView) {
-            DetailsView(vm: DetailsViewModel(regionData: self.db.regionData, data: self.db.getData(self.db.parameter), parameter: self.db.parameter), showDetailsView: self.$showDetailsView)
+            DetailsView(showDetailsView: self.$showDetailsView).environmentObject(self.vm)
         }
         .frame(width: 170, height: 40, alignment: .center)
         .background(Colors.customViewBackground)

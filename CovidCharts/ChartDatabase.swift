@@ -1,5 +1,5 @@
 //
-//  BarChartViewModel.swift
+//  ChartViewModel.swift
 //  CovidCharts
 //
 //  Created by Timothy Stokarski on 14/04/2020.
@@ -13,13 +13,12 @@ enum ParameterType {
     case deaths, confirmed, recovered
 }
 
-class ChartDatabase: ObservableObject {
+class ChartViewModel: ObservableObject {
     
     private var data = [Day]()
     @Published var regionData = [RegionData]()
     @Published var customData = [Day]()
     @Published var parameter: ParameterType = .confirmed
-    @Published var showDailyChange: Bool = true
     
     init() {
         loadData()
@@ -67,12 +66,21 @@ class ChartDatabase: ObservableObject {
     }
     
     // MARK: - Charts
+    
+    func setChartTitle(_ parameter: ParameterType) -> String {
+        switch parameter {
+        case .confirmed: return "Zakażenia"
+        case .deaths: return "Zgony"
+        case .recovered: return "Wyleczeni"
+        }
+    }
+    
     func setDataFromLast(_ daysNumber: Int, chart: ParameterType) {
         self.parameter = chart
         customData = data.suffix(daysNumber)
     }
     
-    func getDailyChangesData() -> [Double] {
+    func getDailyChangeData() -> [Double] {
         var values = [Double]()
         guard !customData.isEmpty else {
             return []
@@ -118,24 +126,16 @@ class ChartDatabase: ObservableObject {
         }
     }
     
-    func getChartTitle() -> String {
-        switch parameter {
-        case .deaths: return showDailyChange ? "Liczba zgonów" : "Liczba zgonów"
-        case .confirmed: return showDailyChange ? "Potwierdzone przypadki" : "Potwierdzone przypadki"
-        case .recovered: return showDailyChange ? "Wyleczone przypadki" : "Wyleczone przypadki"
-        }
-    }
-    
     func getTodayValue() -> Int {
-        return showDailyChange ? Int((getDailyChangesData().last ?? 0)) : Int((getDailyIncreaseData().last ?? 0))
+        return Int((getDailyChangeData().last ?? 0))
     }
     
     func getChartMaxValue() -> Double {
-        return showDailyChange ? (getDailyChangesData().max() ?? 0) : (getDailyIncreaseData().max() ?? 0)
+        return (getDailyChangeData().max() ?? 0)
     }
     
     func getChartMidValue() -> Double {
-         let last = showDailyChange ? (getDailyChangesData().max() ?? 0) : (getDailyIncreaseData().max() ?? 0)
+         let last = (getDailyChangeData().max() ?? 0)
          return last / 2
     }
     
@@ -149,7 +149,7 @@ class ChartDatabase: ObservableObject {
     
     // MARK: - TitleView
     func getLastUpdateDate() -> String {
-        customData.last?.date.formattedDate(.superlong) ?? "Error loading update"
+        customData.last?.date.formattedDate(.superlong) ?? "Loading..."
     }
     
     func getConfirmedCases() -> String {
@@ -161,19 +161,10 @@ class ChartDatabase: ObservableObject {
     }
     
     func getLatestIncrease() -> String {
-        return String(getDailyIncrease(on: customData.count-1, of: .confirmed))
-    }
-    
-    func getData(_ parameter: ParameterType) -> [DailyData] {
-        var data = [DailyData]()
-        self.data.forEach { (day) in
-            switch parameter {
-            case .confirmed: data.append(DailyData(date: day.date, number: day.confirmed))
-            case .deaths: data.append(DailyData(date: day.date, number: day.deaths))
-            case .recovered: data.append(DailyData(date: day.date, number: day.recovered))
-            }
+        guard customData.count > 0 else {
+            return "Loading..."
         }
-        return data
+        return String(getDailyIncrease(on: customData.count-1, of: .confirmed))
     }
     
     func getMinDate() -> String {
