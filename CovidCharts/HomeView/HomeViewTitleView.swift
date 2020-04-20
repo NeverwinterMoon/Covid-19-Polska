@@ -10,13 +10,15 @@ import SwiftUI
 
 struct HomeViewTitleView: View {
     
-    @EnvironmentObject var vm: ChartDatabase
+    var confirmed: String
+    var increase: String
+    var lastUpdateTime: String
     
     var body: some View {
         VStack (alignment: .leading, spacing: 0) {
             VerticalSpacer()
             HStack (alignment: .center) {
-                TitleLeftSide()
+                TitleLeftSide(confirmed: confirmed, increase: increase, lastUpdateTime: lastUpdateTime)
                 Spacer()
                 IconView(name: Images.reload, size: .large, weight: .bold, color: Colors.label)
                     .padding(.trailing)
@@ -38,7 +40,7 @@ struct HomeViewTitleView: View {
 
 struct TitleView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeViewTitleView().environmentObject(ChartDatabase())
+        HomeViewTitleView(confirmed: "1232", increase: "123", lastUpdateTime: "23 March 2020")
     }
 }
 
@@ -73,18 +75,20 @@ struct TitleInfoLineView: View {
 
 struct TitleLeftSide: View {
     
-    @EnvironmentObject var vm: ChartDatabase
+    var confirmed: String
+    var increase: String
+    var lastUpdateTime: String
     
     var body: some View {
         VStack (alignment: .leading, spacing: 0) {
             Text("Covid-19 Polska")
                 .font(.system(size: 28, weight: .bold, design: .rounded))
                 .foregroundColor(Colors.label)
-            TitleInfoLineView(icon: Images.time, title: vm.getLastUpdateDate())
+            TitleInfoLineView(icon: Images.time, title: lastUpdateTime)
             HStack {
-                TitleInfoLineView(icon: Images.confirmed, title: "\(Int((vm.getDailyIncreaseData().last ?? 0)))")
+                TitleInfoLineView(icon: Images.confirmed, title: confirmed)
                     .frame(width: 80)
-                TitleInfoLineView(icon: Images.increase, title: "\(Int((vm.getDailyChangesData().last ?? 0)))")
+                TitleInfoLineView(icon: Images.increase, title: increase)
                 Spacer()
             }
         }

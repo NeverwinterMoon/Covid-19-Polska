@@ -128,6 +128,8 @@
 			children = (
 				810C12F62444994000419207 /* AppDelegate.swift */,
 				810C12F82444994000419207 /* SceneDelegate.swift */,
+				81C197FE24490AFB00AEC5FF /* ChartsModel.swift */,
+				810C13162445352700419207 /* ChartDatabase.swift */,
 				810C130F2444C9B100419207 /* HomeView */,
 				81C19894244DA54200AEC5FF /* DetailsView */,
 				81C19891244C74B400AEC5FF /* Popups */,
@@ -162,8 +164,6 @@
 		810C130F2444C9B100419207 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
-				81C197FE24490AFB00AEC5FF /* ChartsModel.swift */,
-				810C13162445352700419207 /* ChartDatabase.swift */,
 				810C12FA2444994000419207 /* HomeView.swift */,
 				810C13182445983000419207 /* HomeViewTitleView.swift */,
 				81C197F124486BAD00AEC5FF /* ToolbarView.swift */,

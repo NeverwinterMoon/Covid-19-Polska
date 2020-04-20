@@ -10,7 +10,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @EnvironmentObject var db: ChartDatabase
+    @EnvironmentObject var vm: ChartDatabase
     @State var showPopup: Bool = false
     @State var bottomState: CGSize = .zero
     @State var showFull: Bool = false
@@ -21,10 +21,10 @@ struct HomeView: View {
             Colors.appBackground
                 .edgesIgnoringSafeArea(.all)
             VStack (spacing: 0) {
-                HomeViewTitleView()
+            if !vm.customData.isEmpty {
+                HomeViewTitleView(confirmed: vm.getConfirmedCases(), increase: vm.getLatestIncrease(), lastUpdateTime: vm.getLastUpdateDate())
                 VerticalSpacer()
-                if !db.customData.isEmpty {
-                    ChartView(chartData: db.getDailyChangesData(), title: db.getChartTitle(), todayValue: db.getTodayValue(), maxY: db.getChartMaxValue(), midY: db.getChartMidValue(), minX: db.getMinDate(), maxX: db.getMaxDate())
+                    ChartView(chartData: vm.getDailyChangesData(), title: vm.getChartTitle(), todayValue: vm.getTodayValue(), maxY: vm.getChartMaxValue(), midY: vm.getChartMidValue(), minX: vm.getMinDate(), maxX: vm.getMaxDate())
                     VerticalSpacer()
                     ChartToolbar(showDetailsView: $showDetailsView, showPopup: $showPopup)
                     Spacer()

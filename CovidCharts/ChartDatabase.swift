@@ -66,7 +66,7 @@ class ChartDatabase: ObservableObject {
         .resume()
     }
     
-    // MARK: - Charting
+    // MARK: - Charts
     func setDataFromLast(_ daysNumber: Int, chart: ParameterType) {
         self.parameter = chart
         customData = data.suffix(daysNumber)
@@ -150,6 +150,18 @@ class ChartDatabase: ObservableObject {
     // MARK: - TitleView
     func getLastUpdateDate() -> String {
         customData.last?.date.formattedDate(.superlong) ?? "Error loading update"
+    }
+    
+    func getConfirmedCases() -> String {
+        if let last = customData.last?.confirmed {
+            return String(last)
+        } else {
+            return "Loading..."
+        }
+    }
+    
+    func getLatestIncrease() -> String {
+        return String(getDailyIncrease(on: customData.count-1, of: .confirmed))
     }
     
     func getData(_ parameter: ParameterType) -> [DailyData] {
