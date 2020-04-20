@@ -18,9 +18,11 @@ enum DateStyle {
 extension String {
     
     func formattedDate(_ style: DateStyle) -> String {
+        var dateToFormat = self
+        dateToFormat = dateToFormat.replacingOccurrences(of: ".000", with: "")
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        let date = formatter.date(from: self)
+        let date = formatter.date(from: dateToFormat)
         let secondFormatter = DateFormatter()
         secondFormatter.locale = Locale(identifier: "pl_PL")
         switch style {
