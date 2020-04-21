@@ -22,6 +22,8 @@ enum Images {
     static let more = "ellipsis"
     static let increase = "arrow.up.right"
     static let dismiss = "xmark.circle.fill"
+    static let expand = "arrow.down"
+    static let collapse = "arrow.up"
 }
 
 struct IconView: View {
