@@ -11,7 +11,7 @@ import SwiftUI
 struct ChartView: View {
     
     static let height = UIScreen.height / 1.75
-    static let width = UIScreen.width + 32
+    static let width = UIScreen.width - 32
     
     @State var chartData: [Double] = []
     @State var title: String = ""
@@ -34,7 +34,7 @@ struct ChartView: View {
                 .frame(width: UIScreen.width, height: 8, alignment: .center)
                 .background(Color.clear)
         }
-        .frame(width: UIScreen.width+32, height: UIScreen.height/1.75)
+        .frame(width: ChartView.width+64, height: ChartView.height)
         .background(Colors.customViewBackground)
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)

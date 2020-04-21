@@ -27,7 +27,7 @@ public struct Line: View {
         if data.points.count < 2 {
             return 0
         }
-        return (UIScreen.width-32) / CGFloat(data.points.count-1)
+        return (ChartView.width) / CGFloat(data.points.count-1)
     }
     var stepHeight: CGFloat {
         var min: Double?
@@ -75,9 +75,7 @@ public struct Line: View {
                 .onAppear {
                     self.showFull = true
             }
-//            .onDisappear {
-//                self.showFull = false
-//            }
+
             .drawingGroup()
             if(self.showIndicator) {
                 indicator
@@ -119,7 +117,7 @@ struct Line_Previews: PreviewProvider {
     static var previews: some View {
         GeometryReader{ geometry in
             Line(data: ChartData(points: [12,-230,10,54]), touchLocation: .constant(CGPoint(x: 100, y: 12)), showIndicator: .constant(true), minDataValue: .constant(nil), maxDataValue: .constant(nil), selectedDay: .constant(Day(confirmed: 1231, deaths: 123, recovered: 12, date: "3 March 2019")), selectedDayIncrease: .constant(Day(confirmed: 50, deaths: 50, recovered: 50, date: "3 March 2019")))
-        }.frame(width: UIScreen.width, height: UIScreen.height/2)
+        }.frame(width: ChartView.width, height: ChartView.height)
     }
 }
 
