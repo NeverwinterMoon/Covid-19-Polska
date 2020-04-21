@@ -11,7 +11,10 @@ import SwiftUI
 struct DetailsView: View {
     
     @EnvironmentObject var vm: ChartViewModel
+    
     @Binding var showDetailsView: Bool
+    var section1Height = ChartView.height + 8
+//    @State var section1Size: CGSize = .zero
     
     @State var showConfirmedCases: Bool = false
     
@@ -28,11 +31,13 @@ struct DetailsView: View {
                 VerticalSpacer()
                 List {
                     ExpandableLineView(title: "Zakażenia", show: $showConfirmedCases)
-                    ChartView(chartData: vm.getDailyChangeData(), title: "Dzienny przyrost", todayValue: vm.getTodayValue(), maxY: vm.getChartMaxValue(), midY: vm.getChartMidValue(), minX: vm.getMinDate(), maxX: vm.getMaxDate())
-                        .frame(height: showConfirmedCases ? 550 : -550)
-                        .opacity(showConfirmedCases ? 1.0 : 0.0)
-                        .animation(.spring(response: 0.5, dampingFraction: 0.80, blendDuration: 0.9), value: showConfirmedCases)
-                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        ChartView(chartData: self.vm.getDailyChangeData(), title: "Dzienny przyrost", minX: self.vm.getMinDate(), maxX: self.vm.getMaxDate())
+                            .frame(height: self.showConfirmedCases ? section1Height : -section1Height)
+                                    .opacity(self.showConfirmedCases ? 1.0 : 0.0)
+                                    .animation(.spring(response: 1.0, dampingFraction: 0.80, blendDuration: 0.2), value: self.showConfirmedCases)
+                                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                            
+                    
                     ExpandableLineView(title: "Zgony", show: $showConfirmedCases)
                     ExpandableLineView(title: "Wyleczeni", show: $showConfirmedCases)
                     ExpandableLineView(title: "Województwa", show: $showConfirmedCases)

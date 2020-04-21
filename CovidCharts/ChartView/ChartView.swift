@@ -13,23 +13,20 @@ struct ChartView: View {
     static let height = UIScreen.height / 1.75
     static let width = UIScreen.width + 32
     
-    var chartData: [Double] = []
-    var title: String = ""
-    var todayValue: Int = 0
-    var maxY: Double = 0
-    var midY: Double = 0
-    var minX: String = ""
-    var maxX: String = ""
+    @State var chartData: [Double] = []
+    @State var title: String = ""
+    @State var minX: String = ""
+    @State var maxX: String = ""
     
     var body: some View {
         VStack (alignment: .center, spacing: 0) {
             Spacer()
                 .frame(width: UIScreen.width, height: 8, alignment: .center)
                 .background(Color.clear)
-            ChartTopView(title: title, latestValue: todayValue)
+            ChartTopView(title: title, latestValue: Int(chartData.last!))
             Spacer()
                  .frame(width: UIScreen.width, height: 8, alignment: .center)
-            ChartContentView(chartData: chartData, maxY: maxY, midY: midY)
+            ChartContentView(chartData: chartData, maxY: chartData.max()!, midY: chartData.max()!/2)
                 .padding(.leading, 2)
             ChartXLine(minX: minX, maxX: maxX)
                 .padding(.horizontal)
@@ -48,6 +45,6 @@ struct ChartView: View {
 
 struct ChartView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartView(chartData: [20, 40, 60, 40, 20], title: "Title", todayValue: 20, maxY: 60, midY: 40, minX: "10 March 2019", maxX: "12 March 2020")
+        ChartView(chartData: [20, 40, 60, 40, 20], title: "Title", minX: "10 March 2019", maxX: "12 March 2020")
     }
 }

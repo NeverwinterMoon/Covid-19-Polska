@@ -26,7 +26,7 @@ struct HomeView: View {
                         print("Reload tapped")
                     }
                     VerticalSpacer()
-                    ChartView(chartData: vm.getDailyChangeData(), title: vm.setChartTitle(vm.parameter), todayValue: vm.getTodayValue(), maxY: vm.getChartMaxValue(), midY: vm.getChartMidValue(), minX: vm.getMinDate(), maxX: vm.getMaxDate())
+                    ChartView(chartData: vm.getDailyChangeData(), title: vm.setChartTitle(vm.parameter), minX: vm.getMinDate(), maxX: vm.getMaxDate())
                     VerticalSpacer()
                     ChartToolbar(showDetailsView: $showDetailsView, showPopup: $showPopup)
                     Spacer()
