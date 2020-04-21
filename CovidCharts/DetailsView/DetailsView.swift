@@ -61,7 +61,6 @@ struct ExpandableLineView: View {
             HStack (spacing: 0) {
                 Text(title)
                     .font(Fonts.titleListElement)
-                    .padding(.leading, 16)
                     .padding()
                     .animation(.linear)
                 IconView(name: Images.expand, size: .medium, weight: .semibold, color: Colors.main)
@@ -70,8 +69,7 @@ struct ExpandableLineView: View {
                     .animation(.easeInOut)
             }
             .frame(height: 50)
-            .background(Colors.customViewBackground)
-            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .background(RoundedCorners(color: Colors.customViewBackground, tl: 0, tr: 16, bl: 0, br: 16))
             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
             Spacer()
         }
@@ -79,6 +77,6 @@ struct ExpandableLineView: View {
                 self.show.toggle()
         }
         .listRowBackground(Colors.appBackground)
-        .listRowInsets(EdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0))
+        .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 0))
     }
 }
