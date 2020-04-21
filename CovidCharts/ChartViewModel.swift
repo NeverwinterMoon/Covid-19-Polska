@@ -16,8 +16,10 @@ enum ParameterType {
 class ChartViewModel: ObservableObject {
     
     private var data = [Day]()
+    private var dataOnIncrese = [Day]()
     @Published var regionData = [RegionData]()
     @Published var customData = [Day]()
+    @Published var customIncreaseData = [Day]()
     @Published var parameter: ParameterType = .confirmed
     
     init() {
@@ -78,6 +80,17 @@ class ChartViewModel: ObservableObject {
     func setDataFromLast(_ daysNumber: Int, chart: ParameterType) {
         self.parameter = chart
         customData = data.suffix(daysNumber)
+    }
+    
+    func setIncreaseDataFromLaset(_ daysNumber: Int) {
+        for num in 1..<data.count {
+            let confirmed = data[num].confirmed - data[num-1].confirmed
+            let deaths = data[num].deaths - data[num-1].deaths
+            let recovered = data[num].recovered - data[num-1].recovered
+            let day = Day(confirmed: confirmed, deaths: deaths, recovered: recovered, date: data[num].date)
+            dataOnIncrese.append(day)
+        }
+        customIncreaseData = dataOnIncrese.suffix(daysNumber)
     }
     
     func getDailyChangeData(_ parameter: ParameterType) -> [Double] {
