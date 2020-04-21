@@ -19,7 +19,7 @@
 		810C1320244604E000419207 /* ChartTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C131F244604E000419207 /* ChartTopView.swift */; };
 		810C1322244604F000419207 /* ChartContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C1321244604F000419207 /* ChartContentView.swift */; };
 		81C197BC2446632200AEC5FF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197BB2446632200AEC5FF /* Colors.swift */; };
-		81C197BE2446634900AEC5FF /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197BD2446634900AEC5FF /* Images.swift */; };
+		81C197BE2446634900AEC5FF /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197BD2446634900AEC5FF /* Icons.swift */; };
 		81C197F224486BAD00AEC5FF /* ToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197F124486BAD00AEC5FF /* ToolbarView.swift */; };
 		81C197F62448A21300AEC5FF /* ChartToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197F52448A21300AEC5FF /* ChartToolbarView.swift */; };
 		81C197FF24490AFB00AEC5FF /* ChartsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197FE24490AFB00AEC5FF /* ChartsModel.swift */; };
@@ -65,7 +65,7 @@
 		810C131F244604E000419207 /* ChartTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTopView.swift; sourceTree = "<group>"; };
 		810C1321244604F000419207 /* ChartContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartContentView.swift; sourceTree = "<group>"; };
 		81C197BB2446632200AEC5FF /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		81C197BD2446634900AEC5FF /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
+		81C197BD2446634900AEC5FF /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		81C197F124486BAD00AEC5FF /* ToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarView.swift; sourceTree = "<group>"; };
 		81C197F52448A21300AEC5FF /* ChartToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartToolbarView.swift; sourceTree = "<group>"; };
 		81C197FE24490AFB00AEC5FF /* ChartsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsModel.swift; sourceTree = "<group>"; };
@@ -195,7 +195,7 @@
 				81C197BB2446632200AEC5FF /* Colors.swift */,
 				81D0EA36244ED5D400968667 /* Layout.swift */,
 				81C1988F244C63FF00AEC5FF /* Fonts.swift */,
-				81C197BD2446634900AEC5FF /* Images.swift */,
+				81C197BD2446634900AEC5FF /* Icons.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -361,7 +361,7 @@
 				81C198512449E47300AEC5FF /* PieChartRow.swift in Sources */,
 				81C197F62448A21300AEC5FF /* ChartToolbarView.swift in Sources */,
 				81C1989A244DEF2A00AEC5FF /* ChartCustomClasses.swift in Sources */,
-				81C197BE2446634900AEC5FF /* Images.swift in Sources */,
+				81C197BE2446634900AEC5FF /* Icons.swift in Sources */,
 				81E05EBD244E4E460002F0C3 /* ChartDatabase.swift in Sources */,
 				81C198422449E3A700AEC5FF /* Line.swift in Sources */,
 				81C1983E2449E37200AEC5FF /* IndicatorPointView.swift in Sources */,

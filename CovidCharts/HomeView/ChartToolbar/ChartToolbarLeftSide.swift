@@ -19,7 +19,7 @@ struct ChartToolbarLeftSide: View {
             Button(action: {
                 self.showPopup.toggle()
             }) {
-                IconView(name: Images.calendar, size: .medium, weight: .regular, color: Colors.main)
+                IconView(name: Icons.calendar, size: .medium, weight: .regular, color: Colors.main)
 
                 .frame(width: 30, height: 40, alignment: .center)
             }

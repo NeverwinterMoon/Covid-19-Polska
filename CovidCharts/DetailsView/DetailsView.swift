@@ -24,8 +24,9 @@ struct DetailsView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 VerticalSpacer()
-                TitleView(title: "Covid-19 Polska", lastUpdateTime: vm.getLastUpdateDate(), parameterSumValue: vm.getConfirmedCases(), parameterIcon: Images.confirmed, parameterIncreaseValue: vm.getLatestIncrease(), rightButtonIcon: Images.reload) {
+                TitleView(title: "Covid-19 Polska", lastUpdateTime: vm.getLastUpdateDate(), parameterSumValue: vm.getConfirmedCases(), parameterIcon: Icons.confirmed, parameterIncreaseValue: vm.getLatestIncrease(), rightButtonIcon: Icons.dismiss) {
                     self.showDetailsView.toggle()
+                    print("hideConfirmedCases")
                 }
                 VerticalSpacer()
                 VerticalSpacer()
@@ -73,7 +74,7 @@ struct ExpandableLineView: View {
                     .font(Fonts.titleListElement)
                     .padding()
                     .animation(.linear)
-                IconView(name: Images.expand, size: .medium, weight: .semibold, color: Colors.main)
+                IconView(name: Icons.expand, size: .medium, weight: .semibold, color: Colors.main)
                     .padding(.horizontal, 8)
                     .rotationEffect(.degrees(show ? 360 : 180))
                     .animation(.easeInOut)

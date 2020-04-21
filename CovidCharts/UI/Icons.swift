@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-enum Images {
+enum Icons {
     static let confirmed = "thermometer"
     static let time = "clock"
     static let deaths = "heart.slash"
@@ -21,7 +21,7 @@ enum Images {
     static let bars = "chart.bar"
     static let more = "ellipsis"
     static let increase = "arrow.up.right"
-    static let dismiss = "xmark.circle.fill"
+    static let dismiss = "xmark"
     static let expand = "arrow.down"
     static let collapse = "arrow.up"
 }

@@ -17,10 +17,10 @@ struct ToolbarView: View {
             Spacer()
                 .frame(width: UIScreen.width, height: 8, alignment: .center)
             HStack (alignment: .center) {
-                MenuButton(title: "Zakażenia", image: Images.confirmed, chart: .confirmed)
-                MenuButton(title: "Wyleczeni", image: Images.recovered, chart: .recovered)
-                MenuButton(title: "Zgony", image: Images.deaths, chart: .deaths)
-                MenuButton(title: "Info", image: Images.info, chart: .confirmed)
+                MenuButton(title: "Zakażenia", image: Icons.confirmed, chart: .confirmed)
+                MenuButton(title: "Wyleczeni", image: Icons.recovered, chart: .recovered)
+                MenuButton(title: "Zgony", image: Icons.deaths, chart: .deaths)
+                MenuButton(title: "Info", image: Icons.info, chart: .confirmed)
             }
             .frame(width: UIScreen.width, height: 65, alignment: .center)
             Spacer()

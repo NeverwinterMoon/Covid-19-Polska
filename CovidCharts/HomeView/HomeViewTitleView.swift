@@ -27,7 +27,7 @@ struct TitleView: View {
                         .font(Fonts.title)
                         .foregroundColor(Colors.label)
                     HStack {
-                        TitleIconView(name: Images.time, size: .medium, weight: .regular, color: Colors.main)
+                        TitleIconView(name: Icons.time, size: .medium, weight: .regular, color: Colors.main)
                         Text(lastUpdateTime)
                             .font(Fonts.titleViewIcon)
                             .multilineTextAlignment(.leading)
@@ -45,7 +45,7 @@ struct TitleView: View {
                         }
                         .frame(width: 80)
                         HStack {
-                            TitleIconView(name: Images.increase, size: .medium, weight: .regular, color: Colors.main)
+                            TitleIconView(name: Icons.increase, size: .medium, weight: .regular, color: Colors.main)
                             Text(parameterIncreaseValue)
                                 .font(Fonts.titleViewIcon)
                                 .multilineTextAlignment(.leading)
@@ -61,10 +61,10 @@ struct TitleView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
                 .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
                 Spacer()
-                IconView(name: Images.reload, size: .large, weight: .bold, color: Colors.label)
+                IconView(name: rightButtonIcon, size: .large, weight: .bold, color: Colors.label)
                     .padding(.trailing)
                     .onTapGesture {
-                        //      self.vm.loadData()
+                        self.rightButtonAction()
                 }
                 .frame(width: 90, height: 90, alignment: .center)
                 .background(Colors.customViewBackground)
@@ -81,7 +81,7 @@ struct TitleView: View {
 
 struct TitleView_Previews: PreviewProvider {
     static var previews: some View {
-        TitleView(title: "Covid-19 Polska", lastUpdateTime: "19 Marca 2020", parameterSumValue: "1231", parameterIcon: Images.confirmed, parameterIncreaseValue: "123", rightButtonIcon: Images.reload) {
+        TitleView(title: "Covid-19 Polska", lastUpdateTime: "19 Marca 2020", parameterSumValue: "1231", parameterIcon: Icons.confirmed, parameterIncreaseValue: "123", rightButtonIcon: Icons.reload) {
             print("Right button tapped")
         }
     }
