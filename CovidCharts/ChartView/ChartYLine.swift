@@ -44,3 +44,13 @@ struct ChartSideView_Previews: PreviewProvider {
         ChartYLine(max: 20, mid: 10)
     }
 }
+
+struct ChartSmallText: View {
+    var text: String
+    var body: some View {
+        Text(text)
+            .font(.system(size: 12, weight: .semibold, design: .rounded))
+            .foregroundColor(Colors.label)
+            .multilineTextAlignment(.leading)
+    }
+}

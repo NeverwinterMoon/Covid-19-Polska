@@ -14,9 +14,9 @@ struct ChartView: View {
     static let width = UIScreen.width - 32
     
     @State var chartData: [Double] = []
-    @State var title: String = ""
-    @State var minX: String = ""
-    @State var maxX: String = ""
+    var title: String = ""
+    var minX: String = ""
+    var maxX: String = ""
     
     var body: some View {
         VStack (alignment: .center, spacing: 0) {

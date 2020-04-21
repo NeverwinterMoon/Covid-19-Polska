@@ -8,23 +8,6 @@
 
 import SwiftUI
 
-struct ChartSmallText: View {
-    var text: String
-    var body: some View {
-        Text(text)
-            .font(.system(size: 12, weight: .regular, design: .default))
-            .foregroundColor(Colors.label)
-            .multilineTextAlignment(.leading)
-    }
-}
 
-struct ChartLineSpacer: View {
-    var body: some View {
-        VStack (alignment: .center, spacing: 0) {
-            Spacer()
-        }
-        .padding(.horizontal)
-        .frame(width: UIScreen.width - 32, height: 1)
-        .background(Colors.label)
-    }
-}
+
+

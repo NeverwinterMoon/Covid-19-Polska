@@ -37,3 +37,14 @@ struct ChartBottomView_Previews: PreviewProvider {
         ChartXLine(minX: "2 March 2019", maxX: "9 March 2019")
     }
 }
+
+struct ChartLineSpacer: View {
+    var body: some View {
+        VStack (alignment: .center, spacing: 0) {
+            Spacer()
+        }
+        .padding(.horizontal)
+        .frame(width: UIScreen.width - 32, height: 1)
+        .background(Colors.label)
+    }
+}
