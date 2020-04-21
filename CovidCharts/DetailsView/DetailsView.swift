@@ -39,7 +39,7 @@ struct DetailsView: View {
                 VerticalSpacer()
                 VerticalSpacer()
                 List {
-                    ExpandableLineView(title: "Zakażenia", show: $showConfirmedCharts)
+                    SectionTitle(title: "Zakażenia", show: $showConfirmedCharts)
                     VStack {
                         ChartView(data: self.vm.getDailyChangeData(.confirmed), title: "Dzienny przyrost", minX: self.vm.getMinDate(), maxX: self.vm.getMaxDate())
                         ChartView(data: self.vm.getDailyIncreaseData(.confirmed), title: "Liczba zakażeń", minX: self.vm.getMinDate(), maxX: self.vm.getMaxDate())
@@ -47,7 +47,7 @@ struct DetailsView: View {
                         .opacity(self.showConfirmedCharts ? 1.0 : 0.0)
                         .frame(height: self.showConfirmedCharts ? chartSectionHeight : -chartSectionHeight)
                         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                    ExpandableLineView(title: "Zgony", show: $showDeathsCharts)
+                    SectionTitle(title: "Zgony", show: $showDeathsCharts)
                     VStack {
                         ChartView(data: self.vm.getDailyChangeData(.deaths), title: "Przyrost", minX: self.vm.getMinDate(), maxX: self.vm.getMaxDate())
                         ChartView(data: self.vm.getDailyIncreaseData(.deaths), title: "Liczba zgonów", minX: self.vm.getMinDate(), maxX: self.vm.getMaxDate())
@@ -55,7 +55,7 @@ struct DetailsView: View {
                         .opacity(self.showDeathsCharts ? 1.0 : 0.0)
                         .frame(height: self.showDeathsCharts ? chartSectionHeight : -chartSectionHeight)
                         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                    ExpandableLineView(title: "Wyleczeni", show: $showRecoveredCharts)
+                    SectionTitle(title: "Wyleczeni", show: $showRecoveredCharts)
                     VStack {
                         ChartView(data: self.vm.getDailyChangeData(.recovered), title: "Przyrost", minX: self.vm.getMinDate(), maxX: self.vm.getMaxDate())
                         ChartView(data: self.vm.getDailyIncreaseData(.recovered), title: "Liczba wyleczonych", minX: self.vm.getMinDate(), maxX: self.vm.getMaxDate())
@@ -77,7 +77,7 @@ struct DetailsView_Previews: PreviewProvider {
     }
 }
 
-struct ExpandableLineView: View {
+struct SectionTitle: View {
     
     var title: String
     @Binding var show: Bool
@@ -87,14 +87,15 @@ struct ExpandableLineView: View {
             HStack (spacing: 0) {
                 Text(title)
                     .font(Fonts.titleListElement)
-                    .padding()
+                    .padding(.trailing, 16)
                     .animation(.linear)
+                    .padding(.leading, 16)
                 IconView(name: Icons.collapse, size: .medium, weight: .semibold, color: Colors.main)
-                    .padding(.horizontal, 8)
+                    .padding(.leading,8)
                     .rotationEffect(.degrees(show ? 360 : 180))
                     .animation(.easeInOut)
             }
-            .frame(height: 50)
+            .frame(height: 40)
             .background(RoundedCorners(color: Colors.customViewBackground, tl: 0, tr: 16, bl: 0, br: 16))
             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
             Spacer()
@@ -103,6 +104,6 @@ struct ExpandableLineView: View {
                 self.show.toggle()
         }
         .listRowBackground(Colors.appBackground)
-        .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 0))
+        .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
     }
 }

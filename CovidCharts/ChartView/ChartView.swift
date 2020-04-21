@@ -67,7 +67,7 @@ struct ChartView: View {
                 .background(Color.clear)
             ChartTopView(chartData: chartData, title: title)
             Spacer()
-                 .frame(width: UIScreen.width, height: 8, alignment: .center)
+                .frame(width: UIScreen.width, height: 8, alignment: .center)
             ChartContentView(chartData: chartData)
                 .padding(.leading, 2)
             ChartXLine(minX: minX, maxX: maxX)
