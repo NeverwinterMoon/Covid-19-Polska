@@ -13,10 +13,10 @@ struct DetailsView: View {
     @EnvironmentObject var vm: ChartViewModel
     
     @Binding var showDetailsView: Bool
-    var section1Height = ChartView.height + 8
-//    @State var section1Size: CGSize = .zero
+    var section1Height = (ChartView.height)*2
     
     @State var showConfirmedCases: Bool = false
+    @State var hideConfirmedCases: Bool = true
     
     var body: some View {
         ZStack {
@@ -31,19 +31,24 @@ struct DetailsView: View {
                 VerticalSpacer()
                 List {
                     ExpandableLineView(title: "Zakażenia", show: $showConfirmedCases)
+                    VStack {
                         ChartView(chartData: self.vm.getDailyChangeData(), title: "Dzienny przyrost", minX: self.vm.getMinDate(), maxX: self.vm.getMaxDate())
-                            .frame(height: self.showConfirmedCases ? section1Height : -section1Height)
-                                    .opacity(self.showConfirmedCases ? 1.0 : 0.0)
-                                    .animation(.spring(response: 1.0, dampingFraction: 0.80, blendDuration: 0.2), value: self.showConfirmedCases)
-                                    .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                            
+                        ChartView(chartData: self.vm.getDailyIncreaseData(), title: "Zakażenia łącznie", minX: self.vm.getMinDate(), maxX: self.vm.getMaxDate())
+                    }
                     
-                    ExpandableLineView(title: "Zgony", show: $showConfirmedCases)
-                    ExpandableLineView(title: "Wyleczeni", show: $showConfirmedCases)
-                    ExpandableLineView(title: "Województwa", show: $showConfirmedCases)
-                    ExpandableLineView(title: "Statystyki globalne", show: $showConfirmedCases)
+                        .opacity(self.showConfirmedCases ? 1.0 : 0.0)
+                        .frame(height: self.showConfirmedCases ? section1Height : -section1Height)
+                    //    .animation(.spring(response: 2.0, dampingFraction: 0.80, blendDuration: 0.8), value: self.showConfirmedCases)
+                      //  .animation(.easeInOut(duration: 0.15))
+                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                    
+                    
+             //       ExpandableLineView(title: "Zgony", show: $showConfirmedCases)
+             //       ExpandableLineView(title: "Wyleczeni", show: $showConfirmedCases)
+             //       ExpandableLineView(title: "Województwa", show: $showConfirmedCases)
+             //       ExpandableLineView(title: "Statystyki globalne", show: $showConfirmedCases)
                 }.environment(\.defaultMinListRowHeight, 1)
-                .background(Colors.appBackground)
+                    .background(Colors.customViewBackground)
             }
         }
 
