@@ -63,6 +63,7 @@ struct DetailsView: View {
                         .opacity(self.showRecoveredCharts ? 1.0 : 0.0)
                         .frame(height: self.showRecoveredCharts ? chartSectionHeight : -chartSectionHeight)
                         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                    CovidTableView()
                 }.environment(\.defaultMinListRowHeight, 1)
                     .background(Colors.appBackground)
             }

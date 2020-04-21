@@ -47,6 +47,7 @@
 		81D0EA37244ED5D400968667 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0EA36244ED5D400968667 /* Layout.swift */; };
 		81D0EA3A244F249200968667 /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0EA39244F249200968667 /* BarView.swift */; };
 		81D0EA3C244F252500968667 /* BarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0EA3B244F252500968667 /* BarContentView.swift */; };
+		81D0EA3E244F3F9200968667 /* CovidTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0EA3D244F3F9200968667 /* CovidTableView.swift */; };
 		81E05EBB244E1EF10002F0C3 /* HomeViewBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E05EBA244E1EF00002F0C3 /* HomeViewBottomView.swift */; };
 		81E05EBD244E4E460002F0C3 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E05EBC244E4E460002F0C3 /* ChartViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -94,6 +95,7 @@
 		81D0EA36244ED5D400968667 /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		81D0EA39244F249200968667 /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
 		81D0EA3B244F252500968667 /* BarContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarContentView.swift; sourceTree = "<group>"; };
+		81D0EA3D244F3F9200968667 /* CovidTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidTableView.swift; sourceTree = "<group>"; };
 		81E05EBA244E1EF00002F0C3 /* HomeViewBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewBottomView.swift; sourceTree = "<group>"; };
 		81E05EBC244E4E460002F0C3 /* ChartViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +134,7 @@
 				810C12F82444994000419207 /* SceneDelegate.swift */,
 				81C197FE24490AFB00AEC5FF /* ChartsModel.swift */,
 				81E05EBC244E4E460002F0C3 /* ChartViewModel.swift */,
+				81D0EA3D244F3F9200968667 /* CovidTableView.swift */,
 				81D0EA38244F247000968667 /* BarView */,
 				810C131A2446043700419207 /* ChartView */,
 				810C130F2444C9B100419207 /* HomeView */,
@@ -361,6 +364,7 @@
 				81C198362449E2ED00AEC5FF /* BarChartRow.swift in Sources */,
 				81D0EA37244ED5D400968667 /* Layout.swift in Sources */,
 				810C130C2444C97E00419207 /* Ext-String.swift in Sources */,
+				81D0EA3E244F3F9200968667 /* CovidTableView.swift in Sources */,
 				810C1320244604E000419207 /* ChartTopView.swift in Sources */,
 				81C1983A2449E33300AEC5FF /* LabelView.swift in Sources */,
 				81C198342449E2BA00AEC5FF /* BarChartCell.swift in Sources */,
