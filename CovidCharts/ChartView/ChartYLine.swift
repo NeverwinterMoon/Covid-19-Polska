@@ -10,25 +10,34 @@ import SwiftUI
 
 struct ChartYLine: View {
     
-    var max: Double
-    var mid: Double
+    @ObservedObject var chartData: ChartData
     
     var body: some View {
         HStack (alignment: .center) {
             VStack (alignment: .leading) {
                 HStack {
-                    ChartSmallText(text: "\(Int(max))")
+                    Text(maxY)
+                        .font(.system(size: 12, weight: .semibold, design: .rounded))
+                        .foregroundColor(Colors.label)
+                        .multilineTextAlignment(.leading)
                     Spacer()
                 }
                 Spacer()
                 HStack {
-                    ChartSmallText(text: "\(Int(mid))")
-                    .offset(x: 0, y: 10)
+                    Text(midY)
+                    .font(.system(size: 12, weight: .semibold, design: .rounded))
+                    .foregroundColor(Colors.label)
+                    .multilineTextAlignment(.leading)
+                    .offset(x: 0, y: 11)
                     Spacer()
                 }
                 Spacer()
                 HStack {
-                    ChartSmallText(text: "")
+                    Text("")
+                    .font(.system(size: 12, weight: .semibold, design: .rounded))
+                    .foregroundColor(Colors.label)
+                    .multilineTextAlignment(.leading)
+                    .offset(x: 0, y: 11)
                     Spacer()
                 }
             }
@@ -37,20 +46,19 @@ struct ChartYLine: View {
         .offset(x: 12, y: -8)
     }
     
+    var maxY: String {
+        return String(chartData.onlyPoints().max() ?? 0)
+    }
+    
+    var midY: String {
+        return String((chartData.onlyPoints().max() ?? 0)/2)
+        
+    }
+    
 }
 
 struct ChartSideView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartYLine(max: 20, mid: 10)
-    }
-}
-
-struct ChartSmallText: View {
-    var text: String
-    var body: some View {
-        Text(text)
-            .font(.system(size: 12, weight: .semibold, design: .rounded))
-            .foregroundColor(Colors.label)
-            .multilineTextAlignment(.leading)
+        ChartYLine(chartData: ChartData(points: [234, 45, 66]))
     }
 }

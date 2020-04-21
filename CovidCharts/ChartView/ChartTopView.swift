@@ -10,8 +10,8 @@ import SwiftUI
 
 struct ChartTopView: View {
     
+    @ObservedObject var chartData: ChartData
     var title: String
-    var latestValue: Int
     
     var body: some View {
         VStack (spacing: 4) {
@@ -25,7 +25,7 @@ struct ChartTopView: View {
             .padding(.horizontal)
             .frame(width: UIScreen.width - 32, height: 1)
             .background(Colors.label)
-            Text("Dzisiaj: " + "\(latestValue)")
+            Text("\(Int(chartData.onlyPoints().last ?? 0)) ")
                 .font(.system(size: 16, weight: .semibold, design: .default))
                 .foregroundColor(Colors.label)
         }
@@ -35,6 +35,6 @@ struct ChartTopView: View {
 
 struct ChartTopView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartTopView(title: "Chart title", latestValue: 20).environmentObject(ChartViewModel())
+        ChartTopView(chartData: ChartData(points: [234, 53, 78]), title: "Chart title").environmentObject(ChartViewModel())
     }
 }

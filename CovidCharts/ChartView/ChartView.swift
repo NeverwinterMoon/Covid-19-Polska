@@ -8,25 +8,67 @@
 
 import SwiftUI
 
+public class ChartCustomData: ObservableObject, Identifiable {
+    @Published var data: [Double]
+    var valuesGiven: Bool = false
+    var ID = UUID()
+    
+    init(data: [Double]) {
+        self.data = data
+    }
+//
+//    public init<N: BinaryFloatingPoint>(points:[N]) {
+//        self.points = points.map{("", Double($0))}
+//    }
+//    public init<N: BinaryInteger>(values:[(String,N)]){
+//        self.points = values.map{($0.0, Double($0.1))}
+//        self.valuesGiven = true
+//    }
+//    public init<N: BinaryFloatingPoint>(values:[(String,N)]){
+//        self.points = values.map{($0.0, Double($0.1))}
+//        self.valuesGiven = true
+//    }
+//    public init<N: BinaryInteger>(numberValues:[(N,N)]){
+//        self.points = numberValues.map{(String($0.0), Double($0.1))}
+//        self.valuesGiven = true
+//    }
+//    public init<N: BinaryFloatingPoint & LosslessStringConvertible>(numberValues:[(N,N)]){
+//        self.points = numberValues.map{(String($0.0), Double($0.1))}
+//        self.valuesGiven = true
+//    }
+//
+//    public func onlyPoints() -> [Double] {
+//        return self.points.map{ $0.1 }
+//    }
+}
+
 struct ChartView: View {
     
     static let height = UIScreen.height / 1.75
     static let width = UIScreen.width - 32
     
-    @State var chartData: [Double] = []
+    @ObservedObject var chartData: ChartData
+    
     var title: String = ""
     var minX: String = ""
     var maxX: String = ""
+    
+    init(data: [Double], title: String, minX: String, maxX: String) {
+        self.chartData = ChartData(points: data)
+        self.title = title
+        self.minX = minX
+        self.maxX = maxX
+    }
     
     var body: some View {
         VStack (alignment: .center, spacing: 0) {
             Spacer()
                 .frame(width: UIScreen.width, height: 8, alignment: .center)
                 .background(Color.clear)
-            ChartTopView(title: title, latestValue: Int(chartData.last!))
+            ChartTopView(chartData: chartData, title: title)
             Spacer()
                  .frame(width: UIScreen.width, height: 8, alignment: .center)
-            ChartContentView(chartData: chartData, maxY: chartData.max()!, midY: chartData.max()!/2)
+            ChartContentView(chartData: chartData)
                 .padding(.leading, 2)
             ChartXLine(minX: minX, maxX: maxX)
                 .padding(.horizontal)
@@ -45,6 +87,6 @@ struct ChartView: View {
 
 struct ChartView_Previews: PreviewProvider {
     static var previews: some View {
-        ChartView(chartData: [20, 40, 60, 40, 20], title: "Title", minX: "10 March 2019", maxX: "12 March 2020")
+        ChartView(data: [23, 43, 53], title: "Title", minX: "10 March 2019", maxX: "12 March 2020")
     }
 }

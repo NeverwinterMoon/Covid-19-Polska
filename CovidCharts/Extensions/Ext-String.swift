@@ -28,7 +28,7 @@ extension String {
         switch style {
         case .short: secondFormatter.dateFormat = "dd.MM"
         case .long: secondFormatter.dateFormat = "dd MMMM YYYY"
-        case .medium: secondFormatter.dateFormat = "dd.MM.YY"
+        case .medium: secondFormatter.dateFormat = "dd MMMM"
         case .superlong: secondFormatter.dateFormat = "HH:mm, dd MMMM YYYY"
         }
         return secondFormatter.string(from: date ?? Date())

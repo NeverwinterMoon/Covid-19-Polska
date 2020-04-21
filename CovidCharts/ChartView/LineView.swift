@@ -27,13 +27,12 @@ public struct LineView: View {
     @State private var selectedDayIncrease: Day = Day(confirmed: 0, deaths: 0, recovered: 0, date: "")
     @State private var hideHorizontalLines: Bool = false
     
-    public init(data: [Double],
+    public init(chartData: ChartData,
                 title: String? = nil,
                 legend: String? = nil,
                 style: ChartStyle = Styles.lineChartStyleOne,
                 valueSpecifier: String? = "%.1f") {
-        
-        self.data = ChartData(points: data)
+        self.data = chartData
         self.title = title
         self.legend = legend
         self.style = style
@@ -103,7 +102,7 @@ public struct LineView: View {
 
 struct LineView_Previews: PreviewProvider {
     static var previews: some View {
-        LineView(data: [8,23,54,32,12,37,7,23,43], title: "Full chart", style: Styles.lineChartStyleOne).environmentObject(ChartViewModel())
+        LineView(chartData: ChartData(points: [2,8,10,14,18,23,12,8,2]), title: "Full chart", style: Styles.lineChartStyleOne).environmentObject(ChartViewModel())
     }
 }
 

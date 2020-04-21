@@ -67,7 +67,7 @@ class ChartViewModel: ObservableObject {
     
     // MARK: - Charts
     
-    func setChartTitle(_ parameter: ParameterType) -> String {
+    func setChartTitle() -> String {
         switch parameter {
         case .confirmed: return "Zakażenia"
         case .deaths: return "Zgony"
@@ -80,7 +80,7 @@ class ChartViewModel: ObservableObject {
         customData = data.suffix(daysNumber)
     }
     
-    func getDailyChangeData() -> [Double] {
+    func getDailyChangeData(_ parameter: ParameterType) -> [Double] {
         var values = [Double]()
         guard !customData.isEmpty else {
             return []
@@ -94,10 +94,11 @@ class ChartViewModel: ObservableObject {
             }
             values.append(change)
         }
+        print(values)
         return values
     }
     
-    func getDailyIncreaseData() -> [Double] {
+    func getDailyIncreaseData(_ parameter: ParameterType) -> [Double] {
         var values = [Double]()
         customData.forEach { day in
             switch parameter {
@@ -126,25 +127,16 @@ class ChartViewModel: ObservableObject {
         }
     }
     
-    func getTodayValue() -> Int {
-        return Int((getDailyChangeData().last ?? 0))
-    }
-    
-    func getChartMaxValue() -> Double {
-        return (getDailyChangeData().max() ?? 0)
-    }
-    
-    func getChartMidValue() -> Double {
-         let last = (getDailyChangeData().max() ?? 0)
-         return last / 2
-    }
-    
     func getCases(_ day: Day) -> CGFloat {
         switch parameter {
         case .deaths: return CGFloat(day.deaths)
         case .confirmed: return CGFloat(day.confirmed)
         case .recovered: return CGFloat(day.recovered)
         }
+    }
+    
+    func getLatestDate(_ dateStyle: DateStyle) -> String {
+        return customData.last?.date.formattedDate(dateStyle) ?? "Loading..."
     }
     
     // MARK: - TitleView
