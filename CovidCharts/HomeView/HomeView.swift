@@ -21,30 +21,26 @@ struct HomeView: View {
             Colors.appBackground
                 .edgesIgnoringSafeArea(.all)
             VStack (spacing: 0) {
-            if !vm.customData.isEmpty {
-                TitleView(title: "Covid-19 Polska", lastUpdateTime: vm.getLastUpdateDate(), parameterSumValue: vm.getConfirmedCases(), parameterIcon: Images.confirmed, parameterIncreaseValue: vm.getLatestIncrease(), rightButtonIcon: Images.reload) {
-                    print("Reload tapped")
-                  //  vm.reloadData()
-                }
-                VerticalSpacer()
-                ChartView(chartData: vm.getDailyChangeData(), title: vm.setChartTitle(vm.parameter), todayValue: vm.getTodayValue(), maxY: vm.getChartMaxValue(), midY: vm.getChartMidValue(), minX: vm.getMinDate(), maxX: vm.getMaxDate())
+                if !vm.customData.isEmpty {
+                    TitleView(title: "Covid-19 Polska", lastUpdateTime: vm.getLastUpdateDate(), parameterSumValue: vm.getConfirmedCases(), parameterIcon: Images.confirmed, parameterIncreaseValue: vm.getLatestIncrease(), rightButtonIcon: Images.reload) {
+                        print("Reload tapped")
+                    }
+                    VerticalSpacer()
+                    ChartView(chartData: vm.getDailyChangeData(), title: vm.setChartTitle(vm.parameter), todayValue: vm.getTodayValue(), maxY: vm.getChartMaxValue(), midY: vm.getChartMidValue(), minX: vm.getMinDate(), maxX: vm.getMaxDate())
                     VerticalSpacer()
                     ChartToolbar(showDetailsView: $showDetailsView, showPopup: $showPopup)
                     Spacer()
-                ToolbarView()
-            } else {
-                VStack (spacing: 40) {
-                  ActivityIndicator()
-                    .frame(width: 60, height: 60, alignment: .center)
-                Text("Ładowanie danych...")
-                    .font(Fonts.titlePopup)
+                    ToolbarView()
+                } else {
+                    VStack (spacing: 40) {
+                        ActivityIndicator()
+                            .frame(width: 60, height: 60, alignment: .center)
+                        Text("Ładowanie danych...")
+                            .font(Fonts.titlePopup)
+                            .foregroundColor(Colors.main)
+                    }
                     .foregroundColor(Colors.main)
                 }
-                .foregroundColor(Colors.main)
-            }
-                
-                
-                
             }
             .blur(radius: showPopup ? 10 : 0)
             InfoPopupView(title: "Kalendarz", message: "Funkcja dostępna wkrótce", showPopup: $showPopup)
