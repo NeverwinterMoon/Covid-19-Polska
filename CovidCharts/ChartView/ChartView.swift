@@ -10,6 +10,9 @@ import SwiftUI
 
 struct ChartView: View {
     
+    static let height = UIScreen.height / 1.75
+    static let width = UIScreen.width + 32
+    
     var chartData: [Double] = []
     var title: String = ""
     var todayValue: Int = 0
