@@ -45,6 +45,8 @@
 		81C19893244C74C400AEC5FF /* InfoPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19892244C74C400AEC5FF /* InfoPopupView.swift */; };
 		81C19896244DA55A00AEC5FF /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19895244DA55A00AEC5FF /* DetailsView.swift */; };
 		81D0EA37244ED5D400968667 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0EA36244ED5D400968667 /* Layout.swift */; };
+		81D0EA3A244F249200968667 /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0EA39244F249200968667 /* BarView.swift */; };
+		81D0EA3C244F252500968667 /* BarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0EA3B244F252500968667 /* BarContentView.swift */; };
 		81E05EBB244E1EF10002F0C3 /* HomeViewBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E05EBA244E1EF00002F0C3 /* HomeViewBottomView.swift */; };
 		81E05EBD244E4E460002F0C3 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E05EBC244E4E460002F0C3 /* ChartViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -90,6 +92,8 @@
 		81C19892244C74C400AEC5FF /* InfoPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopupView.swift; sourceTree = "<group>"; };
 		81C19895244DA55A00AEC5FF /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		81D0EA36244ED5D400968667 /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		81D0EA39244F249200968667 /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
+		81D0EA3B244F252500968667 /* BarContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarContentView.swift; sourceTree = "<group>"; };
 		81E05EBA244E1EF00002F0C3 /* HomeViewBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewBottomView.swift; sourceTree = "<group>"; };
 		81E05EBC244E4E460002F0C3 /* ChartViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,6 +132,7 @@
 				810C12F82444994000419207 /* SceneDelegate.swift */,
 				81C197FE24490AFB00AEC5FF /* ChartsModel.swift */,
 				81E05EBC244E4E460002F0C3 /* ChartViewModel.swift */,
+				81D0EA38244F247000968667 /* BarView */,
 				810C131A2446043700419207 /* ChartView */,
 				810C130F2444C9B100419207 /* HomeView */,
 				81C19894244DA54200AEC5FF /* DetailsView */,
@@ -265,6 +270,15 @@
 			path = DetailsView;
 			sourceTree = "<group>";
 		};
+		81D0EA38244F247000968667 /* BarView */ = {
+			isa = PBXGroup;
+			children = (
+				81D0EA39244F249200968667 /* BarView.swift */,
+				81D0EA3B244F252500968667 /* BarContentView.swift */,
+			);
+			path = BarView;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -342,6 +356,7 @@
 			files = (
 				81C198462449E3ED00AEC5FF /* LineView.swift in Sources */,
 				81C198552449E4EC00AEC5FF /* ChartHelper.swift in Sources */,
+				81D0EA3A244F249200968667 /* BarView.swift in Sources */,
 				81C198382449E31100AEC5FF /* BarChartView.swift in Sources */,
 				81C198362449E2ED00AEC5FF /* BarChartRow.swift in Sources */,
 				81D0EA37244ED5D400968667 /* Layout.swift in Sources */,
@@ -370,6 +385,7 @@
 				81C197F224486BAD00AEC5FF /* HomeViewToolbarView.swift in Sources */,
 				81C1984F2449E45D00AEC5FF /* PieChartCell.swift in Sources */,
 				810C1322244604F000419207 /* ChartContentView.swift in Sources */,
+				81D0EA3C244F252500968667 /* BarContentView.swift in Sources */,
 				81C19893244C74C400AEC5FF /* InfoPopupView.swift in Sources */,
 				81C198482449E40800AEC5FF /* MaginfierRect.swift in Sources */,
 				810C12FB2444994000419207 /* HomeView.swift in Sources */,
