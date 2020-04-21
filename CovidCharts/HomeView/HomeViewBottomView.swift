@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct TitleView: View {
+struct HomeViewBottomView: View {
     
     var title: String
     var lastUpdateTime: String
@@ -81,7 +81,7 @@ struct TitleView: View {
 
 struct TitleView_Previews: PreviewProvider {
     static var previews: some View {
-        TitleView(title: "Covid-19 Polska", lastUpdateTime: "19 Marca 2020", parameterSumValue: "1231", parameterIcon: Icons.confirmed, parameterIncreaseValue: "123", rightButtonIcon: Icons.reload) {
+        HomeViewBottomView(title: "Covid-19 Polska", lastUpdateTime: "19 Marca 2020", parameterSumValue: "1231", parameterIcon: Icons.confirmed, parameterIncreaseValue: "123", rightButtonIcon: Icons.reload) {
             print("Right button tapped")
         }
     }

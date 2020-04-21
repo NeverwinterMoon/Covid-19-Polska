@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ToolbarView: View {
+struct HomeViewToolbarView: View {
     
     @EnvironmentObject var vm: ChartViewModel
     
@@ -31,7 +31,7 @@ struct ToolbarView: View {
 
 struct ToolbarView_Previews: PreviewProvider {
     static var previews: some View {
-        ToolbarView().environmentObject(ChartViewModel())
+        HomeViewToolbarView().environmentObject(ChartViewModel())
     }
 }
 

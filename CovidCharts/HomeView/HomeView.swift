@@ -22,7 +22,7 @@ struct HomeView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack (spacing: 0) {
                 if !vm.customData.isEmpty {
-                    TitleView(title: "Covid-19 Polska", lastUpdateTime: vm.getLastUpdateDate(), parameterSumValue: vm.getConfirmedCases(), parameterIcon: Icons.confirmed, parameterIncreaseValue: vm.getLatestIncrease(), rightButtonIcon: Icons.reload) {
+                    HomeViewBottomView(title: "Covid-19 Polska", lastUpdateTime: vm.getLastUpdateDate(), parameterSumValue: vm.getConfirmedCases(), parameterIcon: Icons.confirmed, parameterIncreaseValue: vm.getLatestIncrease(), rightButtonIcon: Icons.reload) {
                         print("Reload tapped")
                     }
                     VerticalSpacer()
@@ -30,7 +30,7 @@ struct HomeView: View {
                     VerticalSpacer()
                     ChartToolbar(showDetailsView: $showDetailsView, showPopup: $showPopup)
                     Spacer()
-                    ToolbarView()
+                    HomeViewToolbarView()
                 } else {
                     VStack (spacing: 40) {
                         ActivityIndicator()

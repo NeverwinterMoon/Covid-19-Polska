@@ -27,7 +27,12 @@ struct DetailsView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 VerticalSpacer()
-                TitleView(title: "Covid-19 Polska", lastUpdateTime: vm.getLastUpdateDate(), parameterSumValue: vm.getConfirmedCases(), parameterIcon: Icons.confirmed, parameterIncreaseValue: vm.getLatestIncrease(), rightButtonIcon: Icons.dismiss) {
+                Rectangle()
+                .frame(width: 40, height: 5)
+                .cornerRadius(3)
+                .opacity(0.1)
+                VerticalSpacer()
+                HomeViewBottomView(title: "Covid-19 Polska", lastUpdateTime: vm.getLastUpdateDate(), parameterSumValue: vm.getConfirmedCases(), parameterIcon: Icons.confirmed, parameterIncreaseValue: vm.getLatestIncrease(), rightButtonIcon: Icons.dismiss) {
                     self.showDetailsView.toggle()
                     print("hideConfirmedCases")
                 }
