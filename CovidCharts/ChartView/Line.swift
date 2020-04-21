@@ -71,10 +71,15 @@ public struct Line: View {
                 .stroke(LinearGradient(gradient: gradient.getGradient(), startPoint: .leading, endPoint: .trailing) ,style: StrokeStyle(lineWidth: 3, lineJoin: .round))
                 .rotationEffect(.degrees(180), anchor: .center)
                 .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
-                .animation(Animation.easeOut(duration: 1.2).delay(Double(self.index)*0.4))
+                .animation(Animation.easeOut(duration: 2.0).delay(Double(self.index)*0.4))
+
                 .onAppear {
-                    self.showFull = true
+                    self.showFull.toggle()
             }
+            .onDisappear {
+                self.showFull.toggle()
+            }
+            
 
             .drawingGroup()
             if(self.showIndicator) {
