@@ -24,7 +24,7 @@ struct TitleView: View {
             HStack (alignment: .center) {
                 VStack (alignment: .leading, spacing: 0) {
                     Text(title)
-                        .font(.system(size: 28, weight: .bold, design: .rounded))
+                        .font(Fonts.title)
                         .foregroundColor(Colors.label)
                     HStack {
                         TitleIconView(name: Images.time, size: .medium, weight: .regular, color: Colors.main)
