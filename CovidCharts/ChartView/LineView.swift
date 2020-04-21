@@ -80,7 +80,7 @@ public struct LineView: View {
         let stepHeight: CGFloat = height / CGFloat(points.max()! + points.min()!)
         
         var index: Int = Int(floor((toPoint.x+15)/stepWidth))
-        if index > 0 {
+        if index > 0 && index < points.count {
             if index == chartViewModel.customData.count {
                 index = index - 1
             }

@@ -47,7 +47,7 @@
 		81C1989A244DEF2A00AEC5FF /* ChartCustomClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19899244DEF2A00AEC5FF /* ChartCustomClasses.swift */; };
 		81D0EA37244ED5D400968667 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0EA36244ED5D400968667 /* Layout.swift */; };
 		81E05EBB244E1EF10002F0C3 /* HomeViewTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E05EBA244E1EF00002F0C3 /* HomeViewTitleView.swift */; };
-		81E05EBD244E4E460002F0C3 /* ChartDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E05EBC244E4E460002F0C3 /* ChartDatabase.swift */; };
+		81E05EBD244E4E460002F0C3 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E05EBC244E4E460002F0C3 /* ChartViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,7 +93,7 @@
 		81C19899244DEF2A00AEC5FF /* ChartCustomClasses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartCustomClasses.swift; sourceTree = "<group>"; };
 		81D0EA36244ED5D400968667 /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		81E05EBA244E1EF00002F0C3 /* HomeViewTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewTitleView.swift; sourceTree = "<group>"; };
-		81E05EBC244E4E460002F0C3 /* ChartDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartDatabase.swift; sourceTree = "<group>"; };
+		81E05EBC244E4E460002F0C3 /* ChartViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,7 +129,7 @@
 				810C12F62444994000419207 /* AppDelegate.swift */,
 				810C12F82444994000419207 /* SceneDelegate.swift */,
 				81C197FE24490AFB00AEC5FF /* ChartsModel.swift */,
-				81E05EBC244E4E460002F0C3 /* ChartDatabase.swift */,
+				81E05EBC244E4E460002F0C3 /* ChartViewModel.swift */,
 				810C131A2446043700419207 /* ChartView */,
 				810C130F2444C9B100419207 /* HomeView */,
 				81C19894244DA54200AEC5FF /* DetailsView */,
@@ -362,7 +362,7 @@
 				81C197F62448A21300AEC5FF /* ChartToolbarView.swift in Sources */,
 				81C1989A244DEF2A00AEC5FF /* ChartCustomClasses.swift in Sources */,
 				81C197BE2446634900AEC5FF /* Icons.swift in Sources */,
-				81E05EBD244E4E460002F0C3 /* ChartDatabase.swift in Sources */,
+				81E05EBD244E4E460002F0C3 /* ChartViewModel.swift in Sources */,
 				81C198422449E3A700AEC5FF /* Line.swift in Sources */,
 				81C1983E2449E37200AEC5FF /* IndicatorPointView.swift in Sources */,
 				81C198532449E49900AEC5FF /* PieChartView.swift in Sources */,
