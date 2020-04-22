@@ -29,7 +29,7 @@ public class BarHorizontalData: ObservableObject, Identifiable {
 struct BarHorizontalChartView: View {
     
     @ObservedObject var vm: BarHorizontalData
-    var title: String = "Chart Title"
+    var title: String
     
     var legend1: String
     var color1: Color
@@ -50,7 +50,6 @@ struct BarHorizontalChartView: View {
         self.color1 = color1
         self.color2 = color2
     }
-    
     
     var body: some View {
         VStack {
