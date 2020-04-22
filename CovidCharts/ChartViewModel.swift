@@ -55,6 +55,7 @@ class ChartViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self.data.append(Day(confirmed: latest.infected, deaths: latest.deceased, recovered: self.data.last?.recovered ?? 0, date: latest.lastUpdatedAtApify))
                     self.setDataFromLast(30, chart: self.parameter)
+                    self.setIncreaseDataFromLaset(30)
                     latest.infectedByRegion.forEach { (region) in
                         self.regionData.append(RegionData(region: region.region, confirmed: region.infectedCount, deaths: region.infectedCount))
                     }
