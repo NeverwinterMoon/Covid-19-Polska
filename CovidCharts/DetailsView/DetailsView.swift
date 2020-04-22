@@ -14,11 +14,12 @@ struct DetailsView: View {
     
     @Binding var showDetailsView: Bool
     
-    var chartSectionHeight = (ChartView.height)*2
+    var tableSectionHeight: CGFloat = 960
     
     @State var showConfirmedCharts: Bool = false
     @State var showDeathsCharts: Bool = false
     @State var showRecoveredCharts: Bool = false
+    @State var showCovidTable: Bool = false
     
     
     var body: some View {
@@ -28,47 +29,37 @@ struct DetailsView: View {
             VStack {
                 VerticalSpacer()
                 Rectangle()
-                .frame(width: 40, height: 5)
-                .cornerRadius(3)
-                .opacity(0.1)
+                    .frame(width: 40, height: 5)
+                    .cornerRadius(3)
+                    .opacity(0.1)
                 VerticalSpacer()
                 HomeViewBottomView(title: "Covid-19 Polska", lastUpdateTime: vm.getLastUpdateDate(), parameterSumValue: vm.getConfirmedCases(), parameterIcon: Icons.confirmed, parameterIncreaseValue: vm.getLatestIncrease(), rightButtonIcon: Icons.dismiss) {
                     self.showDetailsView.toggle()
                     print("hideConfirmedCases")
                 }
                 VerticalSpacer()
-                VerticalSpacer()
                 List {
                     SectionTitle(title: "Zakażenia", show: $showConfirmedCharts)
-                    VStack {
-                        ChartView(data: self.vm.getDailyChangeData(.confirmed), title: "Dzienny przyrost", minX: self.vm.getMinDate(), maxX: self.vm.getMaxDate())
-                        ChartView(data: self.vm.getDailyIncreaseData(.confirmed), title: "Liczba zakażeń", minX: self.vm.getMinDate(), maxX: self.vm.getMaxDate())
-                    }
-                        .opacity(self.showConfirmedCharts ? 1.0 : 0.0)
-                        .frame(height: self.showConfirmedCharts ? chartSectionHeight : -chartSectionHeight)
-                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        .padding(.bottom)
+                    SectionCharts(show: $showConfirmedCharts, parameter: .confirmed, title1: "Przyrost zakażeń", title2: "Zakażenia")
                     SectionTitle(title: "Zgony", show: $showDeathsCharts)
-                    VStack {
-                        ChartView(data: self.vm.getDailyChangeData(.deaths), title: "Przyrost", minX: self.vm.getMinDate(), maxX: self.vm.getMaxDate())
-                        ChartView(data: self.vm.getDailyIncreaseData(.deaths), title: "Liczba zgonów", minX: self.vm.getMinDate(), maxX: self.vm.getMaxDate())
-                    }
-                        .opacity(self.showDeathsCharts ? 1.0 : 0.0)
-                        .frame(height: self.showDeathsCharts ? chartSectionHeight : -chartSectionHeight)
-                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                    SectionTitle(title: "Wyleczeni", show: $showRecoveredCharts)
-                    VStack {
-                        ChartView(data: self.vm.getDailyChangeData(.recovered), title: "Przyrost", minX: self.vm.getMinDate(), maxX: self.vm.getMaxDate())
-                        ChartView(data: self.vm.getDailyIncreaseData(.recovered), title: "Liczba wyleczonych", minX: self.vm.getMinDate(), maxX: self.vm.getMaxDate())
-                    }
-                        .opacity(self.showRecoveredCharts ? 1.0 : 0.0)
-                        .frame(height: self.showRecoveredCharts ? chartSectionHeight : -chartSectionHeight)
-                        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        .padding(.vertical)
+                    SectionCharts(show: $showConfirmedCharts, parameter: .deaths, title1: "Przyrost zgonów", title2: "Zgony")
+                    SectionTitle(title: "Wyzdrowienia", show: $showRecoveredCharts)
+                        .padding(.vertical)
+                    SectionCharts(show: $showRecoveredCharts, parameter: .recovered, title1: "Przyrost wyzdrowień", title2: "Wyzdrowienia")
+                    SectionTitle(title: "Tabela zakażeń", show: $showCovidTable)
+                        .padding(.vertical)
                     CovidTableView()
-                }.environment(\.defaultMinListRowHeight, 1)
-                    .background(Colors.appBackground)
+                        .opacity(self.showCovidTable ? 1.0 : 0.0)
+                        .frame(height: self.showCovidTable ? tableSectionHeight : -tableSectionHeight)
+                        .listRowBackground(Colors.appBackground)
+                }
+                .environment(\.defaultMinListRowHeight, 1)
+                .background(Colors.appBackground)
             }
         }
-
+        
     }
 }
 
@@ -106,5 +97,28 @@ struct SectionTitle: View {
         }
         .listRowBackground(Colors.appBackground)
         .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+    }
+}
+
+struct SectionCharts: View {
+    
+    @EnvironmentObject var vm: ChartViewModel
+    var chartSectionHeight = (ChartView.height)*2+32
+    
+    @Binding var show: Bool
+    
+    var parameter: ParameterType
+    var title1: String
+    var title2: String
+    
+    var body: some View {
+        VStack(spacing: 16) {
+            ChartView(data: self.vm.getDailyChangeData(parameter), title: title1, minX: self.vm.getMinDate(), maxX: self.vm.getMaxDate())
+            ChartView(data: self.vm.getDailyIncreaseData(parameter), title: title2, minX: self.vm.getMinDate(), maxX: self.vm.getMaxDate())
+        }
+        .opacity(self.show ? 1.0 : 0.0)
+        .listRowBackground(Colors.appBackground)
+        .frame(height: self.show ? chartSectionHeight : -chartSectionHeight)
+        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
     }
 }
