@@ -13,6 +13,10 @@ enum ParameterType {
     case deaths, confirmed, recovered
 }
 
+enum HTTPError: LocalizedError {
+    case statusCode
+}
+
 class ChartViewModel: ObservableObject {
     
     private var data = [Day]()
@@ -21,53 +25,99 @@ class ChartViewModel: ObservableObject {
     @Published var customData = [Day]()
     @Published var customIncreaseData = [Day]()
     @Published var parameter: ParameterType = .confirmed
+    private var cancellable: AnyCancellable?
+    private var cancellable2: AnyCancellable?
     
     init() {
-        loadData()
-        loadLatestData()
+        fetchData()
+        fetchLatestData()
     }
     
     // MARK: - BarChart
 
     // MARK: - Networking
-    func loadData() {
+//    func loadData() {
+//        let urlString = "https://api.covid19api.com/country/Poland"
+//        guard let url = URL(string: urlString) else { return }
+//        URLSession.shared.dataTask(with: url) { (data, response, error) in
+//            guard let data = data else { return }
+//            do {
+//                let timeSeries = try JSONDecoder().decode(Days.self, from: data)
+//                DispatchQueue.main.async {
+//                    self.data = timeSeries
+//                }
+//            } catch {
+//                print("JSON Decode failed:", error)
+//            }
+//        }
+//        .resume()
+//    }
+    
+    func fetchData() {
         let urlString = "https://api.covid19api.com/country/Poland"
-        guard let url = URL(string: urlString) else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data else { return }
-            do {
-                let timeSeries = try JSONDecoder().decode(Days.self, from: data)
-                DispatchQueue.main.async {
-                    self.data = timeSeries
-                }
-            } catch {
-                print("JSON Decode failed:", error)
-            }
+        guard let url = URL(string: urlString) else {
+            return
         }
-        .resume()
+        self.cancellable = URLSession.shared.dataTaskPublisher(for: url)
+            .tryMap { output in
+                guard let response = output.response as? HTTPURLResponse, response.statusCode == 200 else {
+                    print("Poop")
+                    throw HTTPError.statusCode
+                }
+                return output.data
+        }
+        .receive(on: DispatchQueue.main)
+        .decode(type: Days.self, decoder: JSONDecoder())
+        .replaceError(with: [])
+        .eraseToAnyPublisher()
+        .sink(receiveCompletion: { completion in
+            switch completion {
+            case .finished:
+                break
+            case .failure(let error):
+                print("Poop2")
+                fatalError(error.localizedDescription)
+            }
+        }, receiveValue: { days in
+            DispatchQueue.main.async {
+                self.data = days
+            }
+            
+        })
     }
     
-    func loadLatestData() {
+    func fetchLatestData() {
         let urlString = "https://api.apify.com/v2/key-value-stores/3Po6TV7wTht4vIEid/records/LATEST?disableRedirect=true"
-        guard let url = URL(string: urlString) else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            guard let data = data else { return }
-            do {
-                let latest = try JSONDecoder().decode(PolandLatest.self, from: data)
-                DispatchQueue.main.async {
-                    self.data.append(Day(confirmed: latest.infected, deaths: latest.deceased, recovered: self.data.last?.recovered ?? 0, date: latest.lastUpdatedAtApify))
-                    self.setDataFromLast(30, chart: self.parameter)
-                    self.setIncreaseDataFromLaset(30)
-                    latest.infectedByRegion.forEach { (region) in
-                        self.regionData.append(BarHorizontalDataEntity(title: region.region, value1: Double(region.infectedCount), value2: Double(region.deceasedCount)))
-                    }
-                    print(self.customData)
-                }
-            } catch {
-                print("JSON Decode failed:", error)
-            }
+        guard let url = URL(string: urlString) else {
+            return
         }
-        .resume()
+        self.cancellable2 = URLSession.shared.dataTaskPublisher(for: url)
+            .tryMap { output in
+                guard let response = output.response as? HTTPURLResponse, response.statusCode == 200 else {
+                    throw HTTPError.statusCode
+                }
+                return output.data
+        }
+        .receive(on: DispatchQueue.main)
+        .decode(type: PolandLatest.self, decoder: JSONDecoder())
+        .replaceError(with: PolandLatest(infected: 0, deceased: 0, infectedByRegion: [], sourceURL: "", lastUpdatedAtApify: "", readMe: ""))
+        .eraseToAnyPublisher()
+        .sink(receiveCompletion: { completion in
+            switch completion {
+            case .finished: break
+            case .failure(let error): fatalError(error.localizedDescription)
+            }
+        }, receiveValue: { latest in
+            DispatchQueue.main.async {
+                self.data.append(Day(confirmed: latest.infected, deaths: latest.deceased, recovered: self.data.last?.recovered ?? 0, date: latest.lastUpdatedAtApify))
+                self.setDataFromLast(30, chart: self.parameter)
+                self.setIncreaseDataFromLaset(30)
+                latest.infectedByRegion.forEach { (region) in
+                    self.regionData.append(BarHorizontalDataEntity(title: region.region, value1: Double(region.infectedCount), value2: Double(region.deceasedCount)))
+                }
+                
+            }
+        })
     }
     
     // MARK: - Charts
