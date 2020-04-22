@@ -20,7 +20,7 @@ struct DetailsView: View {
     @State var showDeathsCharts: Bool = false
     @State var showRecoveredCharts: Bool = false
     @State var showCovidTable: Bool = false
-    
+    @State var showProvinceChart: Bool = false
     
     var body: some View {
         ZStack {
@@ -43,17 +43,21 @@ struct DetailsView: View {
                         .padding(.bottom)
                     SectionCharts(show: $showConfirmedCharts, parameter: .confirmed, title1: "Przyrost zakażeń", title2: "Zakażenia")
                     SectionTitle(title: "Zgony", show: $showDeathsCharts)
-                        .padding(.vertical)
-                    SectionCharts(show: $showConfirmedCharts, parameter: .deaths, title1: "Przyrost zgonów", title2: "Zgony")
+                        .padding(.vertical,8)
+                    SectionCharts(show: $showDeathsCharts, parameter: .deaths, title1: "Przyrost zgonów", title2: "Zgony")
                     SectionTitle(title: "Wyzdrowienia", show: $showRecoveredCharts)
-                        .padding(.vertical)
+                        .padding(.vertical,8)
                     SectionCharts(show: $showRecoveredCharts, parameter: .recovered, title1: "Przyrost wyzdrowień", title2: "Wyzdrowienia")
                     SectionTitle(title: "Tabela zakażeń", show: $showCovidTable)
-                        .padding(.vertical)
+                        .padding(.vertical,8)
                     CovidTableView()
                         .opacity(self.showCovidTable ? 1.0 : 0.0)
                         .frame(height: self.showCovidTable ? tableSectionHeight : -tableSectionHeight)
                         .listRowBackground(Colors.appBackground)
+                    SectionTitle(title: "Województwa", show: $showProvinceChart)
+                    BarHorizontalChartView(title: "Zakażenia w województwach", data: vm.regionData, legend1: "Zakażenia", color1: Colors.main, legend2: "Zgony", color2: Colors.BorderBlue)
+                            .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
+                    .listRowBackground(Colors.appBackground)
                 }
                 .environment(\.defaultMinListRowHeight, 1)
                 .background(Colors.appBackground)

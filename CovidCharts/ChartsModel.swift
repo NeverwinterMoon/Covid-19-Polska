@@ -21,7 +21,7 @@ struct Day: Decodable, Hashable {
     }
 }
 
-struct RegionData {
+struct RegionData: Hashable {
     let region: String
     let confirmed: Int
     let deaths: Int

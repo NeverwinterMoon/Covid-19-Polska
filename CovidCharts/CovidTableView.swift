@@ -52,7 +52,7 @@ struct CovidTableView_Previews: PreviewProvider {
     }
 }
 
-fileprivate struct ParameterText: View {
+struct ParameterText: View {
     var title: String
     var body: some View {
         Text(title)

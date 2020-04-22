@@ -16,30 +16,7 @@ public class ChartCustomData: ObservableObject, Identifiable {
     init(data: [Double]) {
         self.data = data
     }
-//
-//    public init<N: BinaryFloatingPoint>(points:[N]) {
-//        self.points = points.map{("", Double($0))}
-//    }
-//    public init<N: BinaryInteger>(values:[(String,N)]){
-//        self.points = values.map{($0.0, Double($0.1))}
-//        self.valuesGiven = true
-//    }
-//    public init<N: BinaryFloatingPoint>(values:[(String,N)]){
-//        self.points = values.map{($0.0, Double($0.1))}
-//        self.valuesGiven = true
-//    }
-//    public init<N: BinaryInteger>(numberValues:[(N,N)]){
-//        self.points = numberValues.map{(String($0.0), Double($0.1))}
-//        self.valuesGiven = true
-//    }
-//    public init<N: BinaryFloatingPoint & LosslessStringConvertible>(numberValues:[(N,N)]){
-//        self.points = numberValues.map{(String($0.0), Double($0.1))}
-//        self.valuesGiven = true
-//    }
-//
-//    public func onlyPoints() -> [Double] {
-//        return self.points.map{ $0.1 }
-//    }
+
 }
 
 struct ChartView: View {

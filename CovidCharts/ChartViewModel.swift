@@ -17,7 +17,7 @@ class ChartViewModel: ObservableObject {
     
     private var data = [Day]()
     private var dataOnIncrese = [Day]()
-    @Published var regionData = [RegionData]()
+    @Published var regionData = [BarHorizontalDataEntity]()
     @Published var customData = [Day]()
     @Published var customIncreaseData = [Day]()
     @Published var parameter: ParameterType = .confirmed
@@ -26,6 +26,8 @@ class ChartViewModel: ObservableObject {
         loadData()
         loadLatestData()
     }
+    
+    // MARK: - BarChart
 
     // MARK: - Networking
     func loadData() {
@@ -57,7 +59,7 @@ class ChartViewModel: ObservableObject {
                     self.setDataFromLast(30, chart: self.parameter)
                     self.setIncreaseDataFromLaset(30)
                     latest.infectedByRegion.forEach { (region) in
-                        self.regionData.append(RegionData(region: region.region, confirmed: region.infectedCount, deaths: region.infectedCount))
+                        self.regionData.append(BarHorizontalDataEntity(title: region.region, value1: Double(region.infectedCount), value2: Double(region.deceasedCount)))
                     }
                     print(self.customData)
                 }
