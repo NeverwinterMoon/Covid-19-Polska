@@ -35,6 +35,9 @@ struct BarHorizontalChartView: View {
     var color1: Color
     var legend2: String?
     var color2: Color?
+    var barHeight: CGFloat
+    
+    @State var showValues: Bool = false
     
     var max: Double {
         return vm.data.max { (region1, region2) -> Bool in
@@ -42,54 +45,123 @@ struct BarHorizontalChartView: View {
         }?.value1 ?? 0
     }
     
-    init(title: String = "Title", data: [BarHorizontalDataEntity], legend1: String = "legend2", color1: Color = Color.red, legend2: String = "legend2", color2: Color? = nil) {
+    init(title: String = "Title", data: [BarHorizontalDataEntity], legend1: String = "legend2", color1: Color = Color.red, legend2: String = "legend2", color2: Color? = nil, barHeight: CGFloat = 8.0) {
         self.title = title
         self.vm = BarHorizontalData(data: data)
         self.legend1 = legend1
         self.legend2 = legend2
         self.color1 = color1
         self.color2 = color2
+        self.barHeight = barHeight
     }
     
     var body: some View {
         ZStack {
+            Colors.customViewBackground
+            
             VStack (alignment: .leading, spacing: 0) {
                 BarTopView(title: title)
-                VStack (alignment: .center, spacing: 0) {
+                HStack {
+                    Spacer()
+                    VStack (alignment: .center, spacing: 0) {
+                        Spacer()
+                    }
+                    .padding(.all)
+                    .frame(width: UIScreen.width - 32, height: 1)
+                    .background(Colors.label)
                     Spacer()
                 }
-                .padding(.all)
-                .frame(width: UIScreen.width - 32, height: 1)
-                .background(Colors.label)
+                
                 ChartLegendView(color1: color1, title1: legend1, color2: color2, title2: legend2)
+                VStack {
+                    HStack {
+                        Spacer()
+                            .frame(width: 100)
+                        HStack {
+                            Text("0")
+                            .foregroundColor(Colors.label)
+                            .font(Fonts.tableElementDetails)
+                            Spacer()
+                            Text("\(Int(max/4))")
+                            .foregroundColor(Colors.label)
+                            .font(Fonts.tableElementDetails)
+                            Spacer()
+                            Text("\(Int(max)*3/4)")
+                            .foregroundColor(Colors.label)
+                            .font(Fonts.tableElementDetails)
+                            Spacer()
+                            Text("\(Int(max))")
+                            .foregroundColor(Colors.label)
+                            .font(Fonts.tableElementDetails)
+                        }
+                    .frame(width: CGFloat((UIScreen.width - 142)), height: 1, alignment: .center)
+                        
+                    }
+                    HStack {
+                        Spacer()
+                            .frame(width: 100)
+                        Spacer()
+                            .frame(width: CGFloat((UIScreen.width - 142)), height: 1, alignment: .center)
+                            .background(Colors.label)
+                    }
+                }.padding(.top, 8)
+                HStack {
+                    Spacer()
+                    .frame(width: 100)
+                    Spacer()
+                        .frame(width: 1, height: 4, alignment: .center)
+                        .background(Colors.label)
+                }
                 ForEach(vm.data, id: \.self) { entity in
                         HStack {
                             Text(entity.title)
+                            .foregroundColor(Colors.label)
                             .font(Fonts.titleTableElement)
                             .multilineTextAlignment(.trailing)
                             .frame(width: 80, alignment: .trailing)
                             .lineLimit(nil)
                             .padding(.trailing, 8)
+                            .padding(.leading, 8)
                             Spacer()
                                 .frame(width: 1, height: 30, alignment: .center)
                                 .background(Colors.label)
                                 .padding(.leading, 4)
                             VStack (alignment: .leading) {
-                                Spacer()
-                                    .frame(width: self.setWidth(entity.value1), height: 6, alignment: .leading)
-                                    .background(self.color1)
-                                if entity.value2 != nil {
+                                HStack {
                                     Spacer()
-                                        .frame(width: self.setWidth(entity.value2 ?? 0), height: 6, alignment: .leading)
-                                        .background(self.color2)
+                                        .frame(width: self.setWidth(entity.value1), height: self.barHeight, alignment: .leading)
+                                        .background(self.color1)
+                                    Text(self.showValues ? "\(Int(entity.value1))" : "")
+                                        .padding(.leading, 2)
+                                    .font(Fonts.tableElementDetails)
+                                    .foregroundColor(Colors.label)
+                                }
+                                if entity.value2 != nil {
+                                    HStack {
+                                        Spacer()
+                                            .frame(width: self.setWidth(entity.value2 ?? 0), height: self.barHeight, alignment: .leading)
+                                            .background(self.color2)
+                                        Text(self.showValues ? "\(Int(entity.value2 ?? 0))" : "")
+                                            .padding(.leading, 2)
+                                        .font(Fonts.tableElementDetails)
+                                        .foregroundColor(Colors.label)
+                                    }
+                    
                                 }
                             }
                             Spacer()
                         }
-                        .frame(width: UIScreen.width-32)
+                        .onLongPressGesture(minimumDuration: 1000, maximumDistance: 4, pressing: { (isPressing) in
+                            if isPressing {
+                                self.showValues.toggle()
+                            } else {
+                                self.showValues.toggle()
+                            }
+                        }) {}
+                        .frame(width: UIScreen.width)
                 }
             }
-            .padding(.all, 16)
+            .padding(.vertical, 16)
             .background(Colors.customViewBackground)
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
@@ -100,8 +172,7 @@ struct BarHorizontalChartView: View {
     
     func setWidth(_ value: Double) -> CGFloat {
         let width = CGFloat(value/self.max)
-                print("width: \(width)")
-        return CGFloat((UIScreen.width - 134)) * width
+        return CGFloat((UIScreen.width - 142)) * width
     }
     
 }

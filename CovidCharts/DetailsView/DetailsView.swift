@@ -61,7 +61,7 @@ struct DetailsView: View {
                             .listRowBackground(Color.clear)
                     Section(header: SectionTitle(title: "Podział na województwa", show: $showSection5)) {
                         if showSection5 {
-                            BarHorizontalChartView(title: "Zakażenia w województwach", data: vm.regionData, legend1: "Zakażenia", color1: Colors.main, legend2: "Zgony", color2: Colors.GradientNeonBlue)
+                            BarHorizontalChartView(title: "Zakażenia w województwach", data: vm.regionData, legend1: "Zakażenia", color1: Colors.main, legend2: "Zgony", color2: Colors.main2)
                         }
                     }
                             .listRowBackground(Color.clear)

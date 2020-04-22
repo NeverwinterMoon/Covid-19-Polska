@@ -19,4 +19,5 @@ enum Fonts {
     static let title = Font.system(size: 26, weight: .bold, design: .rounded)
     static let titleListElement = Font.system(size: 20, weight: .bold, design: .rounded)
     static let titleTableElement = Font.system(size: 11, weight: .semibold, design: .rounded)
+    static let tableElementDetails = Font.system(size: 9, weight: .semibold, design: .rounded)
 }

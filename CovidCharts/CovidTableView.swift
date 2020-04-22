@@ -18,6 +18,7 @@ struct CovidTableView: View {
                     .font(.system(size: 16, weight: .semibold, design: .default))
                     .foregroundColor(Colors.label)
                     .frame(width: 250)
+                    .padding(.vertical, 8)
                 VStack (alignment: .center, spacing: 0) {
                     Spacer()
                 }

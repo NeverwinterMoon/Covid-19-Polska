@@ -18,6 +18,7 @@
 		810C131E244604D400419207 /* ChartXLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C131D244604D400419207 /* ChartXLine.swift */; };
 		810C1320244604E000419207 /* ChartTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C131F244604E000419207 /* ChartTopView.swift */; };
 		810C1322244604F000419207 /* ChartContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C1321244604F000419207 /* ChartContentView.swift */; };
+		814B42062450B48400923A19 /* BarIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B42052450B48400923A19 /* BarIndicatorView.swift */; };
 		815F8EA72450382500AB8D7F /* BarHorizontalChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815F8EA62450382500AB8D7F /* BarHorizontalChartView.swift */; };
 		81C197BC2446632200AEC5FF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197BB2446632200AEC5FF /* Colors.swift */; };
 		81C197BE2446634900AEC5FF /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197BD2446634900AEC5FF /* Icons.swift */; };
@@ -67,6 +68,7 @@
 		810C131D244604D400419207 /* ChartXLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartXLine.swift; sourceTree = "<group>"; };
 		810C131F244604E000419207 /* ChartTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTopView.swift; sourceTree = "<group>"; };
 		810C1321244604F000419207 /* ChartContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartContentView.swift; sourceTree = "<group>"; };
+		814B42052450B48400923A19 /* BarIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarIndicatorView.swift; sourceTree = "<group>"; };
 		815F8EA62450382500AB8D7F /* BarHorizontalChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarHorizontalChartView.swift; sourceTree = "<group>"; };
 		81C197BB2446632200AEC5FF /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		81C197BD2446634900AEC5FF /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			children = (
 				81C19895244DA55A00AEC5FF /* DetailsView.swift */,
 				815F8EA62450382500AB8D7F /* BarHorizontalChartView.swift */,
+				814B42052450B48400923A19 /* BarIndicatorView.swift */,
 			);
 			path = DetailsView;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				81C1980324490BAA00AEC5FF /* ChartToolbarLeftSide.swift in Sources */,
 				81C19896244DA55A00AEC5FF /* DetailsView.swift in Sources */,
 				81C19868244B0ABF00AEC5FF /* ChartYLine.swift in Sources */,
+				814B42062450B48400923A19 /* BarIndicatorView.swift in Sources */,
 				81C1984C2449E43400AEC5FF /* PathQuadCurve.swift in Sources */,
 				810C12F72444994000419207 /* AppDelegate.swift in Sources */,
 				81E05EBB244E1EF10002F0C3 /* HomeViewBottomView.swift in Sources */,
