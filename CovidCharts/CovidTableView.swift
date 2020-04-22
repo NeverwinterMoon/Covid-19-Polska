@@ -13,8 +13,6 @@ struct CovidTableView: View {
     @EnvironmentObject var vm: ChartViewModel
     
     var body: some View {
-        ZStack {
-            Color.clear
             VStack {
                 Text("Tabela Covid-19 Polska")
                     .font(.system(size: 16, weight: .semibold, design: .default))
@@ -41,7 +39,7 @@ struct CovidTableView: View {
             .background(Colors.customViewBackground)
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
-        }
+                        .background(Colors.customViewBackground)
         
     }
 }

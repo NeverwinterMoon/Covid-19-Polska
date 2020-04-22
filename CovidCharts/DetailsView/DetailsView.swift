@@ -11,17 +11,14 @@ import SwiftUI
 struct DetailsView: View {
     
     @EnvironmentObject var vm: ChartViewModel
-    
     @Binding var showDetailsView: Bool
-    
-    var tableSectionHeight: CGFloat = 960
-    
-    @State var showConfirmedCharts: Bool = false
-    @State var showDeathsCharts: Bool = false
-    @State var showRecoveredCharts: Bool = false
-    @State var showCovidTable: Bool = false
-    @State var showProvinceChart: Bool = false
-    
+
+    @State var showSection1: Bool = false
+    @State var showSection2: Bool = false
+    @State var showSection3: Bool = false
+    @State var showSection4: Bool = false
+    @State var showSection5: Bool = false
+
     var body: some View {
         ZStack {
             Colors.appBackground
@@ -35,33 +32,43 @@ struct DetailsView: View {
                 VerticalSpacer()
                 HomeViewBottomView(title: "Covid-19 Polska", lastUpdateTime: vm.getLastUpdateDate(), parameterSumValue: vm.getConfirmedCases(), parameterIcon: Icons.confirmed, parameterIncreaseValue: vm.getLatestIncrease(), rightButtonIcon: Icons.dismiss) {
                     self.showDetailsView.toggle()
-                    print("hideConfirmedCases")
                 }
                 VerticalSpacer()
                 List {
-                    SectionTitle(title: "Zakażenia", show: $showConfirmedCharts)
-                        .padding(.bottom)
-                    SectionCharts(show: $showConfirmedCharts, parameter: .confirmed, title1: "Przyrost zakażeń", title2: "Zakażenia")
-                    SectionTitle(title: "Zgony", show: $showDeathsCharts)
-                        .padding(.vertical,8)
-                    SectionCharts(show: $showDeathsCharts, parameter: .deaths, title1: "Przyrost zgonów", title2: "Zgony")
-                    SectionTitle(title: "Wyzdrowienia", show: $showRecoveredCharts)
-                        .padding(.vertical,8)
-                    SectionCharts(show: $showRecoveredCharts, parameter: .recovered, title1: "Przyrost wyzdrowień", title2: "Wyzdrowienia")
-                    SectionTitle(title: "Tabela zakażeń", show: $showCovidTable)
-                        .padding(.vertical,8)
-                    CovidTableView()
-                        .opacity(self.showCovidTable ? 1.0 : 0.0)
-                        .frame(height: self.showCovidTable ? tableSectionHeight : -tableSectionHeight)
-                        .listRowBackground(Colors.appBackground)
-                    SectionTitle(title: "Województwa", show: $showProvinceChart)
-                    BarHorizontalChartView(title: "Zakażenia w województwach", data: vm.regionData, legend1: "Zakażenia", color1: Colors.main, legend2: "Zgony", color2: Colors.BorderBlue)
-                            .listRowInsets(EdgeInsets(top: 0, leading: 16, bottom: 0, trailing: 16))
-                    .listRowBackground(Colors.appBackground)
+                    Section(header: SectionTitle(title: "Zakażenia", show: $showSection1)) {
+                        if showSection1 {
+                             SectionCharts(parameter: .confirmed, title1: "Przyrost zakażeń", title2: "Zakażenia")
+                                .animation(.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.5))
+                        }
+                    }
+                            .listRowBackground(Color.clear)
+                    Section(header: SectionTitle(title: "Zgony", show: $showSection2)) {
+                        if showSection2 {
+                             SectionCharts(parameter: .deaths, title1: "Przyrost zgonów", title2: "Zgony")
+                        }
+                    }
+                    Section(header: SectionTitle(title: "Wyzdrowienia", show: $showSection3)) {
+                        if showSection3 {
+                             SectionCharts(parameter: .deaths, title1: "Przyrost wyzdrowień", title2: "Wyzdrowienia")
+                        }
+                    }
+                            .listRowBackground(Color.clear)
+                    Section(header: SectionTitle(title: "Tabela informacyjna", show: $showSection4)) {
+                        if showSection4 {
+                             CovidTableView()
+                        }
+                    }
+                            .listRowBackground(Color.clear)
+                    Section(header: SectionTitle(title: "Podział na województwa", show: $showSection5)) {
+                        if showSection5 {
+                            BarHorizontalChartView(title: "Zakażenia w województwach", data: vm.regionData, legend1: "Zakażenia", color1: Colors.main, legend2: "Zgony", color2: Colors.GradientNeonBlue)
+                        }
+                    }
+                            .listRowBackground(Color.clear)
+
                 }
-                .environment(\.defaultMinListRowHeight, 1)
                 .background(Colors.appBackground)
-            }
+            }.frame(width: UIScreen.width+40)
         }
         
     }
@@ -79,37 +86,41 @@ struct SectionTitle: View {
     @Binding var show: Bool
     
     var body: some View {
-        HStack {
-            HStack (spacing: 0) {
-                Text(title)
-                    .font(Fonts.titleListElement)
-                    .padding(.trailing, 16)
-                    .animation(.linear)
-                    .padding(.leading, 16)
-                IconView(name: Icons.collapse, size: .medium, weight: .semibold, color: Colors.main)
-                    .padding(.leading,8)
-                    .rotationEffect(.degrees(show ? 360 : 180))
-                    .animation(.easeInOut)
+        VStack {
+                HStack {
+                    HStack (spacing: 0) {
+                        Text(title)
+                            .font(Fonts.titleListElement)
+                            .padding(.trailing, 16)
+                            .animation(.linear)
+                            .padding(.leading, 16)
+                        IconView(name: Icons.collapse, size: .medium, weight: .semibold, color: Colors.main)
+                            .padding(.leading,8)
+                            .rotationEffect(.degrees(show ? 360 : 180))
+                            .animation(.easeInOut)
+                    }
+                    .frame(height: 40)
+                    .background(RoundedCorners(color: Colors.customViewBackground, tl: 0, tr: 16, bl: 0, br: 16))
+                    .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
+                    Spacer()
+                }
+                .padding(.vertical, 16)
+                .onTapGesture {
+                        self.show.toggle()
+                    print("tapped: \(self.show)")
+                }
+                .listRowBackground(Colors.appBackground)
+                .background(Colors.appBackground)
+         //       .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
             }
-            .frame(height: 40)
-            .background(RoundedCorners(color: Colors.customViewBackground, tl: 0, tr: 16, bl: 0, br: 16))
-            .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
-            Spacer()
         }
-        .onTapGesture {
-                self.show.toggle()
-        }
-        .listRowBackground(Colors.appBackground)
-        .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-    }
+
 }
 
 struct SectionCharts: View {
     
     @EnvironmentObject var vm: ChartViewModel
-    var chartSectionHeight = (ChartView.height)*2+32
-    
-    @Binding var show: Bool
+ //   var chartSectionHeight = (ChartView.height)*2+32
     
     var parameter: ParameterType
     var title1: String
@@ -120,9 +131,9 @@ struct SectionCharts: View {
             ChartView(data: self.vm.getDailyChangeData(parameter), title: title1, minX: self.vm.getMinDate(), maxX: self.vm.getMaxDate())
             ChartView(data: self.vm.getDailyIncreaseData(parameter), title: title2, minX: self.vm.getMinDate(), maxX: self.vm.getMaxDate())
         }
-        .opacity(self.show ? 1.0 : 0.0)
+        .padding(.top, 8)
+        .padding(.bottom, 16)
         .listRowBackground(Colors.appBackground)
-        .frame(height: self.show ? chartSectionHeight : -chartSectionHeight)
         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
     }
 }

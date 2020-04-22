@@ -29,8 +29,8 @@ public class BarHorizontalData: ObservableObject, Identifiable {
 struct BarHorizontalChartView: View {
     
     @ObservedObject var vm: BarHorizontalData
-    var title: String
     
+    var title: String
     var legend1: String
     var color1: Color
     var legend2: String?
@@ -52,7 +52,7 @@ struct BarHorizontalChartView: View {
     }
     
     var body: some View {
-        VStack {
+        ZStack {
             VStack (alignment: .leading, spacing: 0) {
                 BarTopView(title: title)
                 VStack (alignment: .center, spacing: 0) {
@@ -90,6 +90,11 @@ struct BarHorizontalChartView: View {
                 }
             }
             .padding(.all, 16)
+            .background(Colors.customViewBackground)
+            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
+                        .background(Colors.customViewBackground)
+
         }
     }
     
