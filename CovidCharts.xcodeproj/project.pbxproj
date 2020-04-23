@@ -173,8 +173,8 @@
 			children = (
 				810C12FA2444994000419207 /* HomeView.swift */,
 				81E05EBA244E1EF00002F0C3 /* HomeTopView.swift */,
-				81C197F124486BAD00AEC5FF /* HomeBotView.swift */,
 				81C197F52448A21300AEC5FF /* HomeChartToolbarView.swift */,
+				81C197F124486BAD00AEC5FF /* HomeBotView.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";

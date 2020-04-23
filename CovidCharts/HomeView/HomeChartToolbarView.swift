@@ -22,7 +22,7 @@ struct HomeChartToolbarView: View {
                 Spacer()
                 ShowDetailsButton(showDetailsView: $showDetailsView)
             }
-            .frame(width: UIScreen.width + 32, height: 40, alignment: .center)
+            .frame(width: UIScreen.width, height: 40, alignment: .center)
             Spacer()
                 .frame(width: UIScreen.width, height: 8, alignment: .center)
         }
@@ -56,8 +56,7 @@ private struct ShowDetailsButton: View {
             DetailsView(showDetailsView: self.$showDetailsView).environmentObject(self.vm)
         }
         .frame(width: 170, height: 40, alignment: .center)
-        .background(Colors.customViewBackground)
-        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .background(RoundedCorners(color: Colors.customViewBackground, tl: 16, tr: 0, bl: 16, br: 0))
         .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
     }
 }
@@ -71,18 +70,24 @@ struct ChartToolbarLeftSide: View {
             
             Button(action: {
                 self.vm.showPopup.toggle()
+                self.vm.setPopup(title: "Info", text: "Dane aktualizowane z wykorzystaniem danych publikowanych przez Ministerstwo Zdrowia/WHO")
+            }) {
+                IconView(name: Icons.info, size: .medium, weight: .regular, color: Colors.main)
+                .frame(width: 30, height: 40, alignment: .center)
+            }
+            .padding(.leading, 6)
+            
+            Button(action: {
+                self.vm.showPopup.toggle()
                 self.vm.setPopup(title: "Kalendarz", text: "Funkcja dostępna wkrótce")
             }) {
                 IconView(name: Icons.calendar, size: .medium, weight: .regular, color: Colors.main)
-
                 .frame(width: 30, height: 40, alignment: .center)
             }
             
         }
         .frame(width: 80, height: 40, alignment: .leading)
-        .padding(.leading, 24)
-        .background(Colors.customViewBackground)
-        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .background(RoundedCorners(color: Colors.customViewBackground, tl: 0, tr: 16, bl: 0, br: 16))
         .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
     }
 }
