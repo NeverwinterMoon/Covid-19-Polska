@@ -22,7 +22,7 @@ extension String {
         dateToFormat = dateToFormat.replacingOccurrences(of: ".000", with: "")
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        let date = formatter.date(from: dateToFormat)
+        var date = formatter.date(from: dateToFormat)
         let secondFormatter = DateFormatter()
         secondFormatter.locale = Locale(identifier: "pl_PL")
         secondFormatter.timeZone = .current
@@ -30,7 +30,9 @@ extension String {
         case .short: secondFormatter.dateFormat = "dd.MM"
         case .long: secondFormatter.dateFormat = "dd MMMM YYYY"
         case .medium: secondFormatter.dateFormat = "dd MMMM"
-        case .superlong: secondFormatter.dateFormat = "HH:mm, dd MMMM YYYY"
+        case .superlong:
+            date?.addTimeInterval(7200)
+            secondFormatter.dateFormat = "HH:mm, dd MMMM YYYY"
         }
         return secondFormatter.string(from: date ?? Date())
     }
