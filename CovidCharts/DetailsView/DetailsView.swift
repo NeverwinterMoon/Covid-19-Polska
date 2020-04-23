@@ -87,33 +87,31 @@ struct SectionTitle: View {
     
     var body: some View {
         VStack {
-                HStack {
-                    HStack (spacing: 0) {
-                        Text(title)
-                            .font(Fonts.listSectionTitle)
-                            .padding(.trailing, 16)
-                            .animation(.linear)
-                            .padding(.leading, 16)
-                        IconView(name: Icons.collapse, size: .medium, weight: .semibold, color: Colors.main)
-                            .padding(.leading,8)
-                            .rotationEffect(.degrees(show ? 360 : 180))
-                            .animation(.easeInOut)
-                    }
-                    .frame(height: 40)
-                    .background(RoundedCorners(color: Colors.customViewBackground, tl: 0, tr: 16, bl: 0, br: 16))
-                    .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
-                    Spacer()
+            HStack {
+                HStack (spacing: 0) {
+                    Text(title)
+                        .font(Fonts.listSectionTitle)
+                        .padding(.horizontal, 16)
+                        .animation(.linear)
+                    IconView(name: Icons.collapse, size: .medium, weight: .semibold, color: Colors.main)
+                        .padding(.leading,8)
+                        .rotationEffect(.degrees(show ? 360 : 180))
+                        .animation(.easeInOut)
                 }
-                .padding(.vertical, 16)
-                .onTapGesture {
-                        self.show.toggle()
-                    print("tapped: \(self.show)")
-                }
-                .listRowBackground(Colors.appBackground)
-                .background(Colors.appBackground)
+                .frame(height: 40)
+                .background(RoundedCorners(color: Colors.customViewBackground, tl: 0, tr: 16, bl: 0, br: 16))
+                .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
+                Spacer()
             }
+            .padding(.vertical, 16)
+            .onTapGesture {
+                self.show.toggle()
+            }
+            .listRowBackground(Colors.appBackground)
+            .background(Colors.appBackground)
         }
-
+    }
+    
 }
 
 struct SectionCharts: View {
