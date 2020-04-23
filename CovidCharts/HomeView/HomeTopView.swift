@@ -1,5 +1,5 @@
 //
-//  TitleView.swift
+//  HomeTopView.swift
 //  CovidCharts
 //
 //  Created by Timothy Stokarski on 14/04/2020.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct HomeViewTopView: View {
+struct HomeTopView: View {
     
     var title: String
     var lastUpdateTime: String
@@ -81,7 +81,7 @@ struct HomeViewTopView: View {
 
 struct TitleView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeViewTopView(title: "Covid-19 Polska", lastUpdateTime: "19 Marca 2020", parameterSumValue: "1231", parameterIcon: Icons.confirmed, parameterIncreaseValue: "123", rightButtonIcon: Icons.reload) {
+        HomeTopView(title: "Covid-19 Polska", lastUpdateTime: "19 Marca 2020", parameterSumValue: "1231", parameterIcon: Icons.confirmed, parameterIncreaseValue: "123", rightButtonIcon: Icons.reload) {
             print("Right button tapped")
         }
     }

@@ -21,15 +21,15 @@ struct HomeView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack (spacing: 0) {
                 if !vm.customData.isEmpty {
-                    HomeViewTopView(title: "Covid-19 Polska", lastUpdateTime: vm.getLastUpdateDate(), parameterSumValue: vm.getConfirmedCases(), parameterIcon: Icons.confirmed, parameterIncreaseValue: vm.getLatestIncrease(), rightButtonIcon: Icons.reload) {
+                    HomeTopView(title: "Covid-19 Polska", lastUpdateTime: vm.getLastUpdateDate(), parameterSumValue: vm.getConfirmedCases(), parameterIcon: Icons.confirmed, parameterIncreaseValue: vm.getLatestIncrease(), rightButtonIcon: Icons.reload) {
                         self.vm.loadData()
                     }
                     VerticalSpacer()
                     ChartView(data: vm.getDailyChangeData(vm.parameter), title: vm.setChartTitle(), minX: vm.getMinDate(), maxX: vm.getMaxDate())
                     VerticalSpacer()
-                    ChartToolbar(showDetailsView: $showDetailsView, showPopup: $showPopup)
+                    HomeChartToolbarView(showDetailsView: $showDetailsView, showPopup: $showPopup)
                     Spacer()
-                    HomeViewToolbarView()
+                    HomeBotView()
                 } else {
                     VStack (spacing: 40) {
                         ActivityIndicator()

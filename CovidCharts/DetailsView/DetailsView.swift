@@ -30,7 +30,7 @@ struct DetailsView: View {
                     .cornerRadius(3)
                     .opacity(0.1)
                 VerticalSpacer()
-                HomeViewTopView(title: "Covid-19 Polska", lastUpdateTime: vm.getLastUpdateDate(), parameterSumValue: vm.getConfirmedCases(), parameterIcon: Icons.confirmed, parameterIncreaseValue: vm.getLatestIncrease(), rightButtonIcon: Icons.dismiss) {
+                HomeTopView(title: "Covid-19 Polska", lastUpdateTime: vm.getLastUpdateDate(), parameterSumValue: vm.getConfirmedCases(), parameterIcon: Icons.confirmed, parameterIncreaseValue: vm.getLatestIncrease(), rightButtonIcon: Icons.dismiss) {
                     self.showDetailsView.toggle()
                 }
                 VerticalSpacer()
@@ -111,7 +111,6 @@ struct SectionTitle: View {
                 }
                 .listRowBackground(Colors.appBackground)
                 .background(Colors.appBackground)
-         //       .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
             }
         }
 
@@ -120,8 +119,6 @@ struct SectionTitle: View {
 struct SectionCharts: View {
     
     @EnvironmentObject var vm: ChartViewModel
- //   var chartSectionHeight = (ChartView.height)*2+32
-    
     var parameter: ParameterType
     var title1: String
     var title2: String

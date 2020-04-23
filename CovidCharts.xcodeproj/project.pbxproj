@@ -22,11 +22,10 @@
 		815F8EA72450382500AB8D7F /* BarHorizontalChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815F8EA62450382500AB8D7F /* BarHorizontalChartView.swift */; };
 		81C197BC2446632200AEC5FF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197BB2446632200AEC5FF /* Colors.swift */; };
 		81C197BE2446634900AEC5FF /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197BD2446634900AEC5FF /* Icons.swift */; };
-		81C197F224486BAD00AEC5FF /* HomeViewToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197F124486BAD00AEC5FF /* HomeViewToolbarView.swift */; };
-		81C197F62448A21300AEC5FF /* ChartToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197F52448A21300AEC5FF /* ChartToolbarView.swift */; };
+		81C197F224486BAD00AEC5FF /* HomeBotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197F124486BAD00AEC5FF /* HomeBotView.swift */; };
+		81C197F62448A21300AEC5FF /* HomeChartToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197F52448A21300AEC5FF /* HomeChartToolbarView.swift */; };
 		81C197FF24490AFB00AEC5FF /* ChartsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197FE24490AFB00AEC5FF /* ChartsModel.swift */; };
 		81C1980124490B3800AEC5FF /* Ext-UIScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C1980024490B3800AEC5FF /* Ext-UIScreen.swift */; };
-		81C1980324490BAA00AEC5FF /* ChartToolbarLeftSide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C1980224490BAA00AEC5FF /* ChartToolbarLeftSide.swift */; };
 		81C198342449E2BA00AEC5FF /* BarChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C198332449E2BA00AEC5FF /* BarChartCell.swift */; };
 		81C198362449E2ED00AEC5FF /* BarChartRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C198352449E2ED00AEC5FF /* BarChartRow.swift */; };
 		81C198382449E31100AEC5FF /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C198372449E31100AEC5FF /* BarChartView.swift */; };
@@ -50,7 +49,7 @@
 		81D0EA3A244F249200968667 /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0EA39244F249200968667 /* BarView.swift */; };
 		81D0EA3C244F252500968667 /* BarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0EA3B244F252500968667 /* BarContentView.swift */; };
 		81D0EA3E244F3F9200968667 /* CovidTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0EA3D244F3F9200968667 /* CovidTableView.swift */; };
-		81E05EBB244E1EF10002F0C3 /* HomeViewTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E05EBA244E1EF00002F0C3 /* HomeViewTopView.swift */; };
+		81E05EBB244E1EF10002F0C3 /* HomeTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E05EBA244E1EF00002F0C3 /* HomeTopView.swift */; };
 		81E05EBD244E4E460002F0C3 /* ChartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81E05EBC244E4E460002F0C3 /* ChartViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -72,11 +71,10 @@
 		815F8EA62450382500AB8D7F /* BarHorizontalChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarHorizontalChartView.swift; sourceTree = "<group>"; };
 		81C197BB2446632200AEC5FF /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		81C197BD2446634900AEC5FF /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
-		81C197F124486BAD00AEC5FF /* HomeViewToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewToolbarView.swift; sourceTree = "<group>"; };
-		81C197F52448A21300AEC5FF /* ChartToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartToolbarView.swift; sourceTree = "<group>"; };
+		81C197F124486BAD00AEC5FF /* HomeBotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBotView.swift; sourceTree = "<group>"; };
+		81C197F52448A21300AEC5FF /* HomeChartToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChartToolbarView.swift; sourceTree = "<group>"; };
 		81C197FE24490AFB00AEC5FF /* ChartsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsModel.swift; sourceTree = "<group>"; };
 		81C1980024490B3800AEC5FF /* Ext-UIScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext-UIScreen.swift"; sourceTree = "<group>"; };
-		81C1980224490BAA00AEC5FF /* ChartToolbarLeftSide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartToolbarLeftSide.swift; sourceTree = "<group>"; };
 		81C198332449E2BA00AEC5FF /* BarChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartCell.swift; sourceTree = "<group>"; };
 		81C198352449E2ED00AEC5FF /* BarChartRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartRow.swift; sourceTree = "<group>"; };
 		81C198372449E31100AEC5FF /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
@@ -100,7 +98,7 @@
 		81D0EA39244F249200968667 /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
 		81D0EA3B244F252500968667 /* BarContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarContentView.swift; sourceTree = "<group>"; };
 		81D0EA3D244F3F9200968667 /* CovidTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CovidTableView.swift; sourceTree = "<group>"; };
-		81E05EBA244E1EF00002F0C3 /* HomeViewTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewTopView.swift; sourceTree = "<group>"; };
+		81E05EBA244E1EF00002F0C3 /* HomeTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTopView.swift; sourceTree = "<group>"; };
 		81E05EBC244E4E460002F0C3 /* ChartViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,13 +136,11 @@
 				810C12F82444994000419207 /* SceneDelegate.swift */,
 				81C197FE24490AFB00AEC5FF /* ChartsModel.swift */,
 				81E05EBC244E4E460002F0C3 /* ChartViewModel.swift */,
-				81D0EA3D244F3F9200968667 /* CovidTableView.swift */,
-				81D0EA38244F247000968667 /* BarView */,
-				810C131A2446043700419207 /* ChartView */,
+				81C198322449E29900AEC5FF /* FlexSwiftUICharts */,
+				814B42082451D97B00923A19 /* ChartClasses */,
 				810C130F2444C9B100419207 /* HomeView */,
 				81C19894244DA54200AEC5FF /* DetailsView */,
 				81C19891244C74B400AEC5FF /* Popups */,
-				81C198322449E29900AEC5FF /* FlexSwiftUICharts */,
 				81C197BA2446630900AEC5FF /* UI */,
 				810C130A2444C95D00419207 /* Extensions */,
 				810C12FC2444994200419207 /* Assets.xcassets */,
@@ -176,16 +172,17 @@
 			isa = PBXGroup;
 			children = (
 				810C12FA2444994000419207 /* HomeView.swift */,
-				81E05EBA244E1EF00002F0C3 /* HomeViewTopView.swift */,
-				81C197F124486BAD00AEC5FF /* HomeViewToolbarView.swift */,
-				81C197F82448A31500AEC5FF /* ChartToolbar */,
+				81E05EBA244E1EF00002F0C3 /* HomeTopView.swift */,
+				81C197F124486BAD00AEC5FF /* HomeBotView.swift */,
+				81C197F52448A21300AEC5FF /* HomeChartToolbarView.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
 		};
-		810C131A2446043700419207 /* ChartView */ = {
+		810C131A2446043700419207 /* LineChartView */ = {
 			isa = PBXGroup;
 			children = (
+				814B42052450B48400923A19 /* BarIndicatorView.swift */,
 				810C131B2446045C00419207 /* ChartView.swift */,
 				810C131F244604E000419207 /* ChartTopView.swift */,
 				810C1321244604F000419207 /* ChartContentView.swift */,
@@ -195,7 +192,25 @@
 				81C198452449E3ED00AEC5FF /* LineView.swift */,
 				81C1983D2449E37200AEC5FF /* IndicatorPointView.swift */,
 			);
-			path = ChartView;
+			path = LineChartView;
+			sourceTree = "<group>";
+		};
+		814B42072451D96A00923A19 /* BarHChartView */ = {
+			isa = PBXGroup;
+			children = (
+				815F8EA62450382500AB8D7F /* BarHorizontalChartView.swift */,
+			);
+			path = BarHChartView;
+			sourceTree = "<group>";
+		};
+		814B42082451D97B00923A19 /* ChartClasses */ = {
+			isa = PBXGroup;
+			children = (
+				81D0EA38244F247000968667 /* BarVChartView */,
+				814B42072451D96A00923A19 /* BarHChartView */,
+				810C131A2446043700419207 /* LineChartView */,
+			);
+			path = ChartClasses;
 			sourceTree = "<group>";
 		};
 		81C197BA2446630900AEC5FF /* UI */ = {
@@ -207,15 +222,6 @@
 				81C197BD2446634900AEC5FF /* Icons.swift */,
 			);
 			path = UI;
-			sourceTree = "<group>";
-		};
-		81C197F82448A31500AEC5FF /* ChartToolbar */ = {
-			isa = PBXGroup;
-			children = (
-				81C197F52448A21300AEC5FF /* ChartToolbarView.swift */,
-				81C1980224490BAA00AEC5FF /* ChartToolbarLeftSide.swift */,
-			);
-			path = ChartToolbar;
 			sourceTree = "<group>";
 		};
 		81C198322449E29900AEC5FF /* FlexSwiftUICharts */ = {
@@ -273,19 +279,18 @@
 			isa = PBXGroup;
 			children = (
 				81C19895244DA55A00AEC5FF /* DetailsView.swift */,
-				815F8EA62450382500AB8D7F /* BarHorizontalChartView.swift */,
-				814B42052450B48400923A19 /* BarIndicatorView.swift */,
+				81D0EA3D244F3F9200968667 /* CovidTableView.swift */,
 			);
 			path = DetailsView;
 			sourceTree = "<group>";
 		};
-		81D0EA38244F247000968667 /* BarView */ = {
+		81D0EA38244F247000968667 /* BarVChartView */ = {
 			isa = PBXGroup;
 			children = (
 				81D0EA39244F249200968667 /* BarView.swift */,
 				81D0EA3B244F252500968667 /* BarContentView.swift */,
 			);
-			path = BarView;
+			path = BarVChartView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -374,15 +379,14 @@
 				810C1320244604E000419207 /* ChartTopView.swift in Sources */,
 				81C1983A2449E33300AEC5FF /* LabelView.swift in Sources */,
 				81C198342449E2BA00AEC5FF /* BarChartCell.swift in Sources */,
-				81C1980324490BAA00AEC5FF /* ChartToolbarLeftSide.swift in Sources */,
 				81C19896244DA55A00AEC5FF /* DetailsView.swift in Sources */,
 				81C19868244B0ABF00AEC5FF /* ChartYLine.swift in Sources */,
 				814B42062450B48400923A19 /* BarIndicatorView.swift in Sources */,
 				81C1984C2449E43400AEC5FF /* PathQuadCurve.swift in Sources */,
 				810C12F72444994000419207 /* AppDelegate.swift in Sources */,
-				81E05EBB244E1EF10002F0C3 /* HomeViewTopView.swift in Sources */,
+				81E05EBB244E1EF10002F0C3 /* HomeTopView.swift in Sources */,
 				81C198512449E47300AEC5FF /* PieChartRow.swift in Sources */,
-				81C197F62448A21300AEC5FF /* ChartToolbarView.swift in Sources */,
+				81C197F62448A21300AEC5FF /* HomeChartToolbarView.swift in Sources */,
 				815F8EA72450382500AB8D7F /* BarHorizontalChartView.swift in Sources */,
 				81C197BE2446634900AEC5FF /* Icons.swift in Sources */,
 				81E05EBD244E4E460002F0C3 /* ChartViewModel.swift in Sources */,
@@ -394,7 +398,7 @@
 				81C197BC2446632200AEC5FF /* Colors.swift in Sources */,
 				81C197FF24490AFB00AEC5FF /* ChartsModel.swift in Sources */,
 				81C1980124490B3800AEC5FF /* Ext-UIScreen.swift in Sources */,
-				81C197F224486BAD00AEC5FF /* HomeViewToolbarView.swift in Sources */,
+				81C197F224486BAD00AEC5FF /* HomeBotView.swift in Sources */,
 				81C1984F2449E45D00AEC5FF /* PieChartCell.swift in Sources */,
 				810C1322244604F000419207 /* ChartContentView.swift in Sources */,
 				81D0EA3C244F252500968667 /* BarContentView.swift in Sources */,

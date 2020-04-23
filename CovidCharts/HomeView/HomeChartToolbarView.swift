@@ -1,5 +1,5 @@
 //
-//  ChartToolbarView.swift
+//  HomeChartToolbarView.swift
 //  CovidCharts
 //
 //  Created by Timothy Stokarski on 16/04/2020.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ChartToolbar: View {
+struct HomeChartToolbarView: View {
     
     @Binding var showDetailsView: Bool
     @Binding var showPopup: Bool
@@ -33,7 +33,7 @@ struct ChartToolbar: View {
 
 struct ChartToolbar_Previews: PreviewProvider {
     static var previews: some View {
-        ChartToolbar(showDetailsView: .constant(false), showPopup: .constant(false))
+        HomeChartToolbarView(showDetailsView: .constant(false), showPopup: .constant(false))
     }
 }
 
@@ -56,6 +56,31 @@ private struct ShowDetailsButton: View {
             DetailsView(showDetailsView: self.$showDetailsView).environmentObject(self.vm)
         }
         .frame(width: 170, height: 40, alignment: .center)
+        .background(Colors.customViewBackground)
+        .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+        .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
+    }
+}
+
+struct ChartToolbarLeftSide: View {
+    
+    @EnvironmentObject var vm: ChartViewModel
+    
+    var body: some View {
+        HStack (alignment: .center, spacing: 2) {
+            
+            Button(action: {
+                self.vm.showPopup.toggle()
+                self.vm.setPopup(title: "Kalendarz", text: "Funkcja dostępna wkrótce")
+            }) {
+                IconView(name: Icons.calendar, size: .medium, weight: .regular, color: Colors.main)
+
+                .frame(width: 30, height: 40, alignment: .center)
+            }
+            
+        }
+        .frame(width: 80, height: 40, alignment: .leading)
+        .padding(.leading, 24)
         .background(Colors.customViewBackground)
         .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
         .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)

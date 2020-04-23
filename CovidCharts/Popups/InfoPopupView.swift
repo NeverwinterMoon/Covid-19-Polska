@@ -43,12 +43,12 @@ struct InfoPopupView: View {
             .shadow(radius: 20)
             Spacer()
         }
-
+        
     }
 }
 
 struct InfoPopupView_Previews: PreviewProvider {
     static var previews: some View {
-        InfoPopupView(title: "Example title", message: "Message asdasd asd asd asd asd asd asd asd asd asd asd asd asd asd asd ").environmentObject(ChartViewModel())
+        InfoPopupView(title: "Example title", message: "This is a test text to show how this popup can look like and how it displays data in multilines").environmentObject(ChartViewModel())
     }
 }

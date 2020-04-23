@@ -78,19 +78,17 @@ struct BarHorizontalChartView: View {
                         Spacer()
                             .frame(width: 100)
                         HStack {
-                            Text("0")
+                            XIndicator(value: 0)
+                            Spacer()
+                            XIndicator(value: Int(max/4))
                             .foregroundColor(Colors.label)
                             .font(Fonts.listElementDetails)
                             Spacer()
-                            Text("\(Int(max/4))")
+                            XIndicator(value: Int(max*(3/4)))
                             .foregroundColor(Colors.label)
                             .font(Fonts.listElementDetails)
                             Spacer()
-                            Text("\(Int(max)*3/4)")
-                            .foregroundColor(Colors.label)
-                            .font(Fonts.listElementDetails)
-                            Spacer()
-                            Text("\(Int(max))")
+                            XIndicator(value: Int(max))
                             .foregroundColor(Colors.label)
                             .font(Fonts.listElementDetails)
                         }
@@ -229,5 +227,16 @@ struct ChartLegendView: View {
             }
             Spacer()
         }
+    }
+}
+
+struct XIndicator: View {
+    
+    var value: Int
+    
+    var body: some View {
+        Text("\(value)")
+            .foregroundColor(Colors.label)
+            .font(Fonts.listElementDetails)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  MenuView.swift
+//  HomeBotView.swift
 //  CovidCharts
 //
 //  Created by Timothy Stokarski on 16/04/2020.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct HomeViewToolbarView: View {
+struct HomeBotView: View {
     
     @EnvironmentObject var vm: ChartViewModel
     
@@ -30,7 +30,7 @@ struct HomeViewToolbarView: View {
 
 struct ToolbarView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeViewToolbarView().environmentObject(ChartViewModel())
+        HomeBotView().environmentObject(ChartViewModel())
     }
 }
 
