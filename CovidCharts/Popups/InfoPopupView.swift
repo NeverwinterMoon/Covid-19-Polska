@@ -21,9 +21,11 @@ struct InfoPopupView: View {
             VStack(spacing: 16) {
                 Text(title)
                     .font(Fonts.popupTitle)
+                    .animation(nil)
                 Text(message)
                     .multilineTextAlignment(.center)
                     .font(Fonts.text)
+                .animation(nil)
                 Button(action: {
                     self.vm.showPopup.toggle()
                 }) {
@@ -35,6 +37,7 @@ struct InfoPopupView: View {
                 .frame(width: UIScreen.width/2 + 68, height: 50, alignment: .center)
                 .background(Colors.main)
                 .cornerRadius(16)
+                .animation(nil)
             }
             .padding()
             .frame(width: UIScreen.width/2 + 100, alignment: .center)
