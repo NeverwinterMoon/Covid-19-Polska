@@ -11,9 +11,8 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject var vm: ChartViewModel
-    @State var showPopup: Bool = false
+    @Binding var showPopup: Bool
     @State var bottomState: CGSize = .zero
-    @State var showFull: Bool = false
     @State var showDetailsView: Bool = false
     
     var body: some View {
@@ -22,8 +21,8 @@ struct HomeView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack (spacing: 0) {
                 if !vm.customData.isEmpty {
-                    HomeViewBottomView(title: "Covid-19 Polska", lastUpdateTime: vm.getLastUpdateDate(), parameterSumValue: vm.getConfirmedCases(), parameterIcon: Icons.confirmed, parameterIncreaseValue: vm.getLatestIncrease(), rightButtonIcon: Icons.reload) {
-                        print("Reload tapped")
+                    HomeViewTopView(title: "Covid-19 Polska", lastUpdateTime: vm.getLastUpdateDate(), parameterSumValue: vm.getConfirmedCases(), parameterIcon: Icons.confirmed, parameterIncreaseValue: vm.getLatestIncrease(), rightButtonIcon: Icons.reload) {
+                        self.vm.loadData()
                     }
                     VerticalSpacer()
                     ChartView(data: vm.getDailyChangeData(vm.parameter), title: vm.setChartTitle(), minX: vm.getMinDate(), maxX: vm.getMaxDate())
@@ -42,10 +41,10 @@ struct HomeView: View {
                     .foregroundColor(Colors.main)
                 }
             }
-            .blur(radius: showPopup ? 10 : 0)
-            InfoPopupView(title: "Kalendarz", message: "Funkcja dostępna wkrótce", showPopup: $showPopup)
-                .scaleEffect(showPopup ? 1.0 : 0.5)
-                .opacity(showPopup ? 1.0 : 0.0)
+            .blur(radius: self.vm.showPopup ? 10 : 0)
+            InfoPopupView(title: vm.popup.title, message: vm.popup.text)
+                .scaleEffect(self.vm.showPopup ? 1.0 : 0.5)
+                .opacity(self.vm.showPopup ? 1.0 : 0.0)
                 .animation(.spring())
         }
     }
@@ -53,7 +52,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView().environmentObject(ChartViewModel())
+        HomeView(showPopup: .constant(false)).environmentObject(ChartViewModel())
     }
 }
 

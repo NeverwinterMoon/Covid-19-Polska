@@ -18,11 +18,9 @@ struct ChartToolbar: View {
             Spacer()
                 .frame(width: UIScreen.width, height: 8, alignment: .center)
             HStack {
-                ChartToolbarLeftSide(showPopup: $showPopup)
+                ChartToolbarLeftSide()
                 Spacer()
                 ShowDetailsButton(showDetailsView: $showDetailsView)
-//                ShowDetailsButton(detailsViewModel: DetailsViewModel(data: vm.getData(vm.parameter), parameter: vm.parameter, regionData: vm.regionData
-//                ), showDetailsView: $showDetailsView)
             }
             .frame(width: UIScreen.width + 32, height: 40, alignment: .center)
             Spacer()
@@ -46,7 +44,6 @@ private struct ShowDetailsButton: View {
     
     var body: some View {
         Button(action: {
-            print("Tapped")
             self.showDetailsView.toggle()
         }) {
             Text("Pokaż szczegóły")

@@ -20,7 +20,6 @@ struct HomeViewToolbarView: View {
                 MenuButton(title: "Zakażenia", image: Icons.confirmed, chart: .confirmed)
                 MenuButton(title: "Wyleczeni", image: Icons.recovered, chart: .recovered)
                 MenuButton(title: "Zgony", image: Icons.deaths, chart: .deaths)
-                MenuButton(title: "Info", image: Icons.info, chart: .confirmed)
             }
             .frame(width: UIScreen.width, height: 65, alignment: .center)
             Spacer()

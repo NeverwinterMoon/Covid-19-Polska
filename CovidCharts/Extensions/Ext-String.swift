@@ -25,6 +25,7 @@ extension String {
         let date = formatter.date(from: dateToFormat)
         let secondFormatter = DateFormatter()
         secondFormatter.locale = Locale(identifier: "pl_PL")
+        secondFormatter.timeZone = .current
         switch style {
         case .short: secondFormatter.dateFormat = "dd.MM"
         case .long: secondFormatter.dateFormat = "dd MMMM YYYY"

@@ -11,13 +11,13 @@ import SwiftUI
 struct ChartToolbarLeftSide: View {
     
     @EnvironmentObject var vm: ChartViewModel
-    @Binding var showPopup: Bool
     
     var body: some View {
         HStack (alignment: .center, spacing: 2) {
             
             Button(action: {
-                self.showPopup.toggle()
+                self.vm.showPopup.toggle()
+                self.vm.setPopup(title: "Kalendarz", text: "Funkcja dostępna wkrótce")
             }) {
                 IconView(name: Icons.calendar, size: .medium, weight: .regular, color: Colors.main)
 
@@ -35,6 +35,6 @@ struct ChartToolbarLeftSide: View {
 
 struct ChartToolbarLeftSide_Previews: PreviewProvider {
     static var previews: some View {
-        ChartToolbarLeftSide(showPopup: .constant(false)).environmentObject(ChartViewModel())
+        ChartToolbarLeftSide().environmentObject(ChartViewModel())
     }
 }

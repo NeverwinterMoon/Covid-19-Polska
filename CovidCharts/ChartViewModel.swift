@@ -17,6 +17,11 @@ enum HTTPError: LocalizedError {
     case statusCode
 }
 
+struct HomeViewPopup {
+    var title: String
+    var text: String
+}
+
 class ChartViewModel: ObservableObject {
     
     private var data = [Day]()
@@ -25,35 +30,26 @@ class ChartViewModel: ObservableObject {
     @Published var customData = [Day]()
     @Published var customIncreaseData = [Day]()
     @Published var parameter: ParameterType = .confirmed
+    @Published var popup = HomeViewPopup(title: "", text: "")
+    @Published var showPopup: Bool = false
     private var cancellable: AnyCancellable?
     private var cancellable2: AnyCancellable?
     
     init() {
-        fetchData()
-        fetchLatestData()
+        loadData()
+    }
+    
+    func loadData() {
+        clearData()
+        fetchCovidHitoryData()
+        fetchLatestData { (fetchedData) in
+            self.showPopup.toggle()
+            self.setPopup(title: fetchedData ? "Aktualizacja" : "Wystąpił błąd", text: fetchedData ? "Ostatnia aktualizacja:\n\(self.customData.last?.date.formattedDate(.superlong) ?? "")" : "Sprawdź połączenie z internetem")
+        }
     }
     
     // MARK: - BarChart
-
-    // MARK: - Networking
-//    func loadData() {
-//        let urlString = "https://api.covid19api.com/country/Poland"
-//        guard let url = URL(string: urlString) else { return }
-//        URLSession.shared.dataTask(with: url) { (data, response, error) in
-//            guard let data = data else { return }
-//            do {
-//                let timeSeries = try JSONDecoder().decode(Days.self, from: data)
-//                DispatchQueue.main.async {
-//                    self.data = timeSeries
-//                }
-//            } catch {
-//                print("JSON Decode failed:", error)
-//            }
-//        }
-//        .resume()
-//    }
-    
-    func fetchData() {
+    func fetchCovidHitoryData() {
         let urlString = "https://api.covid19api.com/country/Poland"
         guard let url = URL(string: urlString) else {
             return
@@ -61,12 +57,11 @@ class ChartViewModel: ObservableObject {
         self.cancellable = URLSession.shared.dataTaskPublisher(for: url)
             .tryMap { output in
                 guard let response = output.response as? HTTPURLResponse, response.statusCode == 200 else {
-                    print("Poop")
                     throw HTTPError.statusCode
                 }
                 return output.data
         }
-        .receive(on: DispatchQueue.main)
+        .receive(on: RunLoop.main)
         .decode(type: Days.self, decoder: JSONDecoder())
         .replaceError(with: [])
         .eraseToAnyPublisher()
@@ -75,30 +70,28 @@ class ChartViewModel: ObservableObject {
             case .finished:
                 break
             case .failure(let error):
-                print("Poop2")
                 fatalError(error.localizedDescription)
             }
         }, receiveValue: { days in
-            DispatchQueue.main.async {
                 self.data = days
-            }
-            
         })
     }
     
-    func fetchLatestData() {
+    func fetchLatestData(completion: @escaping (Bool) -> ()) {
         let urlString = "https://api.apify.com/v2/key-value-stores/3Po6TV7wTht4vIEid/records/LATEST?disableRedirect=true"
         guard let url = URL(string: urlString) else {
+            completion(false)
             return
         }
         self.cancellable2 = URLSession.shared.dataTaskPublisher(for: url)
             .tryMap { output in
                 guard let response = output.response as? HTTPURLResponse, response.statusCode == 200 else {
+                    completion(false)
                     throw HTTPError.statusCode
                 }
                 return output.data
         }
-        .receive(on: DispatchQueue.main)
+        .receive(on: RunLoop.main)
         .decode(type: PolandLatest.self, decoder: JSONDecoder())
         .replaceError(with: PolandLatest(infected: 0, deceased: 0, infectedByRegion: [], sourceURL: "", lastUpdatedAtApify: "", readMe: ""))
         .eraseToAnyPublisher()
@@ -108,19 +101,23 @@ class ChartViewModel: ObservableObject {
             case .failure(let error): fatalError(error.localizedDescription)
             }
         }, receiveValue: { latest in
-            DispatchQueue.main.async {
                 self.data.append(Day(confirmed: latest.infected, deaths: latest.deceased, recovered: self.data.last?.recovered ?? 0, date: latest.lastUpdatedAtApify))
                 self.setDataFromLast(30, chart: self.parameter)
                 self.setIncreaseDataFromLaset(30)
                 latest.infectedByRegion.forEach { (region) in
                     self.regionData.append(BarHorizontalDataEntity(title: region.region, value1: Double(region.infectedCount), value2: Double(region.deceasedCount)))
                 }
-                
-            }
+            print(latest.lastUpdatedAtApify)
+            self.data.count > 1 ? completion(true) : completion(false)
         })
     }
     
     // MARK: - Charts
+    func clearData() {
+        data.removeAll()
+        customData.removeAll()
+        regionData.removeAll()
+    }
     
     func setChartTitle() -> String {
         switch parameter {
@@ -160,7 +157,6 @@ class ChartViewModel: ObservableObject {
             }
             values.append(change)
         }
-        print(values)
         return values
     }
     
@@ -231,6 +227,11 @@ class ChartViewModel: ObservableObject {
     
     func getMaxDate() -> String {
         return customData.last?.date.formattedDate(.long) ?? "Error loading date"
+    }
+    
+    func setPopup(title: String, text: String) {
+        popup.title = title
+        popup.text = text
     }
     
 }

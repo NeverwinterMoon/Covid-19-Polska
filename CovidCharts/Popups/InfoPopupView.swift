@@ -10,10 +10,10 @@ import SwiftUI
 
 struct InfoPopupView: View {
     
+    @EnvironmentObject var vm: ChartViewModel
+    
     var title: String
     var message: String
-    
-    @Binding var showPopup: Bool
     
     var body: some View {
         VStack {
@@ -25,7 +25,7 @@ struct InfoPopupView: View {
                     .multilineTextAlignment(.center)
                     .font(Fonts.text)
                 Button(action: {
-                    self.showPopup.toggle()
+                    self.vm.showPopup.toggle()
                 }) {
                     Text("OK")
                         .foregroundColor(Color(UIColor.systemBackground))
@@ -37,7 +37,7 @@ struct InfoPopupView: View {
                 .cornerRadius(16)
             }
             .padding()
-            .frame(width: UIScreen.width/2 + 100, height: 148, alignment: .center)
+            .frame(width: UIScreen.width/2 + 100, alignment: .center)
             .background(Colors.customViewBackground)
             .cornerRadius(30)
             .shadow(radius: 20)
@@ -49,6 +49,6 @@ struct InfoPopupView: View {
 
 struct InfoPopupView_Previews: PreviewProvider {
     static var previews: some View {
-        InfoPopupView(title: "Example title", message: "Message", showPopup: .constant(true))
+        InfoPopupView(title: "Example title", message: "Message asdasd asd asd asd asd asd asd asd asd asd asd asd asd asd asd ").environmentObject(ChartViewModel())
     }
 }
