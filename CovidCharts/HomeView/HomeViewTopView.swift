@@ -29,7 +29,7 @@ struct HomeViewTopView: View {
                     HStack {
                         TitleIconView(name: Icons.time, size: .medium, weight: .regular, color: Colors.main)
                         Text(lastUpdateTime)
-                            .font(Fonts.titleViewIcon)
+                            .font(Fonts.icon)
                             .multilineTextAlignment(.leading)
                             .foregroundColor(Colors.main)
                         Spacer()
@@ -38,7 +38,7 @@ struct HomeViewTopView: View {
                         HStack {
                             TitleIconView(name: parameterIcon, size: .medium, weight: .regular, color: Colors.main)
                             Text(parameterSumValue)
-                                .font(Fonts.titleViewIcon)
+                                .font(Fonts.icon)
                                 .multilineTextAlignment(.leading)
                                 .foregroundColor(Colors.main)
                             Spacer()
@@ -47,7 +47,7 @@ struct HomeViewTopView: View {
                         HStack {
                             TitleIconView(name: Icons.increase, size: .medium, weight: .regular, color: Colors.main)
                             Text(parameterIncreaseValue)
-                                .font(Fonts.titleViewIcon)
+                                .font(Fonts.icon)
                                 .multilineTextAlignment(.leading)
                                 .foregroundColor(Colors.main)
                             Spacer()

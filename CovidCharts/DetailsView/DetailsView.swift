@@ -90,7 +90,7 @@ struct SectionTitle: View {
                 HStack {
                     HStack (spacing: 0) {
                         Text(title)
-                            .font(Fonts.titleListElement)
+                            .font(Fonts.listSectionTitle)
                             .padding(.trailing, 16)
                             .animation(.linear)
                             .padding(.leading, 16)

@@ -80,19 +80,19 @@ struct BarHorizontalChartView: View {
                         HStack {
                             Text("0")
                             .foregroundColor(Colors.label)
-                            .font(Fonts.tableElementDetails)
+                            .font(Fonts.listElementDetails)
                             Spacer()
                             Text("\(Int(max/4))")
                             .foregroundColor(Colors.label)
-                            .font(Fonts.tableElementDetails)
+                            .font(Fonts.listElementDetails)
                             Spacer()
                             Text("\(Int(max)*3/4)")
                             .foregroundColor(Colors.label)
-                            .font(Fonts.tableElementDetails)
+                            .font(Fonts.listElementDetails)
                             Spacer()
                             Text("\(Int(max))")
                             .foregroundColor(Colors.label)
-                            .font(Fonts.tableElementDetails)
+                            .font(Fonts.listElementDetails)
                         }
                     .frame(width: CGFloat((UIScreen.width - 142)), height: 1, alignment: .center)
                         
@@ -116,7 +116,7 @@ struct BarHorizontalChartView: View {
                         HStack {
                             Text(entity.title)
                             .foregroundColor(Colors.label)
-                            .font(Fonts.titleTableElement)
+                            .font(Fonts.listElement)
                             .multilineTextAlignment(.trailing)
                             .frame(width: 80, alignment: .trailing)
                             .lineLimit(nil)
@@ -133,7 +133,7 @@ struct BarHorizontalChartView: View {
                                         .background(self.color1)
                                     Text(self.showValues ? "\(Int(entity.value1))" : "")
                                         .padding(.leading, 2)
-                                    .font(Fonts.tableElementDetails)
+                                    .font(Fonts.listElementDetails)
                                     .foregroundColor(Colors.label)
                                 }
                                 if entity.value2 != nil {
@@ -143,7 +143,7 @@ struct BarHorizontalChartView: View {
                                             .background(self.color2)
                                         Text(self.showValues ? "\(Int(entity.value2 ?? 0))" : "")
                                             .padding(.leading, 2)
-                                        .font(Fonts.tableElementDetails)
+                                        .font(Fonts.listElementDetails)
                                         .foregroundColor(Colors.label)
                                     }
                     
@@ -215,7 +215,7 @@ struct ChartLegendView: View {
                 .frame(width: 25, height: 6)
                 .background(color1)
             Text(title1)
-                .font(Fonts.titleTableElement)
+                .font(Fonts.listElement)
                 .multilineTextAlignment(.trailing)
                 .padding(.all, 8)
             if title2 != nil {
@@ -223,7 +223,7 @@ struct ChartLegendView: View {
                     .frame(width: 25, height: 6)
                     .background(color2)
                 Text(title2 ?? "")
-                    .font(Fonts.titleTableElement)
+                    .font(Fonts.listElement)
                     .multilineTextAlignment(.trailing)
                     .padding(.all, 8)
             }

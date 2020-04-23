@@ -35,7 +35,7 @@ struct HomeView: View {
                         ActivityIndicator()
                             .frame(width: 60, height: 60, alignment: .center)
                         Text("Ładowanie danych...")
-                            .font(Fonts.titlePopup)
+                            .font(Fonts.popupTitle)
                             .foregroundColor(Colors.main)
                     }
                     .foregroundColor(Colors.main)

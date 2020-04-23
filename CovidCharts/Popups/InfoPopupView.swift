@@ -20,7 +20,7 @@ struct InfoPopupView: View {
             Spacer()
             VStack(spacing: 16) {
                 Text(title)
-                    .font(Fonts.titlePopup)
+                    .font(Fonts.popupTitle)
                 Text(message)
                     .multilineTextAlignment(.center)
                     .font(Fonts.text)
@@ -30,7 +30,7 @@ struct InfoPopupView: View {
                     Text("OK")
                         .foregroundColor(Color(UIColor.systemBackground))
                         .frame(width: UIScreen.width-64, height: 50, alignment: .center)
-                        .font(Fonts.titleButton)
+                        .font(Fonts.button)
                 }
                 .frame(width: UIScreen.width/2 + 68, height: 50, alignment: .center)
                 .background(Colors.main)
