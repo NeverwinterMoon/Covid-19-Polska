@@ -12,7 +12,6 @@ struct HomeView: View {
     
     @EnvironmentObject var vm: ChartViewModel
     @Binding var showPopup: Bool
-    @State var bottomState: CGSize = .zero
     @State var showDetailsView: Bool = false
     
     var body: some View {
