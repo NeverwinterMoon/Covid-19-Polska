@@ -103,7 +103,7 @@ class ChartViewModel: ObservableObject {
         }, receiveValue: { latest in
                 self.data.append(Day(confirmed: latest.infected, deaths: latest.deceased, recovered: self.data.last?.recovered ?? 0, date: latest.lastUpdatedAtApify))
                 self.setDataFromLast(30, chart: self.parameter)
-                self.setIncreaseDataFromLaset(30)
+                self.setDataOnDailyChange(30)
                 latest.infectedByRegion.forEach { (region) in
                     self.regionData.append(BarHorizontalDataEntity(title: region.region, value1: Double(region.infectedCount), value2: Double(region.deceasedCount)))
                 }
@@ -119,7 +119,7 @@ class ChartViewModel: ObservableObject {
         regionData.removeAll()
     }
     
-    func setChartTitle() -> String {
+    var chartTitle: String {
         switch parameter {
         case .confirmed: return "Zakażenia"
         case .deaths: return "Zgony"
@@ -127,12 +127,20 @@ class ChartViewModel: ObservableObject {
         }
     }
     
+    var minDate: String {
+        return customData.first?.date.formattedDate(.long) ?? "Error loading date"
+    }
+    
+    var maxDate: String {
+        return customData.last?.date.formattedDate(.long) ?? "Error loading date"
+    }
+    
     func setDataFromLast(_ daysNumber: Int, chart: ParameterType) {
         self.parameter = chart
         customData = data.suffix(daysNumber)
     }
     
-    func setIncreaseDataFromLaset(_ daysNumber: Int) {
+    func setDataOnDailyChange(_ daysNumber: Int) {
         for num in 1..<data.count {
             let confirmed = data[num].confirmed - data[num-1].confirmed
             let deaths = data[num].deaths - data[num-1].deaths
@@ -143,7 +151,7 @@ class ChartViewModel: ObservableObject {
         customIncreaseData = dataOnDailyIncrease.suffix(daysNumber)
     }
     
-    func getDailyChangeData(_ parameter: ParameterType) -> [Double] {
+    func getDataOnDailyChange(_ parameter: ParameterType) -> [Double] {
         var values = [Double]()
         guard !customIncreaseData.isEmpty else {
             return []
@@ -160,7 +168,7 @@ class ChartViewModel: ObservableObject {
         return values
     }
     
-    func getDailyIncreaseData(_ parameter: ParameterType) -> [Double] {
+    func getDataOnCurrentValue(_ parameter: ParameterType) -> [Double] {
         var values = [Double]()
         customData.forEach { day in
             switch parameter {
@@ -173,19 +181,11 @@ class ChartViewModel: ObservableObject {
     }
     
     func getDailyIncrease(on: Int, of: ParameterType) -> Int {
-        let today = customData[on]
-        var yesterday: Day = Day(confirmed: 0, deaths: 0, recovered: 0, date: "")
-        if on - 1 >= 0 {
-            yesterday = customData[on-1]
-        } else {
-            var additionalDates = data
-            additionalDates = additionalDates.difference(from: customData)
-            yesterday = additionalDates.last ?? Day(confirmed: 0, deaths: 0, recovered: 0, date: "")
-        }
+        let day = customIncreaseData[on]
         switch of {
-        case .confirmed: return today.confirmed - yesterday.confirmed
-        case .deaths: return today.deaths - yesterday.deaths
-        case .recovered: return today.recovered - yesterday.recovered
+        case .confirmed: return day.confirmed
+        case .deaths: return day.deaths
+        case .recovered: return day.recovered
         }
     }
     
@@ -201,11 +201,6 @@ class ChartViewModel: ObservableObject {
         return customData.last?.date.formattedDate(dateStyle) ?? "Loading..."
     }
     
-    // MARK: - TitleView
-    func getLastUpdateDate() -> String {
-        customData.last?.date.formattedDate(.superlong) ?? "Loading..."
-    }
-    
     func getConfirmedCases() -> String {
         if let last = customData.last?.confirmed {
             return String(last)
@@ -219,14 +214,6 @@ class ChartViewModel: ObservableObject {
             return "Loading..."
         }
         return String(getDailyIncrease(on: customData.count-1, of: .confirmed))
-    }
-    
-    func getMinDate() -> String {
-        return customData.first?.date.formattedDate(.long) ?? "Error loading date"
-    }
-    
-    func getMaxDate() -> String {
-        return customData.last?.date.formattedDate(.long) ?? "Error loading date"
     }
     
     func setPopup(title: String, text: String) {

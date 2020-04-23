@@ -30,7 +30,7 @@ struct DetailsView: View {
                     .cornerRadius(3)
                     .opacity(0.1)
                 VerticalSpacer()
-                HomeTopView(title: "Covid-19 Polska", lastUpdateTime: vm.getLastUpdateDate(), parameterSumValue: vm.getConfirmedCases(), parameterIcon: Icons.confirmed, parameterIncreaseValue: vm.getLatestIncrease(), rightButtonIcon: Icons.dismiss) {
+                HomeTopView(title: "Covid-19 Polska", lastUpdateTime: vm.getLatestDate(.superlong), parameterSumValue: vm.getConfirmedCases(), parameterIcon: Icons.confirmed, parameterIncreaseValue: vm.getLatestIncrease(), rightButtonIcon: Icons.dismiss) {
                     self.showDetailsView.toggle()
                 }
                 VerticalSpacer()
@@ -123,8 +123,8 @@ struct SectionCharts: View {
     
     var body: some View {
         VStack(spacing: 16) {
-            ChartView(data: self.vm.getDailyChangeData(parameter), title: title1, minX: self.vm.getMinDate(), maxX: self.vm.getMaxDate())
-            ChartView(data: self.vm.getDailyIncreaseData(parameter), title: title2, minX: self.vm.getMinDate(), maxX: self.vm.getMaxDate())
+            ChartView(data: self.vm.getDataOnDailyChange(parameter), title: title1, minX: self.vm.minDate, maxX: self.vm.maxDate)
+            ChartView(data: self.vm.getDataOnCurrentValue(parameter), title: title2, minX: self.vm.minDate, maxX: self.vm.maxDate)
         }
         .padding(.top, 8)
         .padding(.bottom, 16)
