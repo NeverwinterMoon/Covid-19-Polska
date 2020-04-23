@@ -25,7 +25,7 @@ struct HomeViewPopup {
 class ChartViewModel: ObservableObject {
     
     private var data = [Day]()
-    private var dataOnIncrese = [Day]()
+    private var dataOnDailyIncrease = [Day]()
     @Published var regionData = [BarHorizontalDataEntity]()
     @Published var customData = [Day]()
     @Published var customIncreaseData = [Day]()
@@ -138,22 +138,22 @@ class ChartViewModel: ObservableObject {
             let deaths = data[num].deaths - data[num-1].deaths
             let recovered = data[num].recovered - data[num-1].recovered
             let day = Day(confirmed: confirmed, deaths: deaths, recovered: recovered, date: data[num].date)
-            dataOnIncrese.append(day)
+            dataOnDailyIncrease.append(day)
         }
-        customIncreaseData = dataOnIncrese.suffix(daysNumber)
+        customIncreaseData = dataOnDailyIncrease.suffix(daysNumber)
     }
     
     func getDailyChangeData(_ parameter: ParameterType) -> [Double] {
         var values = [Double]()
-        guard !customData.isEmpty else {
+        guard !customIncreaseData.isEmpty else {
             return []
         }
-        for num in 1..<customData.count {
+        for num in 0..<customIncreaseData.count {
             var change: Double = 0
             switch parameter {
-            case .confirmed: change = Double(customData[num].confirmed - customData[num-1].confirmed)
-            case .deaths: change = Double(customData[num].deaths - customData[num-1].deaths)
-            case .recovered: change = (Double(customData[num].recovered - customData[num-1].recovered))
+            case .confirmed: change = Double(customIncreaseData[num].confirmed)
+            case .deaths: change = Double(customIncreaseData[num].deaths)
+            case .recovered: change = Double(customIncreaseData[num].recovered)
             }
             values.append(change)
         }
