@@ -14,8 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        UITableView.appearance().backgroundColor = UIColor.clear
+        UITableView.appearance().backgroundColor = UIColor.systemBackground
         UITableView.appearance().separatorStyle = .none
+        UINavigationBar.appearance().tintColor = UIColor.systemPink
+
+    //    UIView.appearance().backgroundColor = UIColor.systemBackground
         // Override point for customization after application launch.
         return true
     }

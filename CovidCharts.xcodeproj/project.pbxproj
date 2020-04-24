@@ -20,6 +20,8 @@
 		810C1322244604F000419207 /* ChartContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C1321244604F000419207 /* ChartContentView.swift */; };
 		814B42062450B48400923A19 /* BarIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B42052450B48400923A19 /* BarIndicatorView.swift */; };
 		8153F381245259B700297E38 /* HomeChartDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8153F380245259B700297E38 /* HomeChartDetailsView.swift */; };
+		8153F3832453471300297E38 /* DetailsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8153F3822453471300297E38 /* DetailsMenuView.swift */; };
+		8153F38524534E5400297E38 /* PolandStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8153F38424534E5400297E38 /* PolandStatsView.swift */; };
 		815F8EA72450382500AB8D7F /* BarHorizontalChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815F8EA62450382500AB8D7F /* BarHorizontalChartView.swift */; };
 		81C197BC2446632200AEC5FF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197BB2446632200AEC5FF /* Colors.swift */; };
 		81C197BE2446634900AEC5FF /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197BD2446634900AEC5FF /* Icons.swift */; };
@@ -70,6 +72,8 @@
 		810C1321244604F000419207 /* ChartContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartContentView.swift; sourceTree = "<group>"; };
 		814B42052450B48400923A19 /* BarIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarIndicatorView.swift; sourceTree = "<group>"; };
 		8153F380245259B700297E38 /* HomeChartDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChartDetailsView.swift; sourceTree = "<group>"; };
+		8153F3822453471300297E38 /* DetailsMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsMenuView.swift; sourceTree = "<group>"; };
+		8153F38424534E5400297E38 /* PolandStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolandStatsView.swift; sourceTree = "<group>"; };
 		815F8EA62450382500AB8D7F /* BarHorizontalChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarHorizontalChartView.swift; sourceTree = "<group>"; };
 		81C197BB2446632200AEC5FF /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		81C197BD2446634900AEC5FF /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
@@ -178,6 +182,8 @@
 				81C197F52448A21300AEC5FF /* HomeChartToolbarView.swift */,
 				81C197F124486BAD00AEC5FF /* HomeBotView.swift */,
 				8153F380245259B700297E38 /* HomeChartDetailsView.swift */,
+				8153F3822453471300297E38 /* DetailsMenuView.swift */,
+				8153F38424534E5400297E38 /* PolandStatsView.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -391,6 +397,7 @@
 				81E05EBB244E1EF10002F0C3 /* HomeTopView.swift in Sources */,
 				81C198512449E47300AEC5FF /* PieChartRow.swift in Sources */,
 				81C197F62448A21300AEC5FF /* HomeChartToolbarView.swift in Sources */,
+				8153F3832453471300297E38 /* DetailsMenuView.swift in Sources */,
 				815F8EA72450382500AB8D7F /* BarHorizontalChartView.swift in Sources */,
 				81C197BE2446634900AEC5FF /* Icons.swift in Sources */,
 				81E05EBD244E4E460002F0C3 /* ChartViewModel.swift in Sources */,
@@ -406,6 +413,7 @@
 				81C1984F2449E45D00AEC5FF /* PieChartCell.swift in Sources */,
 				810C1322244604F000419207 /* ChartContentView.swift in Sources */,
 				81D0EA3C244F252500968667 /* BarContentView.swift in Sources */,
+				8153F38524534E5400297E38 /* PolandStatsView.swift in Sources */,
 				81C19893244C74C400AEC5FF /* InfoPopupView.swift in Sources */,
 				81C198482449E40800AEC5FF /* MaginfierRect.swift in Sources */,
 				810C12FB2444994000419207 /* HomeView.swift in Sources */,

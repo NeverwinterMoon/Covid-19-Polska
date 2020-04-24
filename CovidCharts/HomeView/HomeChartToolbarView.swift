@@ -53,7 +53,8 @@ private struct ShowDetailsButton: View {
                 .padding(.trailing, 16)
         }
         .sheet(isPresented: $showDetailsView) {
-            DetailsView(showDetailsView: self.$showDetailsView).environmentObject(self.vm)
+            DetailsMenuView().environmentObject(self.vm)
+    //        DetailsView(showDetailsView: self.$showDetailsView).environmentObject(self.vm)
         }
         .frame(width: 170, height: 40, alignment: .center)
         .background(RoundedCorners(color: Colors.customViewBackground, tl: 16, tr: 0, bl: 16, br: 0))

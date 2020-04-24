@@ -41,7 +41,7 @@ struct HomeChartDetailsView: View {
                 Spacer()
             }
             .padding(.all)
-            .frame(height: UIScreen.height/5, alignment: .center)
+            .frame(width: UIScreen.width, height: UIScreen.height/5, alignment: .center)
             .background(Colors.customViewBackground)
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)

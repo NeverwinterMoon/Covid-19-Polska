@@ -13,6 +13,7 @@ struct HomeBotView: View {
     @EnvironmentObject var vm: ChartViewModel
     
     var body: some View {
+        
         VStack {
             Spacer()
                 .frame(width: UIScreen.width, height: 8, alignment: .center)
@@ -65,11 +66,26 @@ struct MenuButton: View {
                 .offset(x: 0, y: -8)
             }
             .frame(width: 64, height: 64, alignment: .center)
-            .background(Colors.customViewBackground)
+            
         }
         .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
         .shadow(color: Color.black.opacity(0.2), radius: 6, x: 0, y: 6)
         .padding(.horizontal, 2)
     }
     
+}
+
+struct MenuElement: View {
+    var body: some View {
+        VStack (spacing: 0) {
+            IconView(name: Icons.confirmed, size: .medium, weight: .semibold, color: Colors.main)
+            VStack (spacing: 0) {
+                Text("Przyrost")
+                    .font(Fonts.indicatorTextBolded)
+                    .foregroundColor(Colors.label)
+                    .padding(8)
+
+            }
+        }
+    }
 }

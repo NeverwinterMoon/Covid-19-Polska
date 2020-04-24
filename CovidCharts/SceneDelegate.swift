@@ -17,6 +17,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         // Create the SwiftUI view that provides the window contents.
         let contentView = HomeView(showPopup: .constant(false)).environmentObject(ChartViewModel())
+        
+        let newAppearance = UINavigationBarAppearance()
+        newAppearance.configureWithOpaqueBackground()
+        newAppearance.backgroundColor = UITraitCollection.current.userInterfaceStyle == .dark ? .black : .white
+        newAppearance.titleTextAttributes = [.foregroundColor: UIColor.label]
+
+        UINavigationBar.appearance().standardAppearance = newAppearance
 
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
