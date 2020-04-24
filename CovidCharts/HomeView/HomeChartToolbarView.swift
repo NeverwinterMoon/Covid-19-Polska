@@ -47,7 +47,7 @@ private struct ShowDetailsButton: View {
             self.showDetailsView.toggle()
         }) {
             Text("Pokaż szczegóły")
-                .font(.system(size: 16, weight: .semibold, design: .default))
+                .font(.system(size: 14, weight: .semibold, design: .default))
                 .multilineTextAlignment(.leading)
                 .foregroundColor(Colors.label)
                 .padding(.trailing, 16)

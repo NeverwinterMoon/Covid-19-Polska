@@ -26,13 +26,14 @@ struct CovidTableView: View {
                 .frame(width: UIScreen.width - 32, height: 1)
                 .background(Colors.label)
                 HStack (spacing: 0){
-                    ParameterColumn(column: .date, icon: Icons.calendar, data: vm.customData)
-                    ParameterColumn(column: .confirmed, icon: Icons.confirmed, data: vm.customData)
-                    ParameterColumn(column: .confirmed, icon: Icons.increase, data: vm.customIncreaseData)
-                    ParameterColumn(column: .deaths, icon: Icons.deaths, data: vm.customData)
-                    ParameterColumn(column: .deaths, icon: Icons.increase, data: vm.customIncreaseData)
-                    ParameterColumn(column: .recovered, icon: Icons.recovered, data: vm.customData)
-                    ParameterColumn(column: .recovered, icon: Icons.increase, data: vm.customIncreaseData)
+                    Text("")
+                    ParameterColumn(parameter: .date, icon: Icons.calendar)
+                    ParameterColumn(parameter: .confirmed, icon: Icons.confirmed)
+                    ParameterColumn(parameter: .confirmedInc, icon: Icons.increase)
+                    ParameterColumn(parameter: .deaths, icon: Icons.deaths)
+                    ParameterColumn(parameter: .deathsInc, icon: Icons.increase)
+                    ParameterColumn(parameter: .recovered, icon: Icons.recovered)
+                    ParameterColumn(parameter: .recoveredInc, icon: Icons.increase)
                 }
                 .frame(width: UIScreen.width)
             }
@@ -40,7 +41,7 @@ struct CovidTableView: View {
             .background(Colors.customViewBackground)
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
-                        .background(Colors.customViewBackground)
+            .background(Colors.customViewBackground)
         
     }
 }
@@ -64,32 +65,32 @@ struct ParameterText: View {
 
 struct ParameterColumn: View {
     
-    enum Column {
-    case date, confirmed, deaths, recovered
-    }
-
-    var column: Column
+    @EnvironmentObject var vm: ChartViewModel
+    
+    var parameter: ParameterType
     var icon: String
-    var data: [Day]
     
     var body: some View {
         VStack {
             IconView(name: icon, size: .medium, weight: .semibold, color: Colors.main)
             .padding(.vertical, 8)
             .frame(width: UIScreen.width/7, alignment: .center)
-            ForEach(data.reversed(), id: \.self) { day in
+            ForEach(vm.dailyData.reversed(), id: \.self) { day in
                 ParameterText(title: self.getString(day))
                 .padding(2)
             }
         }.padding(.vertical, 8)
     }
     
-    func getString(_ day: Day) -> String {
-        switch column {
+    func getString(_ day: DailyData) -> String {
+        switch parameter {
         case .confirmed: return String(day.confirmed)
         case .deaths: return String(day.deaths)
         case .recovered: return String(day.recovered)
         case .date: return String(day.date.formattedDate(.short))
+        case .confirmedInc: return String(day.confirmedInc)
+        case .deathsInc: return String(day.deathsInc)
+        case .recoveredInc: return String(day.recoveredInc)
         }
     }
 }

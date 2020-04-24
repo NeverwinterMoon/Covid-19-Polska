@@ -30,26 +30,26 @@ struct DetailsView: View {
                     .cornerRadius(3)
                     .opacity(0.1)
                 VerticalSpacer()
-                HomeTopView(title: "Covid-19 Polska", lastUpdateTime: vm.getLatestDate(.superlong), parameterSumValue: vm.getConfirmedCases(), parameterIcon: Icons.confirmed, parameterIncreaseValue: vm.getLatestIncrease(), rightButtonIcon: Icons.dismiss) {
+                HomeTopView(title: vm.chartTitle, lastUpdateTime: vm.getLatestDate(.superlong), parameterSumValue: String(vm.getLatest(.confirmed)), parameterIcon: Icons.confirmed, parameterIncreaseValue: String(vm.getLatest(.confirmedInc)), rightButtonIcon: Icons.dismiss) {
                     self.showDetailsView.toggle()
                 }
                 VerticalSpacer()
                 List {
                     Section(header: SectionTitle(title: "Zakażenia", show: $showSection1)) {
                         if showSection1 {
-                             SectionCharts(parameter: .confirmed, title1: "Przyrost zakażeń", title2: "Zakażenia")
+                            SectionCharts(parameter1: .confirmedInc, parameter2: .confirmed, title1: "Przyrost zakażeń", title2: "Zakażenia")
                                 .animation(.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 0.5))
                         }
                     }
                             .listRowBackground(Color.clear)
                     Section(header: SectionTitle(title: "Zgony", show: $showSection2)) {
                         if showSection2 {
-                             SectionCharts(parameter: .deaths, title1: "Przyrost zgonów", title2: "Zgony")
+                            SectionCharts(parameter1: .deathsInc, parameter2: .deaths, title1: "Przyrost zgonów", title2: "Zgony")
                         }
                     }
                     Section(header: SectionTitle(title: "Wyzdrowienia", show: $showSection3)) {
                         if showSection3 {
-                             SectionCharts(parameter: .deaths, title1: "Przyrost wyzdrowień", title2: "Wyzdrowienia")
+                             SectionCharts(parameter1: .recoveredInc, parameter2: .recovered, title1: "Przyrost wyzdrowień", title2: "Wyzdrowienia")
                         }
                     }
                             .listRowBackground(Color.clear)
@@ -117,14 +117,15 @@ struct SectionTitle: View {
 struct SectionCharts: View {
     
     @EnvironmentObject var vm: ChartViewModel
-    var parameter: ParameterType
+    var parameter1: ParameterType
+    var parameter2: ParameterType
     var title1: String
     var title2: String
     
     var body: some View {
         VStack(spacing: 16) {
-            ChartView(data: self.vm.getDataOnDailyChange(parameter), title: title1, minX: self.vm.minDate, maxX: self.vm.maxDate)
-            ChartView(data: self.vm.getDataOnCurrentValue(parameter), title: title2, minX: self.vm.minDate, maxX: self.vm.maxDate)
+            ChartView(data: self.vm.getData(parameter1), title: title1, minX: self.vm.minDate, maxX: self.vm.maxDate)
+            ChartView(data: self.vm.getData(parameter2), title: title2, minX: self.vm.minDate, maxX: self.vm.maxDate)
         }
         .padding(.top, 8)
         .padding(.bottom, 16)

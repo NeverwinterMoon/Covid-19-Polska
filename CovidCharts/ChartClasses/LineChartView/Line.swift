@@ -10,6 +10,7 @@ import SwiftUI
 
 public struct Line: View {
     var indicator = IndicatorPoint()
+    @EnvironmentObject var vm: ChartViewModel
     @ObservedObject var data: ChartData
     @Binding var touchLocation: CGPoint
     @Binding var showIndicator: Bool
@@ -87,26 +88,27 @@ public struct Line: View {
                     .position(self.getClosestPointOnPath(touchLocation: self.touchLocation))
                     .rotationEffect(.degrees(180), anchor: .center)
                     .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
-                VStack (alignment: .leading, spacing: 4) {
-                    IndicatorTitleView(title: selectedDay.date.formattedDate(.long), textColor: Colors.main)
-                    IndicatorTextLine(parameter: "Zakażenia", currentValue: selectedDayIncrease.confirmed)
-                    IndicatorTextLine(parameter: "Zgony", currentValue: selectedDayIncrease.deaths)
-                    Spacer()
-                    .frame(height: 4)
-                    IndicatorTitleView(title: "Łącznie", textColor: Colors.main)
-                    IndicatorTextLine(parameter: "Zakażenia", currentValue: selectedDay.confirmed)
-                    IndicatorTextLine(parameter: "Zgony", currentValue: selectedDay.deaths)
-                }
-                .frame(width: 150, height: 145, alignment: .leading)
-                .background(Colors.customViewBackground)
-                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-                .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
-                .rotationEffect(.degrees(180), anchor: .center)
-                .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
-                .position(self.getClosestPointOnPath(touchLocation: self.touchLocation))
-                .rotationEffect(.degrees(180), anchor: .center)
-                .rotation3DEffect(.degrees(-180), axis: (x: 0, y: 1, z: 0))
-                .offset(x: 0, y: 85)
+
+//                VStack (alignment: .leading, spacing: 4) {
+//                    IndicatorTitleView(title: selectedDay.date.formattedDate(.long), textColor: Colors.main)
+//                    IndicatorTextLine(parameter: "Zakażenia", currentValue: selectedDayIncrease.confirmed)
+//                    IndicatorTextLine(parameter: "Zgony", currentValue: selectedDayIncrease.deaths)
+//                    Spacer()
+//                    .frame(height: 4)
+//                    IndicatorTitleView(title: "Łącznie", textColor: Colors.main)
+//                    IndicatorTextLine(parameter: "Zakażenia", currentValue: selectedDay.confirmed)
+//                    IndicatorTextLine(parameter: "Zgony", currentValue: selectedDay.deaths)
+//                }
+//                .frame(width: 150, height: 145, alignment: .leading)
+//                .background(Colors.customViewBackground)
+//                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+//                .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
+//                .rotationEffect(.degrees(180), anchor: .center)
+//                .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
+//                .position(self.getClosestPointOnPath(touchLocation: self.touchLocation))
+//                .rotationEffect(.degrees(180), anchor: .center)
+//                .rotation3DEffect(.degrees(-180), axis: (x: 0, y: 1, z: 0))
+//                .offset(x: 0, y: 85)
             }
         }
     }
@@ -123,37 +125,5 @@ struct Line_Previews: PreviewProvider {
         GeometryReader{ geometry in
             Line(data: ChartData(points: [12,-230,10,54]), touchLocation: .constant(CGPoint(x: 100, y: 12)), showIndicator: .constant(true), minDataValue: .constant(nil), maxDataValue: .constant(nil), selectedDay: .constant(Day(confirmed: 1231, deaths: 123, recovered: 12, date: "3 March 2019")), selectedDayIncrease: .constant(Day(confirmed: 50, deaths: 50, recovered: 50, date: "3 March 2019")))
         }.frame(width: ChartView.width, height: ChartView.height)
-    }
-}
-
-struct IndicatorTitleView: View {
-    
-    var title: String
-    var textColor: Color
-    
-    var body: some View {
-        Text(title)
-            .font(Fonts.indicatorTitle)
-            .foregroundColor(textColor)
-            .padding(.horizontal)
-    }
-}
-
-struct IndicatorTextLine: View {
-    
-    var parameter: String
-    var currentValue: Int
-    
-    var body: some View {
-        HStack {
-            Text("\(parameter): ")
-                .foregroundColor(Colors.label).foregroundColor(Colors.label)
-                .font(Fonts.indicatorTextRegular)
-            Spacer()
-            Text("\(Int(currentValue))")
-                .foregroundColor(Colors.label)
-                .font(Fonts.indicatorTextBolded)
-        }
-        .padding(.horizontal)
     }
 }

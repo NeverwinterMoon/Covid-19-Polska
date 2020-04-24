@@ -9,7 +9,7 @@
 import SwiftUI
 
 public struct LineView: View {
-    @EnvironmentObject var chartViewModel: ChartViewModel
+    @EnvironmentObject var vm: ChartViewModel
     @ObservedObject var data: ChartData
     public var title: String?
     public var legend: String?
@@ -63,10 +63,12 @@ public struct LineView: View {
             self.opacity = 1
             self.closestPoint = self.getClosestDataPoint(toPoint: value.location, width: ChartView.width, height: (ChartView.height - 40))
             self.hideHorizontalLines = true
+            self.vm.showHighlightedData = true
         })
             .onEnded({ value in
                 self.opacity = 0
                 self.hideHorizontalLines = false
+                self.vm.showHighlightedData = false
             })
         )
         }
@@ -80,20 +82,19 @@ public struct LineView: View {
         
         var index: Int = Int(floor((toPoint.x+15)/stepWidth))
         if index > 0 && index < points.count {
-            if index == chartViewModel.customData.count {
+            if index == vm.dailyData.count {
                 index = index - 1
             }
-            self.selectedDay = Day(
-                confirmed: chartViewModel.customData[index].confirmed,
-                deaths: chartViewModel.customData[index].deaths,
-                recovered: chartViewModel.customData[index].recovered,
-                date: chartViewModel.customData[index].date)
-            self.selectedDayIncrease = Day(
-                confirmed: chartViewModel.getDailyIncrease(on: index, of: .confirmed),
-                deaths: chartViewModel.getDailyIncrease(on: index, of: .deaths),
-                recovered: chartViewModel.getDailyIncrease(on: index, of: .recovered),
-                date: chartViewModel.customData[index].date
-            )
+//            self.vm.highlightedData = ChartHighlightedData(confirmed: vm.customData[index].confirmed, deaths: <#T##String#>, recovered: <#T##String#>, confirmedInc: <#T##String#>, deathsInc: <#T##String#>, recoveredInc: <#T##String#>, date: <#T##String#>)
+//            self.vm.highlightedData = ChartHighlightedData(
+//                confirmed: vm.customData[index].confirmed,
+//                deaths: vm.customData[index].deaths,
+//                recovered: vm.customData[index].recovered,
+//                confirmedInc: : vm.getDailyIncrease(on: index, of: .confirmed),
+//                deathsInc: vm.getDailyIncrease(on: index, of: .deaths),
+//                recoveredInc: vm.getDailyIncrease(on: index, of: .recovered),
+//                date: vm.customData[index].date)
+
             return CGPoint(x: CGFloat(index)*stepWidth, y: CGFloat(points[index-1])*stepHeight)
         }
         return .zero

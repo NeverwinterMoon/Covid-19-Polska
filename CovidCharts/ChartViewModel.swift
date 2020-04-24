@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 enum ParameterType {
-    case deaths, confirmed, recovered
+    case deaths, confirmed, recovered, confirmedInc, deathsInc, recoveredInc, date
 }
 
 enum HTTPError: LocalizedError {
@@ -22,16 +22,28 @@ struct HomeViewPopup {
     var text: String
 }
 
+struct DailyData: Hashable {
+    var confirmed: Int
+    var deaths: Int
+    var recovered: Int
+    var confirmedInc: Int
+    var deathsInc: Int
+    var recoveredInc: Int
+    var date: String
+}
+
 class ChartViewModel: ObservableObject {
     
-    private var data = [Day]()
-    private var dataOnDailyIncrease = [Day]()
+    private var fetchedData = [Day]()
+    @Published var dailyData = [DailyData]()
     @Published var regionData = [BarHorizontalDataEntity]()
-    @Published var customData = [Day]()
-    @Published var customIncreaseData = [Day]()
-    @Published var parameter: ParameterType = .confirmed
+    @Published var parameter: ParameterType = .confirmedInc
     @Published var popup = HomeViewPopup(title: "", text: "")
     @Published var showPopup: Bool = false
+    
+    @Published var showHighlightedData: Bool = false
+    @Published var highlightedData = DailyData(confirmed: 0, deaths: 0, recovered: 0, confirmedInc: 0, deathsInc: 0, recoveredInc: 0, date: "")
+    
     private var cancellable: AnyCancellable?
     private var cancellable2: AnyCancellable?
     
@@ -44,7 +56,7 @@ class ChartViewModel: ObservableObject {
         fetchCovidHitoryData()
         fetchLatestData { (fetchedData) in
             self.showPopup.toggle()
-            self.setPopup(title: fetchedData ? "Aktualizacja" : "Wystąpił błąd", text: fetchedData ? "Ostatnia aktualizacja:\n\(self.customData.last?.date.formattedDate(.superlong) ?? "")" : "Sprawdź połączenie z internetem")
+            self.setPopup(title: fetchedData ? "Aktualizacja" : "Wystąpił błąd", text: fetchedData ? "Ostatnia aktualizacja:\n\(self.dailyData.last?.date.formattedDate(.superlong) ?? "")" : "Sprawdź połączenie z internetem")
         }
     }
     
@@ -73,7 +85,7 @@ class ChartViewModel: ObservableObject {
                 fatalError(error.localizedDescription)
             }
         }, receiveValue: { days in
-                self.data = days
+                self.fetchedData = days
         })
     }
     
@@ -101,21 +113,24 @@ class ChartViewModel: ObservableObject {
             case .failure(let error): fatalError(error.localizedDescription)
             }
         }, receiveValue: { latest in
-                self.data.append(Day(confirmed: latest.infected, deaths: latest.deceased, recovered: self.data.last?.recovered ?? 0, date: latest.lastUpdatedAtApify))
-                self.setDataFromLast(30, chart: self.parameter)
-                self.setDataOnDailyChange(30)
+                self.fetchedData.append(Day(confirmed: latest.infected, deaths: latest.deceased, recovered: self.fetchedData.last?.recovered ?? 0, date: latest.lastUpdatedAtApify))
                 latest.infectedByRegion.forEach { (region) in
                     self.regionData.append(BarHorizontalDataEntity(title: region.region, value1: Double(region.infectedCount), value2: Double(region.deceasedCount)))
                 }
-            print(latest.lastUpdatedAtApify)
-            self.data.count > 1 ? completion(true) : completion(false)
+            self.fetchedData.forEach { (day) in
+                self.dailyData.append(DailyData(confirmed: day.confirmed, deaths: day.deaths, recovered: day.recovered, confirmedInc: 0, deathsInc: 0, recoveredInc: 0, date: day.date))
+            }
+            self.setDataOnDailyChange()
+            self.setDataFromLast(30, chart: self.parameter)
+            
+            self.fetchedData.count > 1 ? completion(true) : completion(false)
         })
     }
     
     // MARK: - Charts
     func clearData() {
-        data.removeAll()
-        customData.removeAll()
+        fetchedData.removeAll()
+        dailyData.removeAll()
         regionData.removeAll()
     }
     
@@ -124,96 +139,106 @@ class ChartViewModel: ObservableObject {
         case .confirmed: return "Zakażenia"
         case .deaths: return "Zgony"
         case .recovered: return "Wyleczeni"
+        case .confirmedInc: return "Przyrost zakażeń"
+        case .deathsInc: return "Przyrost zgonów"
+        case .recoveredInc: return "Przyrost wyzdrowień"
+        case .date: return "Data"
         }
     }
     
     var minDate: String {
-        return customData.first?.date.formattedDate(.long) ?? "Error loading date"
+        return dailyData.first?.date.formattedDate(.long) ?? "Error loading date"
     }
     
     var maxDate: String {
-        return customData.last?.date.formattedDate(.long) ?? "Error loading date"
+        return dailyData.last?.date.formattedDate(.long) ?? "Error loading date"
     }
     
+    #warning("Change it causes errors")
     func setDataFromLast(_ daysNumber: Int, chart: ParameterType) {
         self.parameter = chart
-        customData = data.suffix(daysNumber)
+        dailyData = dailyData.suffix(daysNumber)
     }
     
-    func setDataOnDailyChange(_ daysNumber: Int) {
-        for num in 1..<data.count {
-            let confirmed = data[num].confirmed - data[num-1].confirmed
-            let deaths = data[num].deaths - data[num-1].deaths
-            let recovered = data[num].recovered - data[num-1].recovered
-            let day = Day(confirmed: confirmed, deaths: deaths, recovered: recovered, date: data[num].date)
-            dataOnDailyIncrease.append(day)
+    func setDataOnDailyChange() {
+        guard !fetchedData.isEmpty else {
+            return
         }
-        customIncreaseData = dataOnDailyIncrease.suffix(daysNumber)
+        for num in 1..<fetchedData.count {
+            dailyData[num].confirmedInc = fetchedData[num].confirmed - fetchedData[num-1].confirmed
+            dailyData[num].deathsInc = fetchedData[num].deaths - fetchedData[num-1].deaths
+            dailyData[num].recoveredInc = fetchedData[num].recovered - fetchedData[num-1].recovered
+        }
     }
     
-    func getDataOnDailyChange(_ parameter: ParameterType) -> [Double] {
+    func getData(_ parameter: ParameterType) -> [Double] {
         var values = [Double]()
-        guard !customIncreaseData.isEmpty else {
+        guard !dailyData.isEmpty else {
             return []
         }
-        for num in 0..<customIncreaseData.count {
-            var change: Double = 0
-            switch parameter {
-            case .confirmed: change = Double(customIncreaseData[num].confirmed)
-            case .deaths: change = Double(customIncreaseData[num].deaths)
-            case .recovered: change = Double(customIncreaseData[num].recovered)
-            }
-            values.append(change)
-        }
-        return values
-    }
-    
-    func getDataOnCurrentValue(_ parameter: ParameterType) -> [Double] {
-        var values = [Double]()
-        customData.forEach { day in
-            switch parameter {
+        dailyData.forEach { (day) in
+            switch self.parameter {
             case .confirmed: values.append(Double(day.confirmed))
-            case .deaths: values.append(Double(day.deaths))
+                case .deaths: values.append(Double(day.deaths))
             case .recovered: values.append(Double(day.recovered))
+            case .confirmedInc: values.append(Double(day.confirmedInc))
+            case .deathsInc: values.append(Double(day.deathsInc))
+            case .recoveredInc: values.append(Double(day.recoveredInc))
+            default: break
             }
         }
         return values
     }
     
-    func getDailyIncrease(on: Int, of: ParameterType) -> Int {
-        let day = customIncreaseData[on]
+    func getDailyInc(on: Int, of: ParameterType) -> Int {
         switch of {
-        case .confirmed: return day.confirmed
-        case .deaths: return day.deaths
-        case .recovered: return day.recovered
+        case .confirmed: return dailyData[on].confirmed
+        case .deaths: return dailyData[on].deaths
+        case .recovered: return dailyData[on].recovered
+        case .confirmedInc: return dailyData[on].confirmedInc
+        case .deathsInc: return dailyData[on].deathsInc
+        case .recoveredInc: return dailyData[on].recoveredInc
+        default: return 0
         }
     }
     
-    func getCases(_ day: Day) -> CGFloat {
+    func getCases(_ day: DailyData) -> CGFloat {
         switch parameter {
         case .deaths: return CGFloat(day.deaths)
         case .confirmed: return CGFloat(day.confirmed)
         case .recovered: return CGFloat(day.recovered)
+        case .deathsInc: return CGFloat(day.deathsInc)
+        case .confirmedInc: return CGFloat(day.confirmedInc)
+        case .recoveredInc: return CGFloat(day.recoveredInc)
+        default: return 0
         }
     }
     
     func getLatestDate(_ dateStyle: DateStyle) -> String {
-        return customData.last?.date.formattedDate(dateStyle) ?? "Loading..."
+        return dailyData.last?.date.formattedDate(dateStyle) ?? "Loading..."
     }
     
     func getConfirmedCases() -> String {
-        if let last = customData.last?.confirmed {
+        if let last = dailyData.last?.confirmed {
             return String(last)
         } else {
             return "Loading..."
         }
     }
     
-    func getLatestIncrease() -> String {
-        guard customData.count > 0 else {
-            return "Loading..."
+    func getLatest(_ parameter: ParameterType) -> Int {
+        guard dailyData.count > 0 else {
+            return 0
         }
-        return String(getDailyIncrease(on: customData.count-1, of: .confirmed))
+        switch parameter {
+        case .deaths: return dailyData.last!.deaths
+        case .confirmed: return dailyData.last!.confirmed
+        case .recovered: return dailyData.last!.recovered
+        case .deathsInc: return dailyData.last!.deathsInc
+        case .confirmedInc: return dailyData.last!.confirmedInc
+        case .recoveredInc: return dailyData.last!.recoveredInc
+        default: return 0
+        }
     }
     
     func setPopup(title: String, text: String) {

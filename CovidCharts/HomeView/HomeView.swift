@@ -19,17 +19,18 @@ struct HomeView: View {
             Colors.appBackground
                 .edgesIgnoringSafeArea(.all)
             VStack (spacing: 0) {
-                if !vm.customData.isEmpty {
-                    HomeTopView(title: "Covid-19 Polska", lastUpdateTime: vm.getLatestDate(.superlong), parameterSumValue: vm.getConfirmedCases(), parameterIcon: Icons.confirmed, parameterIncreaseValue: vm.getLatestIncrease(), rightButtonIcon: Icons.reload) {
+                if !vm.dailyData.isEmpty {
+                    HomeTopView(title: "Covid-19 Polska", lastUpdateTime: vm.getLatestDate(.superlong), parameterSumValue: String(vm.getLatest(.confirmed)), parameterIcon: Icons.confirmed, parameterIncreaseValue: String(vm.getLatest(.confirmedInc)), rightButtonIcon: Icons.reload) {
                         self.vm.loadData()
                     }
                     VerticalSpacer()
-                    ChartView(data: vm.getDataOnDailyChange(vm.parameter), title: vm.chartTitle, minX: vm.minDate, maxX: vm.maxDate)
+                    ChartView(data: vm.getData(vm.parameter), title: vm.chartTitle, minX: vm.minDate, maxX: vm.maxDate)
                     VerticalSpacer()
                     HomeChartToolbarView(showDetailsView: $showDetailsView, showPopup: $showPopup)
                     Spacer()
                     HomeBotView()
-                } else {
+                }
+                else {
                     VStack (spacing: 40) {
                         ActivityIndicator()
                             .frame(width: 60, height: 60, alignment: .center)
@@ -45,6 +46,7 @@ struct HomeView: View {
                 .scaleEffect(self.vm.showPopup ? 1.0 : 0.5)
                 .opacity(self.vm.showPopup ? 1.0 : 0.0)
                 .animation(.spring())
+
         }
     }
 }

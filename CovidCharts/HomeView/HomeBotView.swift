@@ -17,9 +17,9 @@ struct HomeBotView: View {
             Spacer()
                 .frame(width: UIScreen.width, height: 8, alignment: .center)
             HStack (alignment: .center) {
-                MenuButton(title: "Zakażenia", image: Icons.confirmed, chart: .confirmed)
-                MenuButton(title: "Wyleczeni", image: Icons.recovered, chart: .recovered)
-                MenuButton(title: "Zgony", image: Icons.deaths, chart: .deaths)
+                MenuButton(title: "Zakażenia", image: Icons.confirmed, chart: .confirmedInc)
+                MenuButton(title: "Wyleczeni", image: Icons.recovered, chart: .recoveredInc)
+                MenuButton(title: "Zgony", image: Icons.deaths, chart: .deathsInc)
             }
             .frame(width: UIScreen.width, height: 65, alignment: .center)
             Spacer()
