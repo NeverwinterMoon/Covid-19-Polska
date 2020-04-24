@@ -47,7 +47,7 @@ private struct ShowDetailsButton: View {
             self.showDetailsView.toggle()
         }) {
             Text("Pokaż szczegóły")
-                .font(.system(size: 14, weight: .semibold, design: .default))
+                .font(.system(size: 16, weight: .semibold, design: .default))
                 .multilineTextAlignment(.leading)
                 .foregroundColor(Colors.label)
                 .padding(.trailing, 16)
@@ -70,7 +70,7 @@ struct ChartToolbarLeftSide: View {
             
             Button(action: {
                 self.vm.showPopup.toggle()
-                self.vm.setPopup(title: "Źródło danych", text: "Dane aktualizowane z wykorzystaniem danych publikowanych przez Ministerstwo Zdrowia/WHO")
+                self.vm.setPopup(title: "Źródło danych", text: "Wykresy tworzone na podstawie danych publikowanych przez Ministerstwo Zdrowia/WHO")
             }) {
                 IconView(name: Icons.info, size: .medium, weight: .regular, color: Colors.main)
                 .frame(width: 30, height: 40, alignment: .center)

@@ -177,7 +177,7 @@ class ChartViewModel: ObservableObject {
             return []
         }
         dailyData.forEach { (day) in
-            switch self.parameter {
+            switch parameter {
             case .confirmed: values.append(Double(day.confirmed))
                 case .deaths: values.append(Double(day.deaths))
             case .recovered: values.append(Double(day.recovered))

@@ -62,6 +62,8 @@ public struct LineView: View {
             self.indicatorLocation = CGPoint(x: max(value.location.x,0), y: 0)
             self.opacity = 1
             self.closestPoint = self.getClosestDataPoint(toPoint: value.location, width: ChartView.width, height: (ChartView.height - 40))
+            self.dragLocation = self.closestPoint
+            self.indicatorLocation = self.closestPoint
             self.hideHorizontalLines = true
             self.vm.showHighlightedData = true
         })
@@ -74,27 +76,23 @@ public struct LineView: View {
         }
     }
     
-    #warning("need to fix this indicator")
     func getClosestDataPoint(toPoint: CGPoint, width:CGFloat, height: CGFloat) -> CGPoint {
         let points = self.data.onlyPoints()
         let stepWidth: CGFloat = width / CGFloat(points.count-1)
         let stepHeight: CGFloat = height / CGFloat(points.max()! + points.min()!)
         
-        var index: Int = Int(floor((toPoint.x+15)/stepWidth))
+        var index: Int = Int(floor((toPoint.x)/stepWidth))
         if index > 0 && index < points.count {
             if index == vm.dailyData.count {
                 index = index - 1
             }
-//            self.vm.highlightedData = ChartHighlightedData(confirmed: vm.customData[index].confirmed, deaths: <#T##String#>, recovered: <#T##String#>, confirmedInc: <#T##String#>, deathsInc: <#T##String#>, recoveredInc: <#T##String#>, date: <#T##String#>)
-//            self.vm.highlightedData = ChartHighlightedData(
-//                confirmed: vm.customData[index].confirmed,
-//                deaths: vm.customData[index].deaths,
-//                recovered: vm.customData[index].recovered,
-//                confirmedInc: : vm.getDailyIncrease(on: index, of: .confirmed),
-//                deathsInc: vm.getDailyIncrease(on: index, of: .deaths),
-//                recoveredInc: vm.getDailyIncrease(on: index, of: .recovered),
-//                date: vm.customData[index].date)
-
+            self.vm.highlightedData.confirmed = vm.dailyData[index].confirmed
+            self.vm.highlightedData.confirmedInc = vm.dailyData[index].confirmedInc
+            self.vm.highlightedData.deaths = vm.dailyData[index].deaths
+            self.vm.highlightedData.deathsInc = vm.dailyData[index].deathsInc
+            self.vm.highlightedData.recoveredInc = vm.dailyData[index].recoveredInc
+            self.vm.highlightedData.recovered = vm.dailyData[index].recovered
+            self.vm.highlightedData.date = vm.dailyData[index].date
             return CGPoint(x: CGFloat(index)*stepWidth, y: CGFloat(points[index-1])*stepHeight)
         }
         return .zero

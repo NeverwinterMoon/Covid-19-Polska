@@ -9,18 +9,43 @@
 import SwiftUI
 
 struct HomeChartDetailsView: View {
+    
+    @EnvironmentObject var vm: ChartViewModel
+    
     var body: some View {
-                        VStack (alignment: .leading, spacing: 4) {
-                        DetailsSectionTitle(title: "Date", textColor: Colors.main)
-                            DetailsText(parameter: "Zakażenia", currentValue: 0)
-                            DetailsText(parameter: "Zgony", currentValue: 0)
-                            Spacer()
-                            .frame(height: 4)
-                            DetailsSectionTitle(title: "Łącznie", textColor: Colors.main)
-                            DetailsText(parameter: "Zakażenia", currentValue: 0)
-                            DetailsText(parameter: "Zgony", currentValue: 0)
-                        }
- 
+        VStack {
+            Spacer()
+            VStack (alignment: .center, spacing: 8) {
+                Text(vm.highlightedData.date.formattedDate(.long))
+                    .font(Fonts.popupTitle)
+                    .foregroundColor(Colors.main)
+                    .padding(.horizontal)
+                    .animation(nil)
+                Spacer()
+                    .frame(width: UIScreen.width - 32, height: 1, alignment: .center)
+                    .background(Colors.label)
+                HStack {
+                    VStack (alignment: .leading, spacing: 4) {
+                        DetailsSectionTitle(title: "Przyrost", textColor: Colors.main)
+                        DetailsText(parameter: "Zakażenia", currentValue: vm.highlightedData.confirmedInc)
+                        DetailsText(parameter: "Zgony", currentValue: vm.highlightedData.deathsInc)
+                        DetailsText(parameter: "Wyzdrowienia", currentValue: vm.highlightedData.recoveredInc)
+                    }
+                    VStack (alignment: .leading, spacing: 4) {
+                        DetailsSectionTitle(title: "Łącznie", textColor: Colors.main)
+                        DetailsText(parameter: "Zakażenia", currentValue: vm.highlightedData.confirmed)
+                        DetailsText(parameter: "Zgony", currentValue: vm.highlightedData.deaths)
+                        DetailsText(parameter: "Wyzdrowienia", currentValue: vm.highlightedData.recovered)
+                    }
+                }
+                Spacer()
+            }
+            .padding(.all)
+            .frame(height: UIScreen.height/5, alignment: .center)
+            .background(Colors.customViewBackground)
+            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
+        }
     }
 }
 
@@ -40,6 +65,7 @@ fileprivate struct DetailsSectionTitle: View {
             .font(Fonts.popupTitle)
             .foregroundColor(textColor)
             .padding(.horizontal)
+            .animation(nil)
     }
 }
 
@@ -49,14 +75,16 @@ fileprivate struct DetailsText: View {
     var currentValue: Int
     
     var body: some View {
-        HStack {
+        HStack (spacing: 0) {
             Text("\(parameter): ")
                 .foregroundColor(Colors.label).foregroundColor(Colors.label)
-                .font(Fonts.text)
-            Spacer()
+                .font(Fonts.textRounded)
+                .animation(nil)
             Text("\(Int(currentValue))")
                 .foregroundColor(Colors.label)
-                .font(Fonts.indicatorTextBolded)
+                .font(Fonts.textRounded)
+                .animation(nil)
+            Spacer()
         }
         .padding(.horizontal)
     }

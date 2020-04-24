@@ -73,42 +73,18 @@ public struct Line: View {
                 .rotationEffect(.degrees(180), anchor: .center)
                 .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
                 .animation(Animation.easeOut(duration: 2.0).delay(Double(self.index)*0.4))
-
                 .onAppear {
                     self.showFull.toggle()
             }
             .onDisappear {
                 self.showFull.toggle()
             }
-            
-
             .drawingGroup()
             if(self.showIndicator) {
                 indicator
                     .position(self.getClosestPointOnPath(touchLocation: self.touchLocation))
                     .rotationEffect(.degrees(180), anchor: .center)
                     .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
-
-//                VStack (alignment: .leading, spacing: 4) {
-//                    IndicatorTitleView(title: selectedDay.date.formattedDate(.long), textColor: Colors.main)
-//                    IndicatorTextLine(parameter: "Zakażenia", currentValue: selectedDayIncrease.confirmed)
-//                    IndicatorTextLine(parameter: "Zgony", currentValue: selectedDayIncrease.deaths)
-//                    Spacer()
-//                    .frame(height: 4)
-//                    IndicatorTitleView(title: "Łącznie", textColor: Colors.main)
-//                    IndicatorTextLine(parameter: "Zakażenia", currentValue: selectedDay.confirmed)
-//                    IndicatorTextLine(parameter: "Zgony", currentValue: selectedDay.deaths)
-//                }
-//                .frame(width: 150, height: 145, alignment: .leading)
-//                .background(Colors.customViewBackground)
-//                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-//                .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
-//                .rotationEffect(.degrees(180), anchor: .center)
-//                .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
-//                .position(self.getClosestPointOnPath(touchLocation: self.touchLocation))
-//                .rotationEffect(.degrees(180), anchor: .center)
-//                .rotation3DEffect(.degrees(-180), axis: (x: 0, y: 1, z: 0))
-//                .offset(x: 0, y: 85)
             }
         }
     }

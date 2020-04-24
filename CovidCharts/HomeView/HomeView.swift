@@ -27,8 +27,12 @@ struct HomeView: View {
                     ChartView(data: vm.getData(vm.parameter), title: vm.chartTitle, minX: vm.minDate, maxX: vm.maxDate)
                     VerticalSpacer()
                     HomeChartToolbarView(showDetailsView: $showDetailsView, showPopup: $showPopup)
+                        .opacity(vm.showHighlightedData ? 0 : 1)
+                        .animation(.easeInOut)
                     Spacer()
                     HomeBotView()
+                    .opacity(vm.showHighlightedData ? 0 : 1)
+                    .animation(.easeInOut)
                 }
                 else {
                     VStack (spacing: 40) {
@@ -46,6 +50,12 @@ struct HomeView: View {
                 .scaleEffect(self.vm.showPopup ? 1.0 : 0.5)
                 .opacity(self.vm.showPopup ? 1.0 : 0.0)
                 .animation(.spring())
+            GeometryReader { (geometry) in
+                HomeChartDetailsView()
+                    .offset(x: 0, y: self.vm.showHighlightedData ? 0 : geometry.size.height)
+                    .animation(.spring())
+            }
+            
 
         }
     }
