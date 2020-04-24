@@ -52,10 +52,9 @@ private struct ShowDetailsButton: View {
                 .foregroundColor(Colors.label)
                 .padding(.trailing, 16)
         }
-        .sheet(isPresented: $showDetailsView) {
-            DetailsMenuView().environmentObject(self.vm)
-    //        DetailsView(showDetailsView: self.$showDetailsView).environmentObject(self.vm)
-        }
+//        .sheet(isPresented: $showDetailsView) {
+//            DetailsMenuView().environmentObject(self.vm)
+//        }
         .frame(width: 170, height: 40, alignment: .center)
         .background(RoundedCorners(color: Colors.customViewBackground, tl: 16, tr: 0, bl: 16, br: 0))
         .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)

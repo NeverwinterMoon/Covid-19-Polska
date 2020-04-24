@@ -17,8 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UITableView.appearance().backgroundColor = UIColor.systemBackground
         UITableView.appearance().separatorStyle = .none
         UINavigationBar.appearance().tintColor = UIColor.systemPink
-
-    //    UIView.appearance().backgroundColor = UIColor.systemBackground
         // Override point for customization after application launch.
         return true
     }

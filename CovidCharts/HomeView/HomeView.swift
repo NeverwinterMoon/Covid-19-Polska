@@ -46,6 +46,7 @@ struct HomeView: View {
                 }
             }
             .blur(radius: self.vm.showPopup ? 10 : 0)
+            .blur(radius: self.showDetailsView ? 10 : 0)
             InfoPopupView(title: vm.popup.title, message: vm.popup.text)
                 .scaleEffect(self.vm.showPopup ? 1.0 : 0.5)
                 .opacity(self.vm.showPopup ? 1.0 : 0.0)
@@ -53,6 +54,11 @@ struct HomeView: View {
             GeometryReader { (geometry) in
                 HomeChartDetailsView()
                     .offset(x: 0, y: self.vm.showHighlightedData ? 0 : geometry.size.height)
+                    .animation(.spring())
+            }
+            GeometryReader { (geometry) in
+                DetailsMenuView()
+                    .offset(x: 0, y: self.showDetailsView ? 0 : geometry.size.height)
                     .animation(.spring())
             }
             

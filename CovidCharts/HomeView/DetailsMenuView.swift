@@ -21,7 +21,7 @@ struct DetailsMenuView: View {
             VStack {
                     Text("Wybierz opcję")
                         .font(Fonts.popupTitle)
-                        .foregroundColor(Colors.main)
+                        .foregroundColor(Colors.label)
                         .padding(.horizontal)
                         .padding(.vertical, 8)
                         .animation(nil)
@@ -31,7 +31,6 @@ struct DetailsMenuView: View {
                     HStack (alignment: .center, spacing: 16) {
                         Spacer()
                         Button(action: {
-                            print("Show table tapped")
                             self.showPolandDetails.toggle()
                         }) {
                             VStack {
@@ -40,6 +39,9 @@ struct DetailsMenuView: View {
                                     .font(Fonts.indicatorTitle)
                                     .foregroundColor(Colors.label)
                                 .frame(width: 160)
+                            }
+                            .sheet(isPresented: $showPolandDetails)  {
+                                PolandStatsView(showView: self.$showPolandDetails).environmentObject(self.vm)
                             }
                         .frame(width: 160)
                             .padding(.vertical)

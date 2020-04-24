@@ -17,15 +17,10 @@ struct PolandStatsView: View {
 
                 ScrollView {
                         CovidTableView()
-                }
-                .navigationBarTitle("Table", displayMode: .inline)
-            .background(NavigationConfigurator(configure: { (nc) in
-                nc.navigationBar.barTintColor =  UIColor.systemBackground
-                nc.navigationBar.backgroundColor = UIColor.systemBackground
-                nc.navigationBar.setBackgroundImage(UIImage(), for: .default)
-                nc.navigationBar.isTranslucent = false
-                nc.navigationBar.shadowImage = UIImage()
-            }))
+                            .padding(.vertical)
+                }.onDisappear {
+                    self.showView.toggle()
+        }
     }
     
 }
