@@ -190,7 +190,7 @@ class ChartViewModel: ObservableObject {
         return values
     }
     
-    func getDailyInc(on: Int, of: ParameterType) -> Int {
+    func getDailyData(on: Int, of: ParameterType) -> Int {
         switch of {
         case .confirmed: return dailyData[on].confirmed
         case .deaths: return dailyData[on].deaths
@@ -216,14 +216,6 @@ class ChartViewModel: ObservableObject {
     
     func getLatestDate(_ dateStyle: DateStyle) -> String {
         return dailyData.last?.date.formattedDate(dateStyle) ?? "Loading..."
-    }
-    
-    func getConfirmedCases() -> String {
-        if let last = dailyData.last?.confirmed {
-            return String(last)
-        } else {
-            return "Loading..."
-        }
     }
     
     func getLatest(_ parameter: ParameterType) -> Int {
