@@ -12,7 +12,7 @@ struct HomeView: View {
     
     @EnvironmentObject var vm: ChartViewModel
     @Binding var showPopup: Bool
-    @State var showDetailsView: Bool = false
+    @State var showDetailsMenuView: Bool = false
     
     var body: some View {
         ZStack {
@@ -26,7 +26,7 @@ struct HomeView: View {
                     VerticalSpacer()
                     ChartView(data: vm.getData(vm.parameter), title: vm.chartTitle, minX: vm.minDate, maxX: vm.maxDate)
                     VerticalSpacer()
-                    HomeChartToolbarView(showDetailsView: $showDetailsView, showPopup: $showPopup)
+                    HomeChartToolbarView(showDetailsView: $showDetailsMenuView, showPopup: $showPopup)
                         .opacity(vm.showHighlightedData ? 0 : 1)
                         .animation(.easeInOut)
                     Spacer()
@@ -46,7 +46,7 @@ struct HomeView: View {
                 }
             }
             .blur(radius: self.vm.showPopup ? 10 : 0)
-            .blur(radius: self.showDetailsView ? 10 : 0)
+            .blur(radius: self.showDetailsMenuView ? 10 : 0)
             InfoPopupView(title: vm.popup.title, message: vm.popup.text)
                 .scaleEffect(self.vm.showPopup ? 1.0 : 0.5)
                 .opacity(self.vm.showPopup ? 1.0 : 0.0)
@@ -57,9 +57,10 @@ struct HomeView: View {
                     .animation(.spring())
             }
             GeometryReader { (geometry) in
-                DetailsMenuView()
-                    .offset(x: 0, y: self.showDetailsView ? 0 : geometry.size.height)
+                DetailsMenuView(showDetailsMenuView: self.$showDetailsMenuView)
+                    .offset(x: 0, y: self.showDetailsMenuView ? 0 : geometry.size.height)
                     .animation(.spring())
+                .zIndex(1)
             }
             
 

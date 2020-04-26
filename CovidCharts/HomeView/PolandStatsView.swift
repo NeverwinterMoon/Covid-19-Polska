@@ -14,12 +14,9 @@ struct PolandStatsView: View {
     @Binding var showView: Bool
     
     var body: some View {
-
-                ScrollView {
-                        CovidTableView()
-                            .padding(.vertical)
-                }.onDisappear {
-                    self.showView.toggle()
+        ScrollView {
+            CovidTableView()
+                .padding(.vertical)
         }
     }
     

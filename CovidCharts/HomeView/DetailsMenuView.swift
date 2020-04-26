@@ -11,6 +11,7 @@ import SwiftUI
 struct DetailsMenuView: View {
 
     @EnvironmentObject var vm: ChartViewModel
+    @Binding var showDetailsMenuView: Bool
     @State var showPolandDetails: Bool = false
     @State var showProvinceDetails: Bool = false
     
@@ -19,15 +20,20 @@ struct DetailsMenuView: View {
         VStack {
             Spacer()
             VStack {
+                Rectangle()
+                    .frame(width: 40, height: 5)
+                    .cornerRadius(3)
+                    .opacity(0.1)
+                    .padding(.top, 8)
                     Text("Wybierz opcję")
                         .font(Fonts.popupTitle)
                         .foregroundColor(Colors.label)
-                        .padding(.horizontal)
-                        .padding(.vertical, 8)
+                        .padding(.bottom, 8)
                         .animation(nil)
                     Spacer()
                         .frame(width: UIScreen.width - 32, height: 1, alignment: .center)
                         .background(Colors.label)
+                        .padding(.bottom, 4)
                     HStack (alignment: .center, spacing: 16) {
                         Spacer()
                         Button(action: {
@@ -44,12 +50,12 @@ struct DetailsMenuView: View {
                                 PolandStatsView(showView: self.$showPolandDetails).environmentObject(self.vm)
                             }
                         .frame(width: 160)
-                            .padding(.vertical)
+                            .padding(.vertical, 8)
                             .background(Colors.customViewBackground)
                             .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
                             .shadow(color: Color.black.opacity(0.2), radius: 6, x: 0, y: 6)
                         }
-                        .padding(.vertical)
+                        .padding(.vertical, 8)
                         Spacer()
                         Button(action: {
                             print("Show województwa tapped")
@@ -61,19 +67,32 @@ struct DetailsMenuView: View {
                                     .font(Fonts.indicatorTitle)
                                     .foregroundColor(Colors.label)
                                 .frame(width: 160)
+                            }.sheet(isPresented: self.$showProvinceDetails) {
+                                PolandStatsView(showView: self.$showProvinceDetails)
+                                
                             }
                                 .frame(width: 160)
-                            .padding(.vertical)
+                            .padding(.vertical, 8)
                             .background(Colors.customViewBackground)
                             .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
                             .shadow(color: Color.black.opacity(0.2), radius: 6, x: 0, y: 6)
                         }
-                        .padding(.vertical)
+                        .padding(.vertical, 8)
                         Spacer()
+                        
                     }
+                Button(action: {
+                    self.showDetailsMenuView.toggle()
+                }) {
+                    Text("Zamknij")
+                        .font(Fonts.popupTitle)
+                        .padding(.vertical, 8)
+                        .foregroundColor(Colors.main)
+                }
+                Spacer()
                 }
             .frame(height: UIScreen.height/5, alignment: .center)
-            .background(Colors.customViewBackground)
+            .background(Colors.appBackground)
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
         }
@@ -82,6 +101,6 @@ struct DetailsMenuView: View {
 
 struct DetailsMenuView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailsMenuView().environmentObject(ChartViewModel())
+        DetailsMenuView(showDetailsMenuView: .constant(false)).environmentObject(ChartViewModel())
     }
 }
