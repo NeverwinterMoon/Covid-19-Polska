@@ -9,16 +9,16 @@
 import SwiftUI
 
 enum Fonts {
-    static let text = Font.system(size: 16, weight: .regular, design: .rounded)
-    static let textRounded = Font.system(size: 12, weight: .semibold, design: .rounded)
-    static let icon = Font.system(size: 12, weight: .semibold, design: .rounded)
-    static let button = Font.system(size: 16, weight: .semibold, design: .rounded)
-    static let popupTitle = Font.system(size: 16, weight: .semibold, design: .rounded)
-    static let indicatorTitle = Font.system(size: 16, weight: .semibold, design: .rounded)
-    static let indicatorTextRegular = Font.system(size: 11, weight: .regular, design: .rounded)
-    static let indicatorTextBolded = Font.system(size: 11, weight: .semibold, design: .rounded)
-    static let title = Font.system(size: 26, weight: .bold, design: .rounded)
-    static let listSectionTitle = Font.system(size: 20, weight: .bold, design: .rounded)
-    static let listElement = Font.system(size: 11, weight: .semibold, design: .rounded)
-    static let listElementDetails = Font.system(size: 9, weight: .semibold, design: .rounded)
+    static let text = Font.system(size: 16, weight: .regular, design: .default)
+    static let textRounded = Font.system(size: 12, weight: .semibold, design: .default)
+    static let icon = Font.system(size: 12, weight: .semibold, design: .default)
+    static let button = Font.system(size: 16, weight: .semibold, design: .default)
+    static let popupTitle = Font.system(size: 16, weight: .semibold, design: .default)
+    static let indicatorTitle = Font.system(size: 16, weight: .semibold, design: .default)
+    static let indicatorTextRegular = Font.system(size: 11, weight: .regular, design: .default)
+    static let indicatorTextBolded = Font.system(size: 11, weight: .semibold, design: .default)
+    static let title = Font.system(size: 26, weight: .bold, design: .default)
+    static let listSectionTitle = Font.system(size: 20, weight: .bold, design: .default)
+    static let listElement = Font.system(size: 11, weight: .semibold, design: .default)
+    static let listElementDetails = Font.system(size: 9, weight: .semibold, design: .default)
 }

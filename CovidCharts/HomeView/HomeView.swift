@@ -26,6 +26,7 @@ struct HomeView: View {
                         self.vm.loadData()
                     }
                     VerticalSpacer()
+                    VerticalSpacer()
                     ChartView(data: vm.getData(vm.parameter), title: vm.chartTitle, minX: vm.minDate, maxX: vm.maxDate)
                     VerticalSpacer()
                     HomeChartToolbarView(showDetailsView: $showDetailsMenuView, showPopup: $showPopup)
