@@ -22,7 +22,7 @@ public class ChartCustomData: ObservableObject, Identifiable {
 struct ChartView: View {
     
     static let height = UIScreen.height / 1.75
-    static let width = UIScreen.width - 32
+    static let width = UIScreen.width
     
     @ObservedObject var chartData: ChartData
     
@@ -53,7 +53,7 @@ struct ChartView: View {
                 .frame(width: UIScreen.width, height: 8, alignment: .center)
                 .background(Color.clear)
         }
-        .frame(width: ChartView.width+64, height: ChartView.height)
+        .frame(width: ChartView.width, height: ChartView.height)
         .background(Colors.appBackground)
     //    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
     //    .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)

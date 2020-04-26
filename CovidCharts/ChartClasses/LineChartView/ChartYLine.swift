@@ -43,7 +43,6 @@ struct ChartYLine: View {
             }
             Spacer()
         }
-        .offset(x: 12, y: -8)
     }
     
     var maxY: String {

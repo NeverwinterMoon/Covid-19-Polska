@@ -26,6 +26,7 @@ struct HomeTopView: View {
                     Text(title)
                         .font(Fonts.title)
                         .foregroundColor(Colors.label)
+                        .padding(.leading, 2)
                     HStack {
                         TitleIconView(name: Icons.time, size: .medium, weight: .regular, color: Colors.main)
                         Text(lastUpdateTime)
@@ -55,24 +56,21 @@ struct HomeTopView: View {
                         Spacer()
                     }
                 }
-                .padding(.leading, 24)
-                .frame(width: 280, height: 90)
-                .background(Colors.customViewBackground)
-                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                .padding(.leading)
+                .frame(width: 240, height: 90)
+                .background(RoundedCorners(color: Colors.appBackground, tl: 0, tr: 16, bl: 0, br: 16))
                 .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
                 Spacer()
                 IconView(name: rightButtonIcon, size: .large, weight: .bold, color: Colors.label)
-                    .padding(.trailing)
                     .onTapGesture {
                         self.rightButtonAction()
                 }
-                .frame(width: 90, height: 90, alignment: .center)
-                .background(Colors.customViewBackground)
-                .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                .frame(width: 70, height: 90, alignment: .center)
+                .background(RoundedCorners(color: Colors.appBackground, tl: 16, tr: 0, bl: 16, br: 0))
                 .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
                 
             }
-            .frame(width: UIScreen.width + 32, height: 90)
+            .frame(width: UIScreen.width, height: 90)
             VerticalSpacer()
         }
     }

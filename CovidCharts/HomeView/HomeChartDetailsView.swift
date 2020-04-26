@@ -19,8 +19,8 @@ struct HomeChartDetailsView: View {
                 Text(vm.highlightedData.date.formattedDate(.long))
                     .font(Fonts.popupTitle)
                     .foregroundColor(Colors.label)
-                    .padding(.top, 16)
                     .animation(nil)
+                    .padding(.top, 12)
                 Spacer()
                     .frame(width: UIScreen.width - 32, height: 1, alignment: .center)
                     .background(Colors.label)
@@ -37,14 +37,15 @@ struct HomeChartDetailsView: View {
                         DetailsText(parameter: "Zgony", currentValue: vm.highlightedData.deaths)
                         DetailsText(parameter: "Wyzdrowienia", currentValue: vm.highlightedData.recovered)
                     }
+                    
                 }
                 Spacer()
             }
-            .padding(.all)
-            .frame(width: UIScreen.width, height: 130, alignment: .center)
-            .background(RoundedCorners(color: Colors.customViewBackground, tl: 16, tr: 16, bl: 0, br: 0))
-            .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: -5)
-        }
+         //   .padding(.all)
+            .frame(width: UIScreen.width, height: UIScreen.height*0.23, alignment: .center)
+            .background(RoundedCorners(color: Colors.appBackground, tl: 16, tr: 16, bl: 16, br: 16))
+            .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
+        }.edgesIgnoringSafeArea(.bottom)
     }
 }
 

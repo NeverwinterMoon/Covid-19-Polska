@@ -11,7 +11,7 @@ import SwiftUI
 enum Fonts {
     static let text = Font.system(size: 16, weight: .regular, design: .default)
     static let textRounded = Font.system(size: 12, weight: .semibold, design: .default)
-    static let icon = Font.system(size: 12, weight: .semibold, design: .default)
+    static let icon = Font.system(size: 14, weight: .semibold, design: .default)
     static let button = Font.system(size: 16, weight: .semibold, design: .default)
     static let popupTitle = Font.system(size: 16, weight: .semibold, design: .default)
     static let indicatorTitle = Font.system(size: 16, weight: .semibold, design: .default)
