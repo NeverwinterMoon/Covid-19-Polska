@@ -8,50 +8,6 @@
 
 import SwiftUI
 
-struct CovidTableView: View {
-    
-    @EnvironmentObject var vm: ChartViewModel
-    
-    var body: some View {
-            VStack {
-                Text("Tabela Covid-19 Polska")
-                    .font(.system(size: 16, weight: .semibold, design: .default))
-                    .foregroundColor(Colors.label)
-                    .frame(width: 250)
-                    .padding(.vertical, 8)
-                VStack (alignment: .center, spacing: 0) {
-                    Spacer()
-                }
-                .padding(.horizontal)
-                .frame(width: UIScreen.width - 32, height: 1)
-                .background(Colors.label)
-                HStack (spacing: 0){
-                    Text("")
-                    ParameterColumn(parameter: .date, icon: Icons.calendar)
-                    ParameterColumn(parameter: .confirmed, icon: Icons.confirmed)
-                    ParameterColumn(parameter: .confirmedInc, icon: Icons.increase)
-                    ParameterColumn(parameter: .deaths, icon: Icons.deaths)
-                    ParameterColumn(parameter: .deathsInc, icon: Icons.increase)
-                    ParameterColumn(parameter: .recovered, icon: Icons.recovered)
-                    ParameterColumn(parameter: .recoveredInc, icon: Icons.increase)
-                }
-                .frame(width: UIScreen.width)
-            }
-            .padding(.vertical, 8)
-            .background(Colors.customViewBackground)
-            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-            .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
-            .background(Colors.customViewBackground)
-        
-    }
-}
-
-struct CovidTableView_Previews: PreviewProvider {
-    static var previews: some View {
-        CovidTableView().environmentObject(ChartViewModel())
-    }
-}
-
 struct ParameterText: View {
     var title: String
     var body: some View {
@@ -59,7 +15,8 @@ struct ParameterText: View {
             .font(Fonts.indicatorTextBolded)
             .foregroundColor(Colors.label)
             .multilineTextAlignment(.center)
-        .frame(height: 24)
+            .frame(width: UIScreen.width/10)
+            
     }
 }
 
@@ -68,18 +25,20 @@ struct ParameterColumn: View {
     @EnvironmentObject var vm: ChartViewModel
     
     var parameter: ParameterType
-    var icon: String
     
     var body: some View {
-        VStack {
-            IconView(name: icon, size: .medium, weight: .semibold, color: Colors.main)
-            .padding(.vertical, 8)
-            .frame(width: UIScreen.width/7, alignment: .center)
-            ForEach(vm.dailyData.reversed(), id: \.self) { day in
-                ParameterText(title: self.getString(day))
-                .padding(2)
+        HStack {
+            Spacer()
+            VStack (alignment: .center) {
+                ForEach(vm.dailyData.reversed(), id: \.self) { day in
+                    ParameterText(title: self.getString(day))
+                    .padding(.vertical, 4)
+                }
             }
-        }.padding(.vertical, 8)
+            Spacer()
+        }
+        .background(Colors.customViewBackground)
+        
     }
     
     func getString(_ day: DailyData) -> String {

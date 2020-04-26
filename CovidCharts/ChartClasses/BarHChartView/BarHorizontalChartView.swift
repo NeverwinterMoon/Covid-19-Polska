@@ -56,8 +56,6 @@ struct BarHorizontalChartView: View {
     }
     
     var body: some View {
-        ZStack {
-            Colors.customViewBackground
             
             VStack (alignment: .leading, spacing: 0) {
                 BarTopView(title: title)
@@ -161,11 +159,10 @@ struct BarHorizontalChartView: View {
             }
             .padding(.vertical, 16)
             .background(Colors.customViewBackground)
-            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
-            .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
-                        .background(Colors.customViewBackground)
+//            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+//            .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
+//                        .background(Colors.customViewBackground)
 
-        }
     }
     
     func setWidth(_ value: Double) -> CGFloat {
@@ -190,7 +187,7 @@ fileprivate struct BarTopView: View {
             Spacer()
             Text(title)
                 .padding(.bottom, 8)
-                .font(.system(size: 16, weight: .semibold, design: .default))
+                .font(Fonts.indicatorTitle)
                 .foregroundColor(Colors.label)
                 .frame(width: 250)
             Spacer()

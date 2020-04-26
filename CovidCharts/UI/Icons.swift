@@ -26,6 +26,7 @@ enum Icons {
     static let collapse = "arrow.up"
     static let table = "table"
     static let back = "arrow.turn.up.left"
+    static let hide = "chevron.down"
 }
 
 struct IconView: View {

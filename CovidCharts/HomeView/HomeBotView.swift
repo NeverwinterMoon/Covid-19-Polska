@@ -68,6 +68,7 @@ struct MenuButton: View {
             .frame(width: 64, height: 64, alignment: .center)
             
         }
+        .background(Colors.customViewBackground)
         .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
         .shadow(color: Color.black.opacity(0.2), radius: 6, x: 0, y: 6)
         .padding(.horizontal, 2)

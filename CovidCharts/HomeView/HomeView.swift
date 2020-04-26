@@ -13,6 +13,7 @@ struct HomeView: View {
     @EnvironmentObject var vm: ChartViewModel
     @Binding var showPopup: Bool
     @State var showDetailsMenuView: Bool = false
+    @State var chartBottom: CGFloat = 0
     
     var body: some View {
         ZStack {
@@ -20,6 +21,7 @@ struct HomeView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack (spacing: 0) {
                 if !vm.dailyData.isEmpty {
+                    
                     HomeTopView(title: "Covid-19 Polska", lastUpdateTime: vm.getLatestDate(.superlong), parameterSumValue: String(vm.getLatest(.confirmed)), parameterIcon: Icons.confirmed, parameterIncreaseValue: String(vm.getLatest(.confirmedInc)), rightButtonIcon: Icons.reload) {
                         self.vm.loadData()
                     }
@@ -60,10 +62,7 @@ struct HomeView: View {
                 DetailsMenuView(showDetailsMenuView: self.$showDetailsMenuView)
                     .offset(x: 0, y: self.showDetailsMenuView ? 0 : geometry.size.height)
                     .animation(.spring())
-                .zIndex(1)
             }
-            
-
         }
     }
 }

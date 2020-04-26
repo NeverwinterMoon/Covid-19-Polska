@@ -46,13 +46,14 @@ private struct ShowDetailsButton: View {
         Button(action: {
             self.showDetailsView.toggle()
         }) {
-            Text("Pokaż szczegóły")
+            IconView(name: Icons.more, size: .medium, weight: .semibold, color: Colors.main)
                 .font(.system(size: 16, weight: .semibold, design: .default))
                 .multilineTextAlignment(.leading)
                 .foregroundColor(Colors.label)
-                .padding(.trailing, 16)
+                .padding(.vertical)
+            .frame(width: 30, height: 40, alignment: .center)
         }
-        .frame(width: 170, height: 40, alignment: .center)
+        .frame(width: 50, height: 40, alignment: .center)
         .background(RoundedCorners(color: Colors.customViewBackground, tl: 16, tr: 0, bl: 16, br: 0))
         .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
     }

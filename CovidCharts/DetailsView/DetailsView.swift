@@ -53,11 +53,11 @@ struct DetailsView: View {
                         }
                     }
                             .listRowBackground(Color.clear)
-                    Section(header: SectionTitle(title: "Tabela informacyjna", show: $showSection4)) {
-                        if showSection4 {
-                             CovidTableView()
-                        }
-                    }
+//                    Section(header: SectionTitle(title: "Tabela informacyjna", show: $showSection4)) {
+//                        if showSection4 {
+//                             CovidTableView()
+//                        }
+//                    }
                             .listRowBackground(Color.clear)
                     Section(header: SectionTitle(title: "Podział na województwa", show: $showSection5)) {
                         if showSection5 {

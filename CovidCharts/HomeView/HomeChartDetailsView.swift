@@ -18,8 +18,8 @@ struct HomeChartDetailsView: View {
             VStack (alignment: .center, spacing: 8) {
                 Text(vm.highlightedData.date.formattedDate(.long))
                     .font(Fonts.popupTitle)
-                    .foregroundColor(Colors.main)
-                    .padding(.horizontal)
+                    .foregroundColor(Colors.label)
+                    .padding(.top, 16)
                     .animation(nil)
                 Spacer()
                     .frame(width: UIScreen.width - 32, height: 1, alignment: .center)
@@ -41,9 +41,8 @@ struct HomeChartDetailsView: View {
                 Spacer()
             }
             .padding(.all)
-            .frame(width: UIScreen.width, height: UIScreen.height/5, alignment: .center)
-            .background(Colors.customViewBackground)
-            .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+            .frame(width: UIScreen.width, height: 130, alignment: .center)
+            .background(RoundedCorners(color: Colors.customViewBackground, tl: 16, tr: 16, bl: 0, br: 0))
             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
         }
     }
@@ -51,7 +50,7 @@ struct HomeChartDetailsView: View {
 
 struct HomeChartDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeChartDetailsView()
+        HomeChartDetailsView().environmentObject(ChartViewModel())
     }
 }
 

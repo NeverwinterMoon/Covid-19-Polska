@@ -24,7 +24,7 @@ struct DetailsMenuView: View {
                     .frame(width: 40, height: 5)
                     .cornerRadius(3)
                     .opacity(0.1)
-                    .padding(.top, 8)
+                    .padding(.top,16)
                     Text("Wybierz opcję")
                         .font(Fonts.popupTitle)
                         .foregroundColor(Colors.label)
@@ -59,7 +59,7 @@ struct DetailsMenuView: View {
                         Spacer()
                         Button(action: {
                             print("Show województwa tapped")
-                            self.showPolandDetails.toggle()
+                            self.showProvinceDetails.toggle()
                         }) {
                             VStack {
                                 IconView(name: Icons.bars, size: .large, weight: .semibold, color: Colors.main)
@@ -68,7 +68,7 @@ struct DetailsMenuView: View {
                                     .foregroundColor(Colors.label)
                                 .frame(width: 160)
                             }.sheet(isPresented: self.$showProvinceDetails) {
-                                PolandStatsView(showView: self.$showProvinceDetails)
+                                ProvincesStatsView(showView: self.$showProvinceDetails).environmentObject(self.vm)
                                 
                             }
                                 .frame(width: 160)
@@ -91,7 +91,7 @@ struct DetailsMenuView: View {
                 }
                 Spacer()
                 }
-            .frame(height: UIScreen.height/5, alignment: .center)
+            .frame(width: UIScreen.width, height: 180, alignment: .center)
             .background(Colors.appBackground)
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
