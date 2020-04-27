@@ -13,43 +13,17 @@ struct HomeView: View {
     @EnvironmentObject var vm: ChartViewModel
     @Binding var showPopup: Bool
     @State var showDetailsMenuView: Bool = false
-    @State var chartBottom: CGFloat = 0
     
     var body: some View {
         ZStack {
             Colors.appBackground
                 .edgesIgnoringSafeArea(.all)
-            VStack (spacing: 0) {
-                if !vm.dailyData.isEmpty {
-                    
-                    HomeTopView(title: "Covid-19 Polska", lastUpdateTime: vm.getLatestDate(.superlong), parameterSumValue: String(vm.getLatest(.confirmed)), parameterIcon: Icons.confirmed, parameterIncreaseValue: String(vm.getLatest(.confirmedInc)), rightButtonIcon: Icons.reload) {
-                        self.vm.loadData()
-                    }
-                    VerticalSpacer()
-                    VerticalSpacer()
-                    ChartView(data: vm.getData(vm.parameter), title: vm.chartTitle, minX: vm.minDate, maxX: vm.maxDate)
-                    VerticalSpacer()
-                    HomeChartToolbarView(showDetailsView: $showDetailsMenuView, showPopup: $showPopup)
-                        .opacity(vm.showHighlightedData ? 0 : 1)
-                        .animation(.easeInOut)
-                    Spacer()
-                    HomeBotView()
-                    .opacity(vm.showHighlightedData ? 0 : 1)
-                    .animation(.easeInOut)
-                }
-                else {
-                    VStack (spacing: 40) {
-                        ActivityIndicator()
-                            .frame(width: 60, height: 60, alignment: .center)
-                        Text("Ładowanie danych...")
-                            .font(Fonts.popupTitle)
-                            .foregroundColor(Colors.main)
-                    }
-                    .foregroundColor(Colors.main)
-                }
+            TabView {
+                TabChartView(showDetailsMenuView: $showDetailsMenuView, showPopup: $showPopup, icon: Icons.confirmed, title: "Zakażenia", paramter: ParameterType.confirmedInc)
+                TabChartView(showDetailsMenuView: $showDetailsMenuView, showPopup: $showPopup, icon: Icons.deaths, title: "Zgony", paramter: ParameterType.deathsInc)
+                TabChartView(showDetailsMenuView: $showDetailsMenuView, showPopup: $showPopup, icon: Icons.recovered, title: "Wyzdrowienia", paramter: ParameterType.recoveredInc)
             }
-            .blur(radius: self.vm.showPopup ? 10 : 0)
-            .blur(radius: self.showDetailsMenuView ? 10 : 0)
+            .accentColor(Colors.main)
             InfoPopupView(title: vm.popup.title, message: vm.popup.text)
                 .scaleEffect(self.vm.showPopup ? 1.0 : 0.5)
                 .opacity(self.vm.showPopup ? 1.0 : 0.0)
@@ -102,4 +76,49 @@ struct ActivityIndicator: View {
     }
     }
     
+}
+
+struct TabChartView: View {
+    
+    @EnvironmentObject var vm: ChartViewModel
+    @Binding var showDetailsMenuView: Bool
+    @Binding var showPopup: Bool
+    var icon: String
+    var title: String
+    var paramter: ParameterType
+    
+    var body: some View {
+        VStack (spacing: 0) {
+            if !vm.dailyData.isEmpty {
+                
+                HomeTopView(title: "Covid-19 Polska", lastUpdateTime: vm.getLatestDate(.superlong), parameterSumValue: String(vm.getLatest(.confirmed)), parameterIcon: Icons.confirmed, parameterIncreaseValue: String(vm.getLatest(.confirmedInc)), rightButtonIcon: Icons.reload) {
+                    self.vm.loadData()
+                }
+                VerticalSpacer()
+                VerticalSpacer()
+                ChartView(data: vm.getData(paramter), title: vm.chartTitle, minX: vm.minDate, maxX: vm.maxDate)
+                VerticalSpacer()
+                HomeChartToolbarView(showDetailsView: $showDetailsMenuView, showPopup: $showPopup)
+                    .opacity(vm.showHighlightedData ? 0 : 1)
+                    .animation(.easeInOut)
+                Spacer()
+            }
+            else {
+                VStack (spacing: 40) {
+                    ActivityIndicator()
+                        .frame(width: 60, height: 60, alignment: .center)
+                    Text("Ładowanie danych...")
+                        .font(Fonts.popupTitle)
+                        .foregroundColor(Colors.main)
+                }
+                .foregroundColor(Colors.main)
+            }
+        }
+        .blur(radius: self.vm.showPopup ? 10 : 0)
+        .blur(radius: self.showDetailsMenuView ? 10 : 0)
+        .tabItem {
+            IconView(name: icon, size: .medium, weight: .regular, color: Colors.label)
+            Text(title)
+        }
+    }
 }
