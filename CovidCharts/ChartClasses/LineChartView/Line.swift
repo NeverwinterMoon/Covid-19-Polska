@@ -61,18 +61,20 @@ public struct Line: View {
         ZStack {
             if(self.showFull && self.showBackground){
                 self.closedPath
-                    .fill(LinearGradient(gradient: Gradient(colors: [Colors.graphGradient, Colors.appBackground]), startPoint: .bottom, endPoint: .top))
+                    .fill(LinearGradient(gradient: Gradient(colors: [Colors.chartTop, Colors.chartBot]), startPoint: .bottom, endPoint: .top))
                     .rotationEffect(.degrees(180), anchor: .center)
                     .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
                     .transition(.opacity)
                     .animation(.easeIn(duration: 1.6))
+                .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
             }
             self.path
                 .trim(from: 0, to: self.showFull ? 1:0)
-                .stroke(LinearGradient(gradient: gradient.getGradient(), startPoint: .leading, endPoint: .trailing) ,style: StrokeStyle(lineWidth: 3, lineJoin: .round))
+                .stroke(Color.clear, style: StrokeStyle(lineWidth: 3, lineJoin: .round))
                 .rotationEffect(.degrees(180), anchor: .center)
                 .rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
                 .animation(Animation.easeOut(duration: 2.0).delay(Double(self.index)*0.4))
+                .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
                 .onAppear {
                     self.showFull.toggle()
             }

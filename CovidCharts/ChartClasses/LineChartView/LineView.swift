@@ -52,16 +52,14 @@ public struct LineView: View {
                      selectedDayIncrease: self.$selectedDayIncrease,
                      showBackground: true
                 )
-                    .frame(width: ChartView.width, height: (ChartView.height - 40))
-                .padding(.top, -50)
-                    .padding(.bottom, 10)
+                    .frame(width: ChartView.width, height: (ChartView.height))
             }
         .gesture(DragGesture()
         .onChanged({ value in
             self.dragLocation = value.location
             self.indicatorLocation = CGPoint(x: max(value.location.x,0), y: 0)
             self.opacity = 1
-            self.closestPoint = self.getClosestDataPoint(toPoint: value.location, width: ChartView.width, height: (ChartView.height - 40))
+            self.closestPoint = self.getClosestDataPoint(toPoint: value.location, width: ChartView.width, height: (ChartView.height))
             self.dragLocation = self.closestPoint
             self.indicatorLocation = self.closestPoint
             self.hideHorizontalLines = true

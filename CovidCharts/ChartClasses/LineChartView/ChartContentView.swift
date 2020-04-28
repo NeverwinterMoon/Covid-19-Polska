@@ -15,16 +15,11 @@ struct ChartContentView: View {
     let style = ChartStyle(backgroundColor: Color.red, accentColor: Color.blue, gradientColor: GradientColors.green, textColor: Color.clear, legendTextColor: Color.clear, dropShadowColor: Color.yellow)
     
     var body: some View {
-        ZStack {
-                ChartYLine(chartData: chartData)
-                .padding(.leading, 16)
             VStack (spacing: 8) {
                 LineView(chartData: chartData, style: style)
             }
             .animation(.easeInOut(duration: 0.5))
         }
-    }
-
 }
 
 struct ChartContentView_Previews: PreviewProvider {

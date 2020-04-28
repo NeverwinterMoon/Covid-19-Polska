@@ -18,6 +18,10 @@ enum Colors {
     static let main = Color(UIColor.systemPink)
     static let main2 = Color("Main2")
     
+    static let chartTop = Color("ChartTop")
+    static let chartBot = Color("ChartBot")
+    
+    
     static let customViewBackground = Color("CustomViewBackground")
     static let appBackground = Color("AppBackground")
     static let graphGradient = Color("GraphGradient")

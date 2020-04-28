@@ -27,6 +27,9 @@ enum Icons {
     static let table = "table"
     static let back = "arrow.turn.up.left"
     static let hide = "chevron.down"
+    static let menu = "list.dash"
+    static let sum = "sum"
+    static let up = "arrow.up"
 }
 
 struct IconView: View {
