@@ -25,7 +25,7 @@ struct ProvincesStatsView: View {
                 .padding(.top, 16)
                 Spacer()
             }
-           BarHorizontalChartView(title: "Zakażenia w województwach", data: vm.regionData, legend1: "Zakażenia", color1: Colors.main, legend2: "Zgony", color2: Colors.main2)
+           BarHorizontalChartView(title: "Zakażenia w województwach", data: vm.regionData, legend1: "Zakażenia", color1: Colors.main, legend2: "Zgony", color2: Colors.main)
             Spacer()
         }.background(Colors.customViewBackground)
     }

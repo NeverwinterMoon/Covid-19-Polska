@@ -15,34 +15,37 @@ struct HomeView: View {
     @State var showDetailsMenuView: Bool = false
     @State var chartBottom: CGFloat = 0
     @State var chartTitle: String = "Zakażenia"
+    @State var selectedChart: ParameterType = .confirmedInc
     
     var body: some View {
         ZStack {
-            Colors.appBackground
+            Colors.background
                 .edgesIgnoringSafeArea(.all)
             VStack (spacing: 0) {
                 if !vm.dailyData.isEmpty {
-                    HomeTitleView(title: "\(vm.highlightedData.date.formattedDate(.long))")
+                    HomeTitleView()
                     Spacer()
                     HStack (spacing: 6) {
                         Spacer()
                         VStack (spacing: 12)  {
                             Spacer()
-                            StatisticsView(icon: Icons.up, titles: ["Zakażenia:", "Zgony:", "Wyleczeni:"], values: [vm.highlightedData.confirmedInc, vm.highlightedData.deathsInc, vm.highlightedData.recoveredInc])
-                            StatisticsView(icon: Icons.sum, titles: ["Zakażenia:", "Zgony:", "Wyleczeni:"], values: [vm.highlightedData.confirmed, vm.highlightedData.deaths, vm.highlightedData.recovered])
+                            StatisticsView(icon: Icons.up, values: [vm.highlightedData.confirmedInc, vm.highlightedData.deathsInc, vm.highlightedData.recoveredInc])
+                            StatisticsView(icon: Icons.sum, values: [vm.highlightedData.confirmed, vm.highlightedData.deaths, vm.highlightedData.recovered])
                             Spacer()
                         }
                         VStack {
                             Text(self.vm.highlightedData.date.formattedDate(.day))
                                 .font(.system(size: 44, weight: .bold, design: .rounded))
-                                .foregroundColor(Colors.chartTop)
+                                .foregroundColor(Colors.main)
                                 .padding(.horizontal, 16)
                             Text(self.vm.highlightedData.date.formattedDate(.month))
-                            .font(.system(size: 26, weight: .bold, design: .rounded))
-                            .padding(.horizontal, 16)
+                                .font(.system(size: 30, weight: .bold, design: .rounded))
+                                .padding(.horizontal, 16)
+                                .foregroundColor(Colors.label)
                             Text(self.vm.highlightedData.date.formattedDate(.year))
-                            .font(.system(size: 44, weight: .bold, design: .rounded))
-                            .padding(.horizontal, 18)
+                                .font(.system(size: 44, weight: .bold, design: .rounded))
+                                .padding(.horizontal, 18)
+                                .foregroundColor(Colors.label)
                         }
                         .frame(height: 157, alignment: .center)
                         .background(RoundedCorners(color: Colors.customViewBackground, tl: 16, tr: 16, bl: 16, br: 16))
@@ -63,22 +66,26 @@ struct HomeView: View {
                         .background(RoundedCorners(color: Colors.customViewBackground, tl: 0, tr: 16, bl: 0, br: 16))
                         .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
                         Text(chartTitle)
-                        .font(.system(size: 32, weight: .semibold, design: .default))
+                            .font(.system(size: 32, weight: .semibold, design: .rounded))
+                            .foregroundColor(Colors.label)
                             .padding(.leading, 8)
                         Spacer()
                         HStack {
                             Button(action: {
-                                print("Action1")
+                                self.chartTitle = "Zakażenia"
+                                self.vm.parameter = .confirmedInc
                             }) {
                                 IconView(name: Icons.confirmed, size: .medium, weight: .semibold, color: Colors.chartTop)
                             }
                             Button(action: {
-                                print("Action1")
+                                self.chartTitle = "Zgony"
+                                self.vm.parameter = .deathsInc
                             }) {
                                 IconView(name: Icons.deaths, size: .medium, weight: .semibold, color: Colors.chartTop)
                             }
                             Button(action: {
-                                print("Action1")
+                                self.chartTitle = "Wyleczeni"
+                                self.vm.parameter = .recoveredInc
                             }) {
                                 IconView(name: Icons.recovered, size: .medium, weight: .semibold, color: Colors.chartTop)
                             }
@@ -87,7 +94,7 @@ struct HomeView: View {
                         .frame(width: 130, height: 40, alignment: .center)
                             .background(RoundedCorners(color: Colors.customViewBackground, tl: 16, tr: 0, bl: 16, br: 0))
                             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
-                    }
+                    }.padding(.bottom, 16)
                     ChartView(data: vm.getData(vm.parameter), title: vm.chartTitle, minX: vm.minDate, maxX: vm.maxDate)
                         
                 }
@@ -97,7 +104,7 @@ struct HomeView: View {
                             .frame(width: 60, height: 60, alignment: .center)
                         Text("Ładowanie danych...")
                             .font(Fonts.popupTitle)
-                            .foregroundColor(Colors.main)
+                            .foregroundColor(Colors.label)
                     }
                     .foregroundColor(Colors.main)
                 }
@@ -155,28 +162,31 @@ struct ActivityIndicator: View {
 
 struct StatisticsView: View {
 
+    @EnvironmentObject var vm: ChartViewModel
     var icon: String
-    var titles: [String]
     var values: [Int]
     
     var body: some View {
         ZStack {
             VStack (alignment: .leading) {
                 HStack {
-                    Text(titles[0] + " \(values[0])")
-                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                    Text("Zakażenia:" + " \(values[0])")
+                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+                        .foregroundColor(self.vm.parameter == .confirmedInc ? Colors.main : Colors.label)
                     Spacer()
                 }
                 .padding(.leading, 70)
                 HStack {
-                    Text(titles[1] + " \(values[1])")
-                        .font(.system(size: 14, weight: .medium, design: .rounded))
+                    Text("Zgony:" + " \(values[1])")
+                        .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    .foregroundColor(self.vm.parameter == .deathsInc ? Colors.main : Colors.label)
                     Spacer()
                 }
                 .padding(.leading, 70)
                 HStack {
-                    Text(titles[2] + " \(values[2])")
-                    .font(.system(size: 14, weight: .medium, design: .rounded))
+                    Text("Wyleczeni" + " \(values[2])")
+                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    .foregroundColor(self.vm.parameter == .recoveredInc ? Colors.main : Colors.label)
                     Spacer()
                 }
                 .padding(.leading, 70)
@@ -194,42 +204,9 @@ struct StatisticsView: View {
     }
 }
 
-//struct HomeTopBar: View {
-//
-//    @EnvironmentObject var vm: ChartViewModel
-//
-//    var body: some View {
-//        HStack {
-//            Button(action: {
-//                self.vm.setPopup(title: "Kalendarz", text: "Funkcja dostępna wkrótce")
-//                self.vm.showPopup.toggle()
-//            }) {
-//                IconView(name: Icons.calendar, size: .medium, weight: .regular, color: Colors.label)
-//            }
-//            Button(action: {
-//                self.vm.setPopup(title: "Kalendarz", text: "Funkcja dostępna wkrótce")
-//                self.vm.showPopup.toggle()
-//            }) {
-//                IconView(name: Icons.more, size: .medium, weight: .regular, color: Colors.label)
-//            }
-//            Spacer()
-//            Button(action: {
-//                self.vm.showPopup.toggle()
-//            }) {
-//                IconView(name: Icons.info, size: .medium, weight: .regular, color: Colors.label)
-//
-//
-//            }
-//
-//        }.padding(.horizontal, 16)
-//       //     .background(Color.yellow)
-//    }
-//}
-
 struct HomeTitleView: View {
     
     @EnvironmentObject var vm: ChartViewModel
-    var title: String
     
     var body: some View {
         HStack {
@@ -248,11 +225,11 @@ struct HomeTitleView: View {
             
             HStack {
                 Text("Statystyki")
-                    .font(.system(size: 32, weight: .semibold, design: .default))
+                    .font(.system(size: 32, weight: .semibold, design: .rounded))
                     .foregroundColor(Colors.label)
                 Text("Covid-19 Polska")
-                    .font(.system(size: 12, weight: .regular, design: .default))
-                    .foregroundColor(Colors.chartTop)
+                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    .foregroundColor(Colors.main)
                     .offset(x: -30, y: 20)
             }
             .padding(.horizontal, 8)
@@ -274,46 +251,3 @@ struct HomeTitleView: View {
         }.padding(.top, 16)
     }
 }
-
-//struct ParametersView: View {
-//
-//    @EnvironmentObject var vm: ChartViewModel
-//
-//    var body: some View {
-//        HStack {
-//            Spacer()
-//            VStack (alignment: .leading, spacing: 2) {
-//                Spacer()
-//                Text("Zakażenia")
-//                    .font(.system(size: 16, weight: .bold, design: .default))
-//                    .foregroundColor(Colors.label)
-//                ChartDetailsElement(icon: Icons.confirmed, number: self.vm.highlightedData.confirmed)
-//                ChartDetailsElement(icon: Icons.increase, number: self.vm.highlightedData.confirmedInc)
-//                Spacer()
-//                Text("Zgony")
-//                    .font(.system(size: 16, weight: .bold, design: .default))
-//                    .foregroundColor(Color(UIColor.label))
-//                ChartDetailsElement(icon: Icons.deaths, number: self.vm.highlightedData.deaths)
-//                ChartDetailsElement(icon: Icons.increase, number: self.vm.highlightedData.deathsInc)
-//                Spacer()
-//            }
-//            Spacer()
-//            VStack (alignment: .leading, spacing: 2) {
-//                Spacer()
-//                Text("Wyzdrowienia")
-//                    .font(.system(size: 16, weight: .bold, design: .default))
-//                    .foregroundColor(Color(UIColor.label))
-//                ChartDetailsElement(icon: Icons.recovered, number: self.vm.highlightedData.recovered)
-//                ChartDetailsElement(icon: Icons.increase, number: self.vm.highlightedData.recoveredInc)
-//                Spacer()
-//                Text("Wykres")
-//                    .font(.system(size: 16, weight: .bold, design: .default))
-//                    .foregroundColor(Color(UIColor.label))
-//                ChartDetailsElement(icon: Icons.deaths, number: self.vm.highlightedData.deaths)
-//                ChartDetailsElement(icon: Icons.increase, number: self.vm.highlightedData.deathsInc)
-//                Spacer()
-//            }
-//            Spacer()
-//        }
-//    }
-//}

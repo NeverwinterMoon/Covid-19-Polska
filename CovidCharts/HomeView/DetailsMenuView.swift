@@ -93,7 +93,7 @@ struct DetailsMenuView: View {
                 Spacer()
                 }
             .frame(width: UIScreen.width, height: 180, alignment: .center)
-            .background(Colors.appBackground)
+            .background(Colors.background)
             .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
         }

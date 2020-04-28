@@ -21,7 +21,7 @@ struct DetailsView: View {
 
     var body: some View {
         ZStack {
-            Colors.appBackground
+            Colors.background
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 VerticalSpacer()
@@ -61,13 +61,13 @@ struct DetailsView: View {
                             .listRowBackground(Color.clear)
                     Section(header: SectionTitle(title: "Podział na województwa", show: $showSection5)) {
                         if showSection5 {
-                            BarHorizontalChartView(title: "Zakażenia w województwach", data: vm.regionData, legend1: "Zakażenia", color1: Colors.main, legend2: "Zgony", color2: Colors.main2)
+                            BarHorizontalChartView(title: "Zakażenia w województwach", data: vm.regionData, legend1: "Zakażenia", color1: Colors.main, legend2: "Zgony", color2: Colors.main)
                         }
                     }
                             .listRowBackground(Color.clear)
 
                 }
-                .background(Colors.appBackground)
+                .background(Colors.background)
             }.frame(width: UIScreen.width+40)
         }
         
@@ -107,8 +107,8 @@ struct SectionTitle: View {
             .onTapGesture {
                 self.show.toggle()
             }
-            .listRowBackground(Colors.appBackground)
-            .background(Colors.appBackground)
+            .listRowBackground(Colors.background)
+            .background(Colors.background)
         }
     }
     
@@ -129,7 +129,7 @@ struct SectionCharts: View {
         }
         .padding(.top, 8)
         .padding(.bottom, 16)
-        .listRowBackground(Colors.appBackground)
+        .listRowBackground(Colors.background)
         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
     }
 }

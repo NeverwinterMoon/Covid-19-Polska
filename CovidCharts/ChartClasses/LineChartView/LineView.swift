@@ -68,7 +68,14 @@ public struct LineView: View {
             .onEnded({ value in
                 self.opacity = 0
                 self.hideHorizontalLines = false
-                self.vm.showHighlightedData = false
+                self.vm.highlightedData.confirmed = self.vm.dailyData.last?.confirmed ?? 0
+                self.vm.highlightedData.confirmedInc = self.vm.dailyData.last?.confirmedInc ?? 0
+                self.vm.highlightedData.deaths = self.vm.dailyData.last?.deaths ?? 0
+                self.vm.highlightedData.deathsInc = self.vm.dailyData.last?.deathsInc ?? 0
+                self.vm.highlightedData.recoveredInc = self.vm.dailyData.last?.recoveredInc ?? 0
+                self.vm.highlightedData.recovered = self.vm.dailyData.last?.recovered ?? 0
+                self.vm.highlightedData.date = self.vm.dailyData.last?.date ?? ""
+            //    self.vm.showHighlightedData = false
             })
         )
         }

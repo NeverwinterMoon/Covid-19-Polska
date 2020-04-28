@@ -22,9 +22,11 @@ struct InfoPopupView: View {
                 Text(title)
                     .font(Fonts.popupTitle)
                     .animation(nil)
+                    .foregroundColor(Colors.label)
                 Text(message)
                     .multilineTextAlignment(.center)
                     .font(Fonts.text)
+                    .foregroundColor(Colors.label)
                 .animation(nil)
                 Button(action: {
                     self.vm.showPopup.toggle()
@@ -33,6 +35,7 @@ struct InfoPopupView: View {
                         .foregroundColor(Color(UIColor.systemBackground))
                         .frame(width: UIScreen.width-64, height: 50, alignment: .center)
                         .font(Fonts.button)
+                        .foregroundColor(Colors.background)
                 }
                 .frame(width: UIScreen.width/2 + 68, height: 50, alignment: .center)
                 .background(Colors.main)

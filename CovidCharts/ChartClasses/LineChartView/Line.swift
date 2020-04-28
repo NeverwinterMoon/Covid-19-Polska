@@ -44,7 +44,7 @@ public struct Line: View {
             return 0
         }
         if let min = min, let max = max, min != max {
-                return ((UIScreen.height/1.75 - 50) - 50) / CGFloat(max)
+            return ChartView.height / CGFloat(max)
         }
         return 0
     }
