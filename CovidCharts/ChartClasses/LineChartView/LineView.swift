@@ -27,11 +27,7 @@ public struct LineView: View {
     @State private var selectedDayIncrease: Day = Day(confirmed: 0, deaths: 0, recovered: 0, date: "")
     @State private var hideHorizontalLines: Bool = false
     
-    public init(chartData: ChartData,
-                title: String? = nil,
-                legend: String? = nil,
-                style: ChartStyle = Styles.lineChartStyleOne,
-                valueSpecifier: String? = "%.1f") {
+    public init(chartData: ChartData, title: String? = nil, legend: String? = nil, style: ChartStyle = Styles.lineChartStyleOne, valueSpecifier: String? = "%.1f") {
         self.data = chartData
         self.title = title
         self.legend = legend
@@ -64,6 +60,7 @@ public struct LineView: View {
             self.indicatorLocation = self.closestPoint
             self.hideHorizontalLines = true
             self.vm.showHighlightedData = true
+            self.vm.showHorizontalLines = true
         })
             .onEnded({ value in
                 self.opacity = 0
@@ -75,7 +72,7 @@ public struct LineView: View {
                 self.vm.highlightedData.recoveredInc = self.vm.dailyData.last?.recoveredInc ?? 0
                 self.vm.highlightedData.recovered = self.vm.dailyData.last?.recovered ?? 0
                 self.vm.highlightedData.date = self.vm.dailyData.last?.date ?? ""
-            //    self.vm.showHighlightedData = false
+                self.vm.showHorizontalLines = false
             })
         )
         }

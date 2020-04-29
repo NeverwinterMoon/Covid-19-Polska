@@ -41,6 +41,7 @@ class ChartViewModel: ObservableObject {
     @Published var popup = HomeViewPopup(title: "", text: "")
     @Published var showPopup: Bool = false
     
+    @Published var showHorizontalLines: Bool = false
     @Published var showHighlightedData: Bool = false
     @Published var highlightedData = DailyData(confirmed: 0, deaths: 0, recovered: 0, confirmedInc: 0, deathsInc: 0, recoveredInc: 0, date: "")
     

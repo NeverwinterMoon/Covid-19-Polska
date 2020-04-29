@@ -10,41 +10,42 @@ import SwiftUI
 
 struct ChartContentView: View {
     
+    @EnvironmentObject var vm: ChartViewModel
     @ObservedObject var chartData: ChartData
+//    @State var showHorizontalLines: Bool = false
 
     let style = ChartStyle(backgroundColor: Color.red, accentColor: Color.blue, gradientColor: GradientColors.green, textColor: Color.clear, legendTextColor: Color.clear, dropShadowColor: Color.yellow)
     
     lazy var height: CGFloat = 0
     
     var body: some View {
-                ZStack {
-                    VStack {
-                        VStack {
-                            XLine(chartData: self.chartData, multiplier: 1)
-                        }
-                        Spacer()
-                        VStack {
-                            XLine(chartData: self.chartData, multiplier: 4.5/6)
-                        }
-                        Spacer()
-                        VStack {
-                            XLine(chartData: self.chartData, multiplier: 3/6)
-                        }
-                        Spacer()
-                        VStack {
-                            XLine(chartData: self.chartData, multiplier: 1.5/6)
-                        }
-                        Spacer()
-                    }.offset(y: -8)
-                    
-                    LineView(chartData: self.chartData, style: self.style)
-                    
+        ZStack {
+            VStack {
+                VStack {
+                    XLine(chartData: self.chartData, multiplier: 1)
                 }
-                
+                Spacer()
+                VStack {
+                    XLine(chartData: self.chartData, multiplier: 4.5/6)
+                }
+                Spacer()
+                VStack {
+                    XLine(chartData: self.chartData, multiplier: 3/6)
+                }
+                Spacer()
+                VStack {
+                    XLine(chartData: self.chartData, multiplier: 1.5/6)
+                }
+                Spacer()
             }
-//            .background(Color.red)
-//            .animation(.easeInOut(duration: 0.5))
-    
+            .offset(y: -8)
+            .offset(y: vm.showHorizontalLines ? 0 : 50)
+            .opacity(vm.showHorizontalLines ? 1.0 : 0.0)
+            .animation(.easeInOut(duration: 0.4))
+            LineView(chartData: self.chartData, style: self.style)
+                .animation(.easeInOut(duration: 0.4))
+        }
+    }
 }
 
 struct ChartContentView_Previews: PreviewProvider {
@@ -65,7 +66,8 @@ struct XLine: View {
                 .foregroundColor(Colors.main)
                 .opacity(0.3)
                 .padding(.horizontal, 8)
-                .animation(nil)
+            //    .animation(nil)
+                .offset(x: 0, y: 3)
             Spacer()
                 .frame(height: 1, alignment: .center)
                 .background(Colors.main)

@@ -25,7 +25,7 @@ struct HomeView: View {
                 if !vm.dailyData.isEmpty {
                     HomeTitleView()
                     Spacer()
-                    HStack (spacing: 6) {
+                    HStack (spacing: 26) {
                         Spacer()
                         VStack (spacing: 12)  {
                             Spacer()
@@ -37,17 +37,17 @@ struct HomeView: View {
                             Text(self.vm.highlightedData.date.formattedDate(.day))
                                 .font(.system(size: 44, weight: .bold, design: .rounded))
                                 .foregroundColor(Colors.main)
-                                .padding(.horizontal, 16)
+                                .padding(.horizontal, 0)
                             Text(self.vm.highlightedData.date.formattedDate(.month))
                                 .font(.system(size: 30, weight: .bold, design: .rounded))
-                                .padding(.horizontal, 16)
+                                .padding(.horizontal, 0)
                                 .foregroundColor(Colors.label)
                             Text(self.vm.highlightedData.date.formattedDate(.year))
                                 .font(.system(size: 44, weight: .bold, design: .rounded))
-                                .padding(.horizontal, 18)
+                                .padding(.horizontal, 4)
                                 .foregroundColor(Colors.label)
                         }
-                        .frame(height: 157, alignment: .center)
+                        .frame(width: 80, height: 157, alignment: .center)
                         .background(RoundedCorners(color: Colors.customViewBackground, tl: 16, tr: 16, bl: 16, br: 16))
                         .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
                         Spacer()
@@ -94,7 +94,8 @@ struct HomeView: View {
                         .frame(width: 130, height: 40, alignment: .center)
                             .background(RoundedCorners(color: Colors.customViewBackground, tl: 16, tr: 0, bl: 16, br: 0))
                             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
-                    }.padding(.bottom, 16)
+                    }
+                    .padding(.bottom, 16)
                     ChartView(data: vm.getData(vm.parameter), title: vm.chartTitle, minX: vm.minDate, maxX: vm.maxDate)
                         
                 }
@@ -171,30 +172,30 @@ struct StatisticsView: View {
             VStack (alignment: .leading) {
                 HStack {
                     Text("Zakażenia:" + " \(values[0])")
-                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    .font(.system(size: 16, weight: .semibold, design: .rounded))
                         .foregroundColor(self.vm.parameter == .confirmedInc ? Colors.main : Colors.label)
                     Spacer()
                 }
-                .padding(.leading, 70)
+                .padding(.leading, 60)
                 HStack {
                     Text("Zgony:" + " \(values[1])")
-                        .font(.system(size: 14, weight: .semibold, design: .rounded))
+                        .font(.system(size: 16, weight: .semibold, design: .rounded))
                     .foregroundColor(self.vm.parameter == .deathsInc ? Colors.main : Colors.label)
                     Spacer()
                 }
-                .padding(.leading, 70)
+                .padding(.leading, 60)
                 HStack {
-                    Text("Wyleczeni" + " \(values[2])")
-                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+                    Text("Wyleczeni:" + " \(values[2])")
+                    .font(.system(size: 16, weight: .semibold, design: .rounded))
                     .foregroundColor(self.vm.parameter == .recoveredInc ? Colors.main : Colors.label)
                     Spacer()
                 }
-                .padding(.leading, 70)
+                .padding(.leading, 60)
             }
-            .frame(width: 200, height: 65, alignment: .center)
+            .frame(width: 210, height: 70, alignment: .center)
                 .background(RoundedCorners(color: Colors.customViewBackground, tl: 0, tr: 16, bl: 0, br: 16))
                 .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
-                .offset(x: 80)
+                .offset(x: 100)
             IconView(name: icon, size: .large, weight: .semibold, color: Colors.customViewBackground)
             .frame(width: 80, height: 80, alignment: .center)
             .background(Colors.chartTop)
@@ -223,15 +224,15 @@ struct HomeTitleView: View {
             .background(RoundedCorners(color: Colors.customViewBackground, tl: 0, tr: 16, bl: 0, br: 16))
             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
             
-            HStack {
+            VStack (alignment: .leading, spacing: -2) {
                 Text("Statystyki")
                     .font(.system(size: 32, weight: .semibold, design: .rounded))
                     .foregroundColor(Colors.label)
                 Text("Covid-19 Polska")
                     .font(.system(size: 14, weight: .semibold, design: .rounded))
                     .foregroundColor(Colors.main)
-                    .offset(x: -30, y: 20)
             }
+        .offset(y: 5)
             .padding(.horizontal, 8)
             Spacer()
             HStack {
