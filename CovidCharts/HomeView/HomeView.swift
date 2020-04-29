@@ -56,7 +56,8 @@ struct HomeView: View {
                     HStack {
                         HStack {
                             Button(action: {
-                                print("Calendar")
+                                self.vm.setPopup(title: "Kalendarz", text: "Funkcja dostępna wkrótce")
+                                self.vm.showPopup.toggle()
                             }) {
                                 IconView(name: Icons.calendar, size: .medium, weight: .semibold, color: Colors.chartTop)
                             }
