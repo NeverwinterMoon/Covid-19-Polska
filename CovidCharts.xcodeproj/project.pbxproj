@@ -18,6 +18,8 @@
 		810C131E244604D400419207 /* ChartXLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C131D244604D400419207 /* ChartXLine.swift */; };
 		810C1320244604E000419207 /* ChartTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C131F244604E000419207 /* ChartTopView.swift */; };
 		810C1322244604F000419207 /* ChartContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C1321244604F000419207 /* ChartContentView.swift */; };
+		8139414D2459C6E0002AF9BA /* HomeMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8139414C2459C6E0002AF9BA /* HomeMenuView.swift */; };
+		8139414F2459D7FA002AF9BA /* ProvinceStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8139414E2459D7FA002AF9BA /* ProvinceStatsView.swift */; };
 		814B42062450B48400923A19 /* BarIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B42052450B48400923A19 /* BarIndicatorView.swift */; };
 		8153F381245259B700297E38 /* HomeChartDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8153F380245259B700297E38 /* HomeChartDetailsView.swift */; };
 		8153F3832453471300297E38 /* DetailsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8153F3822453471300297E38 /* DetailsMenuView.swift */; };
@@ -72,6 +74,8 @@
 		810C131D244604D400419207 /* ChartXLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartXLine.swift; sourceTree = "<group>"; };
 		810C131F244604E000419207 /* ChartTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTopView.swift; sourceTree = "<group>"; };
 		810C1321244604F000419207 /* ChartContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartContentView.swift; sourceTree = "<group>"; };
+		8139414C2459C6E0002AF9BA /* HomeMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMenuView.swift; sourceTree = "<group>"; };
+		8139414E2459D7FA002AF9BA /* ProvinceStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProvinceStatsView.swift; path = CovidCharts/ChartClasses/LineChartView/ProvinceStatsView.swift; sourceTree = SOURCE_ROOT; };
 		814B42052450B48400923A19 /* BarIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarIndicatorView.swift; sourceTree = "<group>"; };
 		8153F380245259B700297E38 /* HomeChartDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChartDetailsView.swift; sourceTree = "<group>"; };
 		8153F3822453471300297E38 /* DetailsMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsMenuView.swift; sourceTree = "<group>"; };
@@ -148,6 +152,7 @@
 				81E05EBC244E4E460002F0C3 /* ChartViewModel.swift */,
 				81C198322449E29900AEC5FF /* FlexSwiftUICharts */,
 				814B42082451D97B00923A19 /* ChartClasses */,
+				813941502459DB7C002AF9BA /* ProvinceStats */,
 				810C130F2444C9B100419207 /* HomeView */,
 				81C19894244DA54200AEC5FF /* DetailsView */,
 				81C19891244C74B400AEC5FF /* Popups */,
@@ -183,6 +188,7 @@
 			children = (
 				810C12FA2444994000419207 /* HomeView.swift */,
 				81723633245846DD0082D432 /* HomeTopView.swift */,
+				8139414C2459C6E0002AF9BA /* HomeMenuView.swift */,
 				817236312458459F0082D432 /* HomeStatisticsView.swift */,
 				81C197F52448A21300AEC5FF /* HomeChartToolbarView.swift */,
 				81C197F124486BAD00AEC5FF /* HomeBotView.swift */,
@@ -208,6 +214,14 @@
 				81C1983D2449E37200AEC5FF /* IndicatorPointView.swift */,
 			);
 			path = LineChartView;
+			sourceTree = "<group>";
+		};
+		813941502459DB7C002AF9BA /* ProvinceStats */ = {
+			isa = PBXGroup;
+			children = (
+				8139414E2459D7FA002AF9BA /* ProvinceStatsView.swift */,
+			);
+			path = ProvinceStats;
 			sourceTree = "<group>";
 		};
 		814B42072451D96A00923A19 /* BarHChartView */ = {
@@ -398,6 +412,7 @@
 				81C19896244DA55A00AEC5FF /* DetailsView.swift in Sources */,
 				81C19868244B0ABF00AEC5FF /* ChartYLine.swift in Sources */,
 				814B42062450B48400923A19 /* BarIndicatorView.swift in Sources */,
+				8139414D2459C6E0002AF9BA /* HomeMenuView.swift in Sources */,
 				817236322458459F0082D432 /* HomeStatisticsView.swift in Sources */,
 				81C1984C2449E43400AEC5FF /* PathQuadCurve.swift in Sources */,
 				810C12F72444994000419207 /* AppDelegate.swift in Sources */,
@@ -416,6 +431,7 @@
 				81C197BC2446632200AEC5FF /* Colors.swift in Sources */,
 				81C197FF24490AFB00AEC5FF /* ChartsModel.swift in Sources */,
 				81C1980124490B3800AEC5FF /* Ext-UIScreen.swift in Sources */,
+				8139414F2459D7FA002AF9BA /* ProvinceStatsView.swift in Sources */,
 				81C197F224486BAD00AEC5FF /* HomeBotView.swift in Sources */,
 				81C1984F2449E45D00AEC5FF /* PieChartCell.swift in Sources */,
 				815B79A62455EEE600809A6F /* ProvincesStatsView.swift in Sources */,

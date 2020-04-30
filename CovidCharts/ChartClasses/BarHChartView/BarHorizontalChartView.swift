@@ -11,7 +11,7 @@ import SwiftUI
 struct BarHorizontalDataEntity: Hashable {
     var title: String
     var value1: Double
-    var value2: Double?
+    var value2: Double
 }
 
 public class BarHorizontalData: ObservableObject, Identifiable {
@@ -132,18 +132,16 @@ struct BarHorizontalChartView: View {
                                     .font(Fonts.listElementDetails)
                                     .foregroundColor(Colors.label)
                                 }
-                                if entity.value2 != nil {
+
                                     HStack {
                                         Spacer()
-                                            .frame(width: self.setWidth(entity.value2 ?? 0), height: self.barHeight, alignment: .leading)
+                                            .frame(width: self.setWidth(entity.value2), height: self.barHeight, alignment: .leading)
                                             .background(self.color2)
-                                        Text(self.showValues ? "\(Int(entity.value2 ?? 0))" : "")
+                                        Text(self.showValues ? "\(Int(entity.value2))" : "")
                                             .padding(.leading, 2)
                                         .font(Fonts.listElementDetails)
                                         .foregroundColor(Colors.label)
                                     }
-                    
-                                }
                             }
                             Spacer()
                         }

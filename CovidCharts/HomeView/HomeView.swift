@@ -12,7 +12,7 @@ struct HomeView: View {
     
     @EnvironmentObject var vm: ChartViewModel
     @Binding var showPopup: Bool
-    @State var showDetailsMenuView: Bool = false
+    @State var showMenu: Bool = false
     @State var chartBottom: CGFloat = 0
     @State var chartTitle: String = "Zakażenia"
     @State var selectedChart: ParameterType = .confirmedInc
@@ -23,7 +23,7 @@ struct HomeView: View {
                 .edgesIgnoringSafeArea(.all)
             VStack (spacing: 0) {
                 if !vm.dailyData.isEmpty {
-                    HomeTitleView()
+                    HomeTitleView(showMenu: $showMenu)
                     Spacer()
                     HStack (spacing: 26) {
                         Spacer()
@@ -112,16 +112,15 @@ struct HomeView: View {
                 }
             }.edgesIgnoringSafeArea(.bottom)
             .blur(radius: self.vm.showPopup ? 10 : 0)
-            .blur(radius: self.showDetailsMenuView ? 10 : 0)
+            .blur(radius: self.showMenu ? 10 : 0)
             InfoPopupView(title: vm.popup.title, message: vm.popup.text)
                 .scaleEffect(self.vm.showPopup ? 1.0 : 0.5)
                 .opacity(self.vm.showPopup ? 1.0 : 0.0)
                 .animation(.spring())
-            GeometryReader { (geometry) in
-                DetailsMenuView(showDetailsMenuView: self.$showDetailsMenuView)
-                    .offset(x: 0, y: self.showDetailsMenuView ? 0 : geometry.size.height)
-                    .animation(.spring())
-            }
+            HomeMenuView(showMenu: $showMenu)
+            .scaleEffect(self.showMenu ? 1.0 : 0.5)
+            .opacity(self.showMenu ? 1.0 : 0.0)
+            .animation(.spring())
         }
     }
 }
@@ -209,13 +208,13 @@ struct StatisticsView: View {
 struct HomeTitleView: View {
     
     @EnvironmentObject var vm: ChartViewModel
+    @Binding var showMenu: Bool
     
     var body: some View {
         HStack {
             HStack {
                 Button(action: {
-                    self.vm.setPopup(title: "Menu", text: "Menu")
-                    self.vm.showPopup.toggle()
+                    self.showMenu.toggle()
                 }) {
                     IconView(name: Icons.menu, size: .medium, weight: .regular, color: Colors.chartTop)
                 }
