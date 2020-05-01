@@ -47,7 +47,6 @@
 		81C19868244B0ABF00AEC5FF /* ChartYLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19867244B0ABF00AEC5FF /* ChartYLine.swift */; };
 		81C19890244C63FF00AEC5FF /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C1988F244C63FF00AEC5FF /* Fonts.swift */; };
 		81C19893244C74C400AEC5FF /* InfoPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19892244C74C400AEC5FF /* InfoPopupView.swift */; };
-		81C19896244DA55A00AEC5FF /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C19895244DA55A00AEC5FF /* DetailsView.swift */; };
 		81D0EA37244ED5D400968667 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0EA36244ED5D400968667 /* Layout.swift */; };
 		81D0EA3A244F249200968667 /* BarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0EA39244F249200968667 /* BarView.swift */; };
 		81D0EA3C244F252500968667 /* BarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D0EA3B244F252500968667 /* BarContentView.swift */; };
@@ -98,7 +97,6 @@
 		81C19867244B0ABF00AEC5FF /* ChartYLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartYLine.swift; sourceTree = "<group>"; };
 		81C1988F244C63FF00AEC5FF /* Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		81C19892244C74C400AEC5FF /* InfoPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopupView.swift; sourceTree = "<group>"; };
-		81C19895244DA55A00AEC5FF /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
 		81D0EA36244ED5D400968667 /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		81D0EA39244F249200968667 /* BarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarView.swift; sourceTree = "<group>"; };
 		81D0EA3B244F252500968667 /* BarContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarContentView.swift; sourceTree = "<group>"; };
@@ -138,14 +136,11 @@
 			children = (
 				810C12F62444994000419207 /* AppDelegate.swift */,
 				810C12F82444994000419207 /* SceneDelegate.swift */,
-				81C197FE24490AFB00AEC5FF /* ChartsModel.swift */,
-				81E05EBC244E4E460002F0C3 /* ChartViewModel.swift */,
-				81C198322449E29900AEC5FF /* FlexSwiftUICharts */,
-				814B42082451D97B00923A19 /* ChartClasses */,
+				819F9670245C988F0044F1CC /* Chart */,
+				819F966F245C98830044F1CC /* ViewModel */,
+				810C130F2444C9B100419207 /* HomeView */,
 				819F966C245C2F630044F1CC /* PolandStats */,
 				813941502459DB7C002AF9BA /* ProvinceStats */,
-				810C130F2444C9B100419207 /* HomeView */,
-				81C19894244DA54200AEC5FF /* DetailsView */,
 				81C19891244C74B400AEC5FF /* Popups */,
 				81C197BA2446630900AEC5FF /* UI */,
 				810C130A2444C95D00419207 /* Extensions */,
@@ -231,8 +226,27 @@
 			isa = PBXGroup;
 			children = (
 				819F966D245C2F8B0044F1CC /* PolandStatsView.swift */,
+				81D0EA3D244F3F9200968667 /* CovidTableView.swift */,
 			);
 			path = PolandStats;
+			sourceTree = "<group>";
+		};
+		819F966F245C98830044F1CC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				81C197FE24490AFB00AEC5FF /* ChartsModel.swift */,
+				81E05EBC244E4E460002F0C3 /* ChartViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		819F9670245C988F0044F1CC /* Chart */ = {
+			isa = PBXGroup;
+			children = (
+				814B42082451D97B00923A19 /* ChartClasses */,
+				81C198322449E29900AEC5FF /* FlexSwiftUICharts */,
+			);
+			path = Chart;
 			sourceTree = "<group>";
 		};
 		81C197BA2446630900AEC5FF /* UI */ = {
@@ -295,15 +309,6 @@
 				81C19892244C74C400AEC5FF /* InfoPopupView.swift */,
 			);
 			path = Popups;
-			sourceTree = "<group>";
-		};
-		81C19894244DA54200AEC5FF /* DetailsView */ = {
-			isa = PBXGroup;
-			children = (
-				81C19895244DA55A00AEC5FF /* DetailsView.swift */,
-				81D0EA3D244F3F9200968667 /* CovidTableView.swift */,
-			);
-			path = DetailsView;
 			sourceTree = "<group>";
 		};
 		81D0EA38244F247000968667 /* BarVChartView */ = {
@@ -401,7 +406,6 @@
 				810C1320244604E000419207 /* ChartTopView.swift in Sources */,
 				81C1983A2449E33300AEC5FF /* LabelView.swift in Sources */,
 				81C198342449E2BA00AEC5FF /* BarChartCell.swift in Sources */,
-				81C19896244DA55A00AEC5FF /* DetailsView.swift in Sources */,
 				81C19868244B0ABF00AEC5FF /* ChartYLine.swift in Sources */,
 				819F966E245C2F8B0044F1CC /* PolandStatsView.swift in Sources */,
 				814B42062450B48400923A19 /* BarIndicatorView.swift in Sources */,
