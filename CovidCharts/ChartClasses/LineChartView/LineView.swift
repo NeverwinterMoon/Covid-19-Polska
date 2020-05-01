@@ -27,11 +27,7 @@ public struct LineView: View {
     @State private var selectedDayIncrease: Day = Day(confirmed: 0, deaths: 0, recovered: 0, date: "")
     @State private var hideHorizontalLines: Bool = false
     
-    public init(chartData: ChartData,
-                title: String? = nil,
-                legend: String? = nil,
-                style: ChartStyle = Styles.lineChartStyleOne,
-                valueSpecifier: String? = "%.1f") {
+    public init(chartData: ChartData, title: String? = nil, legend: String? = nil, style: ChartStyle = Styles.lineChartStyleOne, valueSpecifier: String? = "%.1f") {
         self.data = chartData
         self.title = title
         self.legend = legend
@@ -52,25 +48,31 @@ public struct LineView: View {
                      selectedDayIncrease: self.$selectedDayIncrease,
                      showBackground: true
                 )
-                    .frame(width: ChartView.width, height: (ChartView.height - 40))
-                .padding(.top, -50)
-                    .padding(.bottom, 10)
+                    .frame(width: ChartView.width, height: (ChartView.height))
             }
         .gesture(DragGesture()
         .onChanged({ value in
             self.dragLocation = value.location
             self.indicatorLocation = CGPoint(x: max(value.location.x,0), y: 0)
             self.opacity = 1
-            self.closestPoint = self.getClosestDataPoint(toPoint: value.location, width: ChartView.width, height: (ChartView.height - 40))
+            self.closestPoint = self.getClosestDataPoint(toPoint: value.location, width: ChartView.width, height: (ChartView.height))
             self.dragLocation = self.closestPoint
             self.indicatorLocation = self.closestPoint
             self.hideHorizontalLines = true
             self.vm.showHighlightedData = true
+            self.vm.showHorizontalLines = true
         })
             .onEnded({ value in
                 self.opacity = 0
                 self.hideHorizontalLines = false
-                self.vm.showHighlightedData = false
+                self.vm.highlightedData.confirmed = self.vm.dailyData.last?.confirmed ?? 0
+                self.vm.highlightedData.confirmedInc = self.vm.dailyData.last?.confirmedInc ?? 0
+                self.vm.highlightedData.deaths = self.vm.dailyData.last?.deaths ?? 0
+                self.vm.highlightedData.deathsInc = self.vm.dailyData.last?.deathsInc ?? 0
+                self.vm.highlightedData.recoveredInc = self.vm.dailyData.last?.recoveredInc ?? 0
+                self.vm.highlightedData.recovered = self.vm.dailyData.last?.recovered ?? 0
+                self.vm.highlightedData.date = self.vm.dailyData.last?.date ?? ""
+                self.vm.showHorizontalLines = false
             })
         )
         }

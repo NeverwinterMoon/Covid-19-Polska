@@ -21,8 +21,14 @@ struct Day: Decodable, Hashable {
     }
 }
 
-enum Country: String, Decodable {
-    case poland = "Poland"
+struct DailyData: Hashable {
+    var confirmed: Int
+    var deaths: Int
+    var recovered: Int
+    var confirmedInc: Int
+    var deathsInc: Int
+    var recoveredInc: Int
+    var date: String
 }
 
 enum CountryCode: String, Decodable {
@@ -30,15 +36,6 @@ enum CountryCode: String, Decodable {
 }
 
 typealias Days = [Day]
-
-struct TimeSeries: Decodable {
-    let Poland: [Day]
-}
-
-struct DayData: Decodable, Hashable {
-    let date: String
-    let confirmed, deaths, recovered: Int
-}
 
 // MARK: - PolandLatest
 struct PolandLatest: Codable {

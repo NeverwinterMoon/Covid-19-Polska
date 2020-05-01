@@ -9,9 +9,8 @@
 import SwiftUI
 
 struct InfoPopupView: View {
-    
-    @EnvironmentObject var vm: ChartViewModel
-    
+
+    @Binding var showView: Bool
     var title: String
     var message: String
     
@@ -22,17 +21,20 @@ struct InfoPopupView: View {
                 Text(title)
                     .font(Fonts.popupTitle)
                     .animation(nil)
+                    .foregroundColor(Colors.label)
                 Text(message)
                     .multilineTextAlignment(.center)
                     .font(Fonts.text)
+                    .foregroundColor(Colors.label)
                 .animation(nil)
                 Button(action: {
-                    self.vm.showPopup.toggle()
+                    self.showView.toggle()
                 }) {
                     Text("OK")
                         .foregroundColor(Color(UIColor.systemBackground))
                         .frame(width: UIScreen.width-64, height: 50, alignment: .center)
                         .font(Fonts.button)
+                        .foregroundColor(Colors.background)
                 }
                 .frame(width: UIScreen.width/2 + 68, height: 50, alignment: .center)
                 .background(Colors.main)
@@ -52,6 +54,6 @@ struct InfoPopupView: View {
 
 struct InfoPopupView_Previews: PreviewProvider {
     static var previews: some View {
-        InfoPopupView(title: "Example title", message: "This is a test text to show how this popup can look like and how it displays data in multilines").environmentObject(ChartViewModel())
+        InfoPopupView(showView: .constant(true), title: "Example title", message: "This is a test text to show how this popup can look like and how it displays data in multilines").environmentObject(ChartViewModel())
     }
 }

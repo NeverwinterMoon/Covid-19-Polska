@@ -24,9 +24,12 @@ enum Icons {
     static let dismiss = "xmark"
     static let expand = "arrow.down"
     static let collapse = "arrow.up"
-    static let table = "table"
-    static let back = "arrow.turn.up.left"
+    static let table = "list.dash"
+    static let back = "chevron.left"
     static let hide = "chevron.down"
+    static let menu = "list.dash"
+    static let sum = "sum"
+    static let up = "arrow.up"
 }
 
 struct IconView: View {

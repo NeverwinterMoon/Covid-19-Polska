@@ -13,6 +13,16 @@ enum DateStyle {
     case medium
     case long
     case superlong
+    case month
+    case year
+    case day
+}
+
+extension Double {
+    func round(to places: Int) -> Double {
+        let divisor = pow(10.0, Double(places))
+        return (self * divisor).rounded() / divisor
+    }
 }
 
 extension String {
@@ -30,6 +40,9 @@ extension String {
         case .short: secondFormatter.dateFormat = "dd.MM"
         case .long: secondFormatter.dateFormat = "dd MMMM YYYY"
         case .medium: secondFormatter.dateFormat = "dd MMMM"
+        case .month: secondFormatter.dateFormat = "MMM"
+        case .year: secondFormatter.dateFormat = "YY"
+        case .day: secondFormatter.dateFormat = "dd"
         case .superlong:
             date?.addTimeInterval(7200)
             secondFormatter.dateFormat = "HH:mm, dd MMMM YYYY"
