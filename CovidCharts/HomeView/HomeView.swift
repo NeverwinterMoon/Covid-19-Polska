@@ -11,8 +11,9 @@ import SwiftUI
 struct HomeView: View {
     
     @EnvironmentObject var vm: ChartViewModel
-    @Binding var showPopup: Bool
+    @State var showCalendar: Bool = false
     @State var showMenu: Bool = false
+    
     @State var chartBottom: CGFloat = 0
     @State var chartTitle: String = "Zakażenia"
     @State var selectedChart: ParameterType = .confirmedInc
@@ -57,7 +58,7 @@ struct HomeView: View {
                         HStack {
                             Button(action: {
                                 self.vm.setPopup(title: "Kalendarz", text: "Funkcja dostępna wkrótce")
-                                self.vm.showPopup.toggle()
+                                self.showCalendar.toggle()
                             }) {
                                 IconView(name: Icons.calendar, size: .medium, weight: .semibold, color: Colors.chartTop)
                             }
@@ -110,24 +111,30 @@ struct HomeView: View {
                     }
                     .foregroundColor(Colors.main)
                 }
-            }.edgesIgnoringSafeArea(.bottom)
+            }
+            .edgesIgnoringSafeArea(.bottom)
             .blur(radius: self.vm.showPopup ? 10 : 0)
+            .blur(radius: self.showCalendar ? 10 : 0)
             .blur(radius: self.showMenu ? 10 : 0)
-            InfoPopupView(title: vm.popup.title, message: vm.popup.text)
+            InfoPopupView(showView: $vm.showPopup, title: vm.popup.title, message: vm.popup.text)
                 .scaleEffect(self.vm.showPopup ? 1.0 : 0.5)
                 .opacity(self.vm.showPopup ? 1.0 : 0.0)
                 .animation(.spring())
+            InfoPopupView(showView: $showCalendar, title: "Kalendarz", message: "Funkcja dostępna wkrótce")
+                .scaleEffect(self.showCalendar ? 1.0 : 0.5)
+                .opacity(self.showCalendar ? 1.0 : 0.0)
+                .animation(.spring())
             HomeMenuView(showMenu: $showMenu)
-            .scaleEffect(self.showMenu ? 1.0 : 0.5)
-            .opacity(self.showMenu ? 1.0 : 0.0)
-            .animation(.spring())
+                .scaleEffect(self.showMenu ? 1.0 : 0.5)
+                .opacity(self.showMenu ? 1.0 : 0.0)
+                .animation(.spring())
         }
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(showPopup: .constant(false)).environmentObject(ChartViewModel())
+        HomeView().environmentObject(ChartViewModel())
     }
 }
 

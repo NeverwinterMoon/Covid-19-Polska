@@ -28,7 +28,7 @@ struct HomeMenuView: View {
                 MenuSelectionView(title: "Województwa") {
                     self.showProvinceStats.toggle()
                 }.sheet(isPresented: $showProvinceStats) {
-                    ProvinceStatsView(showProvinceStats: self.$showProvinceStats).environmentObject(self.vm)
+                    ProvinceStatsView(showView: self.$showProvinceStats).environmentObject(self.vm)
                 }
                 
                 MenuSelectionView(title: "Tabela") {

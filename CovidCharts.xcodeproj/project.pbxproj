@@ -23,11 +23,14 @@
 		814B42062450B48400923A19 /* BarIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814B42052450B48400923A19 /* BarIndicatorView.swift */; };
 		8153F381245259B700297E38 /* HomeChartDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8153F380245259B700297E38 /* HomeChartDetailsView.swift */; };
 		8153F3832453471300297E38 /* DetailsMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8153F3822453471300297E38 /* DetailsMenuView.swift */; };
-		8153F38524534E5400297E38 /* PolandStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8153F38424534E5400297E38 /* PolandStatsView.swift */; };
+		8153F38524534E5400297E38 /* Poland.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8153F38424534E5400297E38 /* Poland.swift */; };
 		815B79A62455EEE600809A6F /* ProvincesStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815B79A52455EEE600809A6F /* ProvincesStatsView.swift */; };
 		815F8EA72450382500AB8D7F /* BarHorizontalChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815F8EA62450382500AB8D7F /* BarHorizontalChartView.swift */; };
 		817236322458459F0082D432 /* HomeStatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817236312458459F0082D432 /* HomeStatisticsView.swift */; };
 		81723634245846DD0082D432 /* HomeTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81723633245846DD0082D432 /* HomeTopView.swift */; };
+		819F9669245B04950044F1CC /* ProvinceTable2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F9668245B04950044F1CC /* ProvinceTable2.swift */; };
+		819F966B245B050F0044F1CC /* ProvinceTable1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F966A245B050F0044F1CC /* ProvinceTable1.swift */; };
+		819F966E245C2F8B0044F1CC /* PolandStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F966D245C2F8B0044F1CC /* PolandStatsView.swift */; };
 		81C197BC2446632200AEC5FF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197BB2446632200AEC5FF /* Colors.swift */; };
 		81C197BE2446634900AEC5FF /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197BD2446634900AEC5FF /* Icons.swift */; };
 		81C197F224486BAD00AEC5FF /* HomeBotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197F124486BAD00AEC5FF /* HomeBotView.swift */; };
@@ -79,11 +82,14 @@
 		814B42052450B48400923A19 /* BarIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarIndicatorView.swift; sourceTree = "<group>"; };
 		8153F380245259B700297E38 /* HomeChartDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeChartDetailsView.swift; sourceTree = "<group>"; };
 		8153F3822453471300297E38 /* DetailsMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsMenuView.swift; sourceTree = "<group>"; };
-		8153F38424534E5400297E38 /* PolandStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolandStatsView.swift; sourceTree = "<group>"; };
+		8153F38424534E5400297E38 /* Poland.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Poland.swift; sourceTree = "<group>"; };
 		815B79A52455EEE600809A6F /* ProvincesStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvincesStatsView.swift; sourceTree = "<group>"; };
 		815F8EA62450382500AB8D7F /* BarHorizontalChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarHorizontalChartView.swift; sourceTree = "<group>"; };
 		817236312458459F0082D432 /* HomeStatisticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeStatisticsView.swift; sourceTree = "<group>"; };
 		81723633245846DD0082D432 /* HomeTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTopView.swift; sourceTree = "<group>"; };
+		819F9668245B04950044F1CC /* ProvinceTable2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinceTable2.swift; sourceTree = "<group>"; };
+		819F966A245B050F0044F1CC /* ProvinceTable1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinceTable1.swift; sourceTree = "<group>"; };
+		819F966D245C2F8B0044F1CC /* PolandStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolandStatsView.swift; sourceTree = "<group>"; };
 		81C197BB2446632200AEC5FF /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		81C197BD2446634900AEC5FF /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		81C197F124486BAD00AEC5FF /* HomeBotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBotView.swift; sourceTree = "<group>"; };
@@ -152,6 +158,7 @@
 				81E05EBC244E4E460002F0C3 /* ChartViewModel.swift */,
 				81C198322449E29900AEC5FF /* FlexSwiftUICharts */,
 				814B42082451D97B00923A19 /* ChartClasses */,
+				819F966C245C2F630044F1CC /* PolandStats */,
 				813941502459DB7C002AF9BA /* ProvinceStats */,
 				810C130F2444C9B100419207 /* HomeView */,
 				81C19894244DA54200AEC5FF /* DetailsView */,
@@ -194,7 +201,7 @@
 				81C197F124486BAD00AEC5FF /* HomeBotView.swift */,
 				8153F380245259B700297E38 /* HomeChartDetailsView.swift */,
 				8153F3822453471300297E38 /* DetailsMenuView.swift */,
-				8153F38424534E5400297E38 /* PolandStatsView.swift */,
+				8153F38424534E5400297E38 /* Poland.swift */,
 				815B79A52455EEE600809A6F /* ProvincesStatsView.swift */,
 			);
 			path = HomeView;
@@ -220,6 +227,8 @@
 			isa = PBXGroup;
 			children = (
 				8139414E2459D7FA002AF9BA /* ProvinceStatsView.swift */,
+				819F9668245B04950044F1CC /* ProvinceTable2.swift */,
+				819F966A245B050F0044F1CC /* ProvinceTable1.swift */,
 			);
 			path = ProvinceStats;
 			sourceTree = "<group>";
@@ -240,6 +249,14 @@
 				810C131A2446043700419207 /* LineChartView */,
 			);
 			path = ChartClasses;
+			sourceTree = "<group>";
+		};
+		819F966C245C2F630044F1CC /* PolandStats */ = {
+			isa = PBXGroup;
+			children = (
+				819F966D245C2F8B0044F1CC /* PolandStatsView.swift */,
+			);
+			path = PolandStats;
 			sourceTree = "<group>";
 		};
 		81C197BA2446630900AEC5FF /* UI */ = {
@@ -411,6 +428,7 @@
 				81C198342449E2BA00AEC5FF /* BarChartCell.swift in Sources */,
 				81C19896244DA55A00AEC5FF /* DetailsView.swift in Sources */,
 				81C19868244B0ABF00AEC5FF /* ChartYLine.swift in Sources */,
+				819F966E245C2F8B0044F1CC /* PolandStatsView.swift in Sources */,
 				814B42062450B48400923A19 /* BarIndicatorView.swift in Sources */,
 				8139414D2459C6E0002AF9BA /* HomeMenuView.swift in Sources */,
 				817236322458459F0082D432 /* HomeStatisticsView.swift in Sources */,
@@ -423,6 +441,7 @@
 				81C197BE2446634900AEC5FF /* Icons.swift in Sources */,
 				81E05EBD244E4E460002F0C3 /* ChartViewModel.swift in Sources */,
 				81C198422449E3A700AEC5FF /* Line.swift in Sources */,
+				819F966B245B050F0044F1CC /* ProvinceTable1.swift in Sources */,
 				81C1983E2449E37200AEC5FF /* IndicatorPointView.swift in Sources */,
 				81C198532449E49900AEC5FF /* PieChartView.swift in Sources */,
 				81723634245846DD0082D432 /* HomeTopView.swift in Sources */,
@@ -434,10 +453,11 @@
 				8139414F2459D7FA002AF9BA /* ProvinceStatsView.swift in Sources */,
 				81C197F224486BAD00AEC5FF /* HomeBotView.swift in Sources */,
 				81C1984F2449E45D00AEC5FF /* PieChartCell.swift in Sources */,
+				819F9669245B04950044F1CC /* ProvinceTable2.swift in Sources */,
 				815B79A62455EEE600809A6F /* ProvincesStatsView.swift in Sources */,
 				810C1322244604F000419207 /* ChartContentView.swift in Sources */,
 				81D0EA3C244F252500968667 /* BarContentView.swift in Sources */,
-				8153F38524534E5400297E38 /* PolandStatsView.swift in Sources */,
+				8153F38524534E5400297E38 /* Poland.swift in Sources */,
 				81C19893244C74C400AEC5FF /* InfoPopupView.swift in Sources */,
 				81C198482449E40800AEC5FF /* MaginfierRect.swift in Sources */,
 				810C12FB2444994000419207 /* HomeView.swift in Sources */,

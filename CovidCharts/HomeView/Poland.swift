@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct PolandStatsView: View {
+struct Poland: View {
     
     @EnvironmentObject var vm: ChartViewModel
     @Binding var showView: Bool
@@ -55,7 +55,7 @@ struct PolandStatsView: View {
     
 }
 
-struct PolandStatsView_Previews: PreviewProvider {
+struct Poland_Previews: PreviewProvider {
     static var previews: some View {
         PolandStatsView(showView: .constant(true)).environmentObject(ChartViewModel())
     }
