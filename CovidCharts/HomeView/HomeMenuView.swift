@@ -31,10 +31,6 @@ struct HomeMenuView: View {
                     ProvinceStatsView(showView: self.$showProvinceStats).environmentObject(self.vm)
                 }
                 
-                MenuSelectionView(title: "Tabela") {
-                    print("Polska")
-                }
-                
                 Button(action: {
                     self.showMenu.toggle()
                 }) {
