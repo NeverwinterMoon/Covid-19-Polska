@@ -60,6 +60,19 @@ struct PolandStatsView: View {
                             PolandDetailsLine(title: "Procent przypadków śmiertelnych\nwśród zakażonych", number: getPercent(value1: self.vm.dailyData.last?.deaths ?? 0, value2: self.vm.dailyData.last?.confirmed ?? 0))
                             PolandDetailsLine(title: "Procent potwierdzonych wyzdrowień\nwśród zakażonych", number: getPercent(value1: self.vm.dailyData.last?.recovered ?? 0, value2: self.vm.dailyData.last?.confirmed ?? 0))
                         }
+                        
+                        // Historical data
+                        SectionTitle(title: "Dane historyczne", icon: Icons.table)
+                        HStack {
+                            HistoryColumn(parameter: .date, icon: Icons.calendar)
+                            HistoryColumn(parameter: .confirmed, icon: Icons.confirmed)
+                            HistoryColumn(parameter: .confirmedInc, icon: Icons.increase)
+                            HistoryColumn(parameter: .deaths, icon: Icons.deaths)
+                            HistoryColumn(parameter: .deathsInc, icon: Icons.increase)
+                            HistoryColumn(parameter: .recovered, icon: Icons.recovered)
+                            HistoryColumn(parameter: .recoveredInc, icon: Icons.increase)
+                        }
+                        
                         Spacer()
                         
                     }
@@ -139,4 +152,35 @@ struct PolandDetailsLine: View {
 
         }
     }
+}
+
+struct HistoryColumn: View {
+    
+    @EnvironmentObject var vm: ChartViewModel
+    var parameter: ParameterType
+    var icon: String
+    
+    var body: some View {
+        VStack {
+            IconView(name: icon, size: .medium, weight: .semibold, color: Colors.chartTop)
+            ForEach(self.vm.dailyData.reversed(), id: \.self) { day in
+                DetailsText(text: self.getString(day), color: Colors.label)
+                    .padding(.horizontal, 4)
+                    .padding(.vertical, 8)
+            }
+        }
+    }
+    
+    func getString(_ day: DailyData) -> String {
+        switch parameter {
+        case .confirmed: return String(day.confirmed)
+        case .deaths: return String(day.deaths)
+        case .recovered: return String(day.recovered)
+        case .date: return String(day.date.formattedDate(.short))
+        case .confirmedInc: return String(day.confirmedInc)
+        case .deathsInc: return String(day.deathsInc)
+        case .recoveredInc: return String(day.recoveredInc)
+        }
+    }
+    
 }
