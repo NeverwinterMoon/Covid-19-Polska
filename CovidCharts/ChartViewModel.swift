@@ -22,16 +22,6 @@ struct HomeViewPopup {
     var text: String
 }
 
-struct DailyData: Hashable {
-    var confirmed: Int
-    var deaths: Int
-    var recovered: Int
-    var confirmedInc: Int
-    var deathsInc: Int
-    var recoveredInc: Int
-    var date: String
-}
-
 class ChartViewModel: ObservableObject {
     
     private var fetchedData = [Day]()
@@ -58,6 +48,12 @@ class ChartViewModel: ObservableObject {
         fetchLatestData { (fetchedData) in
             self.showPopup.toggle()
             self.setPopup(title: fetchedData ? "Aktualizacja" : "Wystąpił błąd", text: fetchedData ? "Ostatnia aktualizacja:\n\(self.dailyData.last?.date.formattedDate(.superlong) ?? "")" : "Sprawdź połączenie z internetem")
+            self.highlightedData.confirmed = self.dailyData.last?.confirmed ?? 0
+            self.highlightedData.confirmedInc = self.dailyData.last?.confirmedInc ?? 0
+            self.highlightedData.deaths = self.dailyData.last?.deaths ?? 0
+            self.highlightedData.deathsInc = self.dailyData.last?.deathsInc ?? 0
+            self.highlightedData.recovered = self.dailyData.last?.recovered ?? 0
+            self.highlightedData.recoveredInc = self.dailyData.last?.recoveredInc ?? 0
         }
     }
     
@@ -161,7 +157,7 @@ class ChartViewModel: ObservableObject {
         dailyData = dailyData.suffix(daysNumber)
     }
     
-    func setDataOnDailyChange() {
+    private func setDataOnDailyChange() {
         guard !fetchedData.isEmpty else {
             return
         }
@@ -189,49 +185,6 @@ class ChartViewModel: ObservableObject {
             }
         }
         return values
-    }
-    
-    func getDailyData(on: Int, of: ParameterType) -> Int {
-        switch of {
-        case .confirmed: return dailyData[on].confirmed
-        case .deaths: return dailyData[on].deaths
-        case .recovered: return dailyData[on].recovered
-        case .confirmedInc: return dailyData[on].confirmedInc
-        case .deathsInc: return dailyData[on].deathsInc
-        case .recoveredInc: return dailyData[on].recoveredInc
-        default: return 0
-        }
-    }
-    
-    func getCases(_ day: DailyData) -> CGFloat {
-        switch parameter {
-        case .deaths: return CGFloat(day.deaths)
-        case .confirmed: return CGFloat(day.confirmed)
-        case .recovered: return CGFloat(day.recovered)
-        case .deathsInc: return CGFloat(day.deathsInc)
-        case .confirmedInc: return CGFloat(day.confirmedInc)
-        case .recoveredInc: return CGFloat(day.recoveredInc)
-        default: return 0
-        }
-    }
-    
-    func getLatestDate(_ dateStyle: DateStyle) -> String {
-        return dailyData.last?.date.formattedDate(dateStyle) ?? "Loading..."
-    }
-    
-    func getLatest(_ parameter: ParameterType) -> Int {
-        guard dailyData.count > 0 else {
-            return 0
-        }
-        switch parameter {
-        case .deaths: return dailyData.last!.deaths
-        case .confirmed: return dailyData.last!.confirmed
-        case .recovered: return dailyData.last!.recovered
-        case .deathsInc: return dailyData.last!.deathsInc
-        case .confirmedInc: return dailyData.last!.confirmedInc
-        case .recoveredInc: return dailyData.last!.recoveredInc
-        default: return 0
-        }
     }
     
     func setPopup(title: String, text: String) {

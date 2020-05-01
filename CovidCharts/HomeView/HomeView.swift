@@ -48,7 +48,7 @@ struct HomeView: View {
                                 .padding(.horizontal, 4)
                                 .foregroundColor(Colors.label)
                         }
-                        .frame(width: 80, height: 157, alignment: .center)
+                        .frame(width: 80, height: 162, alignment: .center)
                         .background(RoundedCorners(color: Colors.customViewBackground, tl: 16, tr: 16, bl: 16, br: 16))
                         .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
                         Spacer()
@@ -244,10 +244,9 @@ struct HomeTitleView: View {
             Spacer()
             HStack {
                 Button(action: {
-                    self.vm.setPopup(title: "Źródło danych", text: "Wykresy tworzone na podstawie danych publikowanych przez Ministerstwo Zdrowia/WHO")
-                    self.vm.showPopup.toggle()
+                    self.vm.loadData()
                 }) {
-                    IconView(name: Icons.info, size: .medium, weight: .regular, color: Colors.chartTop)
+                    IconView(name: Icons.reload, size: .medium, weight: .regular, color: Colors.chartTop)
                 }
                 .padding(.leading, 8)
                 Spacer()
