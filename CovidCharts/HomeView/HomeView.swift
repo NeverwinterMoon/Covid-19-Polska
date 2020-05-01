@@ -57,7 +57,6 @@ struct HomeView: View {
                     HStack {
                         HStack {
                             Button(action: {
-                                self.vm.setPopup(title: "Kalendarz", text: "Funkcja dostępna wkrótce")
                                 self.showCalendar.toggle()
                             }) {
                                 IconView(name: Icons.calendar, size: .medium, weight: .semibold, color: Colors.chartTop)
@@ -120,14 +119,15 @@ struct HomeView: View {
                 .scaleEffect(self.vm.showPopup ? 1.0 : 0.5)
                 .opacity(self.vm.showPopup ? 1.0 : 0.0)
                 .animation(.spring())
-            InfoPopupView(showView: $showCalendar, title: "Kalendarz", message: "Funkcja dostępna wkrótce")
-                .scaleEffect(self.showCalendar ? 1.0 : 0.5)
-                .opacity(self.showCalendar ? 1.0 : 0.0)
-                .animation(.spring())
             HomeMenuView(showMenu: $showMenu)
                 .scaleEffect(self.showMenu ? 1.0 : 0.5)
                 .opacity(self.showMenu ? 1.0 : 0.0)
                 .animation(.spring())
+            HomeCalendarView(showCalendar: $showCalendar)
+                .scaleEffect(self.showCalendar ? 1.0 : 0.5)
+                .opacity(self.showCalendar ? 1.0 : 0.0)
+                .animation(.spring())
+
         }
     }
 }

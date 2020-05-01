@@ -25,6 +25,7 @@
 		819F9669245B04950044F1CC /* ProvinceTable2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F9668245B04950044F1CC /* ProvinceTable2.swift */; };
 		819F966B245B050F0044F1CC /* ProvinceTable1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F966A245B050F0044F1CC /* ProvinceTable1.swift */; };
 		819F966E245C2F8B0044F1CC /* PolandStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F966D245C2F8B0044F1CC /* PolandStatsView.swift */; };
+		819F9678245CA7A60044F1CC /* HomeCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F9677245CA7A60044F1CC /* HomeCalendarView.swift */; };
 		81C197BC2446632200AEC5FF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197BB2446632200AEC5FF /* Colors.swift */; };
 		81C197BE2446634900AEC5FF /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197BD2446634900AEC5FF /* Icons.swift */; };
 		81C197FF24490AFB00AEC5FF /* ChartsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197FE24490AFB00AEC5FF /* ChartsModel.swift */; };
@@ -75,6 +76,7 @@
 		819F9668245B04950044F1CC /* ProvinceTable2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinceTable2.swift; sourceTree = "<group>"; };
 		819F966A245B050F0044F1CC /* ProvinceTable1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinceTable1.swift; sourceTree = "<group>"; };
 		819F966D245C2F8B0044F1CC /* PolandStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolandStatsView.swift; sourceTree = "<group>"; };
+		819F9677245CA7A60044F1CC /* HomeCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCalendarView.swift; sourceTree = "<group>"; };
 		81C197BB2446632200AEC5FF /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		81C197BD2446634900AEC5FF /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		81C197FE24490AFB00AEC5FF /* ChartsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsModel.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			children = (
 				810C12FA2444994000419207 /* HomeView.swift */,
 				8139414C2459C6E0002AF9BA /* HomeMenuView.swift */,
+				819F9677245CA7A60044F1CC /* HomeCalendarView.swift */,
 			);
 			path = HomeView;
 			sourceTree = "<group>";
@@ -412,6 +415,7 @@
 				8139414F2459D7FA002AF9BA /* ProvinceStatsView.swift in Sources */,
 				81C1984F2449E45D00AEC5FF /* PieChartCell.swift in Sources */,
 				819F9669245B04950044F1CC /* ProvinceTable2.swift in Sources */,
+				819F9678245CA7A60044F1CC /* HomeCalendarView.swift in Sources */,
 				810C1322244604F000419207 /* ChartContentView.swift in Sources */,
 				81D0EA3C244F252500968667 /* BarContentView.swift in Sources */,
 				81C19893244C74C400AEC5FF /* InfoPopupView.swift in Sources */,

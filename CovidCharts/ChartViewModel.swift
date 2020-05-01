@@ -28,6 +28,7 @@ class ChartViewModel: ObservableObject {
     @Published var loadedDailyData = [DailyData]()
     @Published var dailyData = [DailyData]()
     @Published var regionData = [BarHorizontalDataEntity]()
+    @Published var daysNumber = 30
     
     @Published var parameter: ParameterType = .confirmedInc
     @Published var popup = HomeViewPopup(title: "", text: "")
@@ -119,15 +120,16 @@ class ChartViewModel: ObservableObject {
             self.fetchedData.forEach { (day) in
                 self.loadedDailyData.append(DailyData(confirmed: day.confirmed, deaths: day.deaths, recovered: day.recovered, confirmedInc: 0, deathsInc: 0, recoveredInc: 0, date: day.date))
             }
+            self.loadedDailyData = self.loadedDailyData.filter { $0.confirmed > 0 }
             self.setDataOnDailyChange()
-            self.setDataFromLast(30, chart: self.parameter)
-            
+            self.setVisibleData()
             self.fetchedData.count > 1 ? completion(true) : completion(false)
         })
     }
     
     // MARK: - Charts
     func clearData() {
+        loadedDailyData.removeAll()
         fetchedData.removeAll()
         dailyData.removeAll()
         regionData.removeAll()
@@ -153,20 +155,18 @@ class ChartViewModel: ObservableObject {
         return dailyData.last?.date.formattedDate(.long) ?? "Error loading date"
     }
     
-    #warning("Change it causes errors")
-    func setDataFromLast(_ daysNumber: Int, chart: ParameterType) {
-        self.parameter = chart
+    func setVisibleData() {
         dailyData = loadedDailyData.suffix(daysNumber)
     }
     
     private func setDataOnDailyChange() {
-        guard !fetchedData.isEmpty else {
+        guard !loadedDailyData.isEmpty else {
             return
         }
-        for num in 1..<fetchedData.count {
-            loadedDailyData[num].confirmedInc = fetchedData[num].confirmed - fetchedData[num-1].confirmed
-            loadedDailyData[num].deathsInc = fetchedData[num].deaths - fetchedData[num-1].deaths
-            loadedDailyData[num].recoveredInc = fetchedData[num].recovered - fetchedData[num-1].recovered
+        for num in 1..<loadedDailyData.count {
+            loadedDailyData[num].confirmedInc = loadedDailyData[num].confirmed - loadedDailyData[num-1].confirmed
+            loadedDailyData[num].deathsInc = loadedDailyData[num].deaths - loadedDailyData[num-1].deaths
+            loadedDailyData[num].recoveredInc = loadedDailyData[num].recovered - loadedDailyData[num-1].recovered
         }
     }
     
