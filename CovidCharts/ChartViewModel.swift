@@ -25,8 +25,10 @@ struct HomeViewPopup {
 class ChartViewModel: ObservableObject {
     
     private var fetchedData = [Day]()
+    @Published var loadedDailyData = [DailyData]()
     @Published var dailyData = [DailyData]()
     @Published var regionData = [BarHorizontalDataEntity]()
+    
     @Published var parameter: ParameterType = .confirmedInc
     @Published var popup = HomeViewPopup(title: "", text: "")
     @Published var showPopup: Bool = false
@@ -115,7 +117,7 @@ class ChartViewModel: ObservableObject {
                     self.regionData.append(BarHorizontalDataEntity(title: region.region, value1: Double(region.infectedCount), value2: Double(region.deceasedCount)))
                 }
             self.fetchedData.forEach { (day) in
-                self.dailyData.append(DailyData(confirmed: day.confirmed, deaths: day.deaths, recovered: day.recovered, confirmedInc: 0, deathsInc: 0, recoveredInc: 0, date: day.date))
+                self.loadedDailyData.append(DailyData(confirmed: day.confirmed, deaths: day.deaths, recovered: day.recovered, confirmedInc: 0, deathsInc: 0, recoveredInc: 0, date: day.date))
             }
             self.setDataOnDailyChange()
             self.setDataFromLast(30, chart: self.parameter)
@@ -154,7 +156,7 @@ class ChartViewModel: ObservableObject {
     #warning("Change it causes errors")
     func setDataFromLast(_ daysNumber: Int, chart: ParameterType) {
         self.parameter = chart
-        dailyData = dailyData.suffix(daysNumber)
+        dailyData = loadedDailyData.suffix(daysNumber)
     }
     
     private func setDataOnDailyChange() {
@@ -162,9 +164,9 @@ class ChartViewModel: ObservableObject {
             return
         }
         for num in 1..<fetchedData.count {
-            dailyData[num].confirmedInc = fetchedData[num].confirmed - fetchedData[num-1].confirmed
-            dailyData[num].deathsInc = fetchedData[num].deaths - fetchedData[num-1].deaths
-            dailyData[num].recoveredInc = fetchedData[num].recovered - fetchedData[num-1].recovered
+            loadedDailyData[num].confirmedInc = fetchedData[num].confirmed - fetchedData[num-1].confirmed
+            loadedDailyData[num].deathsInc = fetchedData[num].deaths - fetchedData[num-1].deaths
+            loadedDailyData[num].recoveredInc = fetchedData[num].recovered - fetchedData[num-1].recovered
         }
     }
     
