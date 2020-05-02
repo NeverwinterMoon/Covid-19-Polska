@@ -163,7 +163,7 @@ struct HistoryColumn: View {
     var body: some View {
         VStack {
             IconView(name: icon, size: .medium, weight: .semibold, color: Colors.chartTop)
-            ForEach(self.vm.dailyData.reversed(), id: \.self) { day in
+            ForEach(self.vm.loadedDailyData.reversed(), id: \.self) { day in
                 DetailsText(text: self.getString(day), color: Colors.label)
                     .padding(.horizontal, 4)
                     .padding(.vertical, 8)
