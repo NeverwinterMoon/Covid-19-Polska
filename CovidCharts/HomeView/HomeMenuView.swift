@@ -14,10 +14,17 @@ struct HomeMenuView: View {
     @Binding var showMenu: Bool
     @State var showPolandStats: Bool = false
     @State var showProvinceStats: Bool = false
+    @State var showGlobalStats: Bool = false
     
     var body: some View {
 
             VStack (spacing: 16) {
+                
+                MenuSelectionView(title: "Globalnie") {
+                    self.showPolandStats.toggle()
+                }.sheet(isPresented: $showPolandStats) {
+                    PolandStatsView(showView: self.$showPolandStats).environmentObject(self.vm)
+                }
                 
                 MenuSelectionView(title: "Polska") {
                     self.showPolandStats.toggle()
