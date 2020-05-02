@@ -25,6 +25,7 @@ struct HomeViewPopup {
 class ChartViewModel: ObservableObject {
     
     private var fetchedData = [Day]()
+    @Published var loadedGlobalData = [GlobalDatum]()
     @Published var loadedDailyData = [DailyData]()
     @Published var dailyData = [DailyData]()
     @Published var regionData = [BarHorizontalDataEntity]()
@@ -40,14 +41,16 @@ class ChartViewModel: ObservableObject {
     
     private var cancellable: AnyCancellable?
     private var cancellable2: AnyCancellable?
+    private var cancellable3: AnyCancellable?
     
     init() {
-        loadData()
+    loadData()
     }
     
     func loadData() {
         clearData()
         fetchCovidHitoryData()
+        fetchGlobal()
         fetchLatestData { (fetchedData) in
             self.showPopup.toggle()
             self.setPopup(title: fetchedData ? "Aktualizacja" : "Wystąpił błąd", text: fetchedData ? "Ostatnia aktualizacja:\n\(self.dailyData.last?.date.formattedDate(.superlong) ?? "")" : "Sprawdź połączenie z internetem")
@@ -86,6 +89,41 @@ class ChartViewModel: ObservableObject {
             }
         }, receiveValue: { days in
                 self.fetchedData = days
+        })
+    }
+    
+    func fetchGlobal() {
+        let urlString = "https://api.apify.com/v2/key-value-stores/tVaYRsPHLjNdNBu7S/records/LATEST?disableRedirect=true"
+        guard let url = URL(string: urlString) else {
+            return
+        }
+        self.cancellable3 = URLSession.shared.dataTaskPublisher(for: url)
+            .tryMap { output in
+                guard let response = output.response as? HTTPURLResponse, response.statusCode == 200 else {
+                    throw HTTPError.statusCode
+                }
+                return output.data
+        }
+        .receive(on: RunLoop.main)
+        .decode(type: GlobalData.self, decoder: JSONDecoder())
+        .replaceError(with: [])
+        .eraseToAnyPublisher()
+        .sink(receiveCompletion: { completion in
+            switch completion {
+            case .finished:
+                break
+            case .failure(let error):
+                fatalError(error.localizedDescription)
+            }
+        }, receiveValue: { global in
+                self.loadedGlobalData = global
+            self.loadedGlobalData.forEach { (datum) in
+                print(datum.country)
+                print(datum.infected)
+                print(datum.deceased)
+                print(datum.recovered)
+                print(datum.tested)
+            }
         })
     }
     
