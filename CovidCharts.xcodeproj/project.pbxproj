@@ -26,6 +26,10 @@
 		819F966B245B050F0044F1CC /* ProvinceTable1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F966A245B050F0044F1CC /* ProvinceTable1.swift */; };
 		819F966E245C2F8B0044F1CC /* PolandStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F966D245C2F8B0044F1CC /* PolandStatsView.swift */; };
 		819F9678245CA7A60044F1CC /* HomeCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F9677245CA7A60044F1CC /* HomeCalendarView.swift */; };
+		819F969B245DAD7B0044F1CC /* GlobalStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F969A245DAD7B0044F1CC /* GlobalStatsView.swift */; };
+		819F96AA245E1B320044F1CC /* Covid19Apicom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F96A9245E1B320044F1CC /* Covid19Apicom.swift */; };
+		819F96AC245EBA200044F1CC /* GlobalStatsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F96AB245EBA200044F1CC /* GlobalStatsViewModel.swift */; };
+		819F96AE245F82CC0044F1CC /* CountryDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F96AD245F82CC0044F1CC /* CountryDetailsView.swift */; };
 		81C197BC2446632200AEC5FF /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197BB2446632200AEC5FF /* Colors.swift */; };
 		81C197BE2446634900AEC5FF /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197BD2446634900AEC5FF /* Icons.swift */; };
 		81C197FF24490AFB00AEC5FF /* ChartsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C197FE24490AFB00AEC5FF /* ChartsModel.swift */; };
@@ -77,6 +81,10 @@
 		819F966A245B050F0044F1CC /* ProvinceTable1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProvinceTable1.swift; sourceTree = "<group>"; };
 		819F966D245C2F8B0044F1CC /* PolandStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolandStatsView.swift; sourceTree = "<group>"; };
 		819F9677245CA7A60044F1CC /* HomeCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCalendarView.swift; sourceTree = "<group>"; };
+		819F969A245DAD7B0044F1CC /* GlobalStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalStatsView.swift; sourceTree = "<group>"; };
+		819F96A9245E1B320044F1CC /* Covid19Apicom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Covid19Apicom.swift; sourceTree = "<group>"; };
+		819F96AB245EBA200044F1CC /* GlobalStatsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalStatsViewModel.swift; sourceTree = "<group>"; };
+		819F96AD245F82CC0044F1CC /* CountryDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsView.swift; sourceTree = "<group>"; };
 		81C197BB2446632200AEC5FF /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		81C197BD2446634900AEC5FF /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		81C197FE24490AFB00AEC5FF /* ChartsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsModel.swift; sourceTree = "<group>"; };
@@ -139,12 +147,14 @@
 				810C12F62444994000419207 /* AppDelegate.swift */,
 				810C12F82444994000419207 /* SceneDelegate.swift */,
 				81C197FE24490AFB00AEC5FF /* ChartsModel.swift */,
+				819F96A9245E1B320044F1CC /* Covid19Apicom.swift */,
 				81E05EBC244E4E460002F0C3 /* ChartViewModel.swift */,
 				81C198322449E29900AEC5FF /* FlexSwiftUICharts */,
 				814B42082451D97B00923A19 /* ChartClasses */,
 				810C130F2444C9B100419207 /* HomeView */,
 				819F966C245C2F630044F1CC /* PolandStats */,
 				813941502459DB7C002AF9BA /* ProvinceStats */,
+				819F9699245DACE90044F1CC /* GlobalStats */,
 				81C19891244C74B400AEC5FF /* Popups */,
 				81C197BA2446630900AEC5FF /* UI */,
 				810C130A2444C95D00419207 /* Extensions */,
@@ -234,6 +244,16 @@
 				81D0EA3D244F3F9200968667 /* CovidTableView.swift */,
 			);
 			path = PolandStats;
+			sourceTree = "<group>";
+		};
+		819F9699245DACE90044F1CC /* GlobalStats */ = {
+			isa = PBXGroup;
+			children = (
+				819F969A245DAD7B0044F1CC /* GlobalStatsView.swift */,
+				819F96AB245EBA200044F1CC /* GlobalStatsViewModel.swift */,
+				819F96AD245F82CC0044F1CC /* CountryDetailsView.swift */,
+			);
+			path = GlobalStats;
 			sourceTree = "<group>";
 		};
 		81C197BA2446630900AEC5FF /* UI */ = {
@@ -400,6 +420,7 @@
 				81C1984C2449E43400AEC5FF /* PathQuadCurve.swift in Sources */,
 				810C12F72444994000419207 /* AppDelegate.swift in Sources */,
 				81C198512449E47300AEC5FF /* PieChartRow.swift in Sources */,
+				819F96AA245E1B320044F1CC /* Covid19Apicom.swift in Sources */,
 				815F8EA72450382500AB8D7F /* BarHorizontalChartView.swift in Sources */,
 				81C197BE2446634900AEC5FF /* Icons.swift in Sources */,
 				81E05EBD244E4E460002F0C3 /* ChartViewModel.swift in Sources */,
@@ -412,9 +433,12 @@
 				81C197BC2446632200AEC5FF /* Colors.swift in Sources */,
 				81C197FF24490AFB00AEC5FF /* ChartsModel.swift in Sources */,
 				81C1980124490B3800AEC5FF /* Ext-UIScreen.swift in Sources */,
+				819F96AE245F82CC0044F1CC /* CountryDetailsView.swift in Sources */,
 				8139414F2459D7FA002AF9BA /* ProvinceStatsView.swift in Sources */,
+				819F969B245DAD7B0044F1CC /* GlobalStatsView.swift in Sources */,
 				81C1984F2449E45D00AEC5FF /* PieChartCell.swift in Sources */,
 				819F9669245B04950044F1CC /* ProvinceTable2.swift in Sources */,
+				819F96AC245EBA200044F1CC /* GlobalStatsViewModel.swift in Sources */,
 				819F9678245CA7A60044F1CC /* HomeCalendarView.swift in Sources */,
 				810C1322244604F000419207 /* ChartContentView.swift in Sources */,
 				81D0EA3C244F252500968667 /* BarContentView.swift in Sources */,

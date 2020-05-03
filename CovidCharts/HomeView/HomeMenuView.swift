@@ -20,10 +20,10 @@ struct HomeMenuView: View {
 
             VStack (spacing: 16) {
                 
-                MenuSelectionView(title: "Globalnie") {
-                    self.showPolandStats.toggle()
-                }.sheet(isPresented: $showPolandStats) {
-                    PolandStatsView(showView: self.$showPolandStats).environmentObject(self.vm)
+                MenuSelectionView(title: "Świat") {
+                    self.showGlobalStats.toggle()
+                }.sheet(isPresented: $showGlobalStats) {
+                    GlobalStatsView(vm: GlobalStatsViewModel(data: self.vm.globalData), showView: self.$showGlobalStats)
                 }
                 
                 MenuSelectionView(title: "Polska") {

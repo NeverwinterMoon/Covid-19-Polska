@@ -24,8 +24,9 @@ struct HomeViewPopup {
 
 class ChartViewModel: ObservableObject {
     
+    @Published var globalData = GlobalData(global: Global(newConfirmed: 0, totalConfirmed: 0, newDeaths: 0, totalDeaths: 0, newRecovered: 0, totalRecovered: 0), countries: [], date: "")
+    
     private var fetchedData = [Day]()
-    @Published var loadedGlobalData = [GlobalDatum]()
     @Published var loadedDailyData = [DailyData]()
     @Published var dailyData = [DailyData]()
     @Published var regionData = [BarHorizontalDataEntity]()
@@ -42,6 +43,7 @@ class ChartViewModel: ObservableObject {
     private var cancellable: AnyCancellable?
     private var cancellable2: AnyCancellable?
     private var cancellable3: AnyCancellable?
+    private var cancellable4: AnyCancellable?
     
     init() {
     loadData()
@@ -49,9 +51,9 @@ class ChartViewModel: ObservableObject {
     
     func loadData() {
         clearData()
-        fetchCovidHitoryData()
-        fetchGlobal()
-        fetchLatestData { (fetchedData) in
+        fetchGlobalData()
+        fetchPolandHistoricData()
+        fetchPolandLatestData { (fetchedData) in
             self.showPopup.toggle()
             self.setPopup(title: fetchedData ? "Aktualizacja" : "Wystąpił błąd", text: fetchedData ? "Ostatnia aktualizacja:\n\(self.dailyData.last?.date.formattedDate(.superlong) ?? "")" : "Sprawdź połączenie z internetem")
             self.highlightedData.confirmed = self.dailyData.last?.confirmed ?? 0
@@ -63,8 +65,8 @@ class ChartViewModel: ObservableObject {
         }
     }
     
-    // MARK: - BarChart
-    func fetchCovidHitoryData() {
+    // MARK: - Networking
+    func fetchPolandHistoricData() {
         let urlString = "https://api.covid19api.com/country/Poland"
         guard let url = URL(string: urlString) else {
             return
@@ -92,8 +94,8 @@ class ChartViewModel: ObservableObject {
         })
     }
     
-    func fetchGlobal() {
-        let urlString = "https://api.apify.com/v2/key-value-stores/tVaYRsPHLjNdNBu7S/records/LATEST?disableRedirect=true"
+    func fetchGlobalData() {
+        let urlString = "https://api.covid19api.com/summary"
         guard let url = URL(string: urlString) else {
             return
         }
@@ -106,7 +108,7 @@ class ChartViewModel: ObservableObject {
         }
         .receive(on: RunLoop.main)
         .decode(type: GlobalData.self, decoder: JSONDecoder())
-        .replaceError(with: [])
+        .replaceError(with: GlobalData(global: Global(newConfirmed: 0, totalConfirmed: 0, newDeaths: 0, totalDeaths: 0, newRecovered: 0, totalRecovered: 0), countries: [], date: ""))
         .eraseToAnyPublisher()
         .sink(receiveCompletion: { completion in
             switch completion {
@@ -115,19 +117,13 @@ class ChartViewModel: ObservableObject {
             case .failure(let error):
                 fatalError(error.localizedDescription)
             }
-        }, receiveValue: { global in
-                self.loadedGlobalData = global
-            self.loadedGlobalData.forEach { (datum) in
-                print(datum.country)
-                print(datum.infected)
-                print(datum.deceased)
-                print(datum.recovered)
-                print(datum.tested)
-            }
+        }, receiveValue: { globalData in
+            print(globalData)
+            self.globalData = globalData
         })
     }
     
-    func fetchLatestData(completion: @escaping (Bool) -> ()) {
+    func fetchPolandLatestData(completion: @escaping (Bool) -> ()) {
         let urlString = "https://api.apify.com/v2/key-value-stores/3Po6TV7wTht4vIEid/records/LATEST?disableRedirect=true"
         guard let url = URL(string: urlString) else {
             completion(false)

@@ -30,6 +30,8 @@ enum Icons {
     static let menu = "list.dash"
     static let sum = "sum"
     static let up = "arrow.up"
+    static let flag = "flag"
+    static let cancel = "xmark"
 }
 
 struct IconView: View {
