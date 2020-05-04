@@ -39,7 +39,7 @@ struct GlobalStatsView: View {
                     
                     HStack {
                         Spacer()
-                        Text("Lista zawiera kraje w których odnotowano ponad 1000 przypadków koronawirusa.\nNaciśnij na wybrany kraj, aby wyświetlić szczegółowe statystyki.")
+                        Text("Lista zawiera kraje w których odnotowano ponad 1000 przypadków koronawirusa.\n\nNaciśnij na wybrany kraj, aby wyświetlić szczegółowe statystyki.")
                             .padding(.bottom, 16)
                             .foregroundColor(Colors.label)
                             .font(.system(size: 12, weight: .semibold, design: .rounded))
