@@ -56,7 +56,6 @@ class ChartViewModel: ObservableObject {
     private var cancellable: AnyCancellable?
     private var cancellable2: AnyCancellable?
     private var cancellable3: AnyCancellable?
-    private var cancellable4: AnyCancellable?
     
     init() {
     loadData()
