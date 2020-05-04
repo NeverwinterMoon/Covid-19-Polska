@@ -43,7 +43,7 @@ struct GlobalStatsView: View {
                             .padding(.bottom, 16)
                             .foregroundColor(Colors.label)
                             .font(.system(size: 12, weight: .semibold, design: .rounded))
-                            .multilineTextAlignment(.leading)
+                            .multilineTextAlignment(.center)
                             .frame(width: 328)
                         Spacer()
                     }
