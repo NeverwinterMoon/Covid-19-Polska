@@ -118,7 +118,6 @@ class ChartViewModel: ObservableObject {
                 fatalError(error.localizedDescription)
             }
         }, receiveValue: { globalData in
-            print(globalData)
             self.globalData = globalData
         })
     }
