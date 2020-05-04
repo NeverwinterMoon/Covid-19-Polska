@@ -25,7 +25,7 @@ struct GlobalStatsView: View {
             VStack {
                 GlobalStatsTitleBar(title: "Świat", showView: $showView, showInfo: $showInfo)
                 ScrollView (.vertical, showsIndicators: false) {
-                    SectionTitle(title: "Statystyki ogólne", icon: Icons.table)
+                    SectionTitle(title: "Stan epidemii", icon: Icons.table)
                     VStack (spacing: 16) {
                         DetailsLine(title: "Ostatnia aktualizacja", value: self.vm.data.date?.formattedDate(.long) ?? "")
                         DetailsLine(title: "Zakażenia łącznie", number: self.vm.data.global?.totalConfirmed)
