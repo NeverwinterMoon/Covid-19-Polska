@@ -24,6 +24,19 @@ struct HomeViewPopup {
 
 class ChartViewModel: ObservableObject {
     
+    func setRegion(_ provinceName: String) -> String {
+        switch provinceName {
+        case "dolnoslaskie": return "Dolnośląskie"
+        case "lodzkie": return "Łódzkie"
+        case "malopolskie": return "Małopolskie"
+        case "slaskie": return "Śląskie"
+        case "swietokrzyskie": return "Świętokrzyskie"
+        case "warminsko-mazurskie": return "Warmińsko-mazurskie"
+        default: return provinceName
+        }
+    }
+
+    
     @Published var globalData = GlobalData(global: Global(newConfirmed: 0, totalConfirmed: 0, newDeaths: 0, totalDeaths: 0, newRecovered: 0, totalRecovered: 0), countries: [], date: "")
     
     private var fetchedData = [Day]()
@@ -148,7 +161,7 @@ class ChartViewModel: ObservableObject {
         }, receiveValue: { latest in
                 self.fetchedData.append(Day(confirmed: latest.infected, deaths: latest.deceased, recovered: self.fetchedData.last?.recovered ?? 0, date: latest.lastUpdatedAtApify))
                 latest.infectedByRegion.forEach { (region) in
-                    self.regionData.append(BarHorizontalDataEntity(title: region.region, value1: Double(region.infectedCount), value2: Double(region.deceasedCount)))
+                    self.regionData.append(BarHorizontalDataEntity(title: self.setRegion(region.region).capitalized, value1: Double(region.infectedCount), value2: Double(region.deceasedCount)))
                 }
             self.fetchedData.forEach { (day) in
                 self.loadedDailyData.append(DailyData(confirmed: day.confirmed, deaths: day.deaths, recovered: day.recovered, confirmedInc: 0, deathsInc: 0, recoveredInc: 0, date: day.date))
