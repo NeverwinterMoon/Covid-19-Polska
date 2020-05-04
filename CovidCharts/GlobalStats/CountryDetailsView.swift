@@ -26,7 +26,7 @@ struct CountryDetailsView: View {
                 VStack (spacing: 16) {
                     Text(country.country ?? "")
                     .font(.system(size: 16, weight: .semibold, design: .rounded))
-                    
+                    .animation(nil)
                     DetailsLine(title: "Zakażenia łącznie", number: country.totalConfirmed ?? 0)
                     DetailsLine(title: "Zakażenia dziś", number: country.newConfirmed ?? 0)
                     DetailsLine(title: "Zgony", number: country.totalDeaths ?? 0)
@@ -38,20 +38,18 @@ struct CountryDetailsView: View {
                 }
                 .padding(.top, -40)
                 .padding(.horizontal, 8)
-                .padding(.bottom, 24)
+                Button(action: {
+                    self.showCountryDetails.toggle()
+                }) {
+                    Text("Zamknij")
+                        .foregroundColor(Colors.chartBot)
+                        .font(.system(size: 14, weight: .bold, design: .rounded))
+                        .padding(.bottom, 16)
+                }
             }
             .background(RoundedCorners(color: Colors.customViewBackground, tl: 16, tr: 16, bl: 16, br: 16))
             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
-            Button(action: {
-                self.showCountryDetails.toggle()
-            }) {
-                IconView(name: Icons.cancel, size: .medium, weight: .semibold, color: Colors.customViewBackground)
-                .frame(width: 60, height: 60, alignment: .center)
-                .padding(.vertical, 8)
-                .background(Colors.chartTop)
-                .clipShape(Circle())
-                .shadow(color: Colors.chartTop.opacity(0.7), radius: 8, x: -4, y: 8)
-            }
+            
         }
     }
     
@@ -94,11 +92,13 @@ fileprivate struct DetailsLine: View {
                     .font(.system(size: 12, weight: .semibold, design: .rounded))
                     .multilineTextAlignment(.center)
                     .frame(width: 160, alignment: .center)
+                    .animation(nil)
                 Text(value)
                     .foregroundColor(Colors.chartTop)
                     .font(.system(size: 12, weight: .semibold, design: .rounded))
                     .multilineTextAlignment(.center)
                     .frame(width: 100, alignment: .center)
+                    .animation(nil)
             }
 
         }

@@ -27,13 +27,13 @@ struct GlobalStatsView: View {
                 ScrollView (.vertical, showsIndicators: false) {
                     SectionTitle(title: "Statystyki ogólne", icon: Icons.table)
                     VStack (spacing: 16) {
-                        GlobalDetailsString(title: "Ostatnia aktualizacja", value: self.vm.data.date?.formattedDate(.long))
-                        GlobalDetailsInt(title: "Zakażenia łącznie", number: self.vm.data.global?.totalConfirmed)
-                        GlobalDetailsInt(title: "Zakażenia dziś", number: self.vm.data.global?.newConfirmed)
-                        GlobalDetailsInt(title: "Zgony łącznie", number: self.vm.data.global?.totalDeaths)
-                        GlobalDetailsInt(title: "Zgony dziś", number: self.vm.data.global?.newDeaths)
-                        GlobalDetailsInt(title: "Wyzdrowienia łącznie", number: self.vm.data.global?.totalRecovered)
-                        GlobalDetailsInt(title: "Wyzdrowienia dziś", number: self.vm.data.global?.newRecovered)
+                        DetailsLine(title: "Ostatnia aktualizacja", value: self.vm.data.date?.formattedDate(.long) ?? "")
+                        DetailsLine(title: "Zakażenia łącznie", number: self.vm.data.global?.totalConfirmed)
+                        DetailsLine(title: "Zakażenia dziś", number: self.vm.data.global?.newConfirmed)
+                        DetailsLine(title: "Zgony łącznie", number: self.vm.data.global?.totalDeaths)
+                        DetailsLine(title: "Zgony dziś", number: self.vm.data.global?.newDeaths)
+                        DetailsLine(title: "Wyzdrowienia łącznie", number: self.vm.data.global?.totalRecovered)
+                        DetailsLine(title: "Wyzdrowienia dziś", number: self.vm.data.global?.newRecovered)
                     }
                     SectionTitle(title: "Statystyki krajowe", icon: Icons.flag)
                     
@@ -45,19 +45,15 @@ struct GlobalStatsView: View {
                             .font(.system(size: 12, weight: .semibold, design: .rounded))
                             .multilineTextAlignment(.leading)
                             .frame(width: 328)
-                            .background(Color.orange)
                         Spacer()
                     }
                     
                     VStack (spacing: 16) {
-                        GlobalDetailsString(title: "Kraj", value: "Zakażenia łącznie")
+                        DetailsLine(title: "Kraj", value: "Zakażenia")
                         ForEach(self.vm.topCountries, id: \.self) { (country) in
-                            
-                            Button(action: {
+                            CountryLine(title: country.country, value: country.totalConfirmed) {
                                 self.tappedCountry = country
                                 self.showCountryDetails.toggle()
-                            }) {
-                                GlobalDetailsInt(title: country.country ?? "", number: country.totalConfirmed ?? 0)
                             }
                         }
                         
@@ -120,10 +116,20 @@ struct GlobalStatsTitleBar: View {
     }
 }
 
-struct GlobalDetailsInt: View {
+fileprivate struct DetailsLine: View {
     
     var title: String
-    var number: Int?
+    var value: String
+    
+    init(title: String, value: String) {
+        self.value = value
+        self.title = title
+    }
+    
+    init(title: String, number: Int?) {
+        self.value = String(number ?? 0)
+        self.title = title
+    }
     
     var body: some View {
         VStack {
@@ -132,81 +138,49 @@ struct GlobalDetailsInt: View {
                     .foregroundColor(Colors.label)
                     .font(.system(size: 12, weight: .semibold, design: .rounded))
                     .multilineTextAlignment(.center)
-                    .frame(width: 200, alignment: .center)
-                Text(String(number ?? 0))
+                    .animation(nil)
+                    .frame(width: 160, alignment: .center)
+                Text(value)
                     .foregroundColor(Colors.chartTop)
                     .font(.system(size: 12, weight: .semibold, design: .rounded))
                     .multilineTextAlignment(.center)
-                    .frame(width: 120, alignment: .center)
+                    .frame(width: 100, alignment: .center)
+                    .animation(nil)
             }
 
         }
     }
 }
 
-struct GlobalDetailsString: View {
+fileprivate struct CountryLine: View {
     
-    var title: String
-    var value: String?
-
+    var title: String?
+    var value: Int?
+    var action: () -> ()
+    
     var body: some View {
         VStack {
             HStack {
-                Text(title)
-                    .foregroundColor(Colors.label)
-                    .font(.system(size: 12, weight: .semibold, design: .rounded))
-                    .multilineTextAlignment(.center)
-                    .frame(width: 200, alignment: .center)
-                Text(value ?? "")
-                    .foregroundColor(Colors.chartTop)
-                    .font(.system(size: 12, weight: .semibold, design: .rounded))
-                    .multilineTextAlignment(.center)
-                    .frame(width: 120, alignment: .center)
-            }
-
-        }
-    }
-}
-
-struct CountriesBarChart: View {
-    
-    @ObservedObject var vm: GlobalStatsViewModel
-    
-    func setHeight(_ value: Double) -> CGFloat {
-        let heightMultiplier = CGFloat(value/self.vm.maxConfirmed)
-        return CGFloat((UIScreen.height/4)) * heightMultiplier
-    }
-    
-    var body: some View {
-        ScrollView (.horizontal, showsIndicators: false) {
-            HStack (alignment: .bottom, spacing: 16) {
-                ForEach(vm.topCountries, id: \.self) { (country) in
-                    VStack (alignment: .center, spacing: 4) {
-                        HStack (alignment: .bottom) {
-                            VStack {
-                                DetailsText(text: "\(country.totalConfirmed ?? 0)", color: Colors.label)
-                                Spacer()
-                                    .frame(width: UIScreen.width/7, height: self.setHeight(Double(country.totalConfirmed ?? 0)), alignment: .center)
-                                    .background(RoundedCorners(color: Colors.chartTop, tl: 8, tr: 8, bl: 0, br: 0))
-                                    .shadow(color: Colors.chartTop.opacity(0.3), radius: 5, x: 4, y: -2)
-                            }
-                            VStack {
-                                DetailsText(text: "\(country.totalDeaths ?? 0)", color: Colors.label)
-                                Spacer()
-                                    .frame(width: UIScreen.width/7, height: self.setHeight(Double(country.totalDeaths ?? 0)), alignment: .center)
-                                    .background(RoundedCorners(color: Colors.chartBot, tl: 8, tr: 8, bl: 0, br: 0))
-                                    .shadow(color: Colors.chartBot.opacity(0.3), radius: 5, x: 4, y: -2)
-                            }
-                        }
-                        //    .padding(.top, 8)
-                        Text(country.country ?? "")
-                            .font(.system(size: 8, weight: .semibold, design: .rounded))
+                HStack {
+                    Button(action: {
+                        self.action()
+                    }) {
+                        Text(title ?? "")
                             .foregroundColor(Colors.label)
-                            .frame(height: 20, alignment: .center)
+                            .font(.system(size: 12, weight: .semibold, design: .rounded))
+                            .multilineTextAlignment(.center)
+                            .animation(nil)
                     }
-                    .background(Color.red)
                 }
+                .frame(width: 160, alignment: .center)
+                Text(String(value ?? 0))
+                    .foregroundColor(Colors.chartTop)
+                    .font(.system(size: 12, weight: .semibold, design: .rounded))
+                    .multilineTextAlignment(.center)
+                    .frame(width: 100, alignment: .center)
+                    .animation(nil)
             }
-        }.padding(.leading, 16)
+
+        }
     }
 }
