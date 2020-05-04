@@ -46,12 +46,12 @@ struct PolandStatsView: View {
                     ScrollView (.vertical, showsIndicators: false) {
                         SectionTitle(title: "Stan epidemii", icon: Icons.sum)
                         VStack (spacing: 16) {
-                            PolandDetailsLine(title: "Liczba zakażeń łącznie", number: String(self.vm.dailyData.last?.confirmed ?? 0))
-                            PolandDetailsLine(title: "Liczba zakażeń dzisiaj", number: String(self.vm.dailyData.last?.confirmedInc ?? 0))
-                            PolandDetailsLine(title: "Liczba zgonów łącznie", number: String(self.vm.dailyData.last?.deaths ?? 0))
-                            PolandDetailsLine(title: "Liczba zgonów dzisiaj", number: String(self.vm.dailyData.last?.deathsInc ?? 0))
-                            PolandDetailsLine(title: "Liczba wyzdrowień łącznie", number: String(self.vm.dailyData.last?.recovered ?? 0))
-                            PolandDetailsLine(title: "Liczba wyzdrowień dzisiaj", number: String(self.vm.dailyData.last?.recoveredInc ?? 0))
+                            PolandDetailsLine(title: "Zakażenia łącznie", number: String(self.vm.dailyData.last?.confirmed ?? 0))
+                            PolandDetailsLine(title: "Zakażenia dzisiaj", number: String(self.vm.dailyData.last?.confirmedInc ?? 0))
+                            PolandDetailsLine(title: "Zgony łącznie", number: String(self.vm.dailyData.last?.deaths ?? 0))
+                            PolandDetailsLine(title: "Zgony dzisiaj", number: String(self.vm.dailyData.last?.deathsInc ?? 0))
+                            PolandDetailsLine(title: "Wyzdrowienia łącznie", number: String(self.vm.dailyData.last?.recovered ?? 0))
+                            PolandDetailsLine(title: "Wyzdrowienia dzisiaj", number: String(self.vm.dailyData.last?.recoveredInc ?? 0))
                         }
                         
                         SectionTitle(title: "Statystyki", icon: Icons.percent)
