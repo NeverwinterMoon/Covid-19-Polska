@@ -154,6 +154,15 @@ class ChartViewModel: ObservableObject {
             self.fetchedData.forEach { (day) in
                 self.loadedDailyData.append(DailyData(confirmed: day.confirmed, deaths: day.deaths, recovered: day.recovered, confirmedInc: 0, deathsInc: 0, recoveredInc: 0, date: day.date))
             }
+            
+            // This removes positions with the same date
+            if self.loadedDailyData.count > 1 {
+                let count = self.loadedDailyData.count
+                if self.loadedDailyData.last?.date.formattedDate(.short) == self.loadedDailyData[count-2].date.formattedDate(.short) {
+                    self.loadedDailyData.remove(at: count-2)
+                }
+            }
+            
             self.loadedDailyData = self.loadedDailyData.filter { $0.confirmed > 0 }
             self.setDataOnDailyChange()
             self.setVisibleData()
