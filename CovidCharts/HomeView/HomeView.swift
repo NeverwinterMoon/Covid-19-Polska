@@ -178,22 +178,19 @@ struct StatisticsView: View {
         ZStack {
             VStack (alignment: .leading) {
                 HStack {
-                    Text("Zakażenia:" + " \(values[0])")
-                    .font(.system(size: 16, weight: .semibold, design: .rounded))
-                        .foregroundColor(self.vm.parameter == .confirmedInc ? Colors.main : Colors.label)
+                    StatisticsValueText("Zakażenia:" + " \(values[0])")
+                    .foregroundColor(self.vm.parameter == .confirmedInc ? Colors.main : Colors.label)
                     Spacer()
                 }
                 .padding(.leading, 60)
                 HStack {
-                    Text("Zgony:" + " \(values[1])")
-                        .font(.system(size: 16, weight: .semibold, design: .rounded))
+                    StatisticsValueText("Zgony:" + " \(values[1])")
                     .foregroundColor(self.vm.parameter == .deathsInc ? Colors.main : Colors.label)
                     Spacer()
                 }
                 .padding(.leading, 60)
                 HStack {
-                    Text("Wyleczeni:" + " \(values[2])")
-                    .font(.system(size: 16, weight: .semibold, design: .rounded))
+                    StatisticsValueText("Wyleczeni:" + " \(values[2])")
                     .foregroundColor(self.vm.parameter == .recoveredInc ? Colors.main : Colors.label)
                     Spacer()
                 }
@@ -232,14 +229,12 @@ struct HomeTitleView: View {
             .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
             
             VStack (alignment: .leading, spacing: -2) {
-                Text("Statystyki")
-                    .font(.system(size: 32, weight: .semibold, design: .rounded))
-                    .foregroundColor(Colors.label)
+                SectionTitleText("Statystyki")
                 Text("Covid-19 Polska")
                     .font(.system(size: 14, weight: .semibold, design: .rounded))
                     .foregroundColor(Colors.main)
             }
-        .offset(y: 5)
+            .offset(y: 5)
             .padding(.horizontal, 8)
             Spacer()
             HStack {
