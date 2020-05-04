@@ -66,10 +66,14 @@ struct HomeView: View {
                         .frame(width: 50, height: 40, alignment: .center)
                         .background(RoundedCorners(color: Colors.customViewBackground, tl: 0, tr: 16, bl: 0, br: 16))
                         .shadow(color: Color.black.opacity(0.2), radius: 8, x: 0, y: 5)
-                        Text(chartTitle)
-                            .font(.system(size: 32, weight: .semibold, design: .rounded))
-                            .foregroundColor(Colors.label)
-                            .padding(.leading, 8)
+                        VStack (alignment: .leading, spacing: -2) {
+                            SectionTitleText(chartTitle)
+                            Text("Ostatnie \(self.vm.daysNumber) dni")
+                                .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                .foregroundColor(Colors.main)
+                        }
+                        .offset(y: 5)
+                        .padding(.horizontal, 8)
                         Spacer()
                         HStack {
                             Button(action: {
