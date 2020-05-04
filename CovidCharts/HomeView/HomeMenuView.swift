@@ -15,11 +15,12 @@ struct HomeMenuView: View {
     @State var showPolandStats: Bool = false
     @State var showProvinceStats: Bool = false
     @State var showGlobalStats: Bool = false
+    @State var showLicences: Bool = false
     
     var body: some View {
 
             VStack (spacing: 16) {
-                
+                Spacer()
                 MenuSelectionView(title: "Świat") {
                     self.showGlobalStats.toggle()
                 }.sheet(isPresented: $showGlobalStats) {
@@ -48,7 +49,17 @@ struct HomeMenuView: View {
                 }
                 .background(RoundedCorners(color: Colors.main2, tl: 16, tr: 16, bl: 16, br: 16))
                 .shadow(color: Colors.main2.opacity(0.8), radius: 8, x: 0, y: 5)
-                
+                Spacer()
+                Button(action: {
+                    self.showLicences.toggle()
+                }) {
+                  Text("Licenses & Credits")
+                    .font(.system(size: 12, weight: .semibold, design: .rounded))
+                    .foregroundColor(Colors.customViewBackground)
+                    .opacity(0.2)
+                }.sheet(isPresented: $showLicences) {
+                    LicencesView(showView: self.$showLicences)
+                }
             }
     }
 }

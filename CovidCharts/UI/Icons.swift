@@ -32,6 +32,7 @@ enum Icons {
     static let up = "arrow.up"
     static let flag = "flag"
     static let cancel = "xmark"
+    static let pencil = "pencil"
 }
 
 struct IconView: View {
