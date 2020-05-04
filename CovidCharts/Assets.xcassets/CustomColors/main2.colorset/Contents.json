@@ -43,7 +43,7 @@
         }
       ],
       "color" : {
-        "color-space" : "srgb",
+        "color-space" : "display-p3",
         "components" : {
           "red" : "0.690",
           "alpha" : "1.000",

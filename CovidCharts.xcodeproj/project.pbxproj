@@ -61,7 +61,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		810C12F32444994000419207 /* CovidCharts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CovidCharts.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		810C12F32444994000419207 /* Covid Polska.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Covid Polska.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		810C12F62444994000419207 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		810C12F82444994000419207 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		810C12FA2444994000419207 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 		810C12F42444994000419207 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				810C12F32444994000419207 /* CovidCharts.app */,
+				810C12F32444994000419207 /* Covid Polska.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -349,7 +349,7 @@
 			packageProductDependencies = (
 			);
 			productName = CovidCharts;
-			productReference = 810C12F32444994000419207 /* CovidCharts.app */;
+			productReference = 810C12F32444994000419207 /* Covid Polska.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -598,7 +598,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = timothystokarski.CovidCharts;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Covid Polska";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -618,7 +618,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = timothystokarski.CovidCharts;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Covid Polska";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
