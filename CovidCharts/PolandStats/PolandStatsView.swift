@@ -108,7 +108,7 @@ struct DetailsTitleBar: View {
             Button(action: {
                 self.showViewAction()
             }) {
-                IconView(name: Icons.hide, size: .medium, weight: .regular, color: Colors.chartTop)
+                IconView(name: Icons.hide, size: .medium, weight: .regular, color: Colors.main)
             }
             .frame(width: 50, height: 40)
             .background(RoundedCorners(color: Colors.customViewBackground, tl: 0, tr: 16, bl: 0, br: 16))
@@ -121,7 +121,7 @@ struct DetailsTitleBar: View {
             Button(action: {
                 self.showInfoAction()
             }) {
-                IconView(name: Icons.info, size: .medium, weight: .regular, color: Colors.chartTop)
+                IconView(name: Icons.info, size: .medium, weight: .regular, color: Colors.main)
             }
             .frame(width: 50, height: 40)
             .background(RoundedCorners(color: Colors.customViewBackground, tl: 16, tr: 0, bl: 16, br: 0))
@@ -146,7 +146,7 @@ struct PolandDetailsLine: View {
                     .multilineTextAlignment(.center)
                     .frame(width: 220, alignment: .center)
                 Text(number)
-                    .foregroundColor(Colors.chartTop)
+                    .foregroundColor(Colors.main)
                     .font(.system(size: 12, weight: .semibold, design: .rounded))
                     .multilineTextAlignment(.center)
                     .frame(width: 70, alignment: .center)
@@ -164,7 +164,7 @@ struct HistoryColumn: View {
     
     var body: some View {
         VStack {
-            IconView(name: icon, size: .medium, weight: .semibold, color: Colors.chartTop)
+            IconView(name: icon, size: .medium, weight: .semibold, color: Colors.main)
             ForEach(self.vm.loadedDailyData.reversed(), id: \.self) { day in
                 DetailsText(text: self.getString(day), color: Colors.label)
                     .padding(.horizontal, 4)

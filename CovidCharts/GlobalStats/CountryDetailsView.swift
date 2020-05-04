@@ -19,9 +19,9 @@ struct CountryDetailsView: View {
                 IconView(name: Icons.flag, size: .medium, weight: .semibold, color: Colors.customViewBackground)
                 .frame(width: 60, height: 60, alignment: .center)
                 .padding(.vertical, 8)
-                .background(Colors.chartTop)
+                .background(Colors.main)
                 .clipShape(Circle())
-                .shadow(color: Colors.chartTop.opacity(0.7), radius: 8, x: -4, y: 8)
+                .shadow(color: Colors.main.opacity(0.7), radius: 8, x: -4, y: 8)
                 .offset(x: 0, y: -38)
                 VStack (spacing: 16) {
                     Text(country.country ?? "")
@@ -42,7 +42,7 @@ struct CountryDetailsView: View {
                     self.showCountryDetails.toggle()
                 }) {
                     Text("Zamknij")
-                        .foregroundColor(Colors.chartBot)
+                        .foregroundColor(Colors.main2)
                         .font(.system(size: 14, weight: .bold, design: .rounded))
                         .padding(.bottom, 16)
                 }
@@ -94,7 +94,7 @@ fileprivate struct DetailsLine: View {
                     .frame(width: 160, alignment: .center)
                     .animation(nil)
                 Text(value)
-                    .foregroundColor(Colors.chartTop)
+                    .foregroundColor(Colors.main)
                     .font(.system(size: 12, weight: .semibold, design: .rounded))
                     .multilineTextAlignment(.center)
                     .frame(width: 100, alignment: .center)

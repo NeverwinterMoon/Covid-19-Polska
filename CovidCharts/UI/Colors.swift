@@ -13,14 +13,12 @@ func logDebug(_ title: String, text: Any) {
 }
 
 enum Colors {
-    static let label = Color("Label")
-    static let main = Color("Main")
-    static let chartTop = Color("ChartTop")
-    static let chartBot = Color("ChartBot")
     
-    
-    static let customViewBackground = Color("CustomViewBackground")
-    static let background = Color("AppBackground")
+    static let label = Color("label")
+    static let main = Color("main")
+    static let main2 = Color("main2")
+    static let customViewBackground = Color("customViewBackground")
+    static let background = Color("background")
     
     
     static let graphGradient = Color("GraphGradient")

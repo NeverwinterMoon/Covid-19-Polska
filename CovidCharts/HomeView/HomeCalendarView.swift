@@ -40,8 +40,8 @@ struct HomeCalendarView: View {
                     .foregroundColor(Colors.background)
                     .frame(width: 200, height: 44, alignment: .center)
                 }
-                .background(RoundedCorners(color: Colors.chartBot, tl: 16, tr: 16, bl: 16, br: 16))
-                .shadow(color: Colors.chartBot.opacity(0.6), radius: 8, x: 2, y: 5)
+                .background(RoundedCorners(color: Colors.main2, tl: 16, tr: 16, bl: 16, br: 16))
+                .shadow(color: Colors.main2.opacity(0.6), radius: 8, x: 2, y: 5)
                 
             }
     }

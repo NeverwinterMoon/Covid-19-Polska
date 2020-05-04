@@ -93,7 +93,7 @@ struct GlobalStatsTitleBar: View {
             Button(action: {
                 self.showView.toggle()
             }) {
-                IconView(name: Icons.hide, size: .medium, weight: .regular, color: Colors.chartTop)
+                IconView(name: Icons.hide, size: .medium, weight: .regular, color: Colors.main)
             }
             .frame(width: 50, height: 40)
             .background(RoundedCorners(color: Colors.customViewBackground, tl: 0, tr: 16, bl: 0, br: 16))
@@ -106,7 +106,7 @@ struct GlobalStatsTitleBar: View {
             Button(action: {
                 self.showInfo.toggle()
             }) {
-                IconView(name: Icons.info, size: .medium, weight: .regular, color: Colors.chartTop)
+                IconView(name: Icons.info, size: .medium, weight: .regular, color: Colors.main)
             }
             .frame(width: 50, height: 40)
             .background(RoundedCorners(color: Colors.customViewBackground, tl: 16, tr: 0, bl: 16, br: 0))
@@ -141,7 +141,7 @@ fileprivate struct DetailsLine: View {
                     .animation(nil)
                     .frame(width: 160, alignment: .center)
                 Text(value)
-                    .foregroundColor(Colors.chartTop)
+                    .foregroundColor(Colors.main)
                     .font(.system(size: 12, weight: .semibold, design: .rounded))
                     .multilineTextAlignment(.center)
                     .frame(width: 100, alignment: .center)
@@ -174,7 +174,7 @@ fileprivate struct CountryLine: View {
                 }
                 .frame(width: 160, alignment: .center)
                 Text(String(value ?? 0))
-                    .foregroundColor(Colors.chartTop)
+                    .foregroundColor(Colors.main)
                     .font(.system(size: 12, weight: .semibold, design: .rounded))
                     .multilineTextAlignment(.center)
                     .frame(width: 100, alignment: .center)

@@ -59,7 +59,7 @@ struct HomeView: View {
                             Button(action: {
                                 self.showCalendar.toggle()
                             }) {
-                                IconView(name: Icons.calendar, size: .medium, weight: .semibold, color: Colors.chartTop)
+                                IconView(name: Icons.calendar, size: .medium, weight: .semibold, color: Colors.main)
                             }
                             
                         }
@@ -76,19 +76,19 @@ struct HomeView: View {
                                 self.chartTitle = "Zakażenia"
                                 self.vm.parameter = .confirmedInc
                             }) {
-                                IconView(name: Icons.confirmed, size: .medium, weight: .semibold, color: Colors.chartTop)
+                                IconView(name: Icons.confirmed, size: .medium, weight: .semibold, color: Colors.main)
                             }
                             Button(action: {
                                 self.chartTitle = "Zgony"
                                 self.vm.parameter = .deathsInc
                             }) {
-                                IconView(name: Icons.deaths, size: .medium, weight: .semibold, color: Colors.chartTop)
+                                IconView(name: Icons.deaths, size: .medium, weight: .semibold, color: Colors.main)
                             }
                             Button(action: {
                                 self.chartTitle = "Wyleczeni"
                                 self.vm.parameter = .recoveredInc
                             }) {
-                                IconView(name: Icons.recovered, size: .medium, weight: .semibold, color: Colors.chartTop)
+                                IconView(name: Icons.recovered, size: .medium, weight: .semibold, color: Colors.main)
                             }
                             .padding(.trailing, 8)
                         }
@@ -205,9 +205,9 @@ struct StatisticsView: View {
                 .offset(x: 100)
             IconView(name: icon, size: .large, weight: .semibold, color: Colors.customViewBackground)
             .frame(width: 80, height: 80, alignment: .center)
-            .background(Colors.chartTop)
+            .background(Colors.main)
             .clipShape(Circle())
-            .shadow(color: Colors.chartTop.opacity(0.7), radius: 8, x: -4, y: 8)
+            .shadow(color: Colors.main.opacity(0.7), radius: 8, x: -4, y: 8)
         }.offset(x: -90)
     }
 }
@@ -223,7 +223,7 @@ struct HomeTitleView: View {
                 Button(action: {
                     self.showMenu.toggle()
                 }) {
-                    IconView(name: Icons.menu, size: .medium, weight: .regular, color: Colors.chartTop)
+                    IconView(name: Icons.menu, size: .medium, weight: .regular, color: Colors.main)
                 }
                 .padding(.trailing, 8)
             }
@@ -246,7 +246,7 @@ struct HomeTitleView: View {
                 Button(action: {
                     self.vm.loadData()
                 }) {
-                    IconView(name: Icons.reload, size: .medium, weight: .regular, color: Colors.chartTop)
+                    IconView(name: Icons.reload, size: .medium, weight: .regular, color: Colors.main)
                 }
                 .padding(.leading, 8)
                 Spacer()

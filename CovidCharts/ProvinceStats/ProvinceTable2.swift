@@ -97,6 +97,6 @@ struct ProvinceTable2FirstLine: View {
         }
         .lineLimit(0)
         .font(.system(size: 12, weight: .semibold, design: .rounded))
-        .foregroundColor(Colors.chartTop)
+        .foregroundColor(Colors.main)
     }
 }

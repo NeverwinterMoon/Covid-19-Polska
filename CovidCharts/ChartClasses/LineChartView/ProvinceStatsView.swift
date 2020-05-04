@@ -85,9 +85,9 @@ struct SectionTitle: View {
                 IconView(name: icon, size: .medium, weight: .semibold, color: Colors.customViewBackground)
                 .frame(width: 60, height: 60, alignment: .center)
                 .padding(.vertical, 8)
-                .background(Colors.chartTop)
+                .background(Colors.main)
                 .clipShape(Circle())
-                    .shadow(color: Colors.chartTop.opacity(0.7), radius: 8, x: -4, y: 8)
+                    .shadow(color: Colors.main.opacity(0.7), radius: 8, x: -4, y: 8)
                 Spacer()
             }
         .offset(x: 30)
@@ -108,7 +108,7 @@ struct BarChartLegend: View {
                         .foregroundColor(Colors.label)
                     Spacer()
                         .frame(width: 32, height: 4, alignment: .center)
-                        .background(RoundedCorners(color: Colors.chartTop, tl: 8, tr: 8, bl: 8, br: 8))
+                        .background(RoundedCorners(color: Colors.main, tl: 8, tr: 8, bl: 8, br: 8))
                 }
                 HStack (spacing: 8){
                     Text("Zgony")
@@ -116,7 +116,7 @@ struct BarChartLegend: View {
                         .foregroundColor(Colors.label)
                     Spacer()
                         .frame(width: 32, height: 4, alignment: .center)
-                        .background(RoundedCorners(color: Colors.chartBot, tl: 8, tr: 8, bl: 8, br: 8))
+                        .background(RoundedCorners(color: Colors.main2, tl: 8, tr: 8, bl: 8, br: 8))
                 }
             }
             Spacer()
@@ -164,15 +164,15 @@ struct ProvinceBarChart: View {
                                     DetailsText(text: "\(Int(province.value1))", color: Colors.label)
                                     Spacer()
                                         .frame(width: UIScreen.width/10, height: self.setHeight(province.value1), alignment: .center)
-                                        .background(RoundedCorners(color: Colors.chartTop, tl: 8, tr: 8, bl: 0, br: 0))
-                                        .shadow(color: Colors.chartTop.opacity(0.3), radius: 5, x: 4, y: -2)
+                                        .background(RoundedCorners(color: Colors.main, tl: 8, tr: 8, bl: 0, br: 0))
+                                        .shadow(color: Colors.main.opacity(0.3), radius: 5, x: 4, y: -2)
                                 }
                                 VStack {
                                     DetailsText(text: "\(Int(province.value2))", color: Colors.label)
                                     Spacer()
                                         .frame(width: UIScreen.width/10, height: self.setHeight(province.value2), alignment: .center)
-                                        .background(RoundedCorners(color: Colors.chartBot, tl: 8, tr: 8, bl: 0, br: 0))
-                                        .shadow(color: Colors.chartBot.opacity(0.3), radius: 5, x: 4, y: -2)
+                                        .background(RoundedCorners(color: Colors.main2, tl: 8, tr: 8, bl: 0, br: 0))
+                                        .shadow(color: Colors.main2.opacity(0.3), radius: 5, x: 4, y: -2)
                                 }
                             }
                             Text(province.title.capitalized)

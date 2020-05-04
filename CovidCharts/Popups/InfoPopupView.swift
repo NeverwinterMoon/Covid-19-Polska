@@ -32,7 +32,7 @@ struct InfoPopupView: View {
                     Text(message2)
                         .multilineTextAlignment(.center)
                         .font(Fonts.text)
-                        .foregroundColor(Colors.chartBot)
+                        .foregroundColor(Colors.main2)
                 }
                 Button(action: {
                     self.showView.toggle()
