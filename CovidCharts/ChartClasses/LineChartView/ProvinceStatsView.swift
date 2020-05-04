@@ -175,7 +175,6 @@ struct ProvinceBarChart: View {
                                         .shadow(color: Colors.chartBot.opacity(0.3), radius: 5, x: 4, y: -2)
                                 }
                             }
-                            .padding(.top, 8)
                             Text(province.title.capitalized)
                                 .font(.system(size: 8, weight: .semibold, design: .rounded))
                                 .foregroundColor(Colors.label)
