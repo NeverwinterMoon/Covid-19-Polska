@@ -66,7 +66,7 @@ struct PolandStatsView: View {
                         }
                         
                         // Historical data
-                        SectionTitle(title: "Dane historyczne", icon: Icons.table)
+                        SectionTitle(title: "Historia pandemii", icon: Icons.table)
                         HStack {
                             HistoryColumn(parameter: .date, icon: Icons.calendar)
                             HistoryColumn(parameter: .confirmed, icon: Icons.confirmed)
