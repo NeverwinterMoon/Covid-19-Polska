@@ -13,6 +13,7 @@ struct InfoPopupView: View {
     @Binding var showView: Bool
     var title: String
     var message: String
+    var message2: String = ""
     
     var body: some View {
         VStack {
@@ -26,7 +27,13 @@ struct InfoPopupView: View {
                     .multilineTextAlignment(.center)
                     .font(Fonts.text)
                     .foregroundColor(Colors.label)
-                .animation(nil)
+                    .animation(nil)
+                if message2 != "" {
+                    Text(message2)
+                        .multilineTextAlignment(.center)
+                        .font(Fonts.text)
+                        .foregroundColor(Colors.chartBot)
+                }
                 Button(action: {
                     self.showView.toggle()
                 }) {

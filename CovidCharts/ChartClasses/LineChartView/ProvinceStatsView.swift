@@ -18,8 +18,11 @@ struct ProvinceStatsView: View {
         ZStack {
             Colors.background.edgesIgnoringSafeArea(.all)
             VStack {
-                DetailsTitleBar(title: "Województwa", showView: $showView, showInfo: $showInfo)
-                .padding(.top, 16)
+                DetailsTitleBar(title: "Województwa", showViewAction: {
+                    self.showView.toggle()
+                }) {
+                    self.showInfo.toggle()
+                }
                 ScrollView (.vertical, showsIndicators: false) {
                     SectionTitle(title: "Wykres zakażenia / zgony", icon: Icons.bars)
                     ProvinceBarChart()
@@ -34,7 +37,7 @@ struct ProvinceStatsView: View {
                 Spacer()
             }
             .blur(radius: self.showInfo ? 10 : 0)
-            InfoPopupView(showView: $showInfo, title: vm.popup.title, message: vm.popup.text)
+            InfoPopupView(showView: $showInfo, title: "Źródło danych", message: "Wykresy tworzone na podstawie danych publikowanych przez Ministerstwo Zdrowia/WHO", message2: "covid19api.com\napify.com/covid-19")
             .scaleEffect(self.showInfo ? 1.0 : 0.5)
             .opacity(self.showInfo ? 1.0 : 0.0)
             .animation(.spring())

@@ -64,7 +64,7 @@ struct GlobalStatsView: View {
             }
             .blur(radius: self.showInfo ? 10 : 0)
             .blur(radius: self.showCountryDetails ? 10 : 0)
-            InfoPopupView(showView: $showInfo, title: "Źródło danych", message: "Dane na podstawie:\ncovid19api.com/\napify.com/covid-19")
+            InfoPopupView(showView: $showInfo, title: "Źródło danych", message: "Wykresy tworzone na podstawie danych publikowanych przez Ministerstwo Zdrowia/WHO", message2: "covid19api.com\napify.com/covid-19")
                 .scaleEffect(self.showInfo ? 1.0 : 0.5)
                 .opacity(self.showInfo ? 1.0 : 0.0)
                 .animation(.spring())

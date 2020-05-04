@@ -38,7 +38,11 @@ struct PolandStatsView: View {
             ZStack {
                 Colors.background.edgesIgnoringSafeArea(.all)
                 VStack {
-                    DetailsTitleBar(title: "Polska", showView: $showView, showInfo: $showInfo)
+                    DetailsTitleBar(title: "Polska", showViewAction: {
+                        self.showView.toggle()
+                    }) {
+                        self.showInfo.toggle()
+                    }
                     ScrollView (.vertical, showsIndicators: false) {
                         SectionTitle(title: "Stan epidemii", icon: Icons.sum)
                         VStack (spacing: 16) {
@@ -79,7 +83,7 @@ struct PolandStatsView: View {
                     Spacer()
                 }
                 .blur(radius: self.showInfo ? 10 : 0)
-                InfoPopupView(showView: $showInfo, title: vm.popup.title, message: vm.popup.text)
+                InfoPopupView(showView: $showInfo, title: "Źródło danych", message: "Wykresy tworzone na podstawie danych publikowanych przez Ministerstwo Zdrowia/WHO", message2: "covid19api.com\napify.com/covid-19")
                 .scaleEffect(self.showInfo ? 1.0 : 0.5)
                 .opacity(self.showInfo ? 1.0 : 0.0)
                 .animation(.spring())
@@ -96,14 +100,13 @@ struct PolandStatsView: View {
 struct DetailsTitleBar: View {
     
     var title: String
-    @EnvironmentObject var vm: ChartViewModel
-    @Binding var showView: Bool
-    @Binding var showInfo: Bool
+    var showViewAction: () -> ()
+    var showInfoAction: () -> ()
     
     var body: some View {
         HStack {
             Button(action: {
-                self.showView.toggle()
+                self.showViewAction()
             }) {
                 IconView(name: Icons.hide, size: .medium, weight: .regular, color: Colors.chartTop)
             }
@@ -116,8 +119,7 @@ struct DetailsTitleBar: View {
                 .padding(.leading, 8)
             Spacer()
             Button(action: {
-                self.vm.setPopup(title: "Źródło danych", text: "Wykresy tworzone na podstawie danych publikowanych przez Ministerstwo Zdrowia/WHO")
-                self.showInfo.toggle()
+                self.showInfoAction()
             }) {
                 IconView(name: Icons.info, size: .medium, weight: .regular, color: Colors.chartTop)
             }

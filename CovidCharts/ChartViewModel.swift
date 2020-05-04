@@ -55,7 +55,7 @@ class ChartViewModel: ObservableObject {
         fetchPolandHistoricData()
         fetchPolandLatestData { (fetchedData) in
             self.showPopup.toggle()
-            self.setPopup(title: fetchedData ? "Aktualizacja" : "Wystąpił błąd", text: fetchedData ? "Ostatnia aktualizacja:\n\(self.dailyData.last?.date.formattedDate(.superlong) ?? "")" : "Sprawdź połączenie z internetem")
+            self.setPopup(title: fetchedData ? "Aktualizacja" : "Wystąpił błąd", text: fetchedData ? "Ostatnia aktualizacja bazy danych:\n\(self.dailyData.last?.date.formattedDate(.superlong) ?? "")" : "Błąd serwera lub brak połączenia z internetem.\nSpróbuj ponownie.")
             self.highlightedData.confirmed = self.dailyData.last?.confirmed ?? 0
             self.highlightedData.confirmedInc = self.dailyData.last?.confirmedInc ?? 0
             self.highlightedData.deaths = self.dailyData.last?.deaths ?? 0
