@@ -23,7 +23,7 @@ struct HomeView: View {
             Colors.background
                 .edgesIgnoringSafeArea(.all)
             VStack (spacing: 0) {
-                if !vm.dailyData.isEmpty {
+                if !self.vm.isLoadingState {
                     HomeTitleView(showMenu: $showMenu)
                     Spacer()
                     HStack (spacing: 26) {
@@ -243,6 +243,7 @@ struct HomeTitleView: View {
             Spacer()
             HStack {
                 Button(action: {
+                    self.vm.isLoadingState = true
                     self.vm.loadData()
                 }) {
                     IconView(name: Icons.reload, size: .medium, weight: .regular, color: Colors.main)

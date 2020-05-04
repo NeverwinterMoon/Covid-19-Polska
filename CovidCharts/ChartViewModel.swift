@@ -48,6 +48,7 @@ class ChartViewModel: ObservableObject {
     @Published var parameter: ParameterType = .confirmedInc
     @Published var popup = HomeViewPopup(title: "", text: "")
     @Published var showPopup: Bool = false
+    @Published var isLoadingState: Bool = true
     
     @Published var showHorizontalLines: Bool = false
     @Published var showHighlightedData: Bool = false
