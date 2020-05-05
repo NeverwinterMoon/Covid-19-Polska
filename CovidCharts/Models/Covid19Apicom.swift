@@ -8,6 +8,7 @@
 
 import Foundation
 
+// MARK: - Global data
 struct Country: Codable, Hashable {
     let country: String?
     let countryCode: String?

@@ -150,10 +150,8 @@
 			children = (
 				810C12F62444994000419207 /* AppDelegate.swift */,
 				810C12F82444994000419207 /* SceneDelegate.swift */,
-				81C197FE24490AFB00AEC5FF /* ChartsModel.swift */,
-				819F96A9245E1B320044F1CC /* Covid19Apicom.swift */,
-				81E05EBC244E4E460002F0C3 /* ChartViewModel.swift */,
-				819F96B3246054B40044F1CC /* LicencesView.swift */,
+				816C3BB02461805F00BA2893 /* Models */,
+				816C3BAF2461804A00BA2893 /* Licence */,
 				81C198322449E29900AEC5FF /* FlexSwiftUICharts */,
 				814B42082451D97B00923A19 /* ChartClasses */,
 				810C130F2444C9B100419207 /* HomeView */,
@@ -191,6 +189,7 @@
 		810C130F2444C9B100419207 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
+				81E05EBC244E4E460002F0C3 /* ChartViewModel.swift */,
 				810C12FA2444994000419207 /* HomeView.swift */,
 				8139414C2459C6E0002AF9BA /* HomeMenuView.swift */,
 				819F9677245CA7A60044F1CC /* HomeCalendarView.swift */,
@@ -240,6 +239,23 @@
 				810C131A2446043700419207 /* LineChartView */,
 			);
 			path = ChartClasses;
+			sourceTree = "<group>";
+		};
+		816C3BAF2461804A00BA2893 /* Licence */ = {
+			isa = PBXGroup;
+			children = (
+				819F96B3246054B40044F1CC /* LicencesView.swift */,
+			);
+			path = Licence;
+			sourceTree = "<group>";
+		};
+		816C3BB02461805F00BA2893 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				81C197FE24490AFB00AEC5FF /* ChartsModel.swift */,
+				819F96A9245E1B320044F1CC /* Covid19Apicom.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		819F966C245C2F630044F1CC /* PolandStats */ = {
